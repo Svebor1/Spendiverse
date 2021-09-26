@@ -49,4 +49,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/promjeni_datum" />
 
+    <EditText
+        android:id="@+id/cijena_troska"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="cijena"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datum_troska" />
+
+    <Button
+        android:id="@+id/dodati_trosak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:text="dodaj trošak"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cijena_troska" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
