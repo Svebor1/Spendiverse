@@ -44,7 +44,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         spinner.setAdapter(arrayAdapter);
         datumTroska = findViewById(R.id.datum_troska);
         prikaziDatum();
-//nismo napisali da se vraca u mainac
 
         dodatiTrosak = findViewById(R.id.dodati_trosak);
         nazivTroska = findViewById(R.id.naziv_troska);
@@ -85,7 +84,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
     private void dodajNoviTrosak() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>(); //
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
