@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -120,10 +121,8 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 String datum = document.getData().get("datum").toString();
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
                                 troskovi.add(new Trosak(naziv, datum, kategorija, cijena));
-dobro je
                             }
                             List<PieEntry> entries = new ArrayList<>();
-
                             Map<String, Integer> trosakZaKategorije = new HashMap<>();
                             for(Trosak trosak: troskovi) {
                                 Integer kategorijaDoSada = trosakZaKategorije.get(trosak.getKategorija());
@@ -136,17 +135,10 @@ dobro je
                                 entries.add(new PieEntry(entry.getValue(), entry.getKey()));
                             }
                             PieDataSet set = new PieDataSet(entries, "Troškovi");
-                            List<Integer> colors = new ArrayList<>();
-
-                            colors.add(new Integer(Color.BLUE));
-                            colors.add(new Integer(Color.RED));
-                            colors.add(new Integer(Color.GREEN));
-                            colors.add(new Integer(Color.YELLOW));
-                            set.setColors(colors);
+                            set.setColors(ColorTemplate.COLORFUL_COLORS);
                             PieData data = new PieData(set);
                             chart.setData(data);
                             chart.invalidate(); // refresh
-
 
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
