@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".PrikazTroskovaActivity">
 
+
     <Button
         android:id="@+id/unos_troskova"
         android:layout_width="wrap_content"
@@ -15,6 +16,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/unos_troskova" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,7 +36,6 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vidjeti_detalje" />
-
     <Button
         android:id="@+id/vidjeti_detalje"
         android:layout_width="wrap_content"
@@ -35,5 +44,5 @@
         android:text="vidjeti detalje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/unos_troskova" />
+        app:layout_constraintTop_toBottomOf="@id/chart" />
 </androidx.constraintlayout.widget.ConstraintLayout>
