@@ -28,7 +28,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
@@ -55,22 +57,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         // enable rotation of the chart by touch
         chart.setRotationEnabled(true);
         chart.setHighlightPerTapEnabled(true);
-        List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(18.5f, "Prehrana"));
-        entries.add(new PieEntry(26.7f, "Kucanstvo"));
-        entries.add(new PieEntry(24.0f, "Zabava"));
-        entries.add(new PieEntry(30.8f, "Putovanja"));
-        PieDataSet set = new PieDataSet(entries, "Troškovi");
-        List<Integer> colors = new ArrayList<>();
-        colors.add(new Integer(Color.BLUE));
-        colors.add(new Integer(Color.RED));
-        colors.add(new Integer(Color.GREEN));
-        colors.add(new Integer(Color.YELLOW));
-        set.setColors(colors);
-
-        PieData data = new PieData(set);
-        chart.setData(data);
-        chart.invalidate(); // refresh
+        nadiTroskove();
         Button unosTroskovaButton;
         Button vidjetiDetalje;
         TextView textView;
@@ -116,5 +103,57 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, VidjetiDetaljeActivity.class);
         startActivity(intent);
     }
+    private void  nadiTroskove() {
+        ArrayList<Trosak> troskovi = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String naziv = document.getData().get("naziv").toString();
+                                String kategorija = document.getData().get("kategorija").toString();
+                                String datum = document.getData().get("datum").toString();
+                                Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                troskovi.add(new Trosak(naziv, datum, kategorija, cijena));
+dobro je
+                            }
+                            List<PieEntry> entries = new ArrayList<>();
 
+                            Map<String, Integer> trosakZaKategorije = new HashMap<>();
+                            for(Trosak trosak: troskovi) {
+                                Integer kategorijaDoSada = trosakZaKategorije.get(trosak.getKategorija());
+                                if (kategorijaDoSada == null) {
+                                    kategorijaDoSada = 0;
+                                }
+                                trosakZaKategorije.put(trosak.getKategorija(), kategorijaDoSada+trosak.getCijena());
+                            }
+                            for (Map.Entry<String, Integer> entry : trosakZaKategorije.entrySet()) {
+                                entries.add(new PieEntry(entry.getValue(), entry.getKey()));
+                            }
+                            PieDataSet set = new PieDataSet(entries, "Troškovi");
+                            List<Integer> colors = new ArrayList<>();
+
+                            colors.add(new Integer(Color.BLUE));
+                            colors.add(new Integer(Color.RED));
+                            colors.add(new Integer(Color.GREEN));
+                            colors.add(new Integer(Color.YELLOW));
+                            set.setColors(colors);
+                            PieData data = new PieData(set);
+                            chart.setData(data);
+                            chart.invalidate(); // refresh
+
+
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+
+    }
 }
