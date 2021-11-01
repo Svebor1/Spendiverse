@@ -31,6 +31,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     private TextView nazivTroska;
     private Button dodatiTrosak;
+    private Integer dan;
+    private Integer mjesec;
+    private Integer godina;
     private TextView cijenaTroska;
     TextView datumTroska;
     @Override
@@ -75,11 +78,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
     }
     private void prikaziDatum() {
-        int year = myCalendar.get(Calendar.YEAR);
-        int month = myCalendar.get(Calendar.MONTH)+1;
-        int day = myCalendar.get(Calendar.DAY_OF_MONTH);
+        godina = myCalendar.get(Calendar.YEAR);
+        mjesec = myCalendar.get(Calendar.MONTH)+1;
+        dan = myCalendar.get(Calendar.DAY_OF_MONTH);
 
-        datumTroska.setText(Integer.toString(day) + "." + Integer.toString(month) + "." + Integer.toString(year)); //
+        datumTroska.setText(Integer.toString(dan) + "." + Integer.toString(mjesec) + "." + Integer.toString(godina)); //
     }
 
     private void dodajNoviTrosak() {
@@ -88,7 +91,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
-        data.put("datum", datumTroska.getText());
+        data.put("datumDan", dan);
+        data.put("datumMjesec", mjesec);
+        data.put("datumGodina", godina);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi").add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

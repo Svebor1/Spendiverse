@@ -118,9 +118,11 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String naziv = document.getData().get("naziv").toString();
                                 String kategorija = document.getData().get("kategorija").toString();
-                                String datum = document.getData().get("datum").toString();
+                                Integer datumDan = Integer.parseInt(document.getData().get("datumDan").toString());
+                                Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
+                                Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
-                                troskovi.add(new Trosak(naziv, datum, kategorija, cijena));
+                                troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena));
                             }
                             List<PieEntry> entries = new ArrayList<>();
                             Map<String, Integer> trosakZaKategorije = new HashMap<>();

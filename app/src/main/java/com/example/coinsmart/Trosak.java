@@ -2,13 +2,17 @@ package com.example.coinsmart;
 
 public class Trosak {
     private String naziv;
-    private String datum;
+    private Integer datumDan;
+    private Integer datumMjesec;
+    private Integer datumGodina;
     private String kategorija;
     private Integer cijena;
 
-    public Trosak(String naziv, String datum, String kategorija, Integer cijena) {
+    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena) {
         this.naziv = naziv;
-        this.datum = datum;
+        this.datumDan = datumDan;
+        this.datumMjesec = datumMjesec;
+        this.datumGodina = datumGodina;
         this.kategorija = kategorija;
         this.cijena = cijena;
     }
@@ -29,12 +33,28 @@ public class Trosak {
         this.kategorija = kategorija;
     }
 
-    public String getDatum() {
-        return datum;
+    public Integer getDatumDan() {
+        return datumDan;
     }
 
-    public void setDatum(String datum) {
-        this.datum = datum;
+    public void setDatumDan(Integer datumDan) {
+        this.datumDan = datumDan;
+    }
+
+    public Integer getDatumMjesec() {
+        return datumMjesec;
+    }
+
+    public void setDatumMjesec(Integer datumMjesec) {
+        this.datumMjesec = datumMjesec;
+    }
+
+    public Integer getDatumGodina() {
+        return datumGodina;
+    }
+
+    public void setDatumGodina(Integer datumGodina) {
+        this.datumGodina = datumGodina;
     }
 
     public String getNaziv() {
