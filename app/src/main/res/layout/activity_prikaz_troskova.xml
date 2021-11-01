@@ -7,6 +7,27 @@
     tools:context=".PrikazTroskovaActivity">
 
 
+    <LinearLayout
+        android:id="@+id/layout_razdoblje"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unos_troskova"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prikaz troškova za "/>
+
+        <Spinner
+            android:id="@+id/vremensko_razdoblje"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/unos_troskova"
         android:layout_width="wrap_content"
@@ -22,9 +43,10 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/unos_troskova" />
+        app:layout_constraintTop_toBottomOf="@id/layout_razdoblje" />
 
     <TextView
         android:id="@+id/textView"
@@ -45,4 +67,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chart" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -36,10 +38,16 @@ import java.util.Map;
 public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
+    private Spinner spinner;
+    String vremenskaRazdoblja[] = {"dan", "tjedan", "mjesec", "godina", "ukupno"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_troskova);
+        spinner = findViewById(R.id.vremensko_razdoblje);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
