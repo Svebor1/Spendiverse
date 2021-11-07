@@ -10,22 +10,24 @@
     <LinearLayout
         android:id="@+id/layout_razdoblje"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unos_troskova"
         android:layout_marginBottom="10dp">
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prikaz troškova za "/>
+            android:text="Prikaz troškova za " />
 
         <Spinner
             android:id="@+id/vremensko_razdoblje"
-            android:layout_width="18dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp" />
     </LinearLayout>
 
     <Button

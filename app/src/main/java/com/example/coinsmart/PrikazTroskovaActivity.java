@@ -50,11 +50,13 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_troskova);
         spinner = findViewById(R.id.vremensko_razdoblje);
+
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 nadiTroskove(spinner.getSelectedItem().toString());
@@ -66,6 +68,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             }
 
         });
+
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
