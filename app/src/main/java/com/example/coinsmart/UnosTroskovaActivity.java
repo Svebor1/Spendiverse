@@ -28,7 +28,7 @@ import java.util.Map;
 public class UnosTroskovaActivity extends AppCompatActivity {
     private final String TAG = "Unos troskova activity";
     private Spinner spinner;
-    final Calendar myCalendar = Calendar.getInstance();
+    private final Calendar myCalendar = Calendar.getInstance();
     private TextView nazivTroska;
     private Button dodatiTrosak;
     private Integer dan;

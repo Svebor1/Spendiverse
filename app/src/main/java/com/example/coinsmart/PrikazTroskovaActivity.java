@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -30,7 +31,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +43,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"dan", "tjedan", "mjesec", "godina", "ukupno"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,20 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         spinner = findViewById(R.id.vremensko_razdoblje);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //
         spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                nadiTroskove(spinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                nadiTroskove("ukupno");
+            }
+
+        });
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
@@ -66,7 +84,6 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         // enable rotation of the chart by touch
         chart.setRotationEnabled(true);
         chart.setHighlightPerTapEnabled(true);
-        nadiTroskove();
         Button unosTroskovaButton;
         Button vidjetiDetalje;
         TextView textView;
@@ -112,7 +129,35 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, VidjetiDetaljeActivity.class);
         startActivity(intent);
     }
-    private void  nadiTroskove() {
+    //
+    private boolean provjeriDatum(String razdoblje, int dan, int mjesec, int godina) {
+        int godinaDanas = myCalendar.get(Calendar.YEAR);
+        int mjesecDanas = myCalendar.get(Calendar.MONTH)+1;
+        int danDanas = myCalendar.get(Calendar.DAY_OF_MONTH);
+        long datum = LocalDate.of(godina, mjesec, dan).toEpochDay();
+        long datumDanas = LocalDate.of(godinaDanas, mjesecDanas, danDanas).toEpochDay();
+        if (razdoblje == "dan") {
+            return dan == danDanas && mjesec == mjesecDanas && godina == godinaDanas;
+        }
+        else if (razdoblje == "tjedan") {
+            return datumDanas-datum < 7;
+
+        }
+        else if (razdoblje == "mjesec") {
+            return (godinaDanas == godina && mjesecDanas==mjesec)
+                    || (godinaDanas == godina && mjesecDanas-mjesec == 1 && danDanas <= dan)
+                    || (godinaDanas-godina == 1 && mjesecDanas == 1 && mjesec == 12 && danDanas <= dan);
+        }
+        else if (razdoblje == "godina") {
+            return godinaDanas == godina
+                    || godinaDanas-godina == 1 && mjesecDanas<mjesec
+                    || godinaDanas-godina == 1 && mjesecDanas == mjesec && danDanas <= dan;
+        }
+        else {
+            return true;
+        }
+    }
+    private void  nadiTroskove(String razdoblje) {
         ArrayList<Trosak> troskovi = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -130,7 +175,9 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
-                                troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena));
+                                if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina)) {
+                                    troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena));
+                                }
                             }
                             List<PieEntry> entries = new ArrayList<>();
                             Map<String, Integer> trosakZaKategorije = new HashMap<>();
