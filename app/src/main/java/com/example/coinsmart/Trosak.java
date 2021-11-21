@@ -7,14 +7,24 @@ public class Trosak {
     private Integer datumGodina;
     private String kategorija;
     private Integer cijena;
+    private String firebaseId;
 
-    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena) {
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
+    }
+
+    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena, String firebaseId) {
         this.naziv = naziv;
         this.datumDan = datumDan;
         this.datumMjesec = datumMjesec;
         this.datumGodina = datumGodina;
         this.kategorija = kategorija;
         this.cijena = cijena;
+        this.firebaseId = firebaseId;
     }
 
     public Integer getCijena() {

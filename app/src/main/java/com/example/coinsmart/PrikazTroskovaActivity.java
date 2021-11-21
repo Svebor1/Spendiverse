@@ -177,8 +177,9 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                String firebaseId = document.getId();
                                 if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina)) {
-                                    troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena));
+                                    troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                                 }
                             }
                             List<PieEntry> entries = new ArrayList<>();

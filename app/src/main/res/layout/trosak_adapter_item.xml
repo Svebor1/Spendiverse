@@ -44,7 +44,7 @@
             app:layout_constraintStart_toEndOf="@+id/datum_tv"
             app:layout_constraintTop_toTopOf="parent" />
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/kanta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_delete"

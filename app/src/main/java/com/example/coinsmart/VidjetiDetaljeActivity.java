@@ -41,11 +41,10 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
-                                troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena));
-
+                                String firebaseId = document.getId();
+                                troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                             }
                             prikaziTroskove();
-
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

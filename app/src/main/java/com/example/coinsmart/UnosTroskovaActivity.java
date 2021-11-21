@@ -59,7 +59,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         };
         dodatiTrosak.setOnClickListener(listener);
 
-    }
+    } //uspio sam upisati
     public void showDatePickerDialog(View v) {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 

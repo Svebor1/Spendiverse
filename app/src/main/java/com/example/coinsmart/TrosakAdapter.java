@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +43,32 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         nameTV.setText(trosak.getNaziv());
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
         cijena.setText(trosak.getCijena()+" HRK");
-        //da
+        Button kanta;
+        kanta = listitemView.findViewById(R.id.kanta);
+
+        kanta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("korisnici").document(firebaseUser.getUid())
+                        .collection("troskovi").document(trosak.getFirebaseId()).delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d(TAG, "DocumentSnapshot deleted with ID: " + trosak.getFirebaseId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+                remove(trosak);
+            }
+        });
+
         /*
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
