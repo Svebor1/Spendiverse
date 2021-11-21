@@ -41,25 +41,38 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unos_troskova);
         spinner = findViewById(R.id.spinner);
+        datumTroska = findViewById(R.id.datum_troska);
+        dodatiTrosak = findViewById(R.id.dodati_trosak);
+        nazivTroska = findViewById(R.id.naziv_troska);
+        cijenaTroska = findViewById(R.id.cijena_troska);
+
         String kategorije[] = {"prehrana","kućanstvo","promet"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        datumTroska = findViewById(R.id.datum_troska);
-        prikaziDatum();
 
-        dodatiTrosak = findViewById(R.id.dodati_trosak);
-        nazivTroska = findViewById(R.id.naziv_troska);
-        cijenaTroska = findViewById(R.id.cijena_troska);
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dodajNoviTrosak();
-            }
-        };
-        dodatiTrosak.setOnClickListener(listener);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) {
 
-    } //uspio sam upisati
+            prikaziDatum();
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dodajNoviTrosak();
+                }
+            };
+            dodatiTrosak.setOnClickListener(listener);
+        }
+        else {
+            nazivTroska.setText(bundle.getString("naziv"));
+            cijenaTroska.setText(bundle.getInt("cijena"));
+            spinner.setSelection(1);
+            postaviDatum(bundle.getInt("datumDan"), bundle.getInt("datumMjesec"), bundle.getInt("datumGodina"));
+            prikaziDatum(); //skrsilo se
+        }
+
+
+    }
     public void showDatePickerDialog(View v) {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -76,6 +89,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         new DatePickerDialog(this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    private void postaviDatum(Integer dan, Integer mjesec, Integer godina) {
+        myCalendar.set(Calendar.YEAR, godina);
+        myCalendar.set(Calendar.MONTH, mjesec);
+        myCalendar.set(Calendar.DAY_OF_MONTH, dan);
     }
     private void prikaziDatum() {
         godina = myCalendar.get(Calendar.YEAR);

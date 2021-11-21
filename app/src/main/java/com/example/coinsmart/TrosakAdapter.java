@@ -1,6 +1,8 @@
 package com.example.coinsmart;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +26,14 @@ import java.util.ArrayList;
 
 public class TrosakAdapter extends ArrayAdapter<Trosak> {
     private final String TAG = "ProductAdapter";
+    private Context context;
     public TrosakAdapter(@NonNull Context context, ArrayList<Trosak> dataModalArrayList) {
         super(context, 0, dataModalArrayList);
+        this.context = context;
     }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         View listitemView = convertView;
         if (listitemView == null) {
             listitemView = LayoutInflater.from(getContext()).inflate(R.layout.trosak_adapter_item, parent, false);
@@ -45,8 +48,9 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
         cijena.setText(trosak.getCijena()+" HRK");
         ImageButton kanta;
+        ImageButton edit;
+        edit = listitemView.findViewById(R.id.edit);
         kanta = listitemView.findViewById(R.id.kanta);
-
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +71,24 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
                             }
                         });
                 remove(trosak);
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, UnosTroskovaActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("naziv", trosak.getNaziv());
+                bundle.putString("kategorija", trosak.getKategorija());
+                bundle.putInt("datumDan", trosak.getDatumDan());
+                bundle.putInt("datumMjesec", trosak.getDatumMjesec());
+                bundle.putInt("datumGodina", trosak.getDatumGodina());
+                bundle.putInt("cijena", trosak.getCijena());
+                bundle.putString("firebaseId", trosak.getFirebaseId());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+
             }
         });
 
