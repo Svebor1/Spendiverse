@@ -17,7 +17,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-
 public class VidjetiDetaljeActivity extends AppCompatActivity {
     private final String TAG = "VidjetiDetaljeActivity";
     ArrayList<Trosak> troskovi;

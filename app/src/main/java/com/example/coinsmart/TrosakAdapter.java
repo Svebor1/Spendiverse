@@ -38,9 +38,12 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
 
         TextView nameTV = listitemView.findViewById(R.id.naziv_tv);
         TextView datum = listitemView.findViewById(R.id.datum_tv);
-
+        TextView cijena = listitemView.findViewById(R.id.cijena_tv);
         nameTV.setText(trosak.getNaziv());
-/*
+        datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
+        cijena.setText(trosak.getCijena()+" HRK");
+        //da
+        /*
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
