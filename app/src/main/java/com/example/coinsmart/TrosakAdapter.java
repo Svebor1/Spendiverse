@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         nameTV.setText(trosak.getNaziv());
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
         cijena.setText(trosak.getCijena()+" HRK");
-        Button kanta;
+        ImageButton kanta;
         kanta = listitemView.findViewById(R.id.kanta);
 
         kanta.setOnClickListener(new View.OnClickListener() {
