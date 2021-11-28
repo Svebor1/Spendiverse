@@ -60,6 +60,7 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vidjeti_detalje" />
+
     <Button
         android:id="@+id/vidjeti_detalje"
         android:layout_width="wrap_content"

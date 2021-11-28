@@ -25,7 +25,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vidjeti_detalje);
         troskovi = new ArrayList<>();
-
+//hvala bok
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")

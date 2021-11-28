@@ -88,24 +88,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart.setHighlightPerTapEnabled(true);
         Button unosTroskovaButton;
         Button vidjetiDetalje;
-        TextView textView;
-        textView = findViewById(R.id.textView);
         vidjetiDetalje = findViewById(R.id.vidjeti_detalje);
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                        textView.setText(textView.getText().toString() + document.getData().toString());
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-            }
-        });
         unosTroskovaButton = findViewById(R.id.unos_troskova);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -123,6 +106,14 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         };
         vidjetiDetalje.setOnClickListener(listener2);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nadiTroskove(spinner.getSelectedItem().toString());
+    }
+
+
     private void unosTroskova() {
         Intent intent = new Intent(this, UnosTroskovaActivity.class);
         startActivity(intent);
