@@ -24,8 +24,13 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vidjeti_detalje);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         troskovi = new ArrayList<>();
-//hvala bok
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -51,7 +56,9 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                         }
                     }
                 });
+
     }
+
     private void prikaziTroskove() {
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
         TrosakAdapter arrayAdapter = new TrosakAdapter(this, troskovi);

@@ -61,7 +61,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
-        } //nije jasno sto si rekla za postavi datum
+        }
         else {
             String nazivTroskaText = bundle.getString("naziv");
             //mozda ispisati u console
@@ -73,11 +73,18 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             spinner.setSelection(spinnerPosition);
             String firebaseIdTroska = bundle.getString("firebaseId");
             Integer datumDan = bundle.getInt("datumDan");
-            Integer datumMjesec = bundle.getInt("datumMjesec");
+            Integer datumMjesec = bundle.getInt("datumMjesec")-1;
             Integer datumGodina = bundle.getInt("datumGodina");
             postaviDatum(datumDan, datumMjesec, datumGodina);
             prikaziDatum();
             dodatiTrosak.setText("promijeni trošak");
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    promijeniTrosak(firebaseIdTroska);
+                }
+            };
+            dodatiTrosak.setOnClickListener(listener);
 
         }
     }
@@ -113,7 +120,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
     private void dodajNoviTrosak() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Map<String, Object> data = new HashMap<>(); //
+        Map<String, Object> data = new HashMap<>();
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
@@ -134,8 +141,34 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
-        //nesto kao startactivity
         finish();
 
+    }
+    private void promijeniTrosak(String firebaseId) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Map<String, Object> data = new HashMap<>();
+        data.put("cijena", cijenaTroska.getText().toString());
+        data.put("naziv", nazivTroska.getText().toString());
+        data.put("kategorija", spinner.getSelectedItem().toString());
+        data.put("datumDan", dan);
+        data.put("datumMjesec", mjesec);
+        data.put("datumGodina", godina);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi").document(firebaseId)
+                .update(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+        finish();
     }
 }
