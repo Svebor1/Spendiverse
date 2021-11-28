@@ -53,7 +53,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
-
             prikaziDatum();
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
@@ -62,16 +61,25 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
-        }
+        } //nije jasno sto si rekla za postavi datum
         else {
-            nazivTroska.setText(bundle.getString("naziv"));
-            cijenaTroska.setText(bundle.getInt("cijena"));
-            spinner.setSelection(1);
-            postaviDatum(bundle.getInt("datumDan"), bundle.getInt("datumMjesec"), bundle.getInt("datumGodina"));
-            prikaziDatum(); //skrsilo se
+            String nazivTroskaText = bundle.getString("naziv");
+            //mozda ispisati u console
+            nazivTroska.setText(nazivTroskaText);
+            Integer cijenaTroskaText = bundle.getInt("cijena");
+            cijenaTroska.setText(cijenaTroskaText.toString());
+            String kategorijaTroska = bundle.getString("kategorija");
+            int spinnerPosition = arrayAdapter.getPosition(kategorijaTroska);
+            spinner.setSelection(spinnerPosition);
+            String firebaseIdTroska = bundle.getString("firebaseId");
+            Integer datumDan = bundle.getInt("datumDan");
+            Integer datumMjesec = bundle.getInt("datumMjesec");
+            Integer datumGodina = bundle.getInt("datumGodina");
+            postaviDatum(datumDan, datumMjesec, datumGodina);
+            prikaziDatum();
+            dodatiTrosak.setText("promijeni trošak");
+
         }
-
-
     }
     public void showDatePickerDialog(View v) {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
