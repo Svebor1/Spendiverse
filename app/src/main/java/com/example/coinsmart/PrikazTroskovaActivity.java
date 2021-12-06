@@ -43,6 +43,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    Button financijskaPismenostButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"dan", "tjedan", "mjesec", "godina", "ukupno"};
     @Override
@@ -88,6 +89,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart.setHighlightPerTapEnabled(true);
         Button unosTroskovaButton;
         Button vidjetiDetalje;
+        financijskaPismenostButton = findViewById(R.id.financijska_pismenost);
         vidjetiDetalje = findViewById(R.id.vidjeti_detalje);
         unosTroskovaButton = findViewById(R.id.unos_troskova);
         View.OnClickListener listener = new View.OnClickListener() {
@@ -105,6 +107,15 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             }
         };
         vidjetiDetalje.setOnClickListener(listener2);
+
+        View.OnClickListener listener3 = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                financijskaPismenost();
+            }
+        };
+        financijskaPismenostButton.setOnClickListener(listener3);
     }
 
     @Override
@@ -113,7 +124,10 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         nadiTroskove(spinner.getSelectedItem().toString());
     }
 
-
+    private void financijskaPismenost() {
+        Intent intent = new Intent(this, FinancijskaPismenostActivity.class);
+        startActivity(intent);
+    }
     private void unosTroskova() {
         Intent intent = new Intent(this, UnosTroskovaActivity.class);
         startActivity(intent);
