@@ -17,24 +17,22 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financijska_pismenost);
-//usao sam i izbacilo me
-        ExpandableListView expandableListView;
+        ExpandableListView lista;
         ExpandableListAdapter expandableListAdapter;
-        List<String> expandableListTitle;
-        HashMap<String, List<String>> expandableListDetail;
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getData();
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
-        //expandableListView.setAdapter(expandableListAdapter);
-       /* expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        List<String> kategorije;
+        HashMap<String, List<String>> podkategorije;
+        lista = (ExpandableListView) findViewById(R.id.expandableListView);
+        podkategorije = spremnikKategorija.getData();
+        kategorije = new ArrayList<String>(podkategorije.keySet());
+        expandableListAdapter = new CustomExpandableListAdapter(this, kategorije, podkategorije);
+        lista.setAdapter(expandableListAdapter);
+        lista.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                //izbaci me
+
                 return false;
             }
         });
-        */
     }
 }
