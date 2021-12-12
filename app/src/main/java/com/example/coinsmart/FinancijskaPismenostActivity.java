@@ -1,6 +1,7 @@
 package com.example.coinsmart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Carousel;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,8 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.opensooq.pluto.PlutoView;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ViewListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +41,23 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         });
 
         //postavljanje slide showa
-        PlutoView slideShow = findViewById(R.id.slider_view);
+        //PlutoView slideShow = findViewById(R.id.slider_view);
         List <SlideModel> slideovi = new ArrayList<>();
         slideovi.add(new SlideModel("štednja"));
         slideovi.add(new SlideModel("ulaganje"));
-        SlideShowAdapter slideShowAdapter = new SlideShowAdapter(slideovi);
-        slideShow.create(slideShowAdapter, getLifecycle());
+        CarouselView carousel = findViewById(R.id.carouselView);
+        carousel.setPageCount(2);
+        ViewListener listener = new ViewListener() {
+            @Override
+            public View setViewForPosition(int position) {
+                View customView = getLayoutInflater().inflate(R.layout.kartica_layout, null);
+                TextView opis = customView.findViewById(R.id.opis);
+                opis.setText(slideovi.get(position).getText());
+
+                return customView;
+            }
+        };
+        //SlideShowAdapter slideShowAdapter = new SlideShowAdapter(slideovi);
+        //slideShow.create(slideShowAdapter, getLifecycle());
     }
 } 

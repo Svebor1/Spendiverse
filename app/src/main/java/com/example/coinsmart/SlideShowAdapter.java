@@ -3,8 +3,7 @@ package com.example.coinsmart;
 import android.transition.Slide;
 import android.view.ViewGroup;
 
-import com.opensooq.pluto.base.PlutoAdapter;
-
+/*
 import java.util.List;
 
 public class SlideShowAdapter extends PlutoAdapter<SlideModel, SlideViewHolder> {
@@ -19,3 +18,5 @@ public class SlideShowAdapter extends PlutoAdapter<SlideModel, SlideViewHolder> 
     }
 
 }
+
+ */

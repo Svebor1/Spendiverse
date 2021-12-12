@@ -2,8 +2,7 @@ package com.example.coinsmart;
 
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.opensooq.pluto.base.PlutoViewHolder;
+/*
 
 public class SlideViewHolder extends PlutoViewHolder<SlideModel> {
 
@@ -18,3 +17,4 @@ public class SlideViewHolder extends PlutoViewHolder<SlideModel> {
         opis.setText(slideModel.getText());
     }
 }
+*/
