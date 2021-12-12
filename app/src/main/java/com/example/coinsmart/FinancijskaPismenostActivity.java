@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
+
+import com.opensooq.pluto.PlutoView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,5 +37,13 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //postavljanje slide showa
+        PlutoView slideShow = findViewById(R.id.slider_view);
+        List <SlideModel> slideovi = new ArrayList<>();
+        slideovi.add(new SlideModel("štednja"));
+        slideovi.add(new SlideModel("ulaganje"));
+        SlideShowAdapter slideShowAdapter = new SlideShowAdapter(slideovi);
+        slideShow.create(slideShowAdapter, getLifecycle());
     }
-}
+} 
