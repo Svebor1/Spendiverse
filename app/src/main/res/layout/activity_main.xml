@@ -34,7 +34,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="5.5"
                 app:srcCompat="@drawable/education" />
 
             <Button
@@ -63,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/yellow"
                 android:text="prikaz troškova" />
 
             <ImageView
