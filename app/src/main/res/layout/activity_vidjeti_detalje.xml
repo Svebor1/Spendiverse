@@ -8,6 +8,8 @@
     tools:context=".VidjetiDetaljeActivity">
 
     <ListView
+        android:divider="@null"
+        android:dividerHeight="5dp"
         android:id="@+id/prikazTroskova"
         android:layout_width="match_parent"
         android:layout_height="589dp"
