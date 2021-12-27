@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -150,6 +153,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
             button.setOnClickListener(listener);
+            TextView poslovica;
+            poslovica=findViewById(R.id.textcitat);
+            String textposlovica;
+            Random r=new Random();
+            String[] sveposlovice={"Štedjeti danas znači imati za sutra.",
+                    "Tko ne zna štedjeti, brzo će mu ponestati.",
+                    "Novac je lako steći, ali ga je teško sačuvati."};
+            textposlovica=sveposlovice[r.nextInt(3)];
+            poslovica.setText(textposlovica);
+
         }
         else {
             setContentView(R.layout.activity_main);

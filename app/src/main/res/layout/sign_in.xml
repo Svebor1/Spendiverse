@@ -29,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
+        android:gravity="center"
         android:text="Štedjeti danas znači imati za sutra."
         android:textColor="@color/dark_purple"
         android:textSize="14sp"
