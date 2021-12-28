@@ -168,6 +168,14 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             Button signOutButton;
             Button prikazTroskovaButton;
+            Button financijskaPismenost;
+            financijskaPismenost = findViewById(R.id.financijska_pismenost);
+            financijskaPismenost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    financijskaPismenost();
+                }
+            });
             signOutButton = findViewById(R.id.sign_out);
             prikazTroskovaButton = findViewById(R.id.prikaz_troskova);
 
@@ -192,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void prikazTroskova() {
         Intent intent = new Intent(this, PrikazTroskovaActivity.class);
+        startActivity(intent);
+    }
+    private void financijskaPismenost() {
+        Intent intent = new Intent(this, FinancijskaPismenostActivity.class);
         startActivity(intent);
     }
 
