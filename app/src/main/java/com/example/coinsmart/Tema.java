@@ -32,9 +32,9 @@ public class Tema extends AppCompatActivity {
         });
         TextView naslovTeme = findViewById(R.id.naslov_teme);
         Bundle bundle = getIntent().getExtras();
-        String naslovTemeText = bundle.get("naslovTeme").toString();
+        String naslovTemeText = bundle.get("nazivTeme").toString();
         naslovTeme.setText(naslovTemeText);
-
+//skrsi se
         ImageCarousel carousel = findViewById(R.id.carousel);
 
 // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
