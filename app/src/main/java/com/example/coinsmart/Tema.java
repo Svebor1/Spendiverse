@@ -30,13 +30,17 @@ public class Tema extends AppCompatActivity {
                 prikazPitanja();
             }
         });
+        TextView naslovTeme = findViewById(R.id.naslov_teme);
+        Bundle bundle = getIntent().getExtras();
+        String naslovTemeText = bundle.get("naslovTeme").toString();
+        naslovTeme.setText(naslovTemeText);
+
         ImageCarousel carousel = findViewById(R.id.carousel);
 
 // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
         carousel.registerLifecycle(getLifecycle());
 
         List<CarouselItem> list = new ArrayList<>();
-
 // Image URL with caption
         list.add(
                 new CarouselItem(

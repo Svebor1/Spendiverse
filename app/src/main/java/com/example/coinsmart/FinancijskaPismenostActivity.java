@@ -36,14 +36,19 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                prikazTeme();
+                String nazivGrupe = kategorije.get(groupPosition);
+                String nazivTeme = podkategorije.get(nazivGrupe).get(childPosition);
+                prikazTeme(nazivTeme);
                 return false;
             }
         });
 
     }
-    private void prikazTeme() {
+    private void prikazTeme(String nazivTeme) {
+        Bundle bundle = new Bundle();
+        bundle.putString("nazivTeme", nazivTeme);
         Intent intent = new Intent(this, Tema.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

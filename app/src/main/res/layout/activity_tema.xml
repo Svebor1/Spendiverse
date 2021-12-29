@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/naslov_teme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tema">
@@ -20,16 +21,16 @@
         android:id="@+id/carousel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:imageScaleType="fitCenter"
-        app:showTopShadow="false"
-        app:showBottomShadow="false"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        app:imageScaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/kviz_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:showBottomShadow="false"
+        app:showTopShadow="false">
 
     </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
 
