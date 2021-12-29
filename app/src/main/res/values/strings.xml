@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CoinSmart</string>
+    <string-array name="lagano_kviz1_pitanje1">
+
+        <item>Koja kovanica ne postoji?</item>
+        <item>7</item>
+        <item>1</item>
+        <item>5</item>
+        <item>7</item>
+
+    </string-array>
 </resources>
