@@ -28,6 +28,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/naslov_teme"
+        app:carouselBackground="@color/lighter_purple"
         app:showBottomShadow="false"
         app:showTopShadow="false">
 

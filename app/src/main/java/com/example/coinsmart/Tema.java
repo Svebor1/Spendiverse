@@ -40,55 +40,24 @@ public class Tema extends AppCompatActivity {
 
 
 
-
+        int brojSlideova = getResources().getInteger(R.integer.lagano_tema0_brojslideova);
         ImageCarousel carousel = findViewById(R.id.carousel);
 
-// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
+        // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
         carousel.registerLifecycle(getLifecycle());
 
         List<CarouselItem> list = new ArrayList<>();
-// Image URL with caption
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-                        "Photo by Aaron Wu on Unsplash"
-                )
-        );
 
-// Just image URL
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
-                )
-        );
+        // Image drawable with caption
+        for (int i = 0; i < brojSlideova; i++) {
+            list.add(
+                    new CarouselItem(
+                            R.drawable.kasica_ljudi_novac,
+                            "Photo by Kimiya Oveisi on Unsplash"
+                    )
+            );
+        }
 
-// Image URL with header
-        Map<String, String> headers = new HashMap<>();
-        headers.put("header_key", "header_value");
-
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
-                        headers
-                )
-        );
-
-// Image drawable with caption
-        list.add(
-                new CarouselItem(
-                        R.drawable.kasica_ljudi_novac,
-                        "Photo by Kimiya Oveisi on Unsplash"
-                )
-        );
-
-// Just image drawable
-        list.add(
-                new CarouselItem(
-                        R.drawable.rich_bankar
-                )
-        );
-
-// ...
 
         carousel.setData(list);
     }
