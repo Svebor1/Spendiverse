@@ -58,7 +58,7 @@ public class Tema extends AppCompatActivity {
             int idSlikeBroj = getResources().getIdentifier("com.example.coinsmart:drawable/"+idSlike, null, null);
 
             String idTeksta = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_text" +Integer.toString(i).toString();
-            int idTekstaBroj = getResources().getIdentifier("com.example.coinsmart:strings/"+idSlike, null, null);
+            int idTekstaBroj = getResources().getIdentifier("com.example.coinsmart:string/"+idTeksta, null, null);
             list.add(
                     new CarouselItem(
                             idSlikeBroj, getResources().getString(idTekstaBroj)
