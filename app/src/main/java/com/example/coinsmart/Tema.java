@@ -48,11 +48,17 @@ public class Tema extends AppCompatActivity {
 
         List<CarouselItem> list = new ArrayList<>();
 
+
+        Integer redniBrojTeme = bundle.getInt("redniBrojKviza");
+
         // Image drawable with caption
         for (int i = 0; i < brojSlideova; i++) {
+
+            String idSlike = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_slide" +Integer.toString(i).toString();
+            int id = getResources().getIdentifier("com.example.coinsmart:drawable/"+idSlike, null, null);
             list.add(
                     new CarouselItem(
-                            R.drawable.kasica_ljudi_novac,
+                            id,
                             "Photo by Kimiya Oveisi on Unsplash"
                     )
             );
