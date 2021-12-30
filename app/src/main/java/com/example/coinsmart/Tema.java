@@ -55,12 +55,14 @@ public class Tema extends AppCompatActivity {
         for (int i = 0; i < brojSlideova; i++) {
 
             String idSlike = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_slide" +Integer.toString(i).toString();
-            int id = getResources().getIdentifier("com.example.coinsmart:drawable/"+idSlike, null, null);
+            int idSlikeBroj = getResources().getIdentifier("com.example.coinsmart:drawable/"+idSlike, null, null);
+
+            String idTeksta = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_text" +Integer.toString(i).toString();
+            int idTekstaBroj = getResources().getIdentifier("com.example.coinsmart:strings/"+idSlike, null, null);
             list.add(
                     new CarouselItem(
-                            id,
-                            "Photo by Kimiya Oveisi on Unsplash"
-                    )
+                            idSlikeBroj, getResources().getString(idTekstaBroj)
+                            )
             );
         }
 
