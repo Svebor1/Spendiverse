@@ -38,15 +38,17 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
                 String nazivGrupe = kategorije.get(groupPosition);
                 String nazivTeme = podkategorije.get(nazivGrupe).get(childPosition);
-                prikazTeme(nazivTeme);
+                prikazTeme(nazivTeme, nazivGrupe.toLowerCase(), childPosition);
                 return false;
             }
         });
 
     }
-    private void prikazTeme(String nazivTeme) {
+    private void prikazTeme(String nazivTeme, String nazivGrupe, int redniBrojKviza) {
         Bundle bundle = new Bundle();
         bundle.putString("nazivTeme", nazivTeme);
+        bundle.putString("nazivGrupe", nazivGrupe);
+        bundle.putInt("redniBrojKviza", redniBrojKviza);
         Intent intent = new Intent(this, Tema.class);
         intent.putExtras(bundle);
         startActivity(intent);

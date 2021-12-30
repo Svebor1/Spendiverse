@@ -22,19 +22,26 @@ public class Tema extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tema);
+        TextView naslovTeme = findViewById(R.id.naslov_teme);
+        Bundle bundle = getIntent().getExtras();
+        String naslovGrupe = bundle.get("nazivGrupe").toString();
+        String naslovTemeText = bundle.get("nazivTeme").toString();
+        int redniBrojKviza = Integer.getInteger(bundle.get("redniBrojKviza").toString());
+        naslovTeme.setText(naslovTemeText);
         Button pocetakKviza;
         pocetakKviza=findViewById(R.id.kviz_start);
         pocetakKviza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                prikazPitanja();
+
+                prikazPitanja(naslovTemeText, redniBrojKviza, naslovGrupe);
+
             }
         });
-        TextView naslovTeme = findViewById(R.id.naslov_teme);
-        Bundle bundle = getIntent().getExtras();
-        String naslovTemeText = bundle.get("nazivTeme").toString();
-        naslovTeme.setText(naslovTemeText);
-//skrsi se
+
+
+
+
         ImageCarousel carousel = findViewById(R.id.carousel);
 
 // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
@@ -86,8 +93,13 @@ public class Tema extends AppCompatActivity {
 
         carousel.setData(list);
     }
-    private void prikazPitanja() {
+    private void prikazPitanja(String naslovTeme, int redniBrojKviza, String naslovGrupe) {
+        Bundle bundle = new Bundle();
+        bundle.putString("naslovGrupe", naslovGrupe);
+        bundle.putString("naslovTeme", naslovTeme);
+        bundle.putInt("redniBrojKviza", redniBrojKviza);
         Intent intent = new Intent(this, Pitanje.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }
