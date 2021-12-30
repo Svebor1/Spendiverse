@@ -24,9 +24,9 @@ public class Tema extends AppCompatActivity {
         setContentView(R.layout.activity_tema);
         TextView naslovTeme = findViewById(R.id.naslov_teme);
         Bundle bundle = getIntent().getExtras();
-        String naslovGrupe = bundle.get("nazivGrupe").toString();
-        String naslovTemeText = bundle.get("nazivTeme").toString();
-        int redniBrojKviza = Integer.getInteger(bundle.get("redniBrojKviza").toString());
+        String naslovTemeText = bundle.getString("nazivTeme");
+        String naslovGrupe = bundle.getString("nazivGrupe");
+        int redniBrojKviza = bundle.getInt("redniBrojKviza");
         naslovTeme.setText(naslovTemeText);
         Button pocetakKviza;
         pocetakKviza=findViewById(R.id.kviz_start);
@@ -35,7 +35,6 @@ public class Tema extends AppCompatActivity {
             public void onClick(View view) {
 
                 prikazPitanja(naslovTemeText, redniBrojKviza, naslovGrupe);
-
             }
         });
 
@@ -95,8 +94,8 @@ public class Tema extends AppCompatActivity {
     }
     private void prikazPitanja(String naslovTeme, int redniBrojKviza, String naslovGrupe) {
         Bundle bundle = new Bundle();
-        bundle.putString("naslovGrupe", naslovGrupe);
-        bundle.putString("naslovTeme", naslovTeme);
+        bundle.putString("nazivTeme", naslovTeme);
+        bundle.putString("nazivGrupe", naslovGrupe);
         bundle.putInt("redniBrojKviza", redniBrojKviza);
         Intent intent = new Intent(this, Pitanje.class);
         intent.putExtras(bundle);

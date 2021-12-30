@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CoinSmart</string>
-    <string-array name="lagano_kviz1_pitanje1">
+    <string-array name="lagano_kviz0_pitanje1">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
         <item>kovanice</item>
@@ -10,7 +10,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje2">
+    <string-array name="lagano_kviz0_pitanje2">
 
         <item>Što se od navedenog smatra uslugom?</item>
         <item>jabuke</item>
@@ -20,7 +20,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje3">
+    <string-array name="lagano_kviz0_pitanje3">
 
         <item>Koje od navedenoga se smatra robom?</item>
         <item>novi automobil</item>
@@ -30,7 +30,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz2_pitanje1">
+    <string-array name="lagano_kviz1_pitanje1">
 
         <item>Koja je glavna valuta u Europskoj uniji?</item>
         <item>jen</item>

@@ -16,19 +16,18 @@ public class Pitanje extends AppCompatActivity {
         setContentView(R.layout.pitanje);
 
         Bundle bundle = getIntent().getExtras();
-        String naslovGrupe = bundle.get("naslovGrupe").toString();
-        String naslovTeme = bundle.get("naslovTeme").toString();
-        Integer redniBrojKviza = Integer.getInteger(bundle.get("redniBrojKviza").toString());
-
-        String idPitanja = naslovGrupe + "_kviz" + redniBrojKviza + "_pitanje" + redniBrojPitanja;
+        String naslovTeme = bundle.getString("nazivTeme");
+        String naslovGrupe = bundle.getString("nazivGrupe");
+        Integer redniBrojKviza = bundle.getInt("redniBrojKviza");
+        String idPitanja = naslovGrupe + "_kviz" + redniBrojKviza.toString() + "_pitanje" + redniBrojPitanja.toString();
+        int a = 5;
         int id = getResources().getIdentifier("com.example.coinsmart:array/"+idPitanja, null, null);
-//
         String[] sadrzajPitanja;
         sadrzajPitanja=getResources().getStringArray(id);
         String tekstPitanja = sadrzajPitanja[0];
         String odgovor1 = sadrzajPitanja[1];
         String odgovor2 = sadrzajPitanja[2];
-        String odgovor3 = sadrzajPitanja[3];
+        String odgovor3 = sadrzajPitanja[3]; //zove se po temi a ne po grupi
         String odgovorT = sadrzajPitanja[4];
         TextView pitanjeText = findViewById(R.id.pitanje);
         RadioButton odgovor1Text = findViewById(R.id.odgovor1);
