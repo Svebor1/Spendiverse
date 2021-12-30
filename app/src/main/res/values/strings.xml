@@ -2,11 +2,45 @@
     <string name="app_name">CoinSmart</string>
     <string-array name="lagano_kviz1_pitanje1">
 
-        <item>Koja kovanica ne postoji?</item>
-        <item>7</item>
-        <item>1</item>
-        <item>5</item>
-        <item>7</item>
+        <item>U kojem se obliku novac danas ne koristi?</item>
+        <item>kovanice</item>
+        <item>školjke</item>
+        <item>novčanice</item>
+        <item>školjke</item>
 
     </string-array>
+
+    <string-array name="lagano_kviz1_pitanje2">
+
+        <item>Što se od navedenog smatra uslugom?</item>
+        <item>jabuke</item>
+        <item>dostava pošte </item>
+        <item>novi mobitel</item>
+        <item>dostava pošte</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje3">
+
+        <item>Koje od navedenoga se smatra robom?</item>
+        <item>novi automobil</item>
+        <item>iznajmljivanje automobila </item>
+        <item>popravak automobila kod mehaničara</item>
+        <item>novi automobil</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje1">
+
+        <item>Koja je glavna valuta u Europskoj uniji?</item>
+        <item>jen</item>
+        <item>dolar</item>
+        <item>euro</item>
+        <item>euro</item>
+
+    </string-array>
+
+
+
+
 </resources>
