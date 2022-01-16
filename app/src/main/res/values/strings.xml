@@ -8,10 +8,10 @@
 
     <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
     <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
-    <string name="lagano_tema1_text2"></string>
-    <string name="lagano_tema1_text3"></string>
-    <string name="lagano_tema1_text4"></string>
-    <string name="lagano_tema1_text5"></string>
+    <string name="lagano_tema1_text2">Euro\nGlavna valuta u Europskoj uniji\nOznaka za euro je € </string>
+    <string name="lagano_tema1_text3">Dolar\nOznaka za dolar je $</string>
+    <string name="lagano_tema1_text4">Britanksa funta\nSlužbena je valuta u Velikoj Britaniji\nOznaka je £</string>
+    <string name="lagano_tema1_text5">Japanski jen\nOznaka je ¥</string>
 
     <string-array name="lagano_kviz0_pitanje1">
 
