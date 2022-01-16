@@ -47,8 +47,9 @@ public class Tema extends AppCompatActivity {
         });
 
 
-
-        int brojSlideova = getResources().getInteger(R.integer.lagano_tema0_brojslideova);
+        String imeBrojaSlideova = naslovGrupe + "_tema" + redniBrojKviza + "_brojslideova";
+        int brojSlideovaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaSlideova,null,null);
+        int brojSlideova = getResources().getInteger(brojSlideovaId);
         ImageCarousel carousel = findViewById(R.id.carousel);
 
         // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
