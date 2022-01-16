@@ -13,6 +13,12 @@
     <string name="lagano_tema1_text4">Britanksa funta\nSlužbena je valuta u Velikoj Britaniji\nOznaka je £</string>
     <string name="lagano_tema1_text5">Japanski jen\nOznaka je ¥</string>
 
+
+    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta/npomoću web stranica ili aplikacija</string>
+    <string name="srednje_tema0_text1">Prilikom kupnje putem interneta,/nmoramo paziti s kojih stranica kupujemo</string>
+    <string name="srednje_tema0_text2">Za plaćanje možemo koristiti i kupone</string>
+    <string name="srednje_tema0_text3">Prilikom kupnje, moramo paziti koje informacije upisujemo</string>
+
     <string-array name="lagano_kviz0_pitanje1">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
@@ -52,6 +58,58 @@
         <item>euro</item>
 
     </string-array>
+
+    <string-array name="lagano_kviz1_pitanje2">
+
+        <item>Koja valuta ima oznaku £?</item>
+        <item>britanska funta</item>
+        <item>jen</item>
+        <item>dolar</item>
+        <item>britanska funta</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje3">
+
+        <item>Gdje je britanksa funta službena valuta?</item>
+        <item>U Japanu</item>
+        <item>U Švicarskoj</item>
+        <item>U Velikoj Britaniji</item>
+        <item>U Velikoj Britaniji</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje4">
+
+        <item>Koja valuta ima oznaku ¥?</item>
+        <item>dolar</item>
+        <item>euro</item>
+        <item>japanski jen</item>
+        <item>japanski jen</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje5">
+
+        <item>Koja valuta ima oznaku $?</item>
+        <item>euro</item>
+        <item>dolar</item>
+        <item>britanksa funta</item>
+        <item>dolar</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje6">
+
+        <item>Koja je oznaka za euro?</item>
+        <item>¥</item>
+        <item>€</item>
+        <item>£</item>
+        <item>€</item>
+
+    </string-array>
+
+
 
 
 
