@@ -1,15 +1,23 @@
 package com.example.coinsmart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewbinding.ViewBinding;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.coinsmart.databinding.ActivityMainBinding;
+import com.example.coinsmart.databinding.SlideBinding;
+
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
+import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
+import org.imaginativeworld.whynotimagecarousel.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +76,30 @@ public class Tema extends AppCompatActivity {
 
 
         carousel.setData(list);
+
+        carousel.setCarouselListener(new CarouselListener() {
+            @Override
+            public void onLongClick(int i, CarouselItem carouselItem) {
+
+            }
+
+            @Override
+            public ViewBinding onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+                return SlideBinding.inflate(layoutInflater,viewGroup,false);
+            }
+
+            @Override
+            public void onClick(int i, CarouselItem carouselItem) {
+
+            }
+
+            @Override
+            public void onBindViewHolder(ViewBinding viewBinding, CarouselItem carouselItem, int i) {
+                SlideBinding slideBinding=(SlideBinding) viewBinding;
+                slideBinding.slideText.setText(carouselItem.getCaption());
+                Utils.setImage(slideBinding.slideSlika,carouselItem,carouselItem.getImageDrawable());
+            }
+        });
     }
     private void prikazPitanja(String naslovTeme, int redniBrojKviza, String naslovGrupe) {
         Bundle bundle = new Bundle();

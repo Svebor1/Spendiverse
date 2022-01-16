@@ -23,6 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:imageScaleType="fitCenter"
+        app:showCaption="false"
         app:layout_constraintBottom_toTopOf="@+id/kviz_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

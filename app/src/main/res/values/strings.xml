@@ -6,6 +6,12 @@
     <string name="lagano_tema0_text3">Novac je imao razne oblike u prošlosti\nPrije su ljudi koristili rijetke stvari umjesto novca</string>
     <string name="lagano_tema0_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
 
+    <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
+    <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
+    <string name="lagano_tema1_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>
+    <string name="lagano_tema1_text3">Novac je imao razne oblike u prošlosti\nPrije su ljudi koristili rijetke stvari umjesto novca</string>
+    <string name="lagano_tema1_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
+
     <string-array name="lagano_kviz0_pitanje1">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
