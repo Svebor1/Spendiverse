@@ -17,7 +17,12 @@
     <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta\npomoću web stranica ili aplikacija</string>
     <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
     <string name="srednje_tema0_text2">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
-    <string name="srednje_tema0_text3">Moramo paziti koje informacije upisujemo\nNe smijemo upisivati informacije koje su nepotrebne za\nizvršavanje kupovine</string>
+    <string name="srednje_tema0_text3">Koristi stranice koje započinju s "https"\nprepoznati ćeš ih prema lokotu</string>
+    <string name="srednje_tema0_text4">Razmisli prije nego što dijeliš osobne podatke, pomoću kojih bi netko mogao koristiti tvoj račun</string>
+    <string name="srednje_tema0_text5">Koristi jake lozinke, dovoljno dugačke, pomoću različitih znakova i bez prepoznatljivih riječi</string>
+    <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
+    <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
+
 
 
 
