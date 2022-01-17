@@ -15,9 +15,10 @@
 
 
     <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta\npomoću web stranica ili aplikacija</string>
-    <string name="srednje_tema0_text1">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
-    <string name="srednje_tema0_text2">Moramo paziti koje informacije upisujemo\nNe smijemo upisivati informacije koje su nepotrebne za\nizvršavanje kupovine</string>
-    <string name="srednje_tema0_text3">Za plaćanje možemo koristiti i kupone</string>
+    <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
+    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
+    <string name="srednje_tema0_text3">Moramo paziti koje informacije upisujemo\nNe smijemo upisivati informacije koje su nepotrebne za\nizvršavanje kupovine</string>
+
 
 
     <string-array name="lagano_kviz0_pitanje1">
