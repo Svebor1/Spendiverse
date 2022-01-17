@@ -8,8 +8,16 @@ public class spremnikKategorija {
     public static HashMap<String, List<String>> getData() {
         HashMap<String, List<String>> kategorijeFinancijskePismenosti = new HashMap<String, List<String>>();
         List<String> lagano = new ArrayList<String>();
-        lagano.add("novac");
-        lagano.add("valute");
+        lagano.add("Što je novac?");
+        lagano.add("Valute");
+
+        List<String> srednje = new ArrayList<String>();
+        srednje.add("Online kupovina");
+        srednje.add("Plan troškova");
+
+        List<String> tesko = new ArrayList<String>();
+        tesko.add("nesto");
+        tesko.add("nesto");
         /*
         List<String> stednja = new ArrayList<String>();
         stednja.add("Bankovni računi");
@@ -23,6 +31,8 @@ public class spremnikKategorija {
          */
 
         kategorijeFinancijskePismenosti.put("Lagano", lagano);
+        kategorijeFinancijskePismenosti.put("Srednje", srednje);
+        kategorijeFinancijskePismenosti.put("Teško", tesko);
         return kategorijeFinancijskePismenosti;
     }
 }
