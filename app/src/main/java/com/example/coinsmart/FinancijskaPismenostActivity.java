@@ -26,10 +26,13 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         ExpandableListView lista;
         ExpandableListAdapter expandableListAdapter;
         List<String> kategorije;
+        kategorije = new ArrayList<String>();
+        kategorije.add("Lagano");
+        kategorije.add("Srednje");
+        kategorije.add("Teško");
         HashMap<String, List<String>> podkategorije;
         lista = (ExpandableListView) findViewById(R.id.expandableListView);
         podkategorije = spremnikKategorija.getData();
-        kategorije = new ArrayList<String>(podkategorije.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, kategorije, podkategorije);
         lista.setAdapter(expandableListAdapter);
         lista.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
