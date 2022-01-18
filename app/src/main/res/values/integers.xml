@@ -2,7 +2,7 @@
 <resources>
     <integer name="lagano_tema0_brojslideova">5</integer>
     <integer name="lagano_tema1_brojslideova">6</integer>
-    <integer name="srednje_tema0_brojslideova">5</integer>
+    <integer name="srednje_tema0_brojslideova">8</integer>
 
     <integer name="lagano_tema0_brojspitanja">3</integer>
     <integer name="lagano_tema1_brojspitanja">6</integer>
