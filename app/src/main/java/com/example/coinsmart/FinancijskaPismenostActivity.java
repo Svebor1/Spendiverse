@@ -25,11 +25,13 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_financijska_pismenost);
         ExpandableListView lista;
         ExpandableListAdapter expandableListAdapter;
+        int emoji = 0x1F31F;
+        String zvjezdica = new String(Character.toChars(emoji));
         List<String> kategorije;
         kategorije = new ArrayList<String>();
-        kategorije.add("Lagano");
-        kategorije.add("Srednje");
-        kategorije.add("Teško");
+        kategorije.add("Lagano" + zvjezdica) ;
+        kategorije.add("Srednje"+ zvjezdica+zvjezdica);
+        kategorije.add("Teško" + zvjezdica + zvjezdica + zvjezdica);
         HashMap<String, List<String>> podkategorije;
         lista = (ExpandableListView) findViewById(R.id.expandableListView);
         podkategorije = spremnikKategorija.getData();
@@ -41,7 +43,7 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
                 String nazivGrupe = kategorije.get(groupPosition);
                 String nazivTeme = podkategorije.get(nazivGrupe).get(childPosition);
-                prikazTeme(nazivTeme, nazivGrupe.toLowerCase(), childPosition);
+                prikazTeme(nazivTeme, nazivGrupe.replace(zvjezdica,"").toLowerCase(), childPosition);
                 return false;
             }
         });

@@ -30,9 +30,11 @@ public class spremnikKategorija {
         ulaganja.add("Dionice");
          */
 
-        kategorijeFinancijskePismenosti.put("Lagano", lagano);
-        kategorijeFinancijskePismenosti.put("Srednje", srednje);
-        kategorijeFinancijskePismenosti.put("Teško", tesko);
+        int emoji = 0x1F31F;
+        String zvjezdica = new String(Character.toChars(emoji));
+        kategorijeFinancijskePismenosti.put("Lagano" + zvjezdica, lagano);
+        kategorijeFinancijskePismenosti.put("Srednje"+ zvjezdica + zvjezdica, srednje);
+        kategorijeFinancijskePismenosti.put("Teško"+ zvjezdica + zvjezdica + zvjezdica, tesko);
         return kategorijeFinancijskePismenosti;
     }
 }

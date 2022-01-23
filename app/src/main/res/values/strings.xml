@@ -23,6 +23,10 @@
     <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
     <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
 
+    <string name="srednje_tema1_text0">Planiranjem troškova spriječavamo trošenje novca na stvari koje nam ne trebaju\n</string>
+    <string name="srednje_tema1_text1">1.\nOdredi koliko si zaradio ili dobio </string>
+    <string name="srednje_tema1_text2">2.\n</string>
+    <string name="srednje_tema1_text3">3.\n</string>
 
 
 
@@ -114,6 +118,26 @@
         <item>€</item>
         <item>£</item>
         <item>€</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje1">
+
+        <item>Koja lozinka je najsigurnija?</item>
+        <item>lozinka123</item>
+        <item>1#L1#o2Z3i5N8k#a</item>
+        <item>1234567LOzinka</item>
+        <item>1#L1#o2Z3i5N8k#a</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje2">
+
+        <item>Što nije znak da je stranica sigurna?</item>
+        <item>početak "http"</item>
+        <item>oznaka lokota</item>
+        <item>početak "https"</item>
+        <item>početak "http"</item>
 
     </string-array>
 
