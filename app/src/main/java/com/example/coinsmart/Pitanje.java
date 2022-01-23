@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.Arrays;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
 
 public class Pitanje extends AppCompatActivity {
     Integer redniBrojPitanja = 0;
@@ -123,7 +127,19 @@ public class Pitanje extends AppCompatActivity {
         RadioGroup odgovori = findViewById(R.id.odgovori);
         odgovori.clearCheck();
     }
+
     private void prikaziRezultate() {
+        final KonfettiView konfettiView = findViewById(R.id.viewKonfetti);
+        konfettiView.build()
+                .addColors(Color.rgb(247, 184, 1),Color.rgb(118, 120, 238))
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                //.addSizes(new Size(12, 5f))
+                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                .streamFor(300, 5000L);
         Integer bodovi = 0;
         for (int i = 0;i<kolicinaPitanja; i++) {
             if (data[i]==1) {
@@ -134,7 +150,6 @@ public class Pitanje extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setTitle("Rezultat")
                         .setMessage(bodovi + "/" + kolicinaPitanja)
-
                         // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
