@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -16,7 +17,7 @@ import org.w3c.dom.Text;
 import java.util.Arrays;
 
 public class Pitanje extends AppCompatActivity {
-    Integer redniBrojPitanja = 1;
+    Integer redniBrojPitanja = 0;
     Integer kolicinaPitanja;
     String naslovTeme;
     String naslovGrupe;
@@ -51,7 +52,10 @@ public class Pitanje extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
                 RadioButton trenutniOdgovor = findViewById(checkedId);
-                if (trenutniOdgovor.getText() == tocanOdgovor) {
+                if (trenutniOdgovor==null) {
+                    return;
+                }
+                if (trenutniOdgovor.getText().toString().equals(tocanOdgovor)){
                     data[redniBrojPitanja] = 1;
                 }
                 else {
@@ -73,7 +77,7 @@ public class Pitanje extends AppCompatActivity {
         View.OnClickListener listener1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (redniBrojPitanja > 1) {
+                if (redniBrojPitanja > 0) {
                     redniBrojPitanja--;
                     ucitavanjePitanja();
                 }
@@ -84,7 +88,7 @@ public class Pitanje extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (redniBrojPitanja < kolicinaPitanja) {
+                if (redniBrojPitanja+1 < kolicinaPitanja) {
                     redniBrojPitanja++;
                     ucitavanjePitanja();
                 }
@@ -115,13 +119,21 @@ public class Pitanje extends AppCompatActivity {
         odgovor1Text.setText(odgovor1);
         odgovor2Text.setText(odgovor2);
         odgovor3Text.setText(odgovor3);
-        redniBrojPitanjaText.setText(redniBrojPitanja + "/" + kolicinaPitanja);
+        redniBrojPitanjaText.setText((redniBrojPitanja+1) + "/" + kolicinaPitanja);
+        RadioGroup odgovori = findViewById(R.id.odgovori);
+        odgovori.clearCheck();
     }
     private void prikaziRezultate() {
+        Integer bodovi = 0;
+        for (int i = 0;i<kolicinaPitanja; i++) {
+            if (data[i]==1) {
+                bodovi++;
+            }
+        }
         AlertDialog alertDialog =
-                new AlertDialog.Builder(getApplicationContext())
-                        .setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
+                new AlertDialog.Builder(this)
+                        .setTitle("Rezultat")
+                        .setMessage(bodovi + "/" + kolicinaPitanja)
 
                         // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.

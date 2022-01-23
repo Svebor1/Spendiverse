@@ -29,7 +29,7 @@
     <string name="srednje_tema1_text3">3.\n</string>
 
 
-    <string-array name="lagano_kviz0_pitanje1">
+    <string-array name="lagano_kviz0_pitanje0">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
         <item>kovanice</item>
@@ -39,7 +39,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz0_pitanje2">
+    <string-array name="lagano_kviz0_pitanje1">
 
         <item>Što se od navedenog smatra uslugom?</item>
         <item>jabuke</item>
@@ -49,7 +49,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz0_pitanje3">
+    <string-array name="lagano_kviz0_pitanje2">
 
         <item>Koje od navedenoga se smatra robom?</item>
         <item>novi automobil</item>
@@ -59,7 +59,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje1">
+    <string-array name="lagano_kviz1_pitanje0">
 
         <item>Koja je glavna valuta u Europskoj uniji?</item>
         <item>jen</item>
@@ -69,7 +69,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje2">
+    <string-array name="lagano_kviz1_pitanje1">
 
         <item>Koja valuta ima oznaku £?</item>
         <item>britanska funta</item>
@@ -79,7 +79,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje3">
+    <string-array name="lagano_kviz1_pitanje2">
 
         <item>Gdje je britanksa funta službena valuta?</item>
         <item>U Japanu</item>
@@ -89,7 +89,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje4">
+    <string-array name="lagano_kviz1_pitanje3">
 
         <item>Koja valuta ima oznaku ¥?</item>
         <item>dolar</item>
@@ -99,7 +99,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje5">
+    <string-array name="lagano_kviz1_pitanje4">
 
         <item>Koja valuta ima oznaku $?</item>
         <item>euro</item>
@@ -109,7 +109,7 @@
 
     </string-array>
 
-    <string-array name="lagano_kviz1_pitanje6">
+    <string-array name="lagano_kviz1_pitanje5">
 
         <item>Koja je oznaka za euro?</item>
         <item>¥</item>
@@ -119,7 +119,7 @@
 
     </string-array>
 
-    <string-array name="srednje_kviz0_pitanje1">
+    <string-array name="srednje_kviz0_pitanje0">
 
         <item>Koja lozinka je najsigurnija?</item>
         <item>lozinka123</item>
@@ -129,7 +129,7 @@
 
     </string-array>
 
-    <string-array name="srednje_kviz0_pitanje2">
+    <string-array name="srednje_kviz0_pitanje1">
 
         <item>Što nije znak da je stranica sigurna?</item>
         <item>početak "http"</item>
