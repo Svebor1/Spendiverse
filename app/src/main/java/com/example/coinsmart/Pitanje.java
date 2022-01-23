@@ -1,14 +1,19 @@
 package com.example.coinsmart;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.Arrays;
 
 public class Pitanje extends AppCompatActivity {
     Integer redniBrojPitanja = 1;
@@ -16,6 +21,8 @@ public class Pitanje extends AppCompatActivity {
     String naslovTeme;
     String naslovGrupe;
     Integer redniBrojKviza;
+    Integer[] data;
+    String tocanOdgovor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +39,35 @@ public class Pitanje extends AppCompatActivity {
         int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
         kolicinaPitanja = getResources().getInteger(kolicinaPitanjaId);
 
+        data = new Integer[kolicinaPitanja];
+        Arrays.fill(data,new Integer(0));
 
         ucitavanjePitanja();
+
+        RadioGroup odgovori = findViewById(R.id.odgovori);
+        odgovori.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                RadioButton trenutniOdgovor = findViewById(checkedId);
+                if (trenutniOdgovor.getText() == tocanOdgovor) {
+                    data[redniBrojPitanja] = 1;
+                }
+                else {
+                    data[redniBrojPitanja] = 0;
+                }
+            }
+        });
+        Button zavrsiKviz = findViewById(R.id.zavrsi_kviz);
+        View.OnClickListener listener3 = new View.OnClickListener() {
+            @Override //
+            public void onClick(View v) {
+                prikaziRezultate();
+            }
+        };
+        zavrsiKviz.setOnClickListener(listener3);
+
         Button prethodnoPitanje = findViewById(R.id.prethodno_pitanje);
         Button sljedecePitanje = findViewById(R.id.sljedece_pitanje);
         View.OnClickListener listener1 = new View.OnClickListener() {
@@ -72,6 +106,7 @@ public class Pitanje extends AppCompatActivity {
         String odgovor2 = sadrzajPitanja[2];
         String odgovor3 = sadrzajPitanja[3];
         String odgovorT = sadrzajPitanja[4];
+        tocanOdgovor = odgovorT;
         TextView pitanjeText = findViewById(R.id.pitanje);
         RadioButton odgovor1Text = findViewById(R.id.odgovor1);
         RadioButton odgovor2Text = findViewById(R.id.odgovor2);
@@ -81,5 +116,25 @@ public class Pitanje extends AppCompatActivity {
         odgovor2Text.setText(odgovor2);
         odgovor3Text.setText(odgovor3);
         redniBrojPitanjaText.setText(redniBrojPitanja + "/" + kolicinaPitanja);
+    }
+    private void prikaziRezultate() {
+        AlertDialog alertDialog =
+                new AlertDialog.Builder(getApplicationContext())
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .create();
+        alertDialog.show();
     }
 }

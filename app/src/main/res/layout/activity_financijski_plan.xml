@@ -34,14 +34,14 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="0"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Džeparac" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName"
-                    android:layout_width="0"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:layout_weight="1"

@@ -34,6 +34,7 @@
             android:text="Ummmm ovo je vrlo jako zanimljiv tekst ju huuuu kako coool" />
 
         <RadioGroup
+            android:id="@+id/odgovori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -81,7 +82,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/zavrsi_kviz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
