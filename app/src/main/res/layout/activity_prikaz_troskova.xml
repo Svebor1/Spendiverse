@@ -7,6 +7,16 @@
     tools:context=".PrikazTroskovaActivity">
 
 
+    <Button
+        android:id="@+id/financijski_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Financijski plan"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
         android:id="@+id/layout_razdoblje"
         android:layout_width="wrap_content"
@@ -34,11 +44,11 @@
         android:id="@+id/unos_troskova"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:text="dodati potrošnju"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/financijski_plan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <com.github.mikephil.charting.charts.PieChart
@@ -49,17 +59,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_razdoblje" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="372dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vidjeti_detalje" />
 
     <Button
         android:id="@+id/vidjeti_detalje"

@@ -29,8 +29,6 @@
     <string name="srednje_tema1_text3">3.\n</string>
 
 
-
-
     <string-array name="lagano_kviz0_pitanje1">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
@@ -140,10 +138,6 @@
         <item>početak "http"</item>
 
     </string-array>
-
-
-
-
 
 
 </resources>
