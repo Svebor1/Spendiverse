@@ -13,7 +13,7 @@ public class spremnikKategorija {
 
         List<String> srednje = new ArrayList<String>();
         srednje.add("Online kupovina");
-        srednje.add("Plan troškova");
+        srednje.add("Financijski plan");
 
         List<String> tesko = new ArrayList<String>();
         tesko.add("nesto");
