@@ -67,6 +67,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 String mjesec = spinnerMjeseci.getSelectedItem().toString();
                 String godine = spinnerGodine.getSelectedItem().toString();
                 nadiTroskove(mjesec,godine);
+                prikazPlana(mjesec,godine);
             }
 
             @Override
@@ -87,6 +88,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 String godine = spinnerGodine.getSelectedItem().toString();
                 String mjesec = spinnerMjeseci.getSelectedItem().toString();
                 nadiTroskove(mjesec,godine);
+                prikazPlana(mjesec,godine);
             }
 
             @Override
@@ -116,7 +118,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 }
                             }
                             TextView potrosenoText = findViewById(R.id.potroseno_text);
-                            potrosenoText.setText(troskovi.toString() + "kn");
+                            potrosenoText.setText(troskovi.toString() + " " + "kn");
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -148,6 +150,49 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
+    }
+
+    private void prikazPlana(String mjesec,String godine) {
+        ocistiTekst();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String planMjesec = document.getData().get("mjesec").toString();
+                                String planGodina = document.getData().get("godina").toString();
+                                String planDzeparac = document.getData().get("dzeparac").toString();
+                                String planPokloni = document.getData().get("pokloni").toString();
+                                String planPoslovi = document.getData().get("poslovi").toString();
+                                String planOstalo = document.getData().get("ostalo").toString();
+                                String planUstedzevina = document.getData().get("ustedzevina").toString();
+                                if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
+                                    dzeparac.setText(planDzeparac);
+                                    poslovi.setText(planPoslovi);
+                                    pokloni.setText(planPokloni);
+                                    ostalo.setText(planOstalo);
+                                    ustedzevina.setText(planUstedzevina);
+                                }
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
+    private void ocistiTekst(){
+        dzeparac.setText("");
+        poslovi.setText("");
+        pokloni.setText("");
+        ostalo.setText("");
+        ustedzevina.setText("");
+
     }
 
 
