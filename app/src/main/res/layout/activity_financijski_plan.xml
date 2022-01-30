@@ -24,10 +24,11 @@
                 android:id="@+id/spinner_mjeseci"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1" />
 
             <Spinner
-                android:id="@+id/spinner_godina"
+                android:id="@+id/spinner_godine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -54,7 +55,7 @@
                     android:text="Džeparac" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/dzeparac_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -75,7 +76,7 @@
                     android:text="Dodatni poslovi" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/poslovi_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -96,7 +97,7 @@
                     android:text="Pokloni" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName3"
+                    android:id="@+id/pokloni_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -117,7 +118,7 @@
                     android:text="Ostalo" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName4"
+                    android:id="@+id/ostalo_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -140,13 +141,41 @@
                     android:text="Ušteđevina" />
 
                 <EditText
-                    android:id="@+id/editTextNumber2"
+                    android:id="@+id/ustedzevina_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Potrošeno:" />
+
+                <TextView
+                    android:id="@+id/potroseno_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <Button
+                android:layout_marginTop="100dp"
+                android:id="@+id/azuriraj_plan"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Ažuriraj plan" />
 
         </LinearLayout>
 
