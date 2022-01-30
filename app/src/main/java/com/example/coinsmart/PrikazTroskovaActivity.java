@@ -12,11 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -29,12 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,8 +82,10 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart.setHighlightPerTapEnabled(true);
         Button unosTroskovaButton;
         Button vidjetiDetalje;
+        Button financijskiPlanButton;
         vidjetiDetalje = findViewById(R.id.vidjeti_detalje);
         unosTroskovaButton = findViewById(R.id.unos_troskova);
+        financijskiPlanButton = findViewById(R.id.financijski_plan);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +102,14 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         };
         vidjetiDetalje.setOnClickListener(listener2);
 
+        View.OnClickListener listener3 = new  View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                financijskiPlan();
+            }
+        };
+        financijskiPlanButton.setOnClickListener(listener3);
+
     }
 
     @Override
@@ -120,6 +124,10 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     }
     private void vidjetiDetalje() {
         Intent intent = new Intent(this, VidjetiDetaljeActivity.class);
+        startActivity(intent);
+    }
+    private void financijskiPlan() {
+        Intent intent = new Intent(this, FinancijskiPlanActivity.class);
         startActivity(intent);
     }
     //

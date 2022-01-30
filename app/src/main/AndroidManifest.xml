@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
         <activity
-            android:name=".FinancijskiPlan"
+            android:name=".FinancijskiPlanActivity"
             android:exported="false" />
         <activity
             android:name=".Pitanje"
