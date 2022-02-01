@@ -16,7 +16,7 @@ public class spremnikKategorija {
         srednje.add("Financijski plan");
 
         List<String> tesko = new ArrayList<String>();
-        tesko.add("nesto");
+        tesko.add("Kamate");
         tesko.add("nesto");
         /*
         List<String> stednja = new ArrayList<String>();

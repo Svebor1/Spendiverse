@@ -31,6 +31,14 @@
     <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
     <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
 
+    <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
+    <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli kredit\nTada mi njoj moramo platiti naknadu</string>
+    <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
+    <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
+    <string name="tesko_tema0_text4">Omjer godišnjeg iznosa kamata i glavnice naziva se KAMATNA STOPA\nona se iskazuje u postotcima</string>
+    <string name="tesko_tema0_text5">Kamate računamo prema formuli: k = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
+    <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
+
 
 
     <string-array name="lagano_kviz0_pitanje0">
