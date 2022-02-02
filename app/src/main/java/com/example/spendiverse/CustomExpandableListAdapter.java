@@ -1,4 +1,4 @@
-package com.example.coinsmart;
+package com.example.spendiverse;
 
 
 import java.util.HashMap;

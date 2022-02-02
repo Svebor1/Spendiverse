@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.coinsmart">
+    package="com.example.spendiverse">
 
     <application
         android:allowBackup="true"
@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
         <activity
-            android:name=".FinancijskiPlanActivity"
+            android:name="com.example.spendiverse.FinancijskiPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".Pitanje"
+            android:name="com.example.spendiverse.Pitanje"
             android:exported="false" />
         <activity
-            android:name=".Tema"
+            android:name="com.example.spendiverse.Tema"
             android:exported="false" />
-        <activity android:name=".FinancijskaPismenostActivity" />
-        <activity android:name=".VidjetiDetaljeActivity" />
-        <activity android:name=".PrikazTroskovaActivity" />
-        <activity android:name=".UnosTroskovaActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.spendiverse.FinancijskaPismenostActivity" />
+        <activity android:name="com.example.spendiverse.VidjetiDetaljeActivity" />
+        <activity android:name="com.example.spendiverse.PrikazTroskovaActivity" />
+        <activity android:name="com.example.spendiverse.UnosTroskovaActivity" />
+        <activity android:name="com.example.spendiverse.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

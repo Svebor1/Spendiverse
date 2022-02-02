@@ -1,17 +1,12 @@
-package com.example.coinsmart;
+package com.example.spendiverse;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Carousel;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
-
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ViewListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;

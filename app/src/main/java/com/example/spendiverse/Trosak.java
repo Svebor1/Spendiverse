@@ -1,4 +1,4 @@
-package com.example.coinsmart;
+package com.example.spendiverse;
 
 public class Trosak {
     private String naziv;

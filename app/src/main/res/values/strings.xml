@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">CoinSmart</string>
+    <string name="app_name">Spendiverse</string>
+
     <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
     <string name="lagano_tema0_text1">Roba\nAko želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
     <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>

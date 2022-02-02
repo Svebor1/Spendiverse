@@ -1,4 +1,4 @@
-package com.example.coinsmart;
+package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

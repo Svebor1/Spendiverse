@@ -1,4 +1,4 @@
-package com.example.coinsmart;
+package com.example.spendiverse;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.coinsmart.databinding.ActivityMainBinding;
-import com.example.coinsmart.databinding.SlideBinding;
+import com.example.spendiverse.databinding.ActivityMainBinding;
+import com.example.spendiverse.databinding.SlideBinding;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener;
@@ -20,9 +20,7 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 import org.imaginativeworld.whynotimagecarousel.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tema extends AppCompatActivity {
 
