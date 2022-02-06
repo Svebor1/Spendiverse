@@ -9,20 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
+        <activity android:name=".MojProfil"></activity>
         <activity
-            android:name="com.example.spendiverse.FinancijskiPlanActivity"
+            android:name=".FinancijskiPlanActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.spendiverse.Pitanje"
+            android:name=".Pitanje"
             android:exported="false" />
         <activity
-            android:name="com.example.spendiverse.Tema"
+            android:name=".Tema"
             android:exported="false" />
-        <activity android:name="com.example.spendiverse.FinancijskaPismenostActivity" />
-        <activity android:name="com.example.spendiverse.VidjetiDetaljeActivity" />
-        <activity android:name="com.example.spendiverse.PrikazTroskovaActivity" />
-        <activity android:name="com.example.spendiverse.UnosTroskovaActivity" />
-        <activity android:name="com.example.spendiverse.MainActivity">
+        <activity android:name=".FinancijskaPismenostActivity" />
+        <activity android:name=".VidjetiDetaljeActivity" />
+        <activity android:name=".PrikazTroskovaActivity" />
+        <activity android:name=".UnosTroskovaActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
