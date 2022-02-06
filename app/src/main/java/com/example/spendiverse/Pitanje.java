@@ -1,18 +1,30 @@
 package com.example.spendiverse;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -25,6 +37,8 @@ public class Pitanje extends AppCompatActivity {
     Integer redniBrojKviza;
     Integer[] data;
     String tocanOdgovor;
+    String TAG = "Pitanje";
+    Integer prosliBodovi = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +82,7 @@ public class Pitanje extends AppCompatActivity {
         View.OnClickListener listener3 = new View.OnClickListener() {
             @Override //
             public void onClick(View v) {
+                spremiRezultat();
                 prikaziRezultate();
             }
         };
@@ -124,7 +139,45 @@ public class Pitanje extends AppCompatActivity {
         RadioGroup odgovori = findViewById(R.id.odgovori);
         odgovori.clearCheck();
     }
-
+    private Integer izracunajRezultat() {
+        Integer bodovi = 0;
+        for (int i = 0;i<kolicinaPitanja; i++) {
+            if (data[i]==1) {
+                bodovi++;
+            }
+        }
+        return bodovi;
+    }
+    private void spremiRezultat() {
+        Integer bodovi = izracunajRezultat();
+        Map<String, Object> data = new HashMap<>();
+        data.put("rezultat", bodovi);
+        data.put("naslov teme", naslovTeme);
+        data.put("naslov grupe", naslovGrupe);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova").document(naslovGrupe + "_" + naslovTeme);
+        int a = 2;
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    prosliBodovi = Integer.parseInt(document.getData().get("rezultat").toString());
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+        if (bodovi > prosliBodovi) {
+            db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova").document(naslovGrupe + "_" + naslovTeme).set(data);
+        }
+    }
     private void prikaziRezultate() {
         final KonfettiView konfettiView = findViewById(R.id.viewKonfetti);
         konfettiView.build()
@@ -137,12 +190,7 @@ public class Pitanje extends AppCompatActivity {
                 //.addSizes(new Size(12, 5f))
                 .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                 .streamFor(300, 5000L);
-        Integer bodovi = 0;
-        for (int i = 0;i<kolicinaPitanja; i++) {
-            if (data[i]==1) {
-                bodovi++;
-            }
-        }
+        Integer bodovi = izracunajRezultat();
         AlertDialog alertDialog =
                 new AlertDialog.Builder(this)
                         .setTitle("Rezultat")
