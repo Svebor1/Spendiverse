@@ -8,6 +8,8 @@
 
     <integer name="lagano_tema0_brojpitanja">3</integer>
     <integer name="lagano_tema1_brojpitanja">6</integer>
-    <integer name="srednje_tema0_brojpitanja">2</integer>
+    <integer name="srednje_tema0_brojpitanja">1</integer>
+    <integer name="srednje_tema1_brojpitanja">4</integer>
+    <integer name="tesko_tema0_brojpitanja">5</integer>
 </resources>
 

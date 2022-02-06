@@ -17,7 +17,7 @@ public class spremnikKategorija {
 
         List<String> tesko = new ArrayList<String>();
         tesko.add("Kamate");
-        tesko.add("nesto");
+        tesko.add("Kriptovalute");
         /*
         List<String> stednja = new ArrayList<String>();
         stednja.add("Bankovni računi");

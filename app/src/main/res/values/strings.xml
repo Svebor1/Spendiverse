@@ -33,12 +33,20 @@
     <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
 
     <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
-    <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli kredit\nTada mi njoj moramo platiti naknadu</string>
+    <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
     <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
     <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
     <string name="tesko_tema0_text4">Omjer godišnjeg iznosa kamata i glavnice naziva se KAMATNA STOPA\nona se iskazuje u postotcima</string>
     <string name="tesko_tema0_text5">Kamate računamo prema formuli:\nk = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
     <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
+
+    <string name="tesko_tema1_text0">Kriptovalute se mogu koristiti za kupnju stvari, ali one su digitalne\nNema kovanica niti novčanica</string>
+    <string name="tesko_tema1_text1"></string>
+    <string name="tesko_tema1_text2"></string>
+    <string name="tesko_tema1_text3"></string>
+    <string name="tesko_tema1_text4"></string>
+    <string name="tesko_tema1_text5"></string>
+    <string name="tesko_tema1_text6"></string>
 
 
 
@@ -134,16 +142,6 @@
 
     <string-array name="srednje_kviz0_pitanje0">
 
-        <item>Koja lozinka je najsigurnija?</item>
-        <item>lozinka123</item>
-        <item>1#L1#o2Z3i5N8k#a</item>
-        <item>1234567LOzinka</item>
-        <item>1#L1#o2Z3i5N8k#a</item>
-
-    </string-array>
-
-    <string-array name="srednje_kviz0_pitanje1">
-
         <item>Što nije znak da je stranica sigurna?</item>
         <item>početak "http"</item>
         <item>oznaka lokota</item>
@@ -153,4 +151,93 @@
     </string-array>
 
 
+    <string-array name="srednje_kviz1_pitanje1">
+
+        <item>Ako dobiješ 130 kn, a želiš uštedjeti 80 kn, koliko možeš potrošiti?</item>
+        <item>50 kn</item>
+        <item>80 kn</item>
+        <item>100 kn</item>
+        <item>50 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje2">
+
+        <item>Ako za rođendan dobiješ 100 kn, a za džeparac 50 kn, a želiš uštedjeti 100 kn, koliko možeš potrošiti?</item>
+        <item>150 kn</item>
+        <item>100 kn</item>
+        <item>50 kn</item>
+        <item>50 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje3">
+
+        <item>Ako dobiješ 300 kn i od toga potrošiš 180 kn, a ostatak želiš uštedjeti, koliki će biti iznos tog ušteđenog novca?</item>
+        <item>480 kn</item>
+        <item>180 kn</item>
+        <item>120 kn</item>
+        <item>120 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje0">
+
+        <item>Koja tvrdnja NIJE točna?</item>
+        <item>Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</item>
+        <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
+        <item>Kako bismo znali koliko možemo potrošiti, moramo zbrojiti dobiveno i  planirani novac za štednju</item>
+        <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje0">
+
+        <item>što je glavnica?</item>
+        <item>Omjer godišnjeg iznosa kamata i iznosa kredita</item>
+        <item>Iznos novca stavljenog na štednju ili iznos kredita</item>
+        <item>Iznos potrošenog novca</item>
+        <item>Iznos novca stavljenog na štednju ili iznos kredita</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje1">
+
+        <item>Kako se prikazuje kamatna stopa?</item>
+        <item>u postotcima (%)</item>
+        <item>u promilima (‰)</item>
+        <item>u dolarima ($)</item>
+        <item>u postotcima (%)</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje2">
+
+        <item>Prema kojoj formuli izračunavamo kamate?</item>
+        <item>k = g ⋅ s ⋅ v</item>
+        <item>k = g / s ⋅ v</item>
+        <item>k = g + s + v</item>
+        <item>k = g ⋅ s ⋅ v</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje3">
+
+        <item>Što slovo "v" označava u formuli za kamate?</item>
+        <item>ušteđeni novac</item>
+        <item>valutu</item>
+        <item>vrijeme</item>
+        <item>vrijeme</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje4">
+
+        <item>Ako na štednju staviš 1000 kuna na 5 godina, a kamatna stopa je 2%, kolika je kamata?</item>
+        <item>10000 kn</item>
+        <item>5000 kn</item>
+        <item>100 kn</item>
+        <item>100 kn</item>
+
+    </string-array>
 </resources>
