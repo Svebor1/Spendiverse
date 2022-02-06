@@ -37,7 +37,7 @@
     <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
     <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
     <string name="tesko_tema0_text4">Omjer godišnjeg iznosa kamata i glavnice naziva se KAMATNA STOPA\nona se iskazuje u postotcima</string>
-    <string name="tesko_tema0_text5">Kamate računamo prema formuli: k = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
+    <string name="tesko_tema0_text5">Kamate računamo prema formuli:\nk = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
     <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
 
 

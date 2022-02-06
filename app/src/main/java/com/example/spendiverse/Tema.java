@@ -31,7 +31,7 @@ public class Tema extends AppCompatActivity {
         TextView naslovTeme = findViewById(R.id.naslov_teme);
         Bundle bundle = getIntent().getExtras();
         String naslovTemeText = bundle.getString("nazivTeme");
-        String naslovGrupe = bundle.getString("nazivGrupe");
+        String naslovGrupe = bundle.getString("nazivGrupe").replace("š","s");
         int redniBrojKviza = bundle.getInt("redniBrojKviza");
         naslovTeme.setText(naslovTemeText);
         Button pocetakKviza;
@@ -75,7 +75,6 @@ public class Tema extends AppCompatActivity {
 
 
         carousel.setData(list);
-
         carousel.setCarouselListener(new CarouselListener() {
             @Override
             public void onLongClick(int i, CarouselItem carouselItem) {
