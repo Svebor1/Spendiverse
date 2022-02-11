@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/zuta_pozadina_4ruba"
+        android:elevation="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,9 +27,11 @@
             android:id="@+id/redni_broj_pitanja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:text="1/3" />
+            android:gravity="center"
+            android:text="1/3"
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
 
         <TextView
@@ -36,7 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Ummmm ovo je vrlo jako zanimljiv tekst ju huuuu kako coool" />
+            android:textStyle="bold"
+            android:text="text"
+            android:textSize="18sp" />
 
         <RadioGroup
             android:id="@+id/odgovori"
