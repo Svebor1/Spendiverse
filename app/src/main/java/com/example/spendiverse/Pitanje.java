@@ -39,6 +39,7 @@ public class Pitanje extends AppCompatActivity {
     String tocanOdgovor;
     String TAG = "Pitanje";
     Integer prosliBodovi = 0;
+    RadioGroup odgovori;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class Pitanje extends AppCompatActivity {
         naslovTeme = bundle.getString("nazivTeme");
         naslovGrupe = bundle.getString("nazivGrupe");
         redniBrojKviza = bundle.getInt("redniBrojKviza");
+        odgovori = findViewById(R.id.odgovori);
 
         String imeBrojaPitanja = naslovGrupe + "_tema" + redniBrojKviza + "_brojpitanja";
         int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
@@ -136,7 +138,6 @@ public class Pitanje extends AppCompatActivity {
         odgovor2Text.setText(odgovor2);
         odgovor3Text.setText(odgovor3);
         redniBrojPitanjaText.setText((redniBrojPitanja+1) + "/" + kolicinaPitanja);
-        RadioGroup odgovori = findViewById(R.id.odgovori);
         odgovori.clearCheck();
     }
     private Integer izracunajRezultat() {
@@ -205,6 +206,8 @@ public class Pitanje extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 redniBrojPitanja = 0;
                                 ucitavanjePitanja();
+                                Arrays.fill(data,new Integer(0));
+
                             }
                         })
 
