@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
+        getSupportActionBar().hide();
+
     }
 
     @Override
@@ -150,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
     private void signOut() {
         // Firebase sign out
         mAuth.signOut();
+        getSupportActionBar().hide();
 
         // Google sign out
         mGoogleSignInClient.signOut().addOnCompleteListener(this,
@@ -173,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     signIn();
-
                 }
             };
             button.setOnClickListener(listener);
@@ -220,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
             prikazTroskovaButton.setOnClickListener(listenerPrikazTroskova);
+            getSupportActionBar().show();
         }
     }
     private void prikazTroskova() {
