@@ -12,10 +12,22 @@ xmlns:tools="http://schemas.android.com/tools"
 
     <TextView
         android:id="@+id/naziv_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:text="TextView"
+        android:maxLength="20"
+        android:lines="1"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="false"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:freezesText="true"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
