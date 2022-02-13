@@ -34,7 +34,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private Integer mjesec;
     private Integer godina;
     private TextView cijenaTroska;
-    TextView datumTroska;
+    private TextView datumTroska;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         dodatiTrosak = findViewById(R.id.dodati_trosak);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
-
         String kategorije[] = {"prehrana","kućanstvo","promet"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,7 +55,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dodajNoviTrosak();
+                    if (provjeriUnos()) {
+                        dodajNoviTrosak();
+                    }
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
@@ -80,7 +81,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    promijeniTrosak(firebaseIdTroska);
+                    if (provjeriUnos()) {
+                        promijeniTrosak(firebaseIdTroska);
+                    }
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
@@ -169,5 +172,21 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                     }
                 });
         finish();
+    }
+
+    private boolean provjeriUnos(){
+        if (cijenaTroska.getText().toString().equals("")) {
+            cijenaTroska.setError("Unesite cijenu troška");
+            return false;
+        }
+        if (nazivTroska.getText().toString().equals("")) {
+            nazivTroska.setError("Unesite naziv troška");
+            return false;
+        }
+
+        return true;
+
+
+
     }
 }

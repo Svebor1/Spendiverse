@@ -109,6 +109,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 String godine = spinnerGodine.getSelectedItem().toString();
                 String mjesec = spinnerMjeseci.getSelectedItem().toString();
                 dzeparac.setError(null);
+                pokloni.setError(null);
+                poslovi.setError(null);
+                ostalo.setError(null);
+                ustedzevina.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
             }
