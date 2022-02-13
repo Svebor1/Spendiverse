@@ -16,6 +16,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,10 @@ public class PrikazLjestvice extends AppCompatActivity {
 
                             }
                         }
+                        Comparator<RezultatNatjecatelja> usporediPoBodovima =
+                                (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo( o2.getRezultatKorisnika() );
+
+                        Collections.sort(rezultatiNatjecatelja, usporediPoBodovima.reversed());
                         prikaziLjestvicu();
                     }
                 });
