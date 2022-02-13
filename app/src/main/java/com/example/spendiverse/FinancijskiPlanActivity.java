@@ -41,6 +41,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView pokloni;
     private TextView ostalo;
     private TextView ustedzevina;
+    private Integer troskovi;
 
 
     @Override
@@ -59,7 +60,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dodajNoviPlan();
+                if (provjeriUnos()) {
+                    dodajNoviPlan();
+                    prikaziStanje();
+                }
             }
         };
         //postavlja novi plan na pritisak Buttona
@@ -104,6 +108,11 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 //Prikazuje plan za izabranu godinu i mjesec
                 String godine = spinnerGodine.getSelectedItem().toString();
                 String mjesec = spinnerMjeseci.getSelectedItem().toString();
+                dzeparac.setError(null);
+                pokloni.setError(null);
+                poslovi.setError(null);
+                ostalo.setError(null);
+                ustedzevina.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
             }
@@ -132,7 +141,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Integer troskovi = 0;
+                            troskovi = 0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String datumMjesec = document.getData().get("datumMjesec").toString();
@@ -168,7 +177,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("godina", spinnerGodine.getSelectedItem().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //planovi se spremaju pod nazivom plan_mjesec_godina
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi").document("plan_" + spinnerMjeseci.getSelectedItem().toString() + "_" + spinnerGodine.getSelectedItem().toString())
+        db.collection("korisnici").document(firebaseUser.getUid())
+                .collection("planovi").document("plan_" + spinnerMjeseci
+                .getSelectedItem().toString() + "_" + spinnerGodine
+                .getSelectedItem().toString())
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -234,6 +246,62 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         pokloni.setText("");
         ostalo.setText("");
         ustedzevina.setText("");
+
+    }
+
+    private void prikaziStanje(){
+        dzeparac.getText();
+        poslovi.getText();
+        pokloni.getText();
+        ostalo.getText();
+        ustedzevina.getText();
+        String poruka = "";
+
+        Integer dzeparacIznos = Integer.parseInt(dzeparac.getText().toString());
+        Integer posloviIznos = Integer.parseInt(poslovi.getText().toString());
+        Integer pokloniIznos = Integer.parseInt(pokloni.getText().toString());
+        Integer ostaloIznos = Integer.parseInt(ostalo.getText().toString());
+        Integer ustedzevinaIznos = Integer.parseInt(ustedzevina.getText().toString());
+
+        Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
+        Integer ustedeno = zaradeno - troskovi;
+        if (ustedeno>0){
+            poruka = "Bravo! Nastavi štedjeti kao i do sada!";
+        }
+        if (ustedeno==0){
+            poruka = "Sve je potrošeno, ali nisi u minusu!";
+        }
+        if (ustedeno<0){
+            poruka = "Jao! Ovaj mjesec si u minusu!";
+        }
+        TextView porukaText = findViewById(R.id.poruka_text);
+        porukaText.setText(poruka);
+
+    }
+    private boolean provjeriUnos(){
+        if (dzeparac.getText().toString().equals("")){
+            dzeparac.setError("Unesite iznos džeparca ili 0");
+            return false;
+        }
+        if (pokloni.getText().toString().equals("")){
+            pokloni.setError("Unesite iznos poklona ili 0");
+            return false;
+        }
+        if (poslovi.getText().toString().equals("")){
+            poslovi.setError("Unesite iznos dodatnih poslova ili 0");
+            return false;
+        }
+        if (ostalo.getText().toString().equals("")){
+            ostalo.setError("Unesite iznos ostalog ili 0");
+            return false;
+        }
+        if (ustedzevina.getText().toString().equals("")){
+            ustedzevina.setError("Unesite iznos ustedževine ili 0");
+            return false;
+        }
+        return true;
+
+
 
     }
 

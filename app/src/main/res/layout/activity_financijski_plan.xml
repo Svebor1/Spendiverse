@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".FinancijskiPlanActivity">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp"
+
+        app:srcCompat="@drawable/zuta_pozadina" />
+
     <LinearLayout
-        android:layout_marginTop="30dp"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,9 +48,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="40dp"
             android:layout_weight="3"
             android:orientation="vertical">
 
@@ -58,8 +70,8 @@
                     android:id="@+id/dzeparac_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:layout_weight="1"
+                    android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
 
@@ -79,8 +91,8 @@
                     android:id="@+id/poslovi_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:layout_weight="1"
+                    android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
 
@@ -100,8 +112,8 @@
                     android:id="@+id/pokloni_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:layout_weight="1"
+                    android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
 
@@ -121,16 +133,16 @@
                     android:id="@+id/ostalo_upis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:layout_weight="1"
+                    android:ems="10"
                     android:inputType="number" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -150,9 +162,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -170,12 +182,19 @@
             </LinearLayout>
 
             <Button
-                android:layout_marginTop="100dp"
                 android:id="@+id/azuriraj_plan"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
                 android:text="Ažuriraj plan" />
+
+            <TextView
+                android:id="@+id/poruka_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center" />
 
         </LinearLayout>
 
