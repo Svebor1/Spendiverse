@@ -167,11 +167,13 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("mjesec", spinnerMjeseci.getSelectedItem().toString());
         data.put("godina", spinnerGodine.getSelectedItem().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi").add(data)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        //planovi se spremaju pod nazivom plan_mjesec_godina
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi").document("plan_" + spinnerMjeseci.getSelectedItem().toString() + "_" + spinnerGodine.getSelectedItem().toString())
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot written with ID: ");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
