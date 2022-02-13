@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class TrosakAdapter extends ArrayAdapter<Trosak> {
-    private final String TAG = "ProductAdapter";
+    private final String TAG = "TrosakAdapter";
     private Context context;
     public TrosakAdapter(@NonNull Context context, ArrayList<Trosak> dataModalArrayList) {
         super(context, 0, dataModalArrayList);
