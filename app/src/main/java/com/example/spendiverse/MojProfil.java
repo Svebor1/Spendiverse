@@ -3,8 +3,11 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +32,8 @@ public class MojProfil extends AppCompatActivity {
     TextView bodovi;
     Integer brojBodova = 0;
     Integer brojRjesenihKvizova;
+    Button prikazLjestvice;
+    TextView emailKorisnika;
     List<Rezultat> rezultati;
     String TAG = "MojProfil";
     @Override
@@ -38,10 +43,28 @@ public class MojProfil extends AppCompatActivity {
         rjeseniKvizovi = findViewById(R.id.rjeseni_kvizovi);
         ljestvica = findViewById(R.id.ljestvica);
         bodovi = findViewById(R.id.bodovi);
+        prikazLjestvice = findViewById(R.id.prikaz_ljestvice);
+        emailKorisnika = findViewById(R.id.email_korisnika);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String email = user.getEmail();
+            emailKorisnika.setText(email.toString());
+        }
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prikaziLjestvicu();
+            }
+        };
+        prikazLjestvice.setOnClickListener(listener);
         procitajRezultate();
 
     }
-
+    private void prikaziLjestvicu() {
+        Intent intent = new Intent(this, PrikazLjestvice.class);
+        startActivity(intent);
+    }
     private void izracunajRezultate() {
         for (Rezultat rezultat : rezultati) {
             if (rezultat.getNazivGrupe().equals("lagano")) {

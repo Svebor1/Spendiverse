@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
-        <activity android:name=".MojProfil"></activity>
+        <activity android:name=".PrikazLjestvice"></activity>
+        <activity android:name=".MojProfil" />
         <activity
             android:name=".FinancijskiPlanActivity"
             android:exported="false" />

@@ -21,11 +21,11 @@
             android:text="Ime:" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/email_korisnika"
             android:layout_width="0dp"
             android:layout_height="27dp"
             android:layout_weight="1"
-            android:text="TextView"
+            android:text="Textview"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="246dp" />
     </LinearLayout>
@@ -135,5 +135,11 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/prikaz_ljestvice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="prikaži ljestvicu" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
