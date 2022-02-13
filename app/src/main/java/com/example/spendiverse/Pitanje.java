@@ -21,9 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import nl.dionsegijn.konfetti.KonfettiView;
@@ -40,6 +44,9 @@ public class Pitanje extends AppCompatActivity {
     String TAG = "Pitanje";
     Integer prosliBodovi = 0;
     RadioGroup odgovori;
+    List<Rezultat> rezultati;
+    Integer ukupniBodovi = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +70,8 @@ public class Pitanje extends AppCompatActivity {
         ucitavanjePitanja();
 
         RadioGroup odgovori = findViewById(R.id.odgovori);
+        procitajRezultate();
+
         odgovori.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -149,12 +158,14 @@ public class Pitanje extends AppCompatActivity {
         }
         return bodovi;
     }
+
     private void spremiRezultat() {
         Integer bodovi = izracunajRezultat();
         Map<String, Object> data = new HashMap<>();
         data.put("rezultat", bodovi);
         data.put("naslov teme", naslovTeme);
         data.put("naslov grupe", naslovGrupe);
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova").document(naslovGrupe + "_" + naslovTeme);
@@ -174,9 +185,71 @@ public class Pitanje extends AppCompatActivity {
                 }
             }
         });
+
         if (bodovi > prosliBodovi) {
+            if (naslovGrupe.equals("lagano")) {
+
+                ukupniBodovi += (bodovi-prosliBodovi)*10;
+            }
+            else if (naslovGrupe.equals("srednje")) {
+                ukupniBodovi += (bodovi-prosliBodovi)*20;
+            }
+            else {
+                ukupniBodovi += (bodovi-prosliBodovi)*30;
+            }
             db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova").document(naslovGrupe + "_" + naslovTeme).set(data);
+            Map<String, Object> data2 = new HashMap<>();
+            String email = firebaseUser.getEmail();
+            data2.put("bodovi", ukupniBodovi);
+            data2.put("email", email);
+            db.collection("ljestvica").document(firebaseUser.getUid()).set(data2);
         }
+
+    }
+
+    private void izracunajRezultate() {
+        for (Rezultat rezultat : rezultati) {
+            if (rezultat.getNazivGrupe().equals("lagano")) {
+                ukupniBodovi += rezultat.getRezultat()*10;
+            }
+            else if (rezultat.getNazivGrupe().equals("srednje")) {
+                ukupniBodovi += rezultat.getRezultat()*20;
+            }
+            else {
+                ukupniBodovi += rezultat.getRezultat()*30;
+            }
+
+        }
+    }
+    /**
+     * Ova metoda čita sve rezultate korisnika iz baze.
+     */
+
+    private void procitajRezultate() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            rezultati = new ArrayList<Rezultat>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Integer rezultat = Integer.parseInt(document.getData().get("rezultat").toString());
+                                String nazivGrupe = document.getData().get("naslov grupe").toString();
+                                String nazivTeme = document.getData().get("naslov teme").toString();
+
+                                rezultati.add(new Rezultat(nazivGrupe, nazivTeme,rezultat));
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                        izracunajRezultate();
+                    }
+
+                });
     }
     private void prikaziRezultate() {
         Integer bodovi = izracunajRezultat();
@@ -217,4 +290,5 @@ public class Pitanje extends AppCompatActivity {
                         .create();
         alertDialog.show();
     }
+
 }
