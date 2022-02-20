@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,12 +18,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.internal.TextWatcherAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -41,7 +45,9 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView pokloni;
     private TextView ostalo;
     private TextView ustedzevina;
+    private TextView preostalo;
     private Integer troskovi;
+
 
 
     @Override
@@ -53,16 +59,16 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         poslovi = findViewById(R.id.poslovi_upis);
         pokloni = findViewById(R.id.pokloni_upis);
         ostalo = findViewById(R.id.ostalo_upis);
-        ustedzevina = findViewById(R.id.ustedzevina_upis);
+        ustedzevina = findViewById(R.id.ustedzevina_text);
+        preostalo = findViewById(R.id.preostalo_text);
         //pronalazi Button po id-u
         Button azurirajPlan = findViewById(R.id.azuriraj_plan);
-
-        View.OnClickListener listener = new View.OnClickListener() {
+                View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (provjeriUnos()) {
                     dodajNoviPlan();
-                    prikaziStanje();
+
                 }
             }
         };
@@ -81,6 +87,26 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         String godine[] = {"2022","2021","2020","2019","2018"};
         spinnerGodine = findViewById(R.id.spinner_godine);
         postaviSpinner(godine, trenutnaGodina.toString(), spinnerGodine);
+
+        //kada se promjeni text prikazuje se prikaziStanje
+        TextWatcher promatrac = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                prikaziStanje();
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+        dzeparac.addTextChangedListener(promatrac);
+        pokloni.addTextChangedListener(promatrac);
+        poslovi.addTextChangedListener(promatrac);
+        ostalo.addTextChangedListener(promatrac);
     }
 
     /**
@@ -112,7 +138,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 pokloni.setError(null);
                 poslovi.setError(null);
                 ostalo.setError(null);
-                ustedzevina.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
             }
@@ -172,7 +197,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("poslovi", poslovi.getText().toString());
         data.put("pokloni", pokloni.getText().toString());
         data.put("ostalo", ostalo.getText().toString());
-        data.put("ustedzevina", ustedzevina.getText().toString());
         data.put("mjesec", spinnerMjeseci.getSelectedItem().toString());
         data.put("godina", spinnerGodine.getSelectedItem().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -220,13 +244,11 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 String planPokloni = document.getData().get("pokloni").toString();
                                 String planPoslovi = document.getData().get("poslovi").toString();
                                 String planOstalo = document.getData().get("ostalo").toString();
-                                String planUstedzevina = document.getData().get("ustedzevina").toString();
                                 if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
                                     dzeparac.setText(planDzeparac);
                                     poslovi.setText(planPoslovi);
                                     pokloni.setText(planPokloni);
                                     ostalo.setText(planOstalo);
-                                    ustedzevina.setText(planUstedzevina);
                                 }
                             }
                         } else {
@@ -241,41 +263,66 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
      * Čisti TextVieweve prije prikazivanja plana.
      */
     private void ocistiTekst(){
-        dzeparac.setText("");
-        poslovi.setText("");
-        pokloni.setText("");
-        ostalo.setText("");
-        ustedzevina.setText("");
+        dzeparac.setText("0");
+        poslovi.setText("0");
+        pokloni.setText("0");
+        ostalo.setText("0");
 
     }
 
     private void prikaziStanje(){
-        dzeparac.getText();
-        poslovi.getText();
-        pokloni.getText();
-        ostalo.getText();
-        ustedzevina.getText();
         String poruka = "";
+        String dzeparacText = dzeparac.getText().toString();
+        String posloviText = poslovi.getText().toString();
+        String pokloniText = pokloni.getText().toString();
+        String ostaloText = ostalo.getText().toString();
+        Integer dzeparacIznos;
+        Integer posloviIznos;
+        Integer pokloniIznos;
+        Integer ostaloIznos;
 
-        Integer dzeparacIznos = Integer.parseInt(dzeparac.getText().toString());
-        Integer posloviIznos = Integer.parseInt(poslovi.getText().toString());
-        Integer pokloniIznos = Integer.parseInt(pokloni.getText().toString());
-        Integer ostaloIznos = Integer.parseInt(ostalo.getText().toString());
-        Integer ustedzevinaIznos = Integer.parseInt(ustedzevina.getText().toString());
+        if (dzeparacText == ""){
+            dzeparacIznos = 0;
+        }
+        else{
+            dzeparacIznos = Integer.parseInt(dzeparac.getText().toString());
+        }
+        if (posloviText == ""){
+            posloviIznos = 0;
+        }
+        else{
+            posloviIznos = Integer.parseInt(poslovi.getText().toString());
+        }
+
+        if (pokloniText == ""){
+            pokloniIznos = 0;
+        }
+        else{
+            pokloniIznos = Integer.parseInt(pokloni.getText().toString());
+        }
+        if (ostaloText == ""){ ostaloIznos = 0;}
+        else{ ostaloIznos = Integer.parseInt(poslovi.getText().toString());}
+
 
         Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
-        Integer ustedeno = zaradeno - troskovi;
-        if (ustedeno>0){
+        if (troskovi==null){
+            troskovi = 0;
+        }
+        Integer iznosPreostalo = zaradeno - troskovi;
+
+        if (iznosPreostalo>0){
             poruka = "Bravo! Nastavi štedjeti kao i do sada!";
         }
-        if (ustedeno==0){
+        if (iznosPreostalo==0){
             poruka = "Sve je potrošeno, ali nisi u minusu!";
         }
-        if (ustedeno<0){
+        if (iznosPreostalo<0){
             poruka = "Jao! Ovaj mjesec si u minusu!";
         }
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
+        preostalo.setText(iznosPreostalo.toString());
+
 
     }
     private boolean provjeriUnos(){
@@ -295,10 +342,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (ostalo.getText().toString().equals("")){
             rezultatBooleana = false;
             ostalo.setError("Unesite iznos ostalog ili 0");
-        }
-        if (ustedzevina.getText().toString().equals("")) {
-            rezultatBooleana = false;
-            ustedzevina.setError("Unesite iznos ustedževine ili 0");
         }
         return rezultatBooleana;
     }
