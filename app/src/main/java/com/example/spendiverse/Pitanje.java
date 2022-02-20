@@ -196,11 +196,7 @@ public class Pitanje extends AppCompatActivity {
                         ukupniBodovi += (bodovi-prosliBodovi)*30;
                     }
                     db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova").document(naslovGrupe + "_" + naslovTeme).set(data);
-                    Map<String, Object> data2 = new HashMap<>();
-                    String email = firebaseUser.getEmail();
-                    data2.put("bodovi", ukupniBodovi);
-                    data2.put("email", email);
-                    db.collection("ljestvica").document(firebaseUser.getUid()).set(data2);
+                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bodovi", ukupniBodovi);
                 }
 
             }
