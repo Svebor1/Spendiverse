@@ -279,32 +279,28 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
     }
     private boolean provjeriUnos(){
+        boolean rezultatBooleana = true;
         if (dzeparac.getText().toString().equals("")){
+            rezultatBooleana = false;
             dzeparac.setError("Unesite iznos džeparca ili 0");
-            return false;
         }
         if (pokloni.getText().toString().equals("")){
+            rezultatBooleana = false;
             pokloni.setError("Unesite iznos poklona ili 0");
-            return false;
         }
         if (poslovi.getText().toString().equals("")){
+            rezultatBooleana = false;
             poslovi.setError("Unesite iznos dodatnih poslova ili 0");
-            return false;
         }
         if (ostalo.getText().toString().equals("")){
+            rezultatBooleana = false;
             ostalo.setError("Unesite iznos ostalog ili 0");
-            return false;
         }
-        if (ustedzevina.getText().toString().equals("")){
+        if (ustedzevina.getText().toString().equals("")) {
+            rezultatBooleana = false;
             ustedzevina.setError("Unesite iznos ustedževine ili 0");
-            return false;
         }
-        return true;
-
-
-
+        return rezultatBooleana;
     }
-
-
     }
 
