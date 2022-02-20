@@ -40,7 +40,7 @@ public class LjestvicaAdapter extends ArrayAdapter<RezultatNatjecatelja> {
         Integer pozicija = position + 1;
         if (prosliBodovi != null) {
             if (bodovi == prosliBodovi) {
-                mjestoKorisnika.setText(Integer.toString(pozicija-brojac+1));
+                mjestoKorisnika.setText(Integer.toString(pozicija-brojac));
                 brojac++;
             }
             else {
