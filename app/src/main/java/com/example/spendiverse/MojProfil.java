@@ -13,6 +13,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,7 +62,7 @@ public class MojProfil extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DocumentReference docRef = db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu");
+        DocumentReference docRef = db.collection("ljestvica").document(firebaseUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -81,18 +83,20 @@ public class MojProfil extends AppCompatActivity {
         prikazNaLjestvici.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    HashMap data = new HashMap();
-                    data.put("prikaz", true);
-                    db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu").set(data);
-                }
-                else {
-
-                    HashMap data = new HashMap();
-                    data.put("prikaz", false);
-                    db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu").set(data);
-
-                }
+                db.collection("ljestvica").document(firebaseUser.getUid())
+                    .update("prikaz", isChecked)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating document", e);
+                        }
+                    });
             }
         });
 

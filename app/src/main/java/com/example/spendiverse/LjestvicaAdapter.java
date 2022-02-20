@@ -30,12 +30,16 @@ public class LjestvicaAdapter extends ArrayAdapter<RezultatNatjecatelja> {
         if (listitemView == null) {
             listitemView = LayoutInflater.from(getContext()).inflate(R.layout.ljestvica_adapter, parent, false);
         }
+
         RezultatNatjecatelja rezultatNatjecatelja = getItem(position);
+
+        Integer bodovi = rezultatNatjecatelja.getRezultatKorisnika();
+        
         TextView nazivKorisnika = listitemView.findViewById(R.id.naziv_korisnika);
         TextView brojBodova = listitemView.findViewById(R.id.broj_bodova);
         TextView mjestoKorisnika = listitemView.findViewById(R.id.mjesto_korisnika);
         nazivKorisnika.setText(rezultatNatjecatelja.getImeKorisnika());
-        Integer bodovi = rezultatNatjecatelja.getRezultatKorisnika();
+
         brojBodova.setText(bodovi.toString());
         Integer pozicija = position + 1;
         if (prosliBodovi != null) {

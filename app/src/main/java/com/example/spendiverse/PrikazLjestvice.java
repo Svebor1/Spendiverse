@@ -36,6 +36,7 @@ public class PrikazLjestvice extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("ljestvica")
+                .whereEqualTo("prikaz", true)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value,

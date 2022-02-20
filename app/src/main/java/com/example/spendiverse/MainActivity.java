@@ -134,12 +134,17 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
     private void createNewUser() {
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         HashMap data = new HashMap();
+        String email = firebaseUser.getEmail();
+        data.put("email", email);
+        data.put("bodovi", 0);
         data.put("prikaz", false);
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu").set(data)
+        db.collection("ljestvica").document(firebaseUser.getUid()).set(data)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
