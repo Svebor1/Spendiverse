@@ -174,8 +174,9 @@ public class Pitanje extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    prosliBodovi = Integer.parseInt(document.getData().get("rezultat").toString());
+
                     if (document.exists()) {
+                        prosliBodovi = Integer.parseInt(document.getData().get("rezultat").toString());
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         Log.d(TAG, "No such document");
