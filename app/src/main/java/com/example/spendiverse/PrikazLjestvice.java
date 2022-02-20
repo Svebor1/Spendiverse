@@ -32,7 +32,6 @@ public class PrikazLjestvice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_ljestvice);
-        //kako ću ići po svim korisnicima kako ako ih je više
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

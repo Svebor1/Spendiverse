@@ -9,6 +9,15 @@
     android:elevation="10dp"
     android:background="@drawable/zuta_pozadina_4ruba">
 
+    <TextView
+        android:id="@+id/mjesto_korisnika"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/naziv_korisnika"
@@ -17,7 +26,7 @@
         android:layout_marginStart="25dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mjesto_korisnika"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

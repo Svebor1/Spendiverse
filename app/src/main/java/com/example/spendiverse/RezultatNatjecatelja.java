@@ -4,6 +4,10 @@ public class RezultatNatjecatelja {
     String imeKorisnika;
     Integer rezultatKorisnika;
 
+    public RezultatNatjecatelja(String imeKorisnika) {
+        this.imeKorisnika = imeKorisnika;
+    }
+
     public RezultatNatjecatelja(String imeKorisnika, Integer rezultatKorisnika) {
         this.imeKorisnika = imeKorisnika;
         this.rezultatKorisnika = rezultatKorisnika;
