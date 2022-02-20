@@ -50,6 +50,9 @@ public class MojProfil extends AppCompatActivity {
     ImageButton editNadimka;
     String TAG = "MojProfil";
     private String nadimak;
+
+    private FirebaseUser firebaseUser;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,16 +64,15 @@ public class MojProfil extends AppCompatActivity {
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
         prikazNaLjestvici = findViewById(R.id.switch1);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+
+        if (firebaseUser != null) {
             // Name, email address, and profile photo Url
-            String email = user.getEmail();
+            String email = firebaseUser.getEmail();
             emailKorisnika.setText(email.toString());
         }
-
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
 
         DocumentReference docRef = db.collection("ljestvica").document(firebaseUser.getUid());
 
@@ -96,8 +98,7 @@ public class MojProfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 promjenaNadimka();
-                nadimakKorisnika.setText(nadimak);
-                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
+
             }
         };
         editNadimka.setOnClickListener(listener2);
@@ -145,6 +146,8 @@ public class MojProfil extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 nadimak = input.getText().toString();
+                nadimakKorisnika.setText(nadimak);
+                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
             }
         });
         builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
