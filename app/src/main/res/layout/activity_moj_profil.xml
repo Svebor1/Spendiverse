@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ime:" />
+            android:text="Email" />
 
         <TextView
             android:id="@+id/email_korisnika"
@@ -28,6 +28,36 @@
             android:text="Textview"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="246dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nadimak:" />
+
+        <TextView
+            android:id="@+id/nadimak_korisnika"
+            android:layout_width="0dp"
+            android:layout_height="27dp"
+            android:layout_weight="1"
+            android:text="Textview"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <ImageButton
+            android:id="@+id/edit_nadimka"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ljubicasta_pozadina"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,32 +108,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ljestvica"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pozicija na ljestvici:"
-            tools:layout_editor_absoluteX="73dp"
-            tools:layout_editor_absoluteY="205dp" />
-
-        <TextView
-            android:id="@+id/ljestvica"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rjeseni_kvizovi"></TextView>
-
     </LinearLayout>
 
     <LinearLayout

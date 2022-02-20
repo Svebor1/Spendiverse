@@ -142,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
         HashMap data = new HashMap();
         String email = firebaseUser.getEmail();
         data.put("email", email);
+        Integer pozicijaAt = email.indexOf("@");
+        String nadimak = email.substring(0,pozicijaAt);
+        data.put("nadimak", nadimak);
         data.put("bodovi", 0);
         data.put("prikaz", false);
         db.collection("ljestvica").document(firebaseUser.getUid()).set(data)

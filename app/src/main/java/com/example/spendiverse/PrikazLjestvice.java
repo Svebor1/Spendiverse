@@ -47,8 +47,8 @@ public class PrikazLjestvice extends AppCompatActivity {
                         }
                         rezultatiNatjecatelja = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
-                            if (doc.get("bodovi") != null && doc.get("email") != null ) {
-                                RezultatNatjecatelja trenutniRezultat = new RezultatNatjecatelja(doc.getString( "email"), doc.getLong( "bodovi").intValue());
+                            if (doc.get("bodovi") != null && doc.get("nadimak") != null ) {
+                                RezultatNatjecatelja trenutniRezultat = new RezultatNatjecatelja(doc.getString( "nadimak"), doc.getLong( "bodovi").intValue());
                                 rezultatiNatjecatelja.add(trenutniRezultat);
 
                             }
