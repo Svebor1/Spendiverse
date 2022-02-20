@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MojProfil extends AppCompatActivity {
@@ -35,6 +38,7 @@ public class MojProfil extends AppCompatActivity {
     Button prikazLjestvice;
     TextView emailKorisnika;
     List<Rezultat> rezultati;
+    Switch prikazNaLjestvici;
     String TAG = "MojProfil";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +49,53 @@ public class MojProfil extends AppCompatActivity {
         bodovi = findViewById(R.id.bodovi);
         prikazLjestvice = findViewById(R.id.prikaz_ljestvice);
         emailKorisnika = findViewById(R.id.email_korisnika);
+        prikazNaLjestvici = findViewById(R.id.switch1);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
             String email = user.getEmail();
             emailKorisnika.setText(email.toString());
         }
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        prikazNaLjestvici.setChecked(document.getData().get("prikaz").equals(true));
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        prikazNaLjestvici.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    HashMap data = new HashMap();
+                    data.put("prikaz", true);
+                    db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu").set(data);
+                }
+                else {
+
+                    HashMap data = new HashMap();
+                    data.put("prikaz", false);
+                    db.collection("korisnici").document(firebaseUser.getUid()).collection("postavke").document("postavke_za_ljestvicu").set(data);
+
+                }
+            }
+        });
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
