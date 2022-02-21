@@ -304,7 +304,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Preostalo:" />
+                android:text="Planirana ušteda:" />
 
             <TextView
                 android:id="@+id/preostalo_text"
@@ -326,7 +326,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Potrošeno do sada:" />
+                android:text="Zapravo potrošeno:" />
 
             <TextView
                 android:id="@+id/potroseno_text"

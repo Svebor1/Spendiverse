@@ -43,8 +43,13 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView ostalo;
     private TextView ustedjevina;
     private TextView preostalo;
+    private TextView prehrana;
+    private TextView kucanstvo;
+    private TextView promet;
+    private TextView troskoviOstalo;
     private Integer troskovi;
     private Integer iznosPreostalo;
+
 
 
 
@@ -59,6 +64,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         ostalo = findViewById(R.id.ostalo_upis);
         ustedjevina = findViewById(R.id.ustedjevina_upis);
         preostalo = findViewById(R.id.preostalo_text);
+        prehrana = findViewById(R.id.prehrana_upis);
+        kucanstvo = findViewById(R.id.kucanstvo_upis);
+        promet = findViewById(R.id.promet_upis);
+        troskoviOstalo = findViewById(R.id.troskovi_ostalo_upis);
         //pronalazi Button po id-u
         Button azurirajPlan = findViewById(R.id.azuriraj_plan);
                 View.OnClickListener listener = new View.OnClickListener() {
@@ -107,6 +116,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         poslovi.addTextChangedListener(promatrac);
         ostalo.addTextChangedListener(promatrac);
         ustedjevina.addTextChangedListener(promatrac);
+        prehrana.addTextChangedListener(promatrac);
+        promet.addTextChangedListener(promatrac);
+        kucanstvo.addTextChangedListener(promatrac);
+        troskoviOstalo.addTextChangedListener(promatrac);
     }
 
     /**
@@ -139,6 +152,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 poslovi.setError(null);
                 ostalo.setError(null);
                 ustedjevina.setError(null);
+                prehrana.setError(null);
+                kucanstvo.setError(null);
+                troskoviOstalo.setError(null);
+                promet.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
             }
@@ -202,6 +219,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("godina", spinnerGodine.getSelectedItem().toString());
         data.put("preostalo",iznosPreostalo);
         data.put("ustedjevina", ustedjevina.getText().toString());
+        data.put("troskovi_prehrana", prehrana.getText().toString());
+        data.put("troskovi_kucanstvo", kucanstvo.getText().toString());
+        data.put("troskovi_promet", promet.getText().toString());
+        data.put("troskovi_ostalo", troskoviOstalo.getText().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //planovi se spremaju pod nazivom plan_mjesec_godina
         db.collection("korisnici").document(firebaseUser.getUid())
@@ -248,12 +269,20 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 String planPoslovi = document.getData().get("poslovi").toString();
                                 String planOstalo = document.getData().get("ostalo").toString();
                                 String planUstedjevina = document.getData().get("ustedjevina").toString();
+                                String planPromet = document.getData().get("troskovi_promet").toString();
+                                String planPrehrana = document.getData().get("troskovi_prehrana").toString();
+                                String planKucanstvo = document.getData().get("troskovi_kucanstvo").toString();
+                                String planTroskoviOstalo = document.getData().get("troskovi_ostalo").toString();
                                 if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
                                     dzeparac.setText(planDzeparac);
                                     poslovi.setText(planPoslovi);
                                     pokloni.setText(planPokloni);
                                     ostalo.setText(planOstalo);
                                     ustedjevina.setText(planUstedjevina);
+                                    promet.setText(planPromet);
+                                    prehrana.setText(planPrehrana);
+                                    kucanstvo.setText(planKucanstvo);
+                                    troskoviOstalo.setText(planTroskoviOstalo);
                                 }
                             }
                         } else {
@@ -273,6 +302,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         pokloni.setText("0");
         ostalo.setText("0");
         ustedjevina.setText("0");
+        prehrana.setText("0");
+        promet.setText("0");
+        kucanstvo.setText("0");
+        troskoviOstalo.setText("0");
 
 
     }
@@ -284,11 +317,19 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         String pokloniText = pokloni.getText().toString();
         String ostaloText = ostalo.getText().toString();
         String ustedjevinaText = ustedjevina.getText().toString();
+        String prehranaText = prehrana.getText().toString();
+        String prometText = promet.getText().toString();
+        String kucanstvoText = kucanstvo.getText().toString();
+        String troskoviOstaloText = troskoviOstalo.getText().toString();
         Integer dzeparacIznos;
         Integer posloviIznos;
         Integer pokloniIznos;
         Integer ostaloIznos;
         Integer ustedjevinaIznos;
+        Integer prehranaIznos;
+        Integer prometIznos;
+        Integer kucanstvoIznos;
+        Integer troskoviOstaloIznos;
 
         if (dzeparacText.equals("")){
             dzeparacIznos = 0;}
@@ -306,12 +347,25 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (ustedjevinaText.equals("")){ ustedjevinaIznos = 0;}
         else{ustedjevinaIznos = Integer.parseInt(ustedjevinaText);}
 
+        if (prehranaText.equals("")){ prehranaIznos = 0;}
+        else{prehranaIznos = Integer.parseInt(prehranaText);}
 
+        if (prometText.equals("")){ prometIznos = 0;}
+        else{prometIznos = Integer.parseInt(prometText);}
+
+        if (kucanstvoText.equals("")){ kucanstvoIznos = 0;}
+        else{kucanstvoIznos = Integer.parseInt(kucanstvoText);}
+
+        if (troskoviOstaloText.equals("")){ troskoviOstaloIznos = 0;}
+        else{troskoviOstaloIznos = Integer.parseInt(troskoviOstaloText);}
+
+
+        Integer planiraniTroskovi = prehranaIznos + prometIznos + kucanstvoIznos + troskoviOstaloIznos;
         Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
         if (troskovi==null){
             troskovi = 0;
         }
-        iznosPreostalo = zaradeno - troskovi + ustedjevinaIznos;
+        iznosPreostalo = zaradeno - planiraniTroskovi + ustedjevinaIznos;
 
         if (iznosPreostalo>0){
             poruka = "Bravo! Nastavi štedjeti kao i do sada!";
@@ -322,10 +376,13 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (iznosPreostalo<0){
             poruka = "Jao! Ovaj mjesec si u minusu!";
         }
+
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
         preostalo.setText(iznosPreostalo.toString()+" kn");
     }
+
+
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
         if (dzeparac.getText().toString().equals("")){
@@ -347,6 +404,22 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (ustedjevina.getText().toString().equals("")){
             rezultatBooleana = false;
             ustedjevina.setError("Unesite iznos ušteđevine ili 0");
+        }
+        if (promet.getText().toString().equals("")){
+            rezultatBooleana = false;
+            promet.setError("Unesite iznos troškova za promet ili 0");
+        }
+        if (prehrana.getText().toString().equals("")){
+            rezultatBooleana = false;
+            prehrana.setError("Unesite iznos troškova prehrane ili 0");
+        }
+        if (kucanstvo.getText().toString().equals("")){
+            rezultatBooleana = false;
+            kucanstvo.setError("Unesite iznos troškova za kućanstvo ili 0");
+        }
+        if (troskoviOstalo.getText().toString().equals("")){
+            rezultatBooleana = false;
+            troskoviOstalo.setError("Unesite iznos ostalih troškova ili 0");
         }
         return rezultatBooleana;
     }
