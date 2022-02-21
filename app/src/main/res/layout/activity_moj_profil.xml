@@ -3,146 +3,192 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="30dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MojProfil">
 
     <LinearLayout
+        android:elevation="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:background="@drawable/zuta_pozadina"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:text="Email:" />
+        <ImageView
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/imageView6"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/ic_profil" />
 
-        <TextView
-            android:id="@+id/email_korisnika"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:text="Textview"
-            tools:layout_editor_absoluteX="173dp"
-            tools:layout_editor_absoluteY="246dp" />
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="Email:" />
+
+            <TextView
+                android:id="@+id/email_korisnika"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="246dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Nadimak:" />
+
+            <TextView
+                android:id="@+id/nadimak_korisnika"
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_weight="1"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <ImageButton
+                android:id="@+id/edit_nadimka"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ljubicasta_pozadina"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="Broj riješenih kvizova:"
+                tools:layout_editor_absoluteX="60dp"
+                tools:layout_editor_absoluteY="373dp" />
+
+            <TextView
+                android:id="@+id/rjeseni_kvizovi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="Tvoji bodovi:"
+                tools:layout_editor_absoluteX="52dp"
+                tools:layout_editor_absoluteY="312dp" />
+
+            <TextView
+                android:id="@+id/bodovi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ljestvica"></TextView>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nadimak:" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/nadimak_korisnika"
-            android:layout_width="0dp"
-            android:layout_height="27dp"
-            android:layout_weight="1"
-            tools:layout_editor_absoluteX="173dp"
-            tools:layout_editor_absoluteY="246dp" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Prikaži me na ljestvici"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="114dp" />
 
-        <ImageButton
-            android:id="@+id/edit_nadimka"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ljubicasta_pozadina"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Broj riješenih kvizova:"
-            tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="373dp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/rjeseni_kvizovi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tvoji bodovi:"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="312dp" />
-
-        <TextView
-            android:id="@+id/bodovi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ljestvica"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/prikaz_ljestvice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Prikaži me na ljestvici"
-            tools:layout_editor_absoluteX="96dp"
-            tools:layout_editor_absoluteY="114dp" />
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </FrameLayout>
-
+            android:text="prikaži ljestvicu" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/prikaz_ljestvice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="prikaži ljestvicu" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
