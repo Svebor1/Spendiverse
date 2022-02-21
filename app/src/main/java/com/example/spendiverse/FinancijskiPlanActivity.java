@@ -18,14 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.internal.TextWatcherAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -44,9 +41,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView poslovi;
     private TextView pokloni;
     private TextView ostalo;
-    private TextView ustedzevina;
+    private TextView ustedjevina;
     private TextView preostalo;
     private Integer troskovi;
+    private Integer iznosPreostalo;
 
 
 
@@ -59,7 +57,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         poslovi = findViewById(R.id.poslovi_upis);
         pokloni = findViewById(R.id.pokloni_upis);
         ostalo = findViewById(R.id.ostalo_upis);
-        ustedzevina = findViewById(R.id.ustedzevina_text);
+        ustedjevina = findViewById(R.id.ustedjevina_upis);
         preostalo = findViewById(R.id.preostalo_text);
         //pronalazi Button po id-u
         Button azurirajPlan = findViewById(R.id.azuriraj_plan);
@@ -67,6 +65,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (provjeriUnos()) {
+                    prikaziStanje();
                     dodajNoviPlan();
 
                 }
@@ -107,6 +106,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         pokloni.addTextChangedListener(promatrac);
         poslovi.addTextChangedListener(promatrac);
         ostalo.addTextChangedListener(promatrac);
+        ustedjevina.addTextChangedListener(promatrac);
     }
 
     /**
@@ -138,6 +138,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 pokloni.setError(null);
                 poslovi.setError(null);
                 ostalo.setError(null);
+                ustedjevina.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
             }
@@ -199,6 +200,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("ostalo", ostalo.getText().toString());
         data.put("mjesec", spinnerMjeseci.getSelectedItem().toString());
         data.put("godina", spinnerGodine.getSelectedItem().toString());
+        data.put("preostalo",iznosPreostalo);
+        data.put("ustedjevina", ustedjevina.getText().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //planovi se spremaju pod nazivom plan_mjesec_godina
         db.collection("korisnici").document(firebaseUser.getUid())
@@ -244,11 +247,13 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 String planPokloni = document.getData().get("pokloni").toString();
                                 String planPoslovi = document.getData().get("poslovi").toString();
                                 String planOstalo = document.getData().get("ostalo").toString();
+                                String planUstedjevina = document.getData().get("ustedjevina").toString();
                                 if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
                                     dzeparac.setText(planDzeparac);
                                     poslovi.setText(planPoslovi);
                                     pokloni.setText(planPokloni);
                                     ostalo.setText(planOstalo);
+                                    ustedjevina.setText(planUstedjevina);
                                 }
                             }
                         } else {
@@ -267,6 +272,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         poslovi.setText("0");
         pokloni.setText("0");
         ostalo.setText("0");
+        ustedjevina.setText("0");
+
 
     }
 
@@ -276,39 +283,35 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         String posloviText = poslovi.getText().toString();
         String pokloniText = pokloni.getText().toString();
         String ostaloText = ostalo.getText().toString();
+        String ustedjevinaText = ustedjevina.getText().toString();
         Integer dzeparacIznos;
         Integer posloviIznos;
         Integer pokloniIznos;
         Integer ostaloIznos;
+        Integer ustedjevinaIznos;
 
-        if (dzeparacText == ""){
-            dzeparacIznos = 0;
-        }
-        else{
-            dzeparacIznos = Integer.parseInt(dzeparac.getText().toString());
-        }
-        if (posloviText == ""){
-            posloviIznos = 0;
-        }
-        else{
-            posloviIznos = Integer.parseInt(poslovi.getText().toString());
-        }
+        if (dzeparacText.equals("")){
+            dzeparacIznos = 0;}
+        else{dzeparacIznos = Integer.parseInt(dzeparacText); }
 
-        if (pokloniText == ""){
-            pokloniIznos = 0;
-        }
-        else{
-            pokloniIznos = Integer.parseInt(pokloni.getText().toString());
-        }
-        if (ostaloText == ""){ ostaloIznos = 0;}
-        else{ ostaloIznos = Integer.parseInt(poslovi.getText().toString());}
+        if (posloviText.equals("")){ posloviIznos = 0;}
+        else{posloviIznos = Integer.parseInt(posloviText); }
+
+        if (pokloniText.equals("")){ pokloniIznos = 0; }
+        else{ pokloniIznos = Integer.parseInt(pokloniText);}
+
+        if (ostaloText.equals("")){ ostaloIznos = 0;}
+        else{ostaloIznos = Integer.parseInt(ostaloText);}
+
+        if (ustedjevinaText.equals("")){ ustedjevinaIznos = 0;}
+        else{ustedjevinaIznos = Integer.parseInt(ustedjevinaText);}
 
 
         Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
         if (troskovi==null){
             troskovi = 0;
         }
-        Integer iznosPreostalo = zaradeno - troskovi;
+        iznosPreostalo = zaradeno - troskovi + ustedjevinaIznos;
 
         if (iznosPreostalo>0){
             poruka = "Bravo! Nastavi štedjeti kao i do sada!";
@@ -321,9 +324,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         }
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
-        preostalo.setText(iznosPreostalo.toString());
-
-
+        preostalo.setText(iznosPreostalo.toString()+" kn");
     }
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
@@ -342,6 +343,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (ostalo.getText().toString().equals("")){
             rezultatBooleana = false;
             ostalo.setError("Unesite iznos ostalog ili 0");
+        }
+        if (ustedjevina.getText().toString().equals("")){
+            rezultatBooleana = false;
+            ustedjevina.setError("Unesite iznos ušteđevine ili 0");
         }
         return rezultatBooleana;
     }
