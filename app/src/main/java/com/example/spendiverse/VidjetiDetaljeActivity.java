@@ -3,9 +3,16 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,16 +23,35 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class VidjetiDetaljeActivity extends AppCompatActivity {
     private final String TAG = "VidjetiDetaljeActivity";
     ArrayList<Trosak> troskovi;
+    private Spinner poredajPo;
+    String[] poredajPoArray = {"datumu silazno", "datumu uzlazno", "cijeni silazno", "cijeni uzlazno"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vidjeti_detalje);
+        poredajPo = findViewById(R.id.poredaj_po_spinner);
+        ArrayAdapter poredajPoAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, poredajPoArray);
+        poredajPo.setAdapter(poredajPoAdapter);
+        poredajPo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                prikaziTroskove(poredajPo.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                prikaziTroskove("datumu silazno");
+
+            }
+
+        });
     }
 
     @Override
@@ -51,16 +77,39 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 String firebaseId = document.getId();
                                 troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                             }
-                            prikaziTroskove();
+                            prikaziTroskove("datumu silazno");
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
+
                     }
                 });
 
     }
 
-    private void prikaziTroskove() {
+    private void prikaziTroskove(String uvjetSortiranja) {
+        Comparator<Trosak> usporediPoDatumu = new Comparator<Trosak>() {
+            @Override
+            public int compare(Trosak o1, Trosak o2) {
+                if (o1.getDatumGodina() != o2.getDatumGodina()) {
+                    return o1.getDatumGodina().compareTo(o2.getDatumGodina());
+                }
+                else {
+                    if (o1.getDatumMjesec() != o2.getDatumMjesec()) {
+                        return o1.getDatumMjesec().compareTo(o2.getDatumMjesec());
+                    }
+                    else {
+                        return o1.getDatumDan().compareTo(o2.getDatumDan());
+                    }
+                }
+            }
+        };
+        if (uvjetSortiranja.equals("datumu silazno")) {
+            Collections.sort(troskovi, usporediPoDatumu);
+        }
+        else if (uvjetSortiranja.equals("datumu uzlazno")) {
+            Collections.sort(troskovi, usporediPoDatumu.reversed());
+        }
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
         TrosakAdapter arrayAdapter = new TrosakAdapter(this, troskovi);
         prikazTroskova.setAdapter(arrayAdapter);
