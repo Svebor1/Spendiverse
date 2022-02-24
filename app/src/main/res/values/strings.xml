@@ -43,7 +43,7 @@
 
     <string name="tesko_tema1_text0">Kriptovalute se mogu koristiti za kupnju stvari, ali one su digitalne.\nNe postoje u kovanicama niti novčanicama</string>
     <string name="tesko_tema1_text1">Normalan novac, razne valute, kontroliraju vlade država, dok se kriptovalute drže pod kontrolom u "knjizi" na raznim računalima\nTa "knjiga" je poznata po nazivu BLOCKCHAIN</string>
-    <string name="tesko_tema1_text2">Kriptovalute se mogu kupiti, ali i napraviti putem računala, pokrećući programe koji pomažu u održavanju njihovih blockchaina. Za to je potrebno vrlo moćno računalo</string>
+    <string name="tesko_tema1_text2">Kriptovalute se mogu kupiti, ali i napraviti putem računala, pokrećući programe koji pomažu u održavanju njihovih blockchaina. Za to je potrebno vrlo moćno računalo.</string>
     <string name="tesko_tema1_text3">Neki ljudi vjeruju da su kriptovalute budućnost planćanja</string>
     <string name="tesko_tema1_text4">Neki ljudi misle da su loše za planet, jer troše previše energije.</string>
     <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
@@ -142,6 +142,26 @@
 
     <string-array name="srednje_kviz0_pitanje0">
 
+        <item>Označi netočnu tvrdnju.</item>
+        <item>Za plaćanje online možemo koristiti i kupone ili kartice.</item>
+        <item>Prilikom kupnje putem interneta, moramo paziti s kojih stranica kupujemo.</item>
+        <item>Dobro je koristiti jednostavne lozinke.</item>
+        <item>Dobro je koristiti jednostavne lozinke.</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje1">
+
+        <item>Kakve lozinke trebaju biti?</item>
+        <item>dovoljno dugačke s različitim znakovima</item>
+        <item>dovoljno dugačke s prepoznatljivim riječima</item>
+        <item>kratke s prepoznatljivim riječima</item>
+        <item>dovoljno dugačke s različitim znakovima</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje2">
+
         <item>Što nije znak da je stranica sigurna?</item>
         <item>početak "http"</item>
         <item>oznaka lokota</item>
@@ -151,7 +171,7 @@
     </string-array>
 
 
-    <string-array name="srednje_kviz1_pitanje1">
+    <string-array name="srednje_kviz1_pitanje2">
 
         <item>Ako dobiješ 130 kn, a želiš uštedjeti 80 kn, koliko možeš potrošiti?</item>
         <item>50 kn</item>
@@ -161,7 +181,7 @@
 
     </string-array>
 
-    <string-array name="srednje_kviz1_pitanje2">
+    <string-array name="srednje_kviz1_pitanje3">
 
         <item>Ako za rođendan dobiješ 100 kn, a za džeparac 50 kn, a želiš uštedjeti 100 kn, koliko možeš potrošiti?</item>
         <item>150 kn</item>
@@ -171,7 +191,7 @@
 
     </string-array>
 
-    <string-array name="srednje_kviz1_pitanje3">
+    <string-array name="srednje_kviz1_pitanje4">
 
         <item>Ako dobiješ 300 kn i od toga potrošiš 180 kn, a ostatak želiš uštedjeti, koliki će biti iznos tog ušteđenog novca?</item>
         <item>480 kn</item>
@@ -188,6 +208,16 @@
         <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
         <item>Kako bismo znali koliko možemo potrošiti, moramo od dobivenog oduzeti planirani novac za štednju</item>
         <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje1">
+
+        <item>Koji je 1. korak planiranja potrošnje?</item>
+        <item>Postavi si koliko želiš uštedjeti kao cilj.</item>
+        <item>Odredi koliko si zaradio ili dobio.</item>
+        <item>Možeš odlučiti na što žeilš potrošiti ostatak novca.</item>
+        <item>Odredi koliko si zaradio ili dobio.</item>
 
     </string-array>
 
@@ -278,6 +308,16 @@
         <item>Funta</item>
         <item>Dolar</item>
         <item>Cardano</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje4">
+
+        <item>Što od navedenog nije kriptovaluta?</item>
+        <item>Monero</item>
+        <item>Jen</item>
+        <item>Litecoin</item>
+        <item>Jen</item>
 
     </string-array>
 </resources>
