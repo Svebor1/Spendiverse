@@ -38,7 +38,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private PieChart chart;
     private Spinner spinner;
     private final Calendar myCalendar = Calendar.getInstance();
-    String vremenskaRazdoblja[] = {"dan", "tjedan", "mjesec", "godina", "ukupno"};
+    String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
