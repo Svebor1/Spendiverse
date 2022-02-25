@@ -30,7 +30,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     private final String TAG = "VidjetiDetaljeActivity";
     ArrayList<Trosak> troskovi;
     private Spinner poredajPo;
-    String[] poredajPoArray = {"datumu silazno", "datumu uzlazno", "cijeni silazno", "cijeni uzlazno"};
+    String[] poredajPoArray = {"datumu uzlazno", "datumu silazno", "cijeni silazno", "cijeni uzlazno"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu silazno");
+                prikaziTroskove("datumu uzlazno");
 
             }
 
@@ -77,7 +77,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 String firebaseId = document.getId();
                                 troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                             }
-                            prikaziTroskove("datumu silazno");
+                            prikaziTroskove(poredajPo.getSelectedItem().toString());
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -91,11 +91,11 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         Comparator<Trosak> usporediPoDatumu = new Comparator<Trosak>() {
             @Override
             public int compare(Trosak o1, Trosak o2) {
-                if (o1.getDatumGodina() != o2.getDatumGodina()) {
+                if (!o1.getDatumGodina().equals(o2.getDatumGodina())) {
                     return o1.getDatumGodina().compareTo(o2.getDatumGodina());
                 }
                 else {
-                    if (o1.getDatumMjesec() != o2.getDatumMjesec()) {
+                    if (!o1.getDatumMjesec().equals(o2.getDatumMjesec())) {
                         return o1.getDatumMjesec().compareTo(o2.getDatumMjesec());
                     }
                     else {
@@ -108,7 +108,8 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
             Collections.sort(troskovi, usporediPoDatumu);
         }
         else if (uvjetSortiranja.equals("datumu uzlazno")) {
-            Collections.sort(troskovi, usporediPoDatumu.reversed());
+            Collections.sort(troskovi, usporediPoDatumu);
+            Collections.reverse(troskovi);
         }
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
         TrosakAdapter arrayAdapter = new TrosakAdapter(this, troskovi);
