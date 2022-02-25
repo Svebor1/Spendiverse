@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -53,6 +55,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,40 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         troskoviOstalo = findViewById(R.id.troskovi_ostalo_upis);
         //pronalazi Button po id-u
         Button azurirajPlan = findViewById(R.id.azuriraj_plan);
+        ImageButton expandPrihodi = findViewById(R.id.expand_prihodi);
+        ImageButton expandTroskovi = findViewById(R.id.expand_troskovi);
+        LinearLayout layoutPrihodi = findViewById(R.id.layout_prihodi);
+        LinearLayout layoutTroskovi = findViewById(R.id.layout_troskovi);
+        layoutPrihodi.setVisibility(View.GONE);
+        layoutTroskovi.setVisibility(View.GONE);
+        //postavljanje LinearLayouta za prihode nevidljivim ili vidljivim, klikom na ImageButton
+        expandPrihodi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (layoutPrihodi.getVisibility() == View.VISIBLE){
+                    layoutPrihodi.setVisibility(View.GONE);
+                    expandPrihodi.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                }
+                else{
+                    layoutPrihodi.setVisibility(View.VISIBLE);
+                    expandPrihodi.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                }
+            }
+        });
+        //postavljanje LinearLayouta za troskove nevidljivim ili vidljivim, klikom na ImageButton
+        expandTroskovi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (layoutTroskovi.getVisibility() == View.VISIBLE){
+                    layoutTroskovi.setVisibility(View.GONE);
+                    expandTroskovi.setImageResource(R.drawable.ic_baseline_expand_more_24);
+                }
+                else{
+                    layoutTroskovi.setVisibility(View.VISIBLE);
+                    expandTroskovi.setImageResource(R.drawable.ic_baseline_expand_less_24);
+                }
+            }
+        });
                 View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
