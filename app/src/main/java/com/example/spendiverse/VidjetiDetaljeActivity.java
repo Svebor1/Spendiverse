@@ -22,15 +22,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class VidjetiDetaljeActivity extends AppCompatActivity {
     private final String TAG = "VidjetiDetaljeActivity";
     ArrayList<Trosak> troskovi;
     private Spinner poredajPo;
+    private  Spinner filterKategorija;
     String[] poredajPoArray = {"datumu uzlazno", "datumu silazno", "cijeni silazno", "cijeni uzlazno"};
+    String[] kategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +47,41 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                prikaziTroskove(poredajPo.getSelectedItem().toString());
+                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno");
+                prikaziTroskove("datumu uzlazno", "sve kategorije");
 
             }
 
         });
+        filterKategorija = findViewById(R.id.prikaz_za_kategoriju);
+        ArrayAdapter filterKategorijaAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
+        filterKategorija.setAdapter(filterKategorijaAdapter);
+        filterKategorija.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                prikaziTroskove("datumu uzlazno", "sve kategorije");
+
+            }
+
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         troskovi = new ArrayList<>();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -77,7 +101,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 String firebaseId = document.getId();
                                 troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                             }
-                            prikaziTroskove(poredajPo.getSelectedItem().toString());
+                            prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -87,7 +111,11 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
     }
 
-    private void prikaziTroskove(String uvjetSortiranja) {
+    private void prikaziTroskove(String uvjetSortiranja, String uvjetFiltriranja) {
+        ArrayList<Trosak> filtriraniTroskovi = new ArrayList<>();
+        List<Trosak> pomocna = troskovi.stream()
+                .filter(t -> t.getKategorija().equals(uvjetFiltriranja) || uvjetFiltriranja.equals("sve kategorije")).collect(Collectors.toList());
+        filtriraniTroskovi.addAll(pomocna);
         Comparator<Trosak> usporediPoDatumu = new Comparator<Trosak>() {
             @Override
             public int compare(Trosak o1, Trosak o2) {
@@ -112,22 +140,22 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         };
 
         if (uvjetSortiranja.equals("datumu silazno")) {
-            Collections.sort(troskovi, usporediPoDatumu);
+            Collections.sort(filtriraniTroskovi, usporediPoDatumu);
         }
         else if (uvjetSortiranja.equals("datumu uzlazno")) {
-            Collections.sort(troskovi, usporediPoDatumu);
-            Collections.reverse(troskovi);
+            Collections.sort(filtriraniTroskovi, usporediPoDatumu);
+            Collections.reverse(filtriraniTroskovi);
         }
         else if (uvjetSortiranja.equals("cijeni silazno")) {
-            Collections.sort(troskovi, usporediPoCijeni);
+            Collections.sort(filtriraniTroskovi, usporediPoCijeni);
         }
         else {
-            Collections.sort(troskovi, usporediPoCijeni);
-            Collections.reverse(troskovi);
+            Collections.sort(filtriraniTroskovi, usporediPoCijeni);
+            Collections.reverse(filtriraniTroskovi);
         }
 
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
-        TrosakAdapter arrayAdapter = new TrosakAdapter(this, troskovi);
+        TrosakAdapter arrayAdapter = new TrosakAdapter(this, filtriraniTroskovi);
         prikazTroskova.setAdapter(arrayAdapter);
     }
 }
