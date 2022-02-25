@@ -104,6 +104,13 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                 }
             }
         };
+        Comparator<Trosak> usporediPoCijeni = new Comparator<Trosak>() {
+            @Override
+            public int compare(Trosak o1, Trosak o2) {
+                return o1.getCijena().compareTo(o2.getCijena());
+            }
+        };
+
         if (uvjetSortiranja.equals("datumu silazno")) {
             Collections.sort(troskovi, usporediPoDatumu);
         }
@@ -111,6 +118,14 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
             Collections.sort(troskovi, usporediPoDatumu);
             Collections.reverse(troskovi);
         }
+        else if (uvjetSortiranja.equals("cijeni silazno")) {
+            Collections.sort(troskovi, usporediPoCijeni);
+        }
+        else {
+            Collections.sort(troskovi, usporediPoCijeni);
+            Collections.reverse(troskovi);
+        }
+
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
         TrosakAdapter arrayAdapter = new TrosakAdapter(this, troskovi);
         prikazTroskova.setAdapter(arrayAdapter);
