@@ -55,7 +55,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,7 +156,32 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         promet.addTextChangedListener(promatrac);
         kucanstvo.addTextChangedListener(promatrac);
         troskoviOstalo.addTextChangedListener(promatrac);
+
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putString("ustedjevina",ustedjevina.getText().toString());
+        savedInstanceState.putString("dzeparac",dzeparac.getText().toString());
+        savedInstanceState.putString("pokloni",pokloni.getText().toString());
+        savedInstanceState.putString("ostalo",ostalo.getText().toString());
+        savedInstanceState.putString("prehrana",prehrana.getText().toString());
+        savedInstanceState.putString("promet",promet.getText().toString());
+        savedInstanceState.putString("kucanstvo",kucanstvo.getText().toString());
+        savedInstanceState.putString("troskoviOstalo",troskoviOstalo.getText().toString());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState!=null){
+            dzeparac.setText(savedInstanceState.getString("dzeparac"));
+        }
+    }
+
+
+
 
     /**
      *Postavlja izbore za Spinner i stavlja trenutni zbor kao početni.
