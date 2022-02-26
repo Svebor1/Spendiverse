@@ -75,19 +75,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/prethodno_pitanje"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Predhodno" />
 
-            <Button
-                android:id="@+id/sljedece_pitanje"
-                android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/prethodno_pitanje"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Sljedeće" />
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/zarkoljubicasta_pozadina"
+                app:srcCompat="@drawable/bijela_strelica_natrag" />
+
+            <ImageButton
+                android:id="@+id/sljedece_pitanje"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/zarkoljubicasta_pozadina"
+                app:srcCompat="@drawable/bijela_strelica_naprijed" />
+
 
         </LinearLayout>
 
@@ -96,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="#673AB7"
             android:text="Završi kviz" />
 
     </LinearLayout>

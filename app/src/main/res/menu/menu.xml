@@ -6,6 +6,13 @@
         android:id="@+id/profil"
         android:icon="@drawable/ic_profil"
         android:title="Moj profil"
+        app:showAsAction="always"
+         />
+    <item
+        android:id="@+id/profil_sign_out"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="Odjava"
         app:showAsAction="always" />
+
 
 </menu>
