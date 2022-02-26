@@ -39,7 +39,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     private Spinner filterzaRazdoblja;
     String[] poredajPoArray = {"datumu uzlazno", "datumu silazno", "cijeni silazno", "cijeni uzlazno"};
     String[] kategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
-    String[] vremenskoRazdoblje = {"dan", "tjedan", "mjesec", "godina", "ukupno"};
+    String[] vremenskoRazdoblje = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno", "sve kategorije", "dan");
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
 
             }
 
@@ -78,7 +78,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno", "sve kategorije", "dan");
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
 
             }
 
@@ -92,7 +92,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno", "sve kategorije", "dan");
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
 
             }
 
