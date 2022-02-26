@@ -21,6 +21,13 @@
             android:layout_marginTop="19dp"
             android:text="Prikaz za:" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/prikaz_za_kategoriju"
             android:layout_width="wrap_content"

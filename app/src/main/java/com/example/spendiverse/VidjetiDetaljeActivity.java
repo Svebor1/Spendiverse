@@ -23,7 +23,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,8 +36,10 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     ArrayList<Trosak> troskovi;
     private Spinner poredajPo;
     private  Spinner filterKategorija;
+    private Spinner filterzaRazdoblja;
     String[] poredajPoArray = {"datumu uzlazno", "datumu silazno", "cijeni silazno", "cijeni uzlazno"};
     String[] kategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
+    String[] vremenskoRazdoblje = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +51,12 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
+                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno", "sve kategorije");
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
 
             }
 
@@ -60,16 +64,35 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         filterKategorija = findViewById(R.id.prikaz_za_kategoriju);
         ArrayAdapter filterKategorijaAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
         filterKategorija.setAdapter(filterKategorijaAdapter);
+
+        filterzaRazdoblja = findViewById(R.id.prikaz_za_razdoblje);
+        ArrayAdapter filterRazdobljeAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskoRazdoblje);
+        filterzaRazdoblja.setAdapter(filterRazdobljeAdapter);
+
         filterKategorija.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
+                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                prikaziTroskove("datumu uzlazno", "sve kategorije");
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
+
+            }
+
+        });
+        filterzaRazdoblja.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                prikaziTroskove("datumu uzlazno", "sve kategorije", "ukupno");
 
             }
 
@@ -101,7 +124,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 String firebaseId = document.getId();
                                 troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
                             }
-                            prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString());
+                            prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString());
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -110,11 +133,43 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                 });
 
     }
+    private boolean provjeriVrijeme(Integer dan, Integer mjesec, Integer godina, String uvjetFiltriranjaZaDatum) {
+        final Calendar myCalendar = Calendar.getInstance();
+        int godinaDanas = myCalendar.get(Calendar.YEAR);
+        int mjesecDanas = myCalendar.get(Calendar.MONTH)+1;
+        int danDanas = myCalendar.get(Calendar.DAY_OF_MONTH);
+        long datum = LocalDate.of(godina, mjesec, dan).toEpochDay();
+        long datumDanas = LocalDate.of(godinaDanas, mjesecDanas, danDanas).toEpochDay();
+        if (uvjetFiltriranjaZaDatum == "ukupno") {
+            return true;
+        }
+        else {
+            if (uvjetFiltriranjaZaDatum == "dan") {
+                return danDanas==dan && godinaDanas==godina && mjesecDanas==mjesec;
+            }
+            else if (uvjetFiltriranjaZaDatum == "tjedan") {
+                return datumDanas-datum < 7;
+            }
+            else if (uvjetFiltriranjaZaDatum == "mjesec") {
+                return (godinaDanas == godina && mjesecDanas==mjesec)
+                        || (godinaDanas == godina && mjesecDanas-mjesec == 1 && danDanas <= dan)
+                        || (godinaDanas-godina == 1 && mjesecDanas == 1 && mjesec == 12 && danDanas <= dan);
+            }
+            else {
+                return godinaDanas == godina
+                        || godinaDanas-godina == 1 && mjesecDanas<mjesec
+                        || godinaDanas-godina == 1 && mjesecDanas == mjesec && danDanas <= dan;
+            }
 
-    private void prikaziTroskove(String uvjetSortiranja, String uvjetFiltriranja) {
+        }
+    }
+    private boolean provjeriKategoriju(String kategorija, String uvjetFiltriranjaKategorija) {
+        return kategorija.equals(uvjetFiltriranjaKategorija) || uvjetFiltriranjaKategorija.equals("sve kategorije");
+    }
+    private void prikaziTroskove(String uvjetSortiranja, String uvjetFiltriranjaKategorija, String uvjetFiltriranjaZadatum) {
         ArrayList<Trosak> filtriraniTroskovi = new ArrayList<>();
         List<Trosak> pomocna = troskovi.stream()
-                .filter(t -> t.getKategorija().equals(uvjetFiltriranja) || uvjetFiltriranja.equals("sve kategorije")).collect(Collectors.toList());
+                .filter(t -> provjeriKategoriju(t.getKategorija(), uvjetFiltriranjaKategorija) && provjeriVrijeme(t.getDatumDan(), t.getDatumMjesec(), t.getDatumGodina(), uvjetFiltriranjaZadatum)).collect(Collectors.toList());
         filtriraniTroskovi.addAll(pomocna);
         Comparator<Trosak> usporediPoDatumu = new Comparator<Trosak>() {
             @Override
