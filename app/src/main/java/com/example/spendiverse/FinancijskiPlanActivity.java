@@ -437,7 +437,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (iznosPreostalo<0){
             poruka = "Jao! Ovaj mjesec si u minusu!";
         }
-
+        TextView planiranoPotroseno = findViewById(R.id.planirano_potroseno_text);
+        planiranoPotroseno.setText(planiraniTroskovi.toString()+" kn");
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
         preostalo.setText(iznosPreostalo.toString()+" kn");
