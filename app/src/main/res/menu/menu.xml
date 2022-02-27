@@ -10,7 +10,7 @@
          />
     <item
         android:id="@+id/profil_sign_out"
-        android:icon="@drawable/common_full_open_on_phone"
+        android:icon="@drawable/log_out_button"
         android:title="Odjava"
         app:showAsAction="always" />
 

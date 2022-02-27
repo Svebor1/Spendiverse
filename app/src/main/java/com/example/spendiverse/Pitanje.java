@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -99,8 +100,8 @@ public class Pitanje extends AppCompatActivity {
         };
         zavrsiKviz.setOnClickListener(listener3);
 
-        Button prethodnoPitanje = findViewById(R.id.prethodno_pitanje);
-        Button sljedecePitanje = findViewById(R.id.sljedece_pitanje);
+        ImageButton prethodnoPitanje = findViewById(R.id.prethodno_pitanje);
+        ImageButton sljedecePitanje = findViewById(R.id.sljedece_pitanje);
         View.OnClickListener listener1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
