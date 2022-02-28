@@ -42,9 +42,9 @@
     <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
 
     <string name="tesko_tema1_text0">Kriptovalute se mogu koristiti za kupnju stvari, ali one su digitalne.\nNe postoje u kovanicama niti novčanicama</string>
-    <string name="tesko_tema1_text1">Normalan novac, razne valute, kontroliraju vlade država, dok se kriptovalute drže pod kontrolom u "knjizi" na raznim računalima\nTa "knjiga" je poznata po nazivu BLOCKCHAIN</string>
+    <string name="tesko_tema1_text1">Normalan novac, razne valute, kontroliraju vlade država, dok se kriptovalute drže pod kontrolom u "knjizi" na raznim računalima.\nTa "knjiga" je poznata po nazivu BLOCKCHAIN</string>
     <string name="tesko_tema1_text2">Kriptovalute se mogu kupiti, ali i napraviti putem računala, pokrećući programe koji pomažu u održavanju njihovih blockchaina. Za to je potrebno vrlo moćno računalo.</string>
-    <string name="tesko_tema1_text3">Neki ljudi vjeruju da su kriptovalute budućnost planćanja</string>
+    <string name="tesko_tema1_text3">Neki ljudi vjeruju da su kriptovalute budućnost plaćanja</string>
     <string name="tesko_tema1_text4">Neki ljudi misle da su loše za planet, jer troše previše energije.</string>
     <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
     <string name="tesko_tema1_text6">Najpoznatija kriptovaluta je Bitcoin, ali neke druge su i Litecoin, Dogecoin, Dash, Monero, Cardano...</string>

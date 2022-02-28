@@ -2,7 +2,8 @@ package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -83,10 +84,28 @@ public class MainActivity extends AppCompatActivity {
             case R.id.profil:
                 mojProfil();
                 return true;
+            case R.id.profil_sign_out:
+                AlertDialog alertDialogSignOut =
+                        new AlertDialog.Builder(this)
+                                .setTitle("Jeste li sigurni da se želite odjaviti?")
+                                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        signOut();
+                                    }
+                                })
+                                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialogInterface, int which) {
+
+                                    }
+                                })
+                                .create();
+                alertDialogSignOut.show();
+
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -180,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                         updateUI(null);
                     }
                 });
+
     }
 
 
@@ -210,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             setContentView(R.layout.activity_main);
-            Button signOutButton;
             Button prikazTroskovaButton;
             Button financijskaPismenost;
             financijskaPismenost = findViewById(R.id.financijska_pismenost);
@@ -220,17 +239,8 @@ public class MainActivity extends AppCompatActivity {
                     financijskaPismenost();
                 }
             });
-            signOutButton = findViewById(R.id.sign_out);
             prikazTroskovaButton = findViewById(R.id.prikaz_troskova);
 
-            View.OnClickListener listener = new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    signOut();
-                }
-            };
-            signOutButton.setOnClickListener(listener);
 
             View.OnClickListener listenerPrikazTroskova = new View.OnClickListener() {
 
