@@ -1,10 +1,12 @@
 package com.example.spendiverse;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +34,10 @@ public class PrikazLjestvice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_ljestvice);
+        //postavlja strelicu za natrag
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -68,5 +74,14 @@ public class PrikazLjestvice extends AppCompatActivity {
         ListView prikazLjestvice = findViewById(R.id.ljestvica);
         LjestvicaAdapter arrayAdapter = new LjestvicaAdapter(this,R.id.ljestvica, rezultatiNatjecatelja);
         prikazLjestvice.setAdapter(arrayAdapter);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

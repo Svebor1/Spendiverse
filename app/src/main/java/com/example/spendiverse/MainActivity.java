@@ -1,6 +1,7 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FinancijskaPismenostActivity.class);
         startActivity(intent);
     }
+
 
 
 }

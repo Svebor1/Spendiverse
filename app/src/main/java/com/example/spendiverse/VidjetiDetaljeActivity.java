@@ -1,11 +1,13 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -44,6 +46,10 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vidjeti_detalje);
+        //postavlja strelicu za natrag
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         poredajPo = findViewById(R.id.poredaj_po_spinner);
         ArrayAdapter poredajPoAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, poredajPoArray);
         poredajPo.setAdapter(poredajPoAdapter);
@@ -212,5 +218,14 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         ListView prikazTroskova = findViewById(R.id.prikazTroskova);
         TrosakAdapter arrayAdapter = new TrosakAdapter(this, filtriraniTroskovi);
         prikazTroskova.setAdapter(arrayAdapter);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

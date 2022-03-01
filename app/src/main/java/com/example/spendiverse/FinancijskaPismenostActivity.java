@@ -1,9 +1,11 @@
 package com.example.spendiverse;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -18,6 +20,11 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financijska_pismenost);
+        //postavlja strelicu za natrag
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         ExpandableListView lista;
         ExpandableListAdapter expandableListAdapter;
         int emoji = 0x1F31F;
@@ -53,5 +60,16 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivity(intent);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 } 

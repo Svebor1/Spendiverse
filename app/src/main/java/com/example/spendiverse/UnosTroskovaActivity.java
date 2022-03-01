@@ -1,11 +1,13 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +41,10 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unos_troskova);
+        //postavlja strelicu za natrag
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         spinner = findViewById(R.id.spinner);
         datumTroska = findViewById(R.id.datum_troska);
         dodatiTrosak = findViewById(R.id.dodati_trosak);
@@ -190,5 +196,14 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
