@@ -435,13 +435,13 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         iznosPreostalo = zaradeno - planiraniTroskovi + ustedjevinaIznos;
 
         if (iznosPreostalo>0){
-            poruka = "Bravo! Nastavi štedjeti kao i do sada!";
+            poruka = "Bravo! Plan pokazuje da ćeš uštedjeti!";
         }
         if (iznosPreostalo==0){
-            poruka = "Sve je potrošeno, ali nisi u minusu!";
+            poruka = "Prema planu, sve ćeš potrošiti, ali nećeš biti u minusu!";
         }
         if (iznosPreostalo<0){
-            poruka = "Jao! Ovaj mjesec si u minusu!";
+            poruka = "Jao! Plan pokazuje da ćeš ovaj mjesec biti u minusu!";
         }
         TextView planiranoPotroseno = findViewById(R.id.planirano_potroseno_text);
         planiranoPotroseno.setText(planiraniTroskovi.toString()+" kn");
