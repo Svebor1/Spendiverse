@@ -64,7 +64,7 @@
                 android:ems="10"
                 android:layout_marginBottom="30dp"
                 android:hint="cijena"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
         </LinearLayout>
 
