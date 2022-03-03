@@ -1,7 +1,6 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import android.content.DialogInterface;
@@ -14,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.IdpResponse;
@@ -31,12 +31,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -79,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MojProfil.class);
         startActivity(intent);
     }
+    private void info() {
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -102,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
                                 })
                                 .create();
                 alertDialogSignOut.show();
-
+                return true;
+            case R.id.profil_info:
+                info();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -228,6 +231,26 @@ public class MainActivity extends AppCompatActivity {
                     "Novac je lako steći, ali ga je teško sačuvati."};
             textposlovica=sveposlovice[r.nextInt(3)];
             poslovica.setText(textposlovica);
+
+            ImageButton pomoc = findViewById(R.id.help_button);
+            AlertDialog alertDialogPomoc =
+                    new AlertDialog.Builder(this)
+                            .setTitle("Google Workspace for Education")
+                            .setMessage(getString(R.string.pomocni_text))
+                            .setPositiveButton("zatvori", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .setIcon(R.drawable.ic_baseline_help_24)
+                            .create();
+
+            View.OnClickListener listenerPomoc = new View.OnClickListener() {
+                @Override //
+                public void onClick(View v) {
+                    alertDialogPomoc.show();
+                }
+            };
+            pomoc.setOnClickListener(listenerPomoc);
 
         }
         else {

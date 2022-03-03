@@ -9,31 +9,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
-        <activity android:name=".PrikazLjestvice"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MojProfil"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrikazLjestvice"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MojProfil"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FinancijskiPlanActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Pitanje"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Tema"
             android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".FinancijskaPismenostActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".VidjetiDetaljeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PrikazTroskovaActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".UnosTroskovaActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FinancijskaPismenostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VidjetiDetaljeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PrikazTroskovaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UnosTroskovaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

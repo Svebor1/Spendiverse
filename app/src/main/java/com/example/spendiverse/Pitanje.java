@@ -103,6 +103,7 @@ public class Pitanje extends AppCompatActivity {
                 prikaziRezultate();
             }
         };
+
         zavrsiKviz.setOnClickListener(listener3);
 
         ImageButton prethodnoPitanje = findViewById(R.id.prethodno_pitanje);
