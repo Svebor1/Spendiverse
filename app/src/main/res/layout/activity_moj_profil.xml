@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/zuta_pozadina"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,14 +145,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="5dp"
         >
 
         <LinearLayout
-            android:layout_margin="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -179,17 +180,22 @@
         </LinearLayout>
 
         <Button
+            android:layout_marginTop="10dp"
             android:id="@+id/prikaz_ljestvice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="prikaži ljestvicu" />
+
+        <Button
+
+            android:id="@+id/brisanje_racuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Izbriši račun" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/brisanje_racuna"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Izbriši račun" />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

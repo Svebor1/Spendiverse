@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Spendiverse</string>
-    <string name="pomocni_text">"alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:\n <a href="https://www.carnet.hr/usluga/google-workspace/">link</a></string>
-
+    <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
+    <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
     <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
     <string name="lagano_tema0_text1">Roba\nAko želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
     <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>

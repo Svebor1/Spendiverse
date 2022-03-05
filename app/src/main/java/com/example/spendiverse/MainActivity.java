@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -231,12 +234,13 @@ public class MainActivity extends AppCompatActivity {
                     "Novac je lako steći, ali ga je teško sačuvati."};
             textposlovica=sveposlovice[r.nextInt(3)];
             poslovica.setText(textposlovica);
-
+            String link = "<a href=\"https://www.carnet.hr/usluga/google-workspace\">https://www.carnet.hr/usluga/google-workspace</a>";
+            String poruka = getString(R.string.pomocni_text);
             ImageButton pomoc = findViewById(R.id.help_button);
             AlertDialog alertDialogPomoc =
                     new AlertDialog.Builder(this)
-                            .setTitle("Google Workspace for Education")
-                            .setMessage(getString(R.string.pomocni_text))
+                            .setTitle("Prijava")
+                            .setMessage((Spanned)Html.fromHtml(poruka + link))
                             .setPositiveButton("zatvori", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                 }
@@ -247,7 +251,10 @@ public class MainActivity extends AppCompatActivity {
             View.OnClickListener listenerPomoc = new View.OnClickListener() {
                 @Override //
                 public void onClick(View v) {
+
                     alertDialogPomoc.show();
+                    TextView msgTxt = (TextView) alertDialogPomoc.findViewById(android.R.id.message);
+                    msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
                 }
             };
             pomoc.setOnClickListener(listenerPomoc);
