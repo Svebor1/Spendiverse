@@ -24,9 +24,14 @@ public class InfoActivity extends AppCompatActivity {
 
 
         }
+        String link = "<a href=\"https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing\">Pravila o privatnosti</a>";
+        TextView pravilaPrivatnosti = findViewById(R.id.pravila_o_privatnosti);
+        pravilaPrivatnosti.setMovementMethod(LinkMovementMethod.getInstance());
+
+        pravilaPrivatnosti.setText((Spanned)Html.fromHtml(link));
 
         linkoviSlika.setMovementMethod(LinkMovementMethod.getInstance());
-        linkoviSlika.setMovementMethod(new ScrollingMovementMethod());
+
 
     }
 

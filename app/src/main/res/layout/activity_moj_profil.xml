@@ -30,7 +30,7 @@
         <LinearLayout
             android:layout_margin="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -46,8 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                tools:layout_editor_absoluteX="173dp"
-                tools:layout_editor_absoluteY="246dp" />
+                 />
         </LinearLayout>
 
         <LinearLayout
