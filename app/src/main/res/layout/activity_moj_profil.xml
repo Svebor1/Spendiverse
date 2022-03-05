@@ -186,4 +186,10 @@
             android:text="prikaži ljestvicu" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/brisanje_racuna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izbriši račun" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>
