@@ -18,15 +18,20 @@ public class InfoActivity extends AppCompatActivity {
         TextView linkoviSlika = findViewById(R.id.linkovi_slike);
         String[] linkovi;
         linkovi=getResources().getStringArray(R.array.linkovi);
-        for (int i = 0;i<5; i++){
+        for (int i = 0;i<38; i++){
             String link = linkovi[i];
             linkoviSlika.append(link+"\n");
 
 
         }
+        String link = "<a href=\"https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing\">Pravila o privatnosti</a>";
+        TextView pravilaPrivatnosti = findViewById(R.id.pravila_o_privatnosti);
+        pravilaPrivatnosti.setMovementMethod(LinkMovementMethod.getInstance());
+
+        pravilaPrivatnosti.setText((Spanned)Html.fromHtml(link));
 
         linkoviSlika.setMovementMethod(LinkMovementMethod.getInstance());
-        linkoviSlika.setMovementMethod(new ScrollingMovementMethod());
+
 
     }
 

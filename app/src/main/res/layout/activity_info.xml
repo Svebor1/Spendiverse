@@ -27,11 +27,21 @@
     </LinearLayout>
 
 
+    <ScrollView
+        android:id="@+id/informacije"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_icon">
+
         <LinearLayout
-            app:layout_constraintTop_toBottomOf="@id/layout_icon"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -44,30 +54,29 @@
             <TextView
                 android:id="@+id/pravila_o_privatnosti"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
                 android:text="Pravila o privatnosti:" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Korištene slike:"
-                 />
+                android:text="Korištene slike:" />
 
             <TextView
                 android:id="@+id/linkovi_slike"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:scrollbars = "vertical"
-                android:autoLink="web"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="50dp"
-                 />
+                android:autoLink="web"
+                android:scrollbars="vertical" />
         </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
