@@ -53,10 +53,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         String kategorije[] = {"prehrana","kućanstvo","promet"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapter);
+        spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
+        if (bundle == null) { //ako je to upis novog troška
+
             prikaziDatum();
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
@@ -69,8 +70,8 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             dodatiTrosak.setOnClickListener(listener);
         }
         else {
+            //uzimaju se podaci starog troška i prikazuju se na ekranu
             String nazivTroskaText = bundle.getString("naziv");
-            //mozda ispisati u console
             nazivTroska.setText(nazivTroskaText);
             Integer cijenaTroskaText = bundle.getInt("cijena");
             cijenaTroska.setText(cijenaTroskaText.toString());
@@ -113,19 +114,32 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
     }
+
+    /**
+     * ova funkcija postavlja datum troška i prima tri parametra
+     * @param dan dan troška
+     * @param mjesec mjesec troška
+     * @param godina godina troška
+     */
     private void postaviDatum(Integer dan, Integer mjesec, Integer godina) {
         myCalendar.set(Calendar.YEAR, godina);
         myCalendar.set(Calendar.MONTH, mjesec);
         myCalendar.set(Calendar.DAY_OF_MONTH, dan);
     }
+
+    /**
+     * ova funkcija prikazuje datum troška
+     */
     private void prikaziDatum() {
         godina = myCalendar.get(Calendar.YEAR);
         mjesec = myCalendar.get(Calendar.MONTH)+1;
         dan = myCalendar.get(Calendar.DAY_OF_MONTH);
-
-        datumTroska.setText(Integer.toString(dan) + "." + Integer.toString(mjesec) + "." + Integer.toString(godina)); //
+        datumTroska.setText(Integer.toString(dan) + "." + Integer.toString(mjesec) + "." + Integer.toString(godina));
     }
 
+    /**
+     * ova metoda uzima sve podatke vezane uz trošak i sprema ih u bazu
+     */
     private void dodajNoviTrosak() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Map<String, Object> data = new HashMap<>();
@@ -152,6 +166,10 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         finish();
 
     }
+
+    /**
+     * ova metoda uzima sve podatke vezane uz promijenjeni trošak i mijenja trošak u bazi
+     */
     private void promijeniTrosak(String firebaseId) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Map<String, Object> data = new HashMap<>();
@@ -180,6 +198,10 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * ova metoda provjerava je su li sva potrebna polja ispunjena
+     * @return
+     */
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
 
@@ -193,9 +215,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         }
 
         return rezultatBooleana;
-
-
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -37,7 +37,6 @@ import java.util.List;
 
 public class MojProfil extends AppCompatActivity {
     TextView rjeseniKvizovi;
-
     TextView bodovi;
     Integer brojBodova = 0;
     Integer brojRjesenihKvizova;
@@ -73,12 +72,13 @@ public class MojProfil extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         AlertDialog alertDialogBrisanje =
+                //ako korisnik hoće izbrisati profil prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(this)
                         .setTitle("Brisanje profila")
                         .setMessage("Jeste li sigurni da želite izbrisati profil?")
                         .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                izbrisiRacun();
+                                izbrisiRacun(); //ako je korisnik potvrdio brisanje profila poziva se funkcija brisanja profila
                             }
                         })
                         .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -93,11 +93,11 @@ public class MojProfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialogBrisanje.show();
-            }
+            } //korisnik je odabrao brisanje profila
         };
         brisanjeRacuna.setOnClickListener(listener);
         if (firebaseUser != null) {
-            // Name, email address, and profile photo Url
+            // dobivanje E-mail-a korisnika
             String email = firebaseUser.getEmail();
             emailKorisnika.setText(email.toString());
         }
@@ -113,6 +113,7 @@ public class MojProfil extends AppCompatActivity {
                         prikazNaLjestvici.setChecked(document.getData().get("prikaz").equals(true));
                         nadimak = document.getData().get("nadimak").toString();
                         nadimakKorisnika.setText(nadimak);
+                        //dobivanje podataka za ljestvicu iz baze te prikazivanje tih podataka na ekranu
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                     } else {
                         Log.d(TAG, "No such document");
@@ -125,16 +126,17 @@ public class MojProfil extends AppCompatActivity {
         View.OnClickListener listener2 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                promjenaNadimka();
-
+                promjenaNadimka(); //pozivanje funkcije za promijenu nadimka u slučaju ako je korisnik odabrao promijenu nadimka
             }
         };
         editNadimka.setOnClickListener(listener2);
         prikazNaLjestvici.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            //ako je korisnik odlučio promijeniti postavku za prikaz na ljestvici
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 db.collection("ljestvica").document(firebaseUser.getUid())
                     .update("prikaz", isChecked)
+                        //ako je postavka uspješno promijenjena spaja se na bazu i sprema ta promijena
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -154,12 +156,16 @@ public class MojProfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 prikaziLjestvicu();
-            }
+            } //ako je odabran prikaz ljestvice
         };
         prikazLjestvice.setOnClickListener(listener3);
         procitajRezultate();
 
     }
+
+    /**
+     * funkcija koja služi za promijenu nadimka i spremanje novog nadimka u bazu
+     */
     private void promjenaNadimka() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Unesite novi nadimak");
@@ -188,10 +194,18 @@ public class MojProfil extends AppCompatActivity {
         builder.show();
 
     }
+
+    /**
+     * prijelaz u PrikazLjestvice activity
+     */
     private void prikaziLjestvicu() {
         Intent intent = new Intent(this, PrikazLjestvice.class);
         startActivity(intent);
     }
+
+    /**
+     * ova metoda izračunava dobivene bodove za riješene kvizove
+     */
     private void izracunajRezultate() {
         for (Rezultat rezultat : rezultati) {
             if (rezultat.getNazivGrupe().equals("lagano")) {
@@ -224,20 +238,20 @@ public class MojProfil extends AppCompatActivity {
                                 Integer rezultat = Integer.parseInt(document.getData().get("rezultat").toString());
                                 String nazivGrupe = document.getData().get("naslov grupe").toString();
                                 String nazivTeme = document.getData().get("naslov teme").toString();
-
+                                //dodavanje rezultata kvizova u listu rezultati
                                 rezultati.add(new Rezultat(nazivGrupe, nazivTeme,rezultat));
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
-                        izracunajRezultate();
+                        izracunajRezultate(); //pozivanje funkcije za izračunavanje svih bodova
                         brojRjesenihKvizova = rezultati.size();
                         rjeseniKvizovi.setText(brojRjesenihKvizova.toString());
-                        bodovi.setText(brojBodova.toString());
+                        bodovi.setText(brojBodova.toString()); //prikazivanje na ekranu sve bodove korisnika
                     }
-
                 });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -247,11 +261,16 @@ public class MojProfil extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * ova metoda briše korisnički račun
+     */
     private void izbrisiRacun() {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(user.getUid())
                 .delete()
+                //brisanje svih podataka korisnika u bazi u collectionu korisnici
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -266,6 +285,7 @@ public class MojProfil extends AppCompatActivity {
                 });
         db.collection("ljestvica").document(user.getUid())
                 .delete()
+                //brisanje svih podataka korisnika u bazi u collectionu ljestvica
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -279,7 +299,7 @@ public class MojProfil extends AppCompatActivity {
                     }
                 });
         if (user != null) {
-            user.delete()
+            user.delete() //brisanje korisničkog računa
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //dodavanje mogućnosti prijave s Google accountom
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //ugašen night mode
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -60,82 +61,95 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Ova metoda služi za započeti funkcionalnost activity-a
+     */
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
         //FirebaseAuth.getInstance().signOut();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
+
+    /**
+     * funkcija za prijelaz u MojProfil activity
+     */
     private void mojProfil() {
         Intent intent = new Intent(this, MojProfil.class);
         startActivity(intent);
     }
+
+    /**
+     * funkcija za prijelaz u Info activity
+     */
     private void info() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
+    /**
+     * Ova metoda premiješta korisnika u drugi activity u slučaju odabira menu-a moj profil ili profil_info
+     * Također ona poziva funkciju za odjavu kada je pritisnut sign out
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.profil:
-                mojProfil();
+                mojProfil(); info(); //ako je odabran moj profil poziva se funkcija za prijelaz u MojProfil Activity
                 return true;
             case R.id.profil_sign_out:
-                AlertDialog alertDialogSignOut =
+                AlertDialog alertDialogSignOut = //ovdje se stvara prozor s pitanjem "Jeste li sigurni da se želite odjaviti?"
                         new AlertDialog.Builder(this)
                                 .setTitle("Jeste li sigurni da se želite odjaviti?")
                                 .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        signOut();
+                                        signOut(); //kada je korisnik odabrao "Da" poziva se funkcija za odjavu korinika
                                     }
                                 })
                                 .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogInterface, int which) {
-
+                                        //kada je korisnik odabrao "Ne" ništa se ne događa
                                     }
                                 })
                                 .create();
                 alertDialogSignOut.show();
                 return true;
             case R.id.profil_info:
-                info();
+                info(); //ako je odabran info poziva se funkcija za prijelaz u Info Activity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//import class a ne create class
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                // Google Sign In was successful, authenticate with Firebase
+                //Google prijava je prošla uspješna, slijedi autentikacija s Firebase-om
                 GoogleSignInAccount account = (GoogleSignInAccount) ((Task<?>) task).getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
+                //Google prijava je prošla neuspješno
                 Log.w(TAG, "Google sign in failed", e);
-                //samo mi se prikazao TextView
             }
-        } //Bok
+        }
     }
-
+    /**
+     * Ova metoda služi za autentikaciju korisnika i stvaranje korisničnog računa
+     */
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
@@ -145,26 +159,26 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
                             if (isNew) {
-                                createNewUser();
+                                createNewUser(); //ako je novi korisnik stvara se novi korisnički račun
                             }
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            updateUI(user); //prijelaz ekrana za prijavu u glavni ekran
 
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             updateUI(null);
                         }
                     }
                 });
     }
+
+    /**
+     * Ova funkcija dodaje sve početne podatke korisnika u bazu
+     */
     private void createNewUser() {
-
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance(); //podaci za spajanje na bazu
 
         HashMap data = new HashMap();
         String email = firebaseUser.getEmail();
@@ -174,7 +188,8 @@ public class MainActivity extends AppCompatActivity {
         data.put("nadimak", nadimak);
         data.put("bodovi", 0);
         data.put("prikaz", false);
-        db.collection("ljestvica").document(firebaseUser.getUid()).set(data)
+        //u mapi data se nalaze svi potrebni podaci za ljestvicu - nadimak, bodovi, i boolean prikaz koji znači hoće li se korisnik prikazivati na ljestvici
+        db.collection("ljestvica").document(firebaseUser.getUid()).set(data) //stvara se novi collection ljestvica i u njega se dodaju podaci
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -189,39 +204,46 @@ public class MainActivity extends AppCompatActivity {
             });
 
     }
-    private void signIn() {
 
+    /**
+     * funkcija za prijavu korisnika
+     */
+    private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
+    /**
+     * funkcija za odjavu korisnika
+     */
     private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
+        mAuth.signOut(); //Firebase odjava
         getSupportActionBar().hide();
 
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, //Google odjava
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
+                        updateUI(null); //za prijelaz glavnog ekrana u ekran za prijvau
                     }
                 });
 
     }
 
 
-
-
+    /**
+     * ova funkcija postavlja sve funkcionalnosti vezane uz početni ekran
+     * @param currentUser trenutni korisnik, ako je currentUser null znači da ne postoji trenutnog korisnika
+     */
     private void updateUI(FirebaseUser currentUser) {
-        if (currentUser == null) {
-            setContentView(R.layout.sign_in);
+        if (currentUser == null) { //ako korisnik nije prijavljen
+            setContentView(R.layout.sign_in); //postavlja se ekran activity-a
             Button button;
             button = findViewById(R.id.signInButton);
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    signIn();
+                    signIn(); //ako je odabrana prijava poziva se funkcija signin za prijavu
                 }
             };
             button.setOnClickListener(listener);
@@ -233,11 +255,11 @@ public class MainActivity extends AppCompatActivity {
                     "Tko ne zna štedjeti, brzo će mu ponestati.",
                     "Novac je lako steći, ali ga je teško sačuvati."};
             textposlovica=sveposlovice[r.nextInt(3)];
-            poslovica.setText(textposlovica);
+            poslovica.setText(textposlovica); //postavljanje nasumične poslovice
             String link = "<a href=\"https://www.carnet.hr/usluga/google-workspace\">https://www.carnet.hr/usluga/google-workspace</a>";
             String poruka = getString(R.string.pomocni_text);
             ImageButton pomoc = findViewById(R.id.help_button);
-            AlertDialog alertDialogPomoc =
+            AlertDialog alertDialogPomoc = //ako je odabran upitnik za pomoć otvara se prozor s informacijama za prijavu
                     new AlertDialog.Builder(this)
                             .setTitle("Prijava")
                             .setMessage((Spanned)Html.fromHtml(poruka + link))
@@ -249,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                             .create();
 
             View.OnClickListener listenerPomoc = new View.OnClickListener() {
-                @Override //
+                @Override
                 public void onClick(View v) {
 
                     alertDialogPomoc.show();
@@ -260,40 +282,43 @@ public class MainActivity extends AppCompatActivity {
             pomoc.setOnClickListener(listenerPomoc);
 
         }
-        else {
-            setContentView(R.layout.activity_main);
+        else { //ako je korisnik prijavljen
+            setContentView(R.layout.activity_main); //postavlja se ekran activity-a
             Button prikazTroskovaButton;
             Button financijskaPismenost;
             financijskaPismenost = findViewById(R.id.financijska_pismenost);
             financijskaPismenost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    financijskaPismenost();
+                    financijskaPismenost(); //ako je pritisnuta financijska pismenost
                 }
             });
             prikazTroskovaButton = findViewById(R.id.prikaz_troskova);
-
-
             View.OnClickListener listenerPrikazTroskova = new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    prikazTroskova();
+                    prikazTroskova(); //ako je pritisnut prikaz troškova
                 }
             };
             prikazTroskovaButton.setOnClickListener(listenerPrikazTroskova);
             getSupportActionBar().show();
         }
     }
+
+    /**
+     * funkcija za prijelaz u prikaz troškova
+     */
     private void prikazTroskova() {
         Intent intent = new Intent(this, PrikazTroskovaActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * funkcija za prijelaz u finanancijsku pismenost
+     */
     private void financijskaPismenost() {
         Intent intent = new Intent(this, FinancijskaPismenostActivity.class);
         startActivity(intent);
     }
-
-
-
 }
