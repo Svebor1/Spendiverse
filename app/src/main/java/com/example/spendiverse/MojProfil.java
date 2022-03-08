@@ -78,7 +78,7 @@ public class MojProfil extends AppCompatActivity {
                         .setMessage("Jeste li sigurni da želite izbrisati profil?")
                         .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                izbrisiRacun(); //ako je korisnik potvrdio brisanje profila poziva se funkcija brisanja profila
+                                izbrisiRacun(); //ako je korisnik potvrdio brisanje profila poziva se metoda brisanja profila
                             }
                         })
                         .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -126,7 +126,7 @@ public class MojProfil extends AppCompatActivity {
         View.OnClickListener listener2 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                promjenaNadimka(); //pozivanje funkcije za promijenu nadimka u slučaju ako je korisnik odabrao promijenu nadimka
+                promjenaNadimka(); //pozivanje metode za promijenu nadimka u slučaju ako je korisnik odabrao promijenu nadimka
             }
         };
         editNadimka.setOnClickListener(listener2);
@@ -164,7 +164,7 @@ public class MojProfil extends AppCompatActivity {
     }
 
     /**
-     * funkcija koja služi za promijenu nadimka i spremanje novog nadimka u bazu
+     * metoda koja služi za promijenu nadimka i spremanje novog nadimka u bazu
      */
     private void promjenaNadimka() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -244,7 +244,7 @@ public class MojProfil extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
-                        izracunajRezultate(); //pozivanje funkcije za izračunavanje svih bodova
+                        izracunajRezultate(); //pozivanje metode za izračunavanje svih bodova
                         brojRjesenihKvizova = rezultati.size();
                         rjeseniKvizovi.setText(brojRjesenihKvizova.toString());
                         bodovi.setText(brojBodova.toString()); //prikazivanje na ekranu sve bodove korisnika

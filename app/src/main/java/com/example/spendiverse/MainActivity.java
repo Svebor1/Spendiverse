@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za prijelaz u MojProfil activity
+     * metoda za prijelaz u MojProfil activity
      */
     private void mojProfil() {
         Intent intent = new Intent(this, MojProfil.class);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za prijelaz u Info activity
+     * metoda za prijelaz u Info activity
      */
     private void info() {
         Intent intent = new Intent(this, InfoActivity.class);
@@ -96,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
     }
     /**
      * Ova metoda premiješta korisnika u drugi activity u slučaju odabira menu-a moj profil ili profil_info
-     * Također ona poziva funkciju za odjavu kada je pritisnut sign out
+     * Također ona poziva metoda za odjavu kada je pritisnut sign out
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.profil:
-                mojProfil(); info(); //ako je odabran moj profil poziva se funkcija za prijelaz u MojProfil Activity
+                mojProfil(); info(); //ako je odabran moj profil poziva se metoda za prijelaz u MojProfil Activity
                 return true;
             case R.id.profil_sign_out:
                 AlertDialog alertDialogSignOut = //ovdje se stvara prozor s pitanjem "Jeste li sigurni da se želite odjaviti?"
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setTitle("Jeste li sigurni da se želite odjaviti?")
                                 .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        signOut(); //kada je korisnik odabrao "Da" poziva se funkcija za odjavu korinika
+                                        signOut(); //kada je korisnik odabrao "Da" poziva se metoda za odjavu korinika
                                     }
                                 })
                                 .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialogSignOut.show();
                 return true;
             case R.id.profil_info:
-                info(); //ako je odabran info poziva se funkcija za prijelaz u Info Activity
+                info(); //ako je odabran info poziva se metoda za prijelaz u Info Activity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Ova funkcija dodaje sve početne podatke korisnika u bazu
+     * Ova metoda dodaje sve početne podatke korisnika u bazu
      */
     private void createNewUser() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za prijavu korisnika
+     * metoda za prijavu korisnika
      */
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za odjavu korisnika
+     * metoda za odjavu korisnika
      */
     private void signOut() {
         mAuth.signOut(); //Firebase odjava
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * ova funkcija postavlja sve funkcionalnosti vezane uz početni ekran
+     * ova metoda postavlja sve funkcionalnosti vezane uz početni ekran
      * @param currentUser trenutni korisnik, ako je currentUser null znači da ne postoji trenutnog korisnika
      */
     private void updateUI(FirebaseUser currentUser) {
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    signIn(); //ako je odabrana prijava poziva se funkcija signin za prijavu
+                    signIn(); //ako je odabrana prijava poziva se metoda signin za prijavu
                 }
             };
             button.setOnClickListener(listener);
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za prijelaz u prikaz troškova
+     * metoda za prijelaz u prikaz troškova
      */
     private void prikazTroskova() {
         Intent intent = new Intent(this, PrikazTroskovaActivity.class);
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * funkcija za prijelaz u finanancijsku pismenost
+     * metoda za prijelaz u finanancijsku pismenost
      */
     private void financijskaPismenost() {
         Intent intent = new Intent(this, FinancijskaPismenostActivity.class);

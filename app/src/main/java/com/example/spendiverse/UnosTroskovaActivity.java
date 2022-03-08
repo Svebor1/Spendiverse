@@ -116,7 +116,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     }
 
     /**
-     * ova funkcija postavlja datum troška i prima tri parametra
+     * ova metoda postavlja datum troška i prima tri parametra
      * @param dan dan troška
      * @param mjesec mjesec troška
      * @param godina godina troška
@@ -128,7 +128,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     }
 
     /**
-     * ova funkcija prikazuje datum troška
+     * ova metoda prikazuje datum troška
      */
     private void prikaziDatum() {
         godina = myCalendar.get(Calendar.YEAR);
