@@ -54,14 +54,16 @@ public class PrikazLjestvice extends AppCompatActivity {
                         rezultatiNatjecatelja = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
                             if (doc.get("bodovi") != null && doc.get("nadimak") != null ) {
+                                //vađenje iz baze rezultata natjecatelja
                                 RezultatNatjecatelja trenutniRezultat = new RezultatNatjecatelja(doc.getString( "nadimak"), doc.getLong( "bodovi").intValue());
+                                //dodavanje rezultata natjecatelja u listu
                                 rezultatiNatjecatelja.add(trenutniRezultat);
-
                             }
                         }
+                        //komparator za sortiranje rezultata natjecatelja po bodovima
                         Comparator<RezultatNatjecatelja> usporediPoBodovima =
-                                (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo( o2.getRezultatKorisnika() );
-
+                                (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo(o2.getRezultatKorisnika());
+                        //sortiranje liste uz pomoć komparatora
                         Collections.sort(rezultatiNatjecatelja, usporediPoBodovima.reversed());
                         prikaziLjestvicu();
                     }
@@ -70,9 +72,14 @@ public class PrikazLjestvice extends AppCompatActivity {
 
     }
 
+    /**
+     * metoda za prikazivanje ljestvice
+     */
     private void prikaziLjestvicu() {
-        ListView prikazLjestvice = findViewById(R.id.ljestvica);
+        ListView prikazLjestvice = findViewById(R.id.ljestvica); //pronalazak ljestvicu prema id
+        //stvaranje adaptera za ljestvicu
         LjestvicaAdapter arrayAdapter = new LjestvicaAdapter(this,R.id.ljestvica, rezultatiNatjecatelja);
+        //postavljanje adaptera za ljestvicu
         prikazLjestvice.setAdapter(arrayAdapter);
     }
     @Override

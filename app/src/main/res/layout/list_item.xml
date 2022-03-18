@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/expandedListItem"
+            android:id="@+id/naslovTeme"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
