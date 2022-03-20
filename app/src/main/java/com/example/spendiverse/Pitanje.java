@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,13 +44,14 @@ public class Pitanje extends AppCompatActivity {
     String naslovGrupe;
     Integer redniBrojKviza;
     Integer[] data;
+    Integer[] prethodniOdgovori; //lista sa prethodnim odgovorima korisnika
     String tocanOdgovor;
     String TAG = "Pitanje";
     Integer prosliBodovi = 0;
     RadioGroup odgovori;
     List<Rezultat> rezultati;
+    String[] sadrzajPitanja;
     Integer ukupniBodovi = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,10 @@ public class Pitanje extends AppCompatActivity {
         data = new Integer[kolicinaPitanja];
         Arrays.fill(data,new Integer(0));
 
+        //u početku nema odgovora na pitanja pa su svi elementi u listi prethodniOdgovori 0
+        prethodniOdgovori = new Integer[kolicinaPitanja];
+        Arrays.fill(prethodniOdgovori,new Integer(0));
+
         ucitavanjePitanja();
 
         RadioGroup odgovori = findViewById(R.id.odgovori);
@@ -85,7 +91,21 @@ public class Pitanje extends AppCompatActivity {
                 // checkedId is the RadioButton selected
                 RadioButton trenutniOdgovor = findViewById(checkedId);
                 if (trenutniOdgovor==null) {
+                    //ako korisnik ništa nije odgovorio
+                    prethodniOdgovori[redniBrojPitanja] = 0;
                     return;
+                }
+                if (trenutniOdgovor.getText().equals(sadrzajPitanja[1])) {
+                    //ako je korisnik odabrao prvi odgovor
+                    prethodniOdgovori[redniBrojPitanja] = 1;
+                }
+                else if (trenutniOdgovor.getText().equals(sadrzajPitanja[2])) {
+                    //ako je korisnik odabrao drugi odgovor
+                    prethodniOdgovori[redniBrojPitanja] = 2;
+                }
+                else {
+                    //ako je korisnik odabrao treći odgovor
+                    prethodniOdgovori[redniBrojPitanja] = 3;
                 }
                 if (trenutniOdgovor.getText().toString().equals(tocanOdgovor)){
                     data[redniBrojPitanja] = 1;
@@ -97,7 +117,7 @@ public class Pitanje extends AppCompatActivity {
         });
         Button zavrsiKviz = findViewById(R.id.zavrsi_kviz);
         View.OnClickListener listener3 = new View.OnClickListener() {
-            @Override //
+            @Override
             public void onClick(View v) {
                 spremiRezultat();
                 prikaziRezultate();
@@ -137,7 +157,7 @@ public class Pitanje extends AppCompatActivity {
 
         String idPitanja = naslovGrupe + "_kviz" + redniBrojKviza.toString() + "_pitanje" + redniBrojPitanja.toString();
         int id = getResources().getIdentifier("com.example.coinsmart:array/"+idPitanja, null, null);
-        String[] sadrzajPitanja;
+
         sadrzajPitanja=getResources().getStringArray(id);
         String tekstPitanja = sadrzajPitanja[0];
         String odgovor1 = sadrzajPitanja[1];
@@ -154,7 +174,24 @@ public class Pitanje extends AppCompatActivity {
         odgovor2Text.setText(odgovor2);
         odgovor3Text.setText(odgovor3);
         redniBrojPitanjaText.setText((redniBrojPitanja+1) + "/" + kolicinaPitanja);
-        odgovori.clearCheck();
+        if (prethodniOdgovori[redniBrojPitanja].equals(0)) {
+            //ako korisnik nije još odgovorio na trenutno pitanje
+            odgovori.clearCheck();
+        }
+        else {
+            //ako je korisnik već odgovorio na trenutno pitanje
+            if (prethodniOdgovori[redniBrojPitanja].equals(1)) {
+                odgovor1Text.setChecked(true);
+            }
+            else if (prethodniOdgovori[redniBrojPitanja].equals(2)) {
+                odgovor2Text.setChecked(true);
+            }
+            else {
+                odgovor3Text.setChecked(true);
+            }
+        }
+
+
     }
     private Integer izracunajRezultat() {
         Integer bodovi = 0;
@@ -208,9 +245,6 @@ public class Pitanje extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
     private void izracunajRezultate() {
