@@ -56,15 +56,34 @@
                 android:layout_marginTop="20dp"
                 android:text="TextView" />
 
-            <EditText
-                android:id="@+id/cijena_troska"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:ems="10"
-                android:layout_marginBottom="30dp"
-                android:hint="cijena"
-                android:inputType="number" />
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/cijena_troska"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:ems="10"
+                    android:hint="cijena"
+                    android:layout_gravity="center"
+                    android:inputType="number" />
+
+                <Spinner
+                    android:id="@+id/spinner_valuta"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
         </LinearLayout>
 

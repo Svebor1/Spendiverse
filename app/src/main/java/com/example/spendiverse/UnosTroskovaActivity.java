@@ -29,6 +29,7 @@ import java.util.Map;
 public class UnosTroskovaActivity extends AppCompatActivity {
     private final String TAG = "Unos troskova activity";
     private Spinner spinner;
+    private Spinner spinnerValuta;
     private final Calendar myCalendar = Calendar.getInstance();
     private TextView nazivTroska;
     private Button dodatiTrosak;
@@ -46,14 +47,20 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         spinner = findViewById(R.id.spinner);
+        spinnerValuta = findViewById(R.id.spinner_valuta);
         datumTroska = findViewById(R.id.datum_troska);
         dodatiTrosak = findViewById(R.id.dodati_trosak);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
         String kategorije[] = {"prehrana","kućanstvo","promet"};
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spinner_item, kategorije);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
+
+        String valute[] = {"HRK","USD","EUR", "GBP"};
+        ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, R.layout.spinner_item , valute);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerValuta.setAdapter(arrayAdapterValute);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) { //ako je to upis novog troška
