@@ -163,6 +163,7 @@ public class MojProfil extends AppCompatActivity {
 
     }
 
+
     /**
      * metoda koja služi za promijenu nadimka i spremanje novog nadimka u bazu
      */
@@ -176,14 +177,7 @@ public class MojProfil extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
         //postavljanje gumba
-        builder.setPositiveButton("potvrdi", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                nadimak = input.getText().toString();
-                nadimakKorisnika.setText(nadimak);
-                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
-            }
-        });
+        builder.setPositiveButton("potvrdi", null);
         builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -191,7 +185,24 @@ public class MojProfil extends AppCompatActivity {
             }
         });
 
-        builder.show();
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                if (input.getText().toString().replace(" ","").length()==0){
+                    input.setError("Nadimak ne smije biti prazan");
+                }
+                else{
+                    nadimak = input.getText().toString();
+                    nadimakKorisnika.setText(nadimak);
+                    dialog.dismiss();
+                }
+                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
+
+            }
+        });
 
     }
 
@@ -220,6 +231,7 @@ public class MojProfil extends AppCompatActivity {
 
         }
     }
+
     /**
      * Ova metoda čita sve rezultate korisnika iz baze.
      */
