@@ -44,7 +44,7 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         TextView cijena = listitemView.findViewById(R.id.cijena_tv);
         nameTV.setText(trosak.getNaziv());
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
-        cijena.setText(trosak.getCijena()+" HRK");
+        cijena.setText(trosak.getCijena()+ " "+  trosak.getValuta());
         ImageButton kanta;
         ImageButton edit;
         edit = listitemView.findViewById(R.id.edit);
@@ -79,6 +79,7 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
                 Bundle bundle = new Bundle();
                 bundle.putString("naziv", trosak.getNaziv());
                 bundle.putString("kategorija", trosak.getKategorija());
+                bundle.putString("valuta", trosak.getValuta());
                 bundle.putInt("datumDan", trosak.getDatumDan());
                 bundle.putInt("datumMjesec", trosak.getDatumMjesec());
                 bundle.putInt("datumGodina", trosak.getDatumGodina());

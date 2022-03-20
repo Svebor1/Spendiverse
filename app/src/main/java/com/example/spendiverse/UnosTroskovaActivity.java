@@ -85,6 +85,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             String kategorijaTroska = bundle.getString("kategorija");
             int spinnerPosition = arrayAdapter.getPosition(kategorijaTroska);
             spinner.setSelection(spinnerPosition);
+
+            String valutaTroska = bundle.getString("valuta");
+            int spinnerPositionValuta = arrayAdapterValute.getPosition(valutaTroska);
+            spinnerValuta.setSelection(spinnerPositionValuta);
+
             String firebaseIdTroska = bundle.getString("firebaseId");
             Integer datumDan = bundle.getInt("datumDan");
             Integer datumMjesec = bundle.getInt("datumMjesec")-1;
@@ -153,6 +158,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
+        data.put("valuta", spinnerValuta.getSelectedItem().toString());
         data.put("datumDan", dan);
         data.put("datumMjesec", mjesec);
         data.put("datumGodina", godina);
@@ -183,6 +189,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
+        data.put("valuta", spinner.getSelectedItem().toString());
         data.put("datumDan", dan);
         data.put("datumMjesec", mjesec);
         data.put("datumGodina", godina);

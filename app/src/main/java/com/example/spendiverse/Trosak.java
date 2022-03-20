@@ -6,6 +6,7 @@ public class Trosak {
     private Integer datumMjesec;
     private Integer datumGodina;
     private String kategorija;
+    private String valuta;
     private Integer cijena;
     private String firebaseId;
 
@@ -17,13 +18,14 @@ public class Trosak {
         this.firebaseId = firebaseId;
     }
 
-    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena, String firebaseId) {
+    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena, String valuta, String firebaseId) {
         this.naziv = naziv;
         this.datumDan = datumDan;
         this.datumMjesec = datumMjesec;
         this.datumGodina = datumGodina;
         this.kategorija = kategorija;
         this.cijena = cijena;
+        this.valuta = valuta;
         this.firebaseId = firebaseId;
     }
 
@@ -41,6 +43,14 @@ public class Trosak {
 
     public void setKategorija(String kategorija) {
         this.kategorija = kategorija;
+    }
+
+    public String getValuta() {
+        return valuta;
+    }
+
+    public void setValuta(String valuta) {
+        this.valuta = valuta;
     }
 
     public Integer getDatumDan() {
