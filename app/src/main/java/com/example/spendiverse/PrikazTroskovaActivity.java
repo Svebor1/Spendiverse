@@ -39,6 +39,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    private Button novaKategorijaTroskaButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     @Override
@@ -50,7 +51,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         spinner = findViewById(R.id.vremensko_razdoblje);
-
+        novaKategorijaTroskaButton = findViewById(R.id.nova_kategorija_troska);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -67,7 +68,6 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             }
 
         });
-
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
@@ -116,6 +116,13 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         };
         financijskiPlanButton.setOnClickListener(listener3);
 
+        View.OnClickListener listener4 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                novaKategorijaTroska();
+            }
+        };
+        novaKategorijaTroskaButton.setOnClickListener(listener4);
     }
 
     @Override
@@ -136,7 +143,10 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FinancijskiPlanActivity.class);
         startActivity(intent);
     }
-    //
+    private void novaKategorijaTroska() {
+        Intent intent = new Intent(this, DodavanjeKategorijeTroska.class);
+        startActivity(intent);
+    }
     private boolean provjeriDatum(String razdoblje, int dan, int mjesec, int godina) {
         int godinaDanas = myCalendar.get(Calendar.YEAR);
         int mjesecDanas = myCalendar.get(Calendar.MONTH)+1;
@@ -214,6 +224,8 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
 
 
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
