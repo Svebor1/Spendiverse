@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="naziv"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:textColorHighlight="@color/purple_700"
                 android:textColorLink="@color/purple_700" />
 

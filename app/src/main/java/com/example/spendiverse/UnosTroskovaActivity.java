@@ -22,17 +22,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,11 +58,16 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ImageView slikaRacuna;
     private TextView cijenaTroska;
     private TextView datumTroska;
-
+    private ArrayAdapter arrayAdapter;
+    private ArrayAdapter arrayAdapterValute;
+    String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
+    ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unos_troskova);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         //postavlja strelicu za natrag
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
@@ -69,16 +80,35 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         dodatiRacun = findViewById(R.id.dodati_racun);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
-        String kategorije[] = {"prehrana", "kućanstvo", "promet"};
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spinner_item, kategorije);
-        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
 
-        String valute[] = {"HRK", "USD", "EUR", "GBP"};
-        ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, R.layout.spinner_item, valute);
-        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerValuta.setAdapter(arrayAdapterValute);
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivKategorije = document.getData().get("naziv").toString();
+                                kategorije.add(nazivKategorije);
+                            }
+                            arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, kategorije);
+                            arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+                            spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
+                            String valute[] = {"HRK", "USD", "EUR", "GBP"};
+                            arrayAdapterValute = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, valute);
+                            arrayAdapterValute.setDropDownViewResource(R.layout.spinner_item);
+                            spinnerValuta.setAdapter(arrayAdapterValute);
+                            postavljanjeUnosaTroska();
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
 
+                    }
+                });
+
+    }
+    private void postavljanjeUnosaTroska() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) { //ako je to upis novog troška
 
@@ -134,7 +164,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
         }
     }
-
     public void showDatePickerDialog(View v) {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -217,7 +246,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
         data.put("kategorija", spinner.getSelectedItem().toString());
-        data.put("valuta", spinner.getSelectedItem().toString());
+        data.put("valuta", spinnerValuta.getSelectedItem().toString());
         data.put("datumDan", dan);
         data.put("datumMjesec", mjesec);
         data.put("datumGodina", godina);
