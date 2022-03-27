@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,11 +66,40 @@ public class PrikazLjestvice extends AppCompatActivity {
                                 (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo(o2.getRezultatKorisnika());
                         //sortiranje liste uz pomoć komparatora
                         Collections.sort(rezultatiNatjecatelja, usporediPoBodovima.reversed());
+                        upisiMjesta();
                         prikaziLjestvicu();
                     }
                 });
 
 
+    }
+    private void upisiMjesta() {
+        Integer brojac; //broji količinu prethodnih uzastopnih korisnika s istim brojem bodova
+        Integer prosliBodovi = null; //bodovi prošlog natjecatelja
+        brojac = 0; //u samom početku je 0 uzastopnih korisnika s istim brojem bodova
+        Integer pozicija = 0;
+        for(RezultatNatjecatelja rezultatNatjecatelja: rezultatiNatjecatelja) {
+            Integer bodovi = rezultatNatjecatelja.getRezultatKorisnika(); //bodovi natjecatelja
+            pozicija++;
+            if (prosliBodovi != null) {
+                if (bodovi.equals(prosliBodovi)) {
+                    //ako je broj bodova sadašnjeg i prošlog natjecatelja isti
+                    rezultatNatjecatelja.setPozicija(pozicija-brojac);
+                    brojac++;
+                }
+                else {
+                    //ako su broj bodova sadašnjeg i prošlog natjecatelja različiti
+                    rezultatNatjecatelja.setPozicija(pozicija);
+                    brojac = 1;
+                }
+            }
+            else {
+                //ako je to trenutni natjecatelj prvi u listi i nema prošlog
+                rezultatNatjecatelja.setPozicija(pozicija);
+                brojac = 1;
+            }
+            prosliBodovi = bodovi;
+        }
     }
 
     /**
