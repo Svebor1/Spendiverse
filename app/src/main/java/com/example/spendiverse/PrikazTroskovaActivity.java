@@ -66,15 +66,27 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         spinnerZaValute.setAdapter(arrayAdapterValute);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                nadiTroskove(spinner.getSelectedItem().toString());
+                nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                nadiTroskove("ukupno");
+                nadiTroskove("ukupno", spinnerZaValute.getSelectedItem().toString());
+            }
+        });
+
+        spinnerZaValute.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                nadiTroskove("ukupno", spinnerZaValute.getSelectedItem().toString());
             }
 
         });
@@ -146,7 +158,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        nadiTroskove(spinner.getSelectedItem().toString());
+        nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
     }
 
     private void unosTroskova() {
@@ -196,7 +208,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             return true;
         }
     }
-    private void  nadiTroskove(String razdoblje) {
+    private void  nadiTroskove(String razdoblje, String odabranaValuta) {
         ArrayList<Trosak> troskovi = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -216,7 +228,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
                                 String firebaseId = document.getId();
-                                if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina)) {
+                                if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina) && valuta.equals(odabranaValuta)) {
                                     troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, valuta, firebaseId));
                                 }
                             }
