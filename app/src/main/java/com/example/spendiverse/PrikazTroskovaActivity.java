@@ -39,9 +39,11 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    private Spinner spinnerZaValute;
     private Button novaKategorijaTroskaButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
+    String[] valute = {"HRK", "USD", "EUR", "GBP"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +53,16 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         spinner = findViewById(R.id.vremensko_razdoblje);
+        spinnerZaValute = findViewById(R.id.spinner_valute);
         novaKategorijaTroskaButton = findViewById(R.id.nova_kategorija_troska);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, android.R.layout.simple_spinner_item, valute);
+        arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerZaValute.setAdapter(arrayAdapterValute);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
