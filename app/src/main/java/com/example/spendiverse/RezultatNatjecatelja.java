@@ -3,14 +3,19 @@ package com.example.spendiverse;
 public class RezultatNatjecatelja {
     String imeKorisnika;
     Integer rezultatKorisnika;
+    Integer pozicija;
 
-    public RezultatNatjecatelja(String imeKorisnika) {
-        this.imeKorisnika = imeKorisnika;
+    public Integer getPozicija() {
+        return pozicija;
     }
 
+    public void setPozicija(Integer pozicija) {
+        this.pozicija = pozicija;
+    }
     public RezultatNatjecatelja(String imeKorisnika, Integer rezultatKorisnika) {
         this.imeKorisnika = imeKorisnika;
         this.rezultatKorisnika = rezultatKorisnika;
+        this.pozicija = null;
     }
 
     public String getImeKorisnika() {
