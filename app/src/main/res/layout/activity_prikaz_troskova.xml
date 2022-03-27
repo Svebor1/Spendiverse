@@ -84,9 +84,17 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:text="dodaj kategorju troška" />
+            <Button
+                android:id="@+id/nova_valuta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Dodaj valutu"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
     </ScrollView>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+
