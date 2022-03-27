@@ -134,7 +134,7 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+                    app:srcCompat="@drawable/ic_racun" />
 
                 <ImageButton
                     android:id="@+id/dodati_racun"

@@ -80,4 +80,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vidjeti_detalje" />
 
+    <Button
+        android:id="@+id/nova_valuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Dodaj valutu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nova_kategorija_troska" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
