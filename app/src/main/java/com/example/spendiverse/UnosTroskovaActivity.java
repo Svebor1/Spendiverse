@@ -219,11 +219,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
 
-        if (cijenaTroska.getText().toString().equals("")) {
+        if (cijenaTroska.getText().toString().replace(" ","").equals("")) {
             cijenaTroska.setError("Unesite cijenu troška");
             rezultatBooleana = false;
         }
-        if (nazivTroska.getText().toString().equals("")) {
+        if (nazivTroska.getText().toString().replace(" ","").equals("")) {
             nazivTroska.setError("Unesite naziv troška");
             rezultatBooleana = false;
         }

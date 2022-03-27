@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,7 +42,8 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     private Spinner filterzaRazdoblja;
     private Spinner filterzaValute;
     String[] poredajPoArray = {"datumu uzlazno", "datumu silazno", "cijeni silazno", "cijeni uzlazno"};
-    String[] kategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
+    String[] zadaneKategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
+    ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     String[] vremenskoRazdoblje = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     String[] valute = {"HRK", "USD", "EUR", "GBP"};
     @Override
@@ -52,6 +54,32 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    //    kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivKategorije = document.getData().get("naziv").toString();
+                                kategorije.add(nazivKategorije);
+
+                            }
+                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
+
         poredajPo = findViewById(R.id.poredaj_po_spinner);
         ArrayAdapter poredajPoAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, poredajPoArray);
         poredajPo.setAdapter(poredajPoAdapter);

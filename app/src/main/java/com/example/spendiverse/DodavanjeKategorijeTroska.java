@@ -44,8 +44,10 @@ public class DodavanjeKategorijeTroska extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dodajKategoriju();
-                prikaziKategorije();
+                if (provjeriUnos()) {
+                    dodajKategoriju();
+                    prikaziKategorije();
+                }
             }
         };
         dodajKategorijuTroskaButton.setOnClickListener(listener);
@@ -85,5 +87,19 @@ public class DodavanjeKategorijeTroska extends AppCompatActivity {
 
                     }
                 });
+    }
+    private boolean provjeriUnos(){
+        boolean rezultatBooleana = true;
+
+        if (nazivKategorijeUnos.getText().toString().replace(" ","").equals("")) {
+            nazivKategorijeUnos.setError("Unesite naziv kategorije");
+            rezultatBooleana = false;
+        }
+        if (kategorije.stream().anyMatch(str -> str.toLowerCase().equals(nazivKategorijeUnos.getText().toString().toLowerCase()))) {
+            nazivKategorijeUnos.setError("Upisana kategorija već postoji");
+            rezultatBooleana = false;
+        }
+
+        return rezultatBooleana;
     }
 }
