@@ -48,6 +48,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private Integer dan;
     private Integer mjesec;
     private Integer godina;
+    private Bitmap photo;
     private ImageView slikaRacuna;
     private TextView cijenaTroska;
     private TextView datumTroska;
@@ -194,6 +195,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                        submit(photo, documentReference.getId()+".jpg");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -271,7 +273,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bitmap photo;
         if (requestCode == 1 && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
             slikaRacuna.setImageBitmap(photo);
@@ -283,25 +284,25 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
     }
 
-    public void submit(Bitmap photo) {
+    public void submit(Bitmap photo, String imeSlike) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference racunRef = storageRef.child("racun.jpg");
+        StorageReference racunRef = storageRef.child(imeSlike);
         byte[] b = stream.toByteArray();
 
         UploadTask uploadTask = racunRef.putBytes(b);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-
+                Log.e("unos troskova",exception.toString());
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                Log.e("unos troskova","uspjeh");
             }
         });
     }
