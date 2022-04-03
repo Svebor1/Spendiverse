@@ -2,11 +2,13 @@ package com.example.spendiverse;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -72,15 +74,124 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         })
                         .setIcon(R.drawable.ic_baseline_help_24)
                         .create();
+
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialogBrisanje.show();
             }
-
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                promijeniKategorijuDialog(kategorija);
+            }
         });
         return listitemView;
     };
+    void promijeniKategoriju(String kategorija, String novaKategorija) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid())
+                .collection("troskovi")
+                .whereEqualTo("kategorija", kategorija)
+                .get()
+                .addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot trosak: task.getResult()) {
+                                        trosak.getReference().update("kategorija", novaKategorija)
+                                                .addOnCompleteListener(
+                                                        new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                                Log.i(TAG, "azurirana je kategorija");
+                                                            }
+                                                        }
+                                                )
+                                                .addOnFailureListener(
+                                                        new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull @NotNull Exception e) {
+                                                                Log.i(TAG, "nije azurirana kategorija");
+                                                            }
+                                                        }
+
+                                                );
+                                    }
+                                }
+                            }
+                        }
+                )
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+        db.collection("korisnici").document(firebaseUser.getUid())
+                .collection("kategorije")
+                .whereEqualTo("naziv", kategorija)
+                .get()
+                .addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot kategorija: task.getResult()) {
+                                        kategorija.getReference().update("naziv", novaKategorija);
+                                    }
+                                }
+                            }
+                        }
+                )
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+    }
+    void promijeniKategorijuDialog(String kategorija) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Unesite novi nadimak");
+
+        //postavljanje unosa
+        final EditText input = new EditText(context);
+        //postavljanjje tipa unosa na text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        //postavljanje gumba
+        builder.setPositiveButton("potvrdi", null);
+        builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                String novaKategorija;
+                if (input.getText().toString().replace(" ","").length()==0){
+                    input.setError("Nadimak ne smije biti prazan");
+                }
+                else{
+                    novaKategorija = input.getText().toString();
+                    promijeniKategoriju(kategorija, novaKategorija);
+                    dialog.dismiss();
+                }
+
+            }
+        });
+    }
     void izbrisiKategoriju(String kategorija) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
