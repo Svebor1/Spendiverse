@@ -32,9 +32,11 @@ import java.util.ArrayList;
 
 public class KategorijaAdapter extends ArrayAdapter<String> {
     private Context context;
+    private ArrayList<String> dataModalArrayList;
     public KategorijaAdapter(@NonNull Context context, ArrayList<String> dataModalArrayList) {
         super(context, 0, dataModalArrayList);
         this.context = context;
+        this.dataModalArrayList = dataModalArrayList;
     }
     String TAG = "KategorijaAdapter";
     @NonNull
@@ -84,12 +86,12 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                promijeniKategorijuDialog(kategorija);
+                promijeniKategorijuDialog(kategorija, position);
             }
         });
         return listitemView;
     };
-    void promijeniKategoriju(String kategorija, String novaKategorija) {
+    void promijeniKategoriju(String kategorija, String novaKategorija, int position) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(firebaseUser.getUid())
@@ -153,11 +155,13 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
+        dataModalArrayList.set(position, novaKategorija);
+        notifyDataSetChanged();
     }
-    void promijeniKategorijuDialog(String kategorija) {
+    void promijeniKategorijuDialog(String kategorija, int position) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Unesite novi nadimak");
+        builder.setTitle("Unesite novi naziv kategorije");
 
         //postavljanje unosa
         final EditText input = new EditText(context);
@@ -185,7 +189,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                 }
                 else{
                     novaKategorija = input.getText().toString();
-                    promijeniKategoriju(kategorija, novaKategorija);
+                    promijeniKategoriju(kategorija, novaKategorija, position);
                     dialog.dismiss();
                 }
 
