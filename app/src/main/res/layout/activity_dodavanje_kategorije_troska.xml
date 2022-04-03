@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DodavanjeKategorijeTroska">
+    tools:context=".DodavanjeKategorijeTroska"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/naziv_kategorije"
@@ -14,9 +15,7 @@
         android:ems="10"
         android:inputType="text"
         android:hint="naziv kategorije"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/dodaj_kategoriju_troska"
@@ -24,18 +23,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="dodaj kategoriju troška"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/naziv_kategorije" />
+        android:layout_gravity="center"/>
+
 
     <ListView
         android:id="@+id/kategorije_troska"
-        android:layout_width="409dp"
-        android:layout_height="456dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="50dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dodaj_kategoriju_troska" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="10dp"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

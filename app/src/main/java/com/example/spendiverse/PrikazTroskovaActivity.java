@@ -93,6 +93,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
+        chart.setDrawEntryLabels(false);
         chart.setExtraOffsets(5, 10, 5, 5);
         chart.setDragDecelerationFrictionCoef(0.95f);
         chart.setDrawHoleEnabled(true);
@@ -108,6 +109,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         // enable rotation of the chart by touch
         chart.setRotationEnabled(true);
         chart.setHighlightPerTapEnabled(true);
+        chart.getLegend().setWordWrapEnabled(true);
         Button unosTroskovaButton;
         Button vidjetiDetalje;
         Button financijskiPlanButton;
@@ -245,7 +247,16 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 entries.add(new PieEntry(entry.getValue(), entry.getKey()));
                             }
                             PieDataSet set = new PieDataSet(entries, "Troškovi");
-                            set.setColors(ColorTemplate.COLORFUL_COLORS);
+                            final int[] mojeBoje = {
+                                    Color.rgb(230, 25, 75), Color.rgb(60, 180, 75), Color.rgb(255, 225, 25),
+                                    Color.rgb(0, 130, 200), Color.rgb(245, 130, 48), Color.rgb(145, 30, 180),
+                                    Color.rgb(70, 240, 240), Color.rgb(240, 50, 230), Color.rgb(210, 245, 60),
+                                    Color.rgb(250, 190, 212), Color.rgb(0, 128, 128), Color.rgb(220, 190, 255),
+                                    Color.rgb(170, 110, 40), Color.rgb(255, 250, 200), Color.rgb(128, 0, 0),
+                                    Color.rgb(170, 255, 195), Color.rgb(128, 128, 0), Color.rgb(255, 215, 180),
+                                    Color.rgb(0, 0, 128), Color.rgb(128, 128, 128)
+                            };
+                            set.setColors(mojeBoje);
                             PieData data = new PieData(set);
                             chart.setData(data);
                             chart.invalidate(); // refresh
