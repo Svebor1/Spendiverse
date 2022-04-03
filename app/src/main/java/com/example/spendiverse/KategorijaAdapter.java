@@ -55,6 +55,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
         ImageButton kanta = listitemView.findViewById(R.id.kanta_kategorija);
         ImageButton edit = listitemView.findViewById(R.id.edit_kategorija);
         if (position < 3) {
+            //kategorije prehrana, kućanstvo i promet se ne mogu uređivati niti brisati
             kanta.setVisibility(View.INVISIBLE);
             edit.setVisibility(View.INVISIBLE);
         }
@@ -86,17 +87,26 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //ako korisnik hoće urediti trošak
                 promijeniKategorijuDialog(kategorija, position);
             }
         });
         return listitemView;
     };
+
+    /**
+     * metoda za uređivanje kategorije
+     * @param kategorija naziv kategorije koju hoćemo promijeniti
+     * @param novaKategorija novi naziv kategorije
+     * @param position pozicija kategorije koju hoćemo promijeniti
+     */
     void promijeniKategoriju(String kategorija, String novaKategorija, int position) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //ažuriramo zadanu kategoriju u troškovima u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("troskovi")
-                .whereEqualTo("kategorija", kategorija)
+                .whereEqualTo("kategorija", kategorija) //uređujemo troškove samo s zadanom kategorijom
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -104,6 +114,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot trosak: task.getResult()) {
+                                        //ažurirana je zadana kategorija u trošku
                                         trosak.getReference().update("kategorija", novaKategorija)
                                                 .addOnCompleteListener(
                                                         new OnCompleteListener<Void>() {
@@ -133,9 +144,10 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
+        //ažuriramo zadanu kategoriju u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("kategorije")
-                .whereEqualTo("naziv", kategorija)
+                .whereEqualTo("naziv", kategorija) //ažuriramo samo zadanu kategoriju
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -143,6 +155,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot kategorija: task.getResult()) {
+                                        //kategorija je ažurirana
                                         kategorija.getReference().update("naziv", novaKategorija);
                                     }
                                 }
@@ -155,9 +168,15 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-        dataModalArrayList.set(position, novaKategorija);
-        notifyDataSetChanged();
+        dataModalArrayList.set(position, novaKategorija); //ažurirana kategorija u nizu
+        notifyDataSetChanged(); //ažuriranje kategorije u listview
     }
+
+    /**
+     * metoda za unos novog naziva kategorije i njegovu promijenu
+     * @param kategorija naziv kategorije koju hoćemo promijeniti
+     * @param position pozicija kategorije koju hoćemo promijeniti
+     */
     void promijeniKategorijuDialog(String kategorija, int position) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -187,21 +206,36 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                 if (input.getText().toString().replace(" ","").length()==0){
                     input.setError("Nadimak ne smije biti prazan");
                 }
-                else{
-                    novaKategorija = input.getText().toString();
-                    promijeniKategoriju(kategorija, novaKategorija, position);
-                    dialog.dismiss();
+                else {
+                    boolean rezultatBooleana = true;
+                    //provjera postoji li već upisana kategorija u nizu s kategorijama
+                    if (dataModalArrayList.stream().anyMatch(str -> str.toLowerCase().equals(input.getText().toString().toLowerCase()))) {
+                        input.setError("Upisana kategorija već postoji");
+                        //ako već postoji varijabla rezultatBoleana će biti false i neće omogućiti da se promijeni trošak na novi naziv
+                        rezultatBooleana = false;
+                    }
+                    if (rezultatBooleana) {
+                        novaKategorija = input.getText().toString(); //novi naziv kategorije
+                        //metoda za promijenu kategorije
+                        promijeniKategoriju(kategorija, novaKategorija, position);
+                        dialog.dismiss();
+                    }
                 }
-
             }
         });
     }
+
+    /**
+     * metoda za brisanje kategorije
+     * @param kategorija
+     */
     void izbrisiKategoriju(String kategorija) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //brišemo troškove s zadanom kategorijom u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("troskovi")
-                .whereEqualTo("kategorija", kategorija)
+                .whereEqualTo("kategorija", kategorija) //biramo samo troškove s zadanom kategorijom
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -209,6 +243,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot trosak: task.getResult()) {
+                                        //brisanje troškova
                                         trosak.getReference().delete();
                                     }
                                 }
@@ -221,9 +256,10 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
+        //brišemo kategoriju u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("kategorije")
-                .whereEqualTo("naziv", kategorija)
+                .whereEqualTo("naziv", kategorija) //biramo samo zadanu kategoriju
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -231,6 +267,7 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot kategorija: task.getResult()) {
+                                        //brisanje kategorije
                                         kategorija.getReference().delete();
                                     }
                                 }
@@ -243,6 +280,6 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-        remove(kategorija);
+        remove(kategorija); //brisanje kategorije u listview
     }
 }

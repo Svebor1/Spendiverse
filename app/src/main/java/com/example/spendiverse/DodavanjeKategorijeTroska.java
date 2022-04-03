@@ -77,6 +77,7 @@ public class DodavanjeKategorijeTroska extends AppCompatActivity {
                                 kategorije.add(nazivKategorije);
                             }
                             // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                            //postavljanje kategorije adaptera
                             ArrayAdapter<String> itemsAdapter =
                             //        new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, kategorije);
                                     new KategorijaAdapter(context, kategorije);

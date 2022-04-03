@@ -93,23 +93,23 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
-        chart.setDrawEntryLabels(false);
+        chart.setDrawEntryLabels(false); //da se ne pojavljuje naziv kategorije na grafu
         chart.setExtraOffsets(5, 10, 5, 5);
-        chart.setDragDecelerationFrictionCoef(0.95f);
-        chart.setDrawHoleEnabled(true);
-        chart.setHoleColor(Color.WHITE);
+        chart.setDragDecelerationFrictionCoef(0.95f); //koeficijent trenja za animaciju okretanja grafa
+        chart.setDrawHoleEnabled(true); //rupa u sredini
+        chart.setHoleColor(Color.WHITE); //boja rupe u sredini
         chart.setTransparentCircleColor(Color.WHITE);
         chart.setTransparentCircleAlpha(110);
-        chart.setHoleRadius(58f);
+        chart.setHoleRadius(58f); //radijus rupe u sredini
         chart.setTransparentCircleRadius(61f);
 
-        chart.setDrawCenterText(true);
-        chart.setCenterText("Troškovi");
+        chart.setDrawCenterText(true); //omogućuje ispis naziva grafa u sredini rupe
+        chart.setCenterText("Troškovi"); //naziv grafa u sredini grafa
         chart.setRotationAngle(0);
         // enable rotation of the chart by touch
-        chart.setRotationEnabled(true);
+        chart.setRotationEnabled(true); //omogućuje animaciju okretanja grafa
         chart.setHighlightPerTapEnabled(true);
-        chart.getLegend().setWordWrapEnabled(true);
+        chart.getLegend().setWordWrapEnabled(true); //legenda s nazivima kategorija ne prelazi izvan ekrana
         Button unosTroskovaButton;
         Button vidjetiDetalje;
         Button financijskiPlanButton;
@@ -255,7 +255,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                     Color.rgb(170, 110, 40), Color.rgb(255, 250, 200), Color.rgb(128, 0, 0),
                                     Color.rgb(170, 255, 195), Color.rgb(128, 128, 0), Color.rgb(255, 215, 180),
                                     Color.rgb(0, 0, 128), Color.rgb(128, 128, 128)
-                            };
+                            }; //postavljanje niza s bojama
                             set.setColors(mojeBoje);
                             PieData data = new PieData(set);
                             chart.setData(data);
