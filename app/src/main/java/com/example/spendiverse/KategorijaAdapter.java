@@ -48,7 +48,10 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
 
         ImageButton kanta = listitemView.findViewById(R.id.kanta_kategorija);
         ImageButton edit = listitemView.findViewById(R.id.edit_kategorija);
-
+        if (position < 3) {
+            kanta.setVisibility(View.INVISIBLE);
+            edit.setVisibility(View.INVISIBLE);
+        }
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
