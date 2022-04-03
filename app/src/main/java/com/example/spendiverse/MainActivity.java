@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.profil:
-                mojProfil(); info(); //ako je odabran moj profil poziva se metoda za prijelaz u MojProfil Activity
+                mojProfil(); //ako je odabran moj profil poziva se metoda za prijelaz u MojProfil Activity
                 return true;
             case R.id.profil_sign_out:
                 AlertDialog alertDialogSignOut = //ovdje se stvara prozor s pitanjem "Jeste li sigurni da se želite odjaviti?"
