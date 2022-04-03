@@ -381,25 +381,26 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     }
 
     public void submit(Bitmap photo, String imeSlike) {
+        if (photo != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference racunRef = storageRef.child(imeSlike);
+            byte[] b = stream.toByteArray();
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference racunRef = storageRef.child(imeSlike);
-        byte[] b = stream.toByteArray();
-
-        UploadTask uploadTask = racunRef.putBytes(b);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.e("unos troskova",exception.toString());
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.e("unos troskova","uspjeh");
-            }
-        });
+            UploadTask uploadTask = racunRef.putBytes(b);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.e("unos troskova", exception.toString());
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.e("unos troskova", "uspjeh");
+                }
+            });
+        }
     }
 }
