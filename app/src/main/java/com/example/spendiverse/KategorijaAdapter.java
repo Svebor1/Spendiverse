@@ -1,6 +1,7 @@
 package com.example.spendiverse;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -52,59 +54,80 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
             kanta.setVisibility(View.INVISIBLE);
             edit.setVisibility(View.INVISIBLE);
         }
+        AlertDialog alertDialogBrisanje =
+                //ako korisnik hoće izbrisati kategoriju prvo će se otvoriti prozor za potvrdu
+                new AlertDialog.Builder(context)
+                        .setTitle("Brisanje kategorije")
+                        .setMessage("Jeste li sigurni da želite izbrisati kategoriju?" +
+                                "\nBiti će izbrisani svi troškovi koji pripadaju toj kategoriji")
+                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                izbrisiKategoriju(kategorija); //ako je korisnik potvrdio brisanje kategorije poziva se metoda brisanja kategorije
+                            }
+                        })
+                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setIcon(R.drawable.ic_baseline_help_24)
+                        .create();
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("korisnici").document(firebaseUser.getUid())
-                        .collection("troskovi")
-                        .whereEqualTo("kategorija", kategorija)
-                        .get()
-                        .addOnCompleteListener(
-                                new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            for (QueryDocumentSnapshot trosak: task.getResult()) {
-                                                trosak.getReference().delete();
-                                            }
-                                        }
-                                    }
-                                }
-                        )
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
-                db.collection("korisnici").document(firebaseUser.getUid())
-                        .collection("kategorije")
-                        .whereEqualTo("naziv", kategorija)
-                        .get()
-                        .addOnCompleteListener(
-                                new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            for (QueryDocumentSnapshot kategorija: task.getResult()) {
-                                                kategorija.getReference().delete();
-                                            }
-                                        }
-                                    }
-                                }
-                        )
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
-                remove(kategorija);
+                alertDialogBrisanje.show();
             }
 
         });
         return listitemView;
     };
+    void izbrisiKategoriju(String kategorija) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid())
+                .collection("troskovi")
+                .whereEqualTo("kategorija", kategorija)
+                .get()
+                .addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot trosak: task.getResult()) {
+                                        trosak.getReference().delete();
+                                    }
+                                }
+                            }
+                        }
+                )
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+        db.collection("korisnici").document(firebaseUser.getUid())
+                .collection("kategorije")
+                .whereEqualTo("naziv", kategorija)
+                .get()
+                .addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot kategorija: task.getResult()) {
+                                        kategorija.getReference().delete();
+                                    }
+                                }
+                            }
+                        }
+                )
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+        remove(kategorija);
+    }
 }
