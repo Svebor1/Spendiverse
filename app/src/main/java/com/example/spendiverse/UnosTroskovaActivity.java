@@ -121,11 +121,13 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 izbrisiSlikuRacuna();
+                slikaRacuna.setImageResource(R.drawable.ic_racun);
             }
         });
     }
 
     private void izbrisiSlikuRacuna(){
+        photo = null;
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
 
@@ -133,7 +135,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         slikaRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                slikaRacuna.setImageResource(R.drawable.ic_racun);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -146,11 +148,13 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     }
 
     private void prikazSlikeRacuna() {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("slika", photo);
-        Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if (photo != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("slika", photo);
+            Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     private void postavljanjeUnosaTroska() {

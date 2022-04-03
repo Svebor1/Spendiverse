@@ -133,8 +133,7 @@
                     android:id="@+id/slika_racuna"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
+                    android:gravity="right"
                     android:layout_weight="5"
                     app:srcCompat="@drawable/ic_racun" />
 
