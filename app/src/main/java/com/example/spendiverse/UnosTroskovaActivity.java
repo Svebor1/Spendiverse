@@ -60,6 +60,8 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ArrayAdapter arrayAdapter;
     private ArrayAdapter arrayAdapterValute;
     private String firebaseIdTroska;
+    private ImageButton buttonIzbrisiSliku;
+    private String imeSlikeRacuna;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     @Override
@@ -80,6 +82,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         dodatiRacun = findViewById(R.id.dodati_racun);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
+        buttonIzbrisiSliku = findViewById(R.id.izbrisi_sliku_racuna);
 
         db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
                 .get()
@@ -113,14 +116,45 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             }
         });
 
+
+        buttonIzbrisiSliku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                izbrisiSlikuRacuna();
+                slikaRacuna.setImageResource(R.drawable.ic_racun);
+            }
+        });
+    }
+
+    private void izbrisiSlikuRacuna(){
+        photo = null;
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        StorageReference slikaRef = storageRef.child(firebaseIdTroska+".jpg");
+        slikaRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+            }
+        });
+
+
     }
 
     private void prikazSlikeRacuna() {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("slika", photo);
-        Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if (photo != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("slika", photo);
+            Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     private void postavljanjeUnosaTroska() {
@@ -341,34 +375,32 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
             slikaRacuna.setImageBitmap(photo);
-            /*int dimensionInPixel = 50;
-            int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dimensionInPixel, getResources().getDisplayMetrics());
-            slikaRacuna.getLayoutParams().height = dimensionInDp;
-            slikaRacuna.requestLayout();*/
+
         }
 
     }
 
     public void submit(Bitmap photo, String imeSlike) {
+        if (photo != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference racunRef = storageRef.child(imeSlike);
+            byte[] b = stream.toByteArray();
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference racunRef = storageRef.child(imeSlike);
-        byte[] b = stream.toByteArray();
-
-        UploadTask uploadTask = racunRef.putBytes(b);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.e("unos troskova",exception.toString());
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.e("unos troskova","uspjeh");
-            }
-        });
+            UploadTask uploadTask = racunRef.putBytes(b);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.e("unos troskova", exception.toString());
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.e("unos troskova", "uspjeh");
+                }
+            });
+        }
     }
 }

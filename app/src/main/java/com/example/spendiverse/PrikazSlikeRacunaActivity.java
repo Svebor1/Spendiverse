@@ -1,14 +1,23 @@
 package com.example.spendiverse;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class PrikazSlikeRacunaActivity extends AppCompatActivity {
+    private String imeSlikeRacuna;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +27,16 @@ public class PrikazSlikeRacunaActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         Bundle bundle = getIntent().getExtras();
         Bitmap slikaRacuna = bundle.getParcelable("slika");
+        imeSlikeRacuna = bundle.getString("imeSlike");
         ImageView slikaRacunaPrikaz = findViewById(R.id.slika_racuna_fullscreen);
         slikaRacunaPrikaz.setImageBitmap(slikaRacuna);
+
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -32,4 +46,6 @@ public class PrikazSlikeRacunaActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
