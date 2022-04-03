@@ -60,6 +60,8 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ArrayAdapter arrayAdapter;
     private ArrayAdapter arrayAdapterValute;
     private String firebaseIdTroska;
+    private ImageButton buttonIzbrisiSliku;
+    private String imeSlikeRacuna;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     @Override
@@ -80,6 +82,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         dodatiRacun = findViewById(R.id.dodati_racun);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
+        buttonIzbrisiSliku = findViewById(R.id.izbrisi_sliku_racuna);
 
         db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
                 .get()
@@ -112,6 +115,33 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 prikazSlikeRacuna();
             }
         });
+
+
+        buttonIzbrisiSliku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                izbrisiSlikuRacuna();
+            }
+        });
+    }
+
+    private void izbrisiSlikuRacuna(){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        StorageReference slikaRef = storageRef.child(firebaseIdTroska+".jpg");
+        slikaRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                slikaRacuna.setImageResource(R.drawable.ic_racun);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+            }
+        });
+
 
     }
 
@@ -341,10 +371,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
             slikaRacuna.setImageBitmap(photo);
-            /*int dimensionInPixel = 50;
-            int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dimensionInPixel, getResources().getDisplayMetrics());
-            slikaRacuna.getLayoutParams().height = dimensionInDp;
-            slikaRacuna.requestLayout();*/
+
         }
 
     }
