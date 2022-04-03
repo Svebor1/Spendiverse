@@ -152,10 +152,11 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         try {
             out = new FileOutputStream(newFile);
             Toast.makeText(this, "Slika je spremljena u galeriju", Toast.LENGTH_LONG).show();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, out);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        image.compress(Bitmap.CompressFormat.JPEG, 100, out);
+
     }
 
 
