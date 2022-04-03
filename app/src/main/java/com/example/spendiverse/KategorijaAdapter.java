@@ -206,13 +206,21 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
                 if (input.getText().toString().replace(" ","").length()==0){
                     input.setError("Nadimak ne smije biti prazan");
                 }
-                else{
-                    novaKategorija = input.getText().toString(); //novi naziv kategorije
-                    //metoda za promijenu kategorije
-                    promijeniKategoriju(kategorija, novaKategorija, position);
-                    dialog.dismiss();
+                else {
+                    boolean rezultatBooleana = true;
+                    //provjera postoji li već upisana kategorija u nizu s kategorijama
+                    if (dataModalArrayList.stream().anyMatch(str -> str.toLowerCase().equals(input.getText().toString().toLowerCase()))) {
+                        input.setError("Upisana kategorija već postoji");
+                        //ako već postoji varijabla rezultatBoleana će biti false i neće omogućiti da se promijeni trošak na novi naziv
+                        rezultatBooleana = false;
+                    }
+                    if (rezultatBooleana) {
+                        novaKategorija = input.getText().toString(); //novi naziv kategorije
+                        //metoda za promijenu kategorije
+                        promijeniKategoriju(kategorija, novaKategorija, position);
+                        dialog.dismiss();
+                    }
                 }
-
             }
         });
     }
