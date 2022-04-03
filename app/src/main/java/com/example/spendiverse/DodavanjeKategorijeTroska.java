@@ -78,7 +78,8 @@ public class DodavanjeKategorijeTroska extends AppCompatActivity {
                             }
                             // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
                             ArrayAdapter<String> itemsAdapter =
-                                    new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, kategorije);
+                            //        new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, kategorije);
+                                    new KategorijaAdapter(context, kategorije);
                             ListView listView = (ListView) findViewById(R.id.kategorije_troska);
                             listView.setAdapter(itemsAdapter);
                         } else {
