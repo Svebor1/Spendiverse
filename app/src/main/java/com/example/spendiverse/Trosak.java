@@ -1,5 +1,7 @@
 package com.example.spendiverse;
 
+import android.graphics.Bitmap;
+
 public class Trosak {
     private String naziv;
     private Integer datumDan;
@@ -84,4 +86,5 @@ public class Trosak {
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
+
 }

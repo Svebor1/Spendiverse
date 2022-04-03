@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinSmart">
         <activity
+            android:name=".PrikazSlikeRacunaActivity"
+            android:exported="false" />
+        <activity
             android:name=".DodavanjeValuteActivity"
             android:exported="false" />
         <activity android:name=".DodavanjeKategorijeTroska" />

@@ -106,8 +106,23 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
                     }
                 });
+        slikaRacuna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prikazSlikeRacuna();
+            }
+        });
 
     }
+
+    private void prikazSlikeRacuna() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("slika", photo);
+        Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     private void postavljanjeUnosaTroska() {
         Bundle bundle = getIntent().getExtras();
         dodatiRacun.setOnClickListener(new View.OnClickListener() {
