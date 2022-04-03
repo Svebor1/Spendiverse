@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -58,6 +59,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private TextView datumTroska;
     private ArrayAdapter arrayAdapter;
     private ArrayAdapter arrayAdapterValute;
+    private String firebaseIdTroska;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     @Override
@@ -104,10 +106,32 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
                     }
                 });
+        slikaRacuna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prikazSlikeRacuna();
+            }
+        });
 
     }
+
+    private void prikazSlikeRacuna() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("slika", photo);
+        Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     private void postavljanjeUnosaTroska() {
         Bundle bundle = getIntent().getExtras();
+        dodatiRacun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, 1);
+            }
+        });
         if (bundle == null) { //ako je to upis novog troška
 
             prikaziDatum();
@@ -120,13 +144,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
-            dodatiRacun.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, 1);
-                }
-            });
+
 
 
         } else {
@@ -142,8 +160,27 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             String valutaTroska = bundle.getString("valuta");
             int spinnerPositionValuta = arrayAdapterValute.getPosition(valutaTroska);
             spinnerValuta.setSelection(spinnerPositionValuta);
+            firebaseIdTroska = bundle.getString("firebaseId");
 
-            String firebaseIdTroska = bundle.getString("firebaseId");
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference pathReference = storageRef.child(firebaseIdTroska+".jpg");
+
+            final long ONE_MEGABYTE = 1024 * 1024;
+            pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    slikaRacuna.setImageBitmap(photo);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+
+
             Integer datumDan = bundle.getInt("datumDan");
             Integer datumMjesec = bundle.getInt("datumMjesec") - 1;
             Integer datumGodina = bundle.getInt("datumGodina");
@@ -155,6 +192,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (provjeriUnos()) {
                         promijeniTrosak(firebaseIdTroska);
+                        submit(photo,firebaseIdTroska+".jpg");
                     }
                 }
             };
