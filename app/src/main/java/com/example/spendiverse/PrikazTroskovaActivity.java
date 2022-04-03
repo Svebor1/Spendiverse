@@ -93,6 +93,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
+        chart.setDrawEntryLabels(false);
         chart.setExtraOffsets(5, 10, 5, 5);
         chart.setDragDecelerationFrictionCoef(0.95f);
         chart.setDrawHoleEnabled(true);
@@ -247,16 +248,13 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                             }
                             PieDataSet set = new PieDataSet(entries, "Troškovi");
                             final int[] mojeBoje = {
-                                    Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
-                                    Color.rgb(118, 174, 175), Color.rgb(42, 109, 130),
-                                    Color.rgb(217, 80, 138), Color.rgb(254, 149, 7), Color.rgb(254, 247, 120),
-                                    Color.rgb(106, 167, 134), Color.rgb(53, 194, 209),
-                                    Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
-                                    Color.rgb(191, 134, 134), Color.rgb(179, 48, 80),
-                                    Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
-                                    Color.rgb(106, 150, 31), Color.rgb(179, 100, 53),
-                                    Color.rgb(192, 255, 140), Color.rgb(255, 247, 140), Color.rgb(255, 208, 140),
-                                    Color.rgb(140, 234, 255), Color.rgb(255, 140, 157)
+                                    Color.rgb(230, 25, 75), Color.rgb(60, 180, 75), Color.rgb(255, 225, 25),
+                                    Color.rgb(0, 130, 200), Color.rgb(245, 130, 48), Color.rgb(145, 30, 180),
+                                    Color.rgb(70, 240, 240), Color.rgb(240, 50, 230), Color.rgb(210, 245, 60),
+                                    Color.rgb(250, 190, 212), Color.rgb(0, 128, 128), Color.rgb(220, 190, 255),
+                                    Color.rgb(170, 110, 40), Color.rgb(255, 250, 200), Color.rgb(128, 0, 0),
+                                    Color.rgb(170, 255, 195), Color.rgb(128, 128, 0), Color.rgb(255, 215, 180),
+                                    Color.rgb(0, 0, 128), Color.rgb(128, 128, 128)
                             };
                             set.setColors(mojeBoje);
                             PieData data = new PieData(set);
