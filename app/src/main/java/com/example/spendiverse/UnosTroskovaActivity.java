@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,9 +37,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +70,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ArrayAdapter arrayAdapterValute;
     private String firebaseIdTroska;
     private ImageButton buttonIzbrisiSliku;
-    private String imeSlikeRacuna;
+    private ImageButton buttonDownloadSlike;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     @Override
@@ -82,6 +91,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         dodatiRacun = findViewById(R.id.dodati_racun);
         nazivTroska = findViewById(R.id.naziv_troska);
         cijenaTroska = findViewById(R.id.cijena_troska);
+        buttonDownloadSlike = findViewById(R.id.download_slike);
         buttonIzbrisiSliku = findViewById(R.id.izbrisi_sliku_racuna);
 
         db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
@@ -124,7 +134,30 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 slikaRacuna.setImageResource(R.drawable.ic_racun);
             }
         });
+        buttonDownloadSlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storeImage(photo);
+            }
+        });
+
     }
+    private void storeImage(Bitmap image) {
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File outputDir= new File(path);
+        outputDir.mkdirs();
+        String fileName = Calendar.getInstance().getTime().toString().replace(" ","").replace("+","").replace(":","").replace("-","");
+        File newFile = new File(path + File.separator + "spendiverse" + fileName +".jpg");
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(newFile);
+            Toast.makeText(this, "Slika je spremljena u galeriju", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        image.compress(Bitmap.CompressFormat.JPEG, 100, out);
+    }
+
 
     private void izbrisiSlikuRacuna(){
         photo = null;
