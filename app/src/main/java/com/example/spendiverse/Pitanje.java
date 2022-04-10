@@ -27,7 +27,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,7 +42,7 @@ public class Pitanje extends AppCompatActivity {
     String naslovTeme;
     String naslovGrupe;
     Integer redniBrojKviza;
-    Integer[] data;
+    Integer[] tocnostPitanja;
     Integer[] prethodniOdgovori; //lista sa prethodnim odgovorima korisnika
     String tocanOdgovor;
     String TAG = "Pitanje";
@@ -62,7 +61,6 @@ public class Pitanje extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
-
         naslovTeme = bundle.getString("nazivTeme");
         naslovGrupe = bundle.getString("nazivGrupe");
         redniBrojKviza = bundle.getInt("redniBrojKviza");
@@ -71,11 +69,12 @@ public class Pitanje extends AppCompatActivity {
         String imeBrojaPitanja = naslovGrupe + "_tema" + redniBrojKviza + "_brojpitanja";
         int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
         kolicinaPitanja = getResources().getInteger(kolicinaPitanjaId);
-
-        data = new Integer[kolicinaPitanja];
-        Arrays.fill(data,new Integer(0));
+        //tocnostPitanja je lista u kojoj broj 1, za odredeno pitanje, predstavlja da je odgovor tocan, a 0 da nije
+        tocnostPitanja = new Integer[kolicinaPitanja];
+        Arrays.fill(tocnostPitanja,new Integer(0));
 
         //u početku nema odgovora na pitanja pa su svi elementi u listi prethodniOdgovori 0
+        //lista sluzi za obnavljanje prethodnog odgovora ako se vracamo na prethodno pitanje
         prethodniOdgovori = new Integer[kolicinaPitanja];
         Arrays.fill(prethodniOdgovori,new Integer(0));
 
@@ -108,10 +107,10 @@ public class Pitanje extends AppCompatActivity {
                     prethodniOdgovori[redniBrojPitanja] = 3;
                 }
                 if (trenutniOdgovor.getText().toString().equals(tocanOdgovor)){
-                    data[redniBrojPitanja] = 1;
+                    tocnostPitanja[redniBrojPitanja] = 1;
                 }
                 else {
-                    data[redniBrojPitanja] = 0;
+                    tocnostPitanja[redniBrojPitanja] = 0;
                 }
             }
         });
@@ -193,10 +192,24 @@ public class Pitanje extends AppCompatActivity {
 
 
     }
+    private String odrediKriveOdgovore(){
+        String kriviOdgovori = "Netočno odgovorena pitanja su:";
+        Integer netocni = 0;
+        for(int i=0;i<kolicinaPitanja; i++){
+            if (tocnostPitanja[i]==0){
+                kriviOdgovori = kriviOdgovori+" "+Integer.toString(i+1)+".,";
+                netocni++;
+            }
+        }
+        if(netocni==0){
+            return "";
+        }
+        return kriviOdgovori.substring(0,kriviOdgovori.length()-1);
+    }
     private Integer izracunajRezultat() {
         Integer bodovi = 0;
         for (int i = 0;i<kolicinaPitanja; i++) {
-            if (data[i]==1) {
+            if (tocnostPitanja[i]==1) {
                 bodovi++;
             }
         }
@@ -309,7 +322,7 @@ public class Pitanje extends AppCompatActivity {
         AlertDialog alertDialog =
                 new AlertDialog.Builder(this)
                         .setTitle("Rezultat")
-                        .setMessage(bodovi + "/" + kolicinaPitanja)
+                        .setMessage(bodovi + "/" + kolicinaPitanja + "\n" + odrediKriveOdgovore())
                         // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
                         .setPositiveButton("zatvori", new DialogInterface.OnClickListener() {
@@ -321,7 +334,7 @@ public class Pitanje extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 redniBrojPitanja = 0;
                                 ucitavanjePitanja();
-                                Arrays.fill(data,new Integer(0));
+                                Arrays.fill(tocnostPitanja,new Integer(0));
 
                             }
                         })
