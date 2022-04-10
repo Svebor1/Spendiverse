@@ -83,7 +83,7 @@ public class DodavanjeValuteActivity extends AppCompatActivity {
             }
         }
 
-        return popisValuta.stream().collect(Collectors.toList());
+        return popisValuta.stream().sorted().collect(Collectors.toList());
     }
     private void dodajValutu() {
         String nazivValute = spinnerSvihValuta.getSelectedItem().toString();
