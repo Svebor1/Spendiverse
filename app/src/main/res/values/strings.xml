@@ -54,18 +54,18 @@
     <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
     <string name="tesko_tema1_text6">Najpoznatija kriptovaluta je Bitcoin, ali neke druge su i Litecoin, Dogecoin, Dash, Monero, Cardano...</string>
 
-    <string name ="tesko_tema2_text0">Inflacija smanjuje vrijednost valute tijekom vremena</string>
-    <string name ="tesko_tema2_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
-    <string name ="tesko_tema2_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
+    <string name ="srednje_tema3_text0">Inflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name ="srednje_tema3_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
+    <string name ="srednje_tema3_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
 
-    <string name ="tesko_tema3_text0">Neke promjene cijena imaju veću vrijednost su od drugih za inflaciju" </string>
-    <string name ="tesko_tema3_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
-    <string name ="tesko_tema3_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
-    <string name ="tesko_tema3_text3">U mjerenju inflacije uzimaju se u obzir sva dobra i usluge na koje kućanstva troše.</string>
-    <string name = "tesko_tema3_text4">Sva dobra i usluge na koje kućanstva troše tijekom godine prikazani su u takozvanoj košarici. Svaki proizvod u toj košarici ima cijenu koja se s vremenom može promijeniti.</string>
-    <string name = "tesko_tema3_text5">Godišnja stopa inflacije cijena je ukupne košarice u određenom mjesecu uspoređena s njezinom cijenom isti mjesec prethodne godine.</string>
-    <string name = "tesko_tema3_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
-    <string name = "tesko_tema3_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
+    <string name ="tesko_tema2_text0">Neke promjene cijena imaju veću vrijednost su od drugih za inflaciju" </string>
+    <string name ="tesko_tema2_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
+    <string name ="tesko_tema2_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
+    <string name ="tesko_tema2_text3">U mjerenju inflacije uzimaju se u obzir sva dobra i usluge na koje kućanstva troše.</string>
+    <string name = "tesko_tema2_text4">Sva dobra i usluge na koje kućanstva troše tijekom godine prikazani su u takozvanoj košarici. Svaki proizvod u toj košarici ima cijenu koja se s vremenom može promijeniti.</string>
+    <string name = "tesko_tema2_text5">Godišnja stopa inflacije cijena je ukupne košarice u određenom mjesecu uspoređena s njezinom cijenom isti mjesec prethodne godine.</string>
+    <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
+    <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
     <string-array name="lagano_kviz0_pitanje0">
 
         <item>U kojem se obliku novac danas ne koristi?</item>
@@ -387,22 +387,21 @@
         <item>Jen</item>
     </string-array>
 
-    <string-array name="tesko_kviz2_pitanje0">
+    <string-array name="srednje_kviz3_pitanje0">
         <item>Što je od navedenog primjer inflacije?</item>
         <item>Povećanje cijene mandarina</item>
         <item>Povećanje cijene dijelova računala</item>
         <item>Prosječno povećanje svih cijena</item>
         <item>Prosječno povećanje svih cijena</item>
     </string-array>
-
-    <string-array name="tesko_kviz2_pitanje1">
+    <string-array name="srednje_kviz3_pitanje1">
         <item>Prije si mogao  za 10 kuna kupiti 20 mandarina, nakon inflacije za 10 kuna možeš kupiti: </item>
         <item>20 mandarina</item>
         <item>manje od 20 mandarina</item>
         <item>više od 20 mandarina</item>
         <item>manje od 20 mandarina</item>
     </string-array>
-    <string-array name="tesko_kviz2_pitanje2">
+    <string-array name="srednje_kviz3_pitanje2">
         <item>Prije si mogao kupiti nogometnu loptu za 50 kuna, nakon inflacije možeš kupiti loptu za: </item>
         <item>50 kuna</item>
         <item>više od 50 kuna</item>
@@ -410,7 +409,7 @@
         <item>više od 50 kuna</item>
     </string-array>
 
-    <string-array name="tesko_kviz3_pitanje0">
+    <string-array name="tesko_kviz2_pitanje0">
         <item>Što od navedenog čini košaricu?</item>
         <item>ukupne cijene mandarina</item>
         <item>ukupne cijene svih dobara, roba i usluga</item>
@@ -418,7 +417,7 @@
         <item>ukupne cijene svih dobara, roba i usluga</item>
     </string-array>
 
-    <string-array name="tesko_kviz3_pitanje1">
+    <string-array name="tesko_kviz2_pitanje1">
         <item>Što najviše utječe na godišnju stopu inflacije?</item>
         <item>cijene električne energije</item>
         <item>cijene klizaljki</item>
@@ -426,7 +425,7 @@
         <item>cijene električne energije</item>
     </string-array>
 
-    <string-array name="tesko_kviz3_pitanje2">
+    <string-array name="tesko_kviz2_pitanje2">
         <item>Ako je jedne godine ukupni trošak košarice bio 2000 eura, a druge 2100 eura, kolika je godišnja stopa inflacije?</item>
         <item>20 %</item>
         <item>5 %</item>
@@ -434,7 +433,7 @@
         <item>5 %</item>
     </string-array>
 
-    <string-array name="tesko_kviz3_pitanje4">
+    <string-array name="tesko_kviz2_pitanje4">
         <item>Ako je jedne godine ukupni trošak košarice bio 1000 eura, a druge 1020 eura, kolika je godišnja stopa inflacije?</item>
         <item>2 %</item>
         <item>20 %</item>
@@ -442,21 +441,21 @@
         <item>2 %</item>
     </string-array>
 
-    <string-array name="tesko_kviz3_pitanje3">
+    <string-array name="tesko_kviz2_pitanje3">
         <item>Ako je jedne godine lopta stojila 50 kuna, a godišnja stopa inflacije iznosi 4 %, koliko iznosi cijena lopte sljedeće godine?</item>
         <item>52 kune</item>
         <item>50 kuna</item>
         <item>Promjena cijene lopte za jednu godinu ne ovisi o godišnjoj stopi inflacije</item>
         <item>Promjena cijene lopte za jednu godinu ne ovisi o godišnjoj stopi inflacije</item>
     </string-array>
-    <string-array name="tesko_kviz3_pitanje5">
+    <string-array name="tesko_kviz2_pitanje5">
         <item>Ako je jedne godine lopta stojila 50 kuna, a sljedeće godine stoji 60 kuna, kolika je godišnja stopa inflacije?</item>
         <item>Godišnja stopa inflacije ne ovisi o promjeni cijene lopte za jednu godinu</item>
         <item>20 %</item>
         <item>10 %</item>
         <item>Godišnja stopa inflacije ne ovisi o promjeni cijene lopte za jednu godinu</item>
     </string-array>
-    <string-array name="tesko_kviz3_pitanje6">
+    <string-array name="tesko_kviz2_pitanje6">
         <item>Godišnja stopa inflacije stabilnih valuta iznosi:</item>
         <item>od 1 do 4 %</item>
         <item>od 3 do 5 %</item>
