@@ -34,6 +34,10 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        uzimanjeRjesenihKvizova();
+
+    }
+    private void uzimanjeRjesenihKvizova(){
         List<String> rjeseniKvizovi = new ArrayList<String>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -45,7 +49,16 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                rjeseniKvizovi.add(document.getId());
+                                Integer brojTocnih = Integer.parseInt(document.get("rezultat").toString());
+                                String naslovGrupe = document.get("naslov grupe").toString();
+                                String naslovTeme = document.get("naslov teme").toString();
+                                Integer redniBrojKviza = spremnikKategorija.vracanjeRednogBrojaKviza(naslovTeme,naslovGrupe);
+                                String imeBrojaPitanja = naslovGrupe + "_tema" + redniBrojKviza + "_brojpitanja";
+                                int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
+                                Integer brojPitanja = getResources().getInteger(kolicinaPitanjaId);
+                                if(brojTocnih==brojPitanja){
+                                    rjeseniKvizovi.add(document.getId());
+                                }
                             }
                             postavljanjeNoveExpandableListe(rjeseniKvizovi);
                         } else {
@@ -53,8 +66,11 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        uzimanjeRjesenihKvizova();
 
     }
     private void prikazTeme(String nazivTeme, String nazivGrupe, int redniBrojKviza) {

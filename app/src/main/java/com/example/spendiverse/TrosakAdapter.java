@@ -54,8 +54,6 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         kanta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 db.collection("korisnici").document(firebaseUser.getUid())

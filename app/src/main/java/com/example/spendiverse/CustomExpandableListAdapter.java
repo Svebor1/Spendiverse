@@ -66,11 +66,11 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         ImageView kvacicaImage = temaView.findViewById(R.id.kvacica_image);
         String pomocnaVarijabla = imeKategorije + "_" + imeTeme;
         if (rjeseniKvizovi.contains(imeKategorije + "_" + imeTeme)){
-            kvacicaImage.setVisibility(View.GONE);
-        }
-        else{
             kvacicaImage.setVisibility(View.VISIBLE);
 
+        }
+        else{
+            kvacicaImage.setVisibility(View.GONE);
         }
         TextView naslovTemeView = temaView.findViewById(R.id.naslovTeme);
         naslovTemeView.setText(imeTeme); //prikazujemo tekst teme
