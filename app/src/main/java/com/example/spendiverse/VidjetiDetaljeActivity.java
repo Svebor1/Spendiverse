@@ -45,7 +45,8 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
     String[] zadaneKategorije = {"sve kategorije", "prehrana", "promet", "kućanstvo"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
     String[] vremenskoRazdoblje = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
-    String[] valute = {"HRK", "USD", "EUR", "GBP"};
+    String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
+    ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,26 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String nazivKategorije = document.getData().get("naziv").toString();
                                 kategorije.add(nazivKategorije);
+
+                            }
+                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
 
                             }
                             // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());

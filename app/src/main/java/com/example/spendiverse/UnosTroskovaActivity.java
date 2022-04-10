@@ -72,7 +72,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ImageButton buttonIzbrisiSliku;
     private ImageButton buttonDownloadSlike;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
+    String zadaneValute[] = {"HRK", "USD", "EUR", "GBP"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
+    ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +96,32 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         buttonDownloadSlike = findViewById(R.id.download_slike);
         buttonIzbrisiSliku = findViewById(R.id.izbrisi_sliku_racuna);
 
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
+                            }
+                            arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, kategorije);
+                            arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+                            spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
+
+                            arrayAdapterValute = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, valute);
+                            arrayAdapterValute.setDropDownViewResource(R.layout.spinner_item);
+                            spinnerValuta.setAdapter(arrayAdapterValute);
+                            postavljanjeUnosaTroska();
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
         db.collection("korisnici").document(firebaseUser.getUid()).collection("kategorije")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -108,7 +136,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                             arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, kategorije);
                             arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
                             spinner.setAdapter(arrayAdapter); //postavljanje niz mogućih kategorija u izbornik za kategorije
-                            String valute[] = {"HRK", "USD", "EUR", "GBP"};
+
                             arrayAdapterValute = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, valute);
                             arrayAdapterValute.setDropDownViewResource(R.layout.spinner_item);
                             spinnerValuta.setAdapter(arrayAdapterValute);
@@ -119,6 +147,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
                     }
                 });
+
         slikaRacuna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
