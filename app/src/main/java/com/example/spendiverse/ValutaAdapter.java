@@ -53,18 +53,18 @@ public class ValutaAdapter extends ArrayAdapter<String> {
 
         ImageButton kanta = listitemView.findViewById(R.id.kanta_valuta);
         if (position < 4) {
-            //kategorije prehrana, kućanstvo i promet se ne mogu uređivati niti brisati
+            //četiri osnovne valute se ne mogu brisati: HRK, USD, EUR, GBP
             kanta.setVisibility(View.INVISIBLE);
         }
         AlertDialog alertDialogBrisanje =
-                //ako korisnik hoće izbrisati kategoriju prvo će se otvoriti prozor za potvrdu
+                //ako korisnik hoće izbrisati valutu prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(context)
                         .setTitle("Brisanje valute")
                         .setMessage("Jeste li sigurni da želite izbrisati valutu?" +
                                 "\nBiti će izbrisani svi troškovi koji pripadaju toj valuti")
                         .setPositiveButton("Da", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                izbrisiValutu(valuta); //ako je korisnik potvrdio brisanje kategorije poziva se metoda brisanja kategorije
+                                izbrisiValutu(valuta); //ako je korisnik potvrdio brisanje valute poziva se metoda brisanja valute
                             }
                         })
                         .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -87,16 +87,16 @@ public class ValutaAdapter extends ArrayAdapter<String> {
 
 
     /**
-     * metoda za brisanje kategorije
+     * metoda za brisanje valute
      * @param valuta
      */
     void izbrisiValutu(String valuta) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //brišemo troškove s zadanom kategorijom u bazi
+        //brišemo troškove s zadanom valutom u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("troskovi")
-                .whereEqualTo("valuta", valuta) //biramo samo troškove s zadanom kategorijom
+                .whereEqualTo("valuta", valuta) //biramo samo troškove s zadanom valutom
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -120,7 +120,7 @@ public class ValutaAdapter extends ArrayAdapter<String> {
         //brišemo kategoriju u bazi
         db.collection("korisnici").document(firebaseUser.getUid())
                 .collection("valute")
-                .whereEqualTo("naziv", valuta) //biramo samo zadanu kategoriju
+                .whereEqualTo("naziv", valuta) //biramo samo zadanu valute
                 .get()
                 .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
@@ -128,7 +128,7 @@ public class ValutaAdapter extends ArrayAdapter<String> {
                             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot valuta: task.getResult()) {
-                                        //brisanje kategorije
+                                        //brisanje valute
                                         valuta.getReference().delete();
                                     }
                                 }
@@ -141,6 +141,6 @@ public class ValutaAdapter extends ArrayAdapter<String> {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-        remove(valuta); //brisanje kategorije u listview
+        remove(valuta); //brisanje valute u listview
     }
 }
