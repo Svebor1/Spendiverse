@@ -14,6 +14,8 @@ import android.widget.ExpandableListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -34,7 +36,8 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         List<String> rjeseniKvizovi = new ArrayList<String>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("rezultati_kvizova")
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
