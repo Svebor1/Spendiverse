@@ -30,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,8 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private Button novaValutaButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
-    String[] valute = {"HRK", "USD", "EUR", "GBP"};
+    String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
+    ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,29 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
+
+                            }
+                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
         spinner = findViewById(R.id.vremensko_razdoblje);
         spinnerZaValute = findViewById(R.id.spinner_valute);
         novaKategorijaTroskaButton = findViewById(R.id.nova_kategorija_troska);

@@ -88,8 +88,8 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                String nazivKategorije = document.getData().get("naziv").toString();
-                                valute.add(nazivKategorije);
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
 
                             }
                             // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
