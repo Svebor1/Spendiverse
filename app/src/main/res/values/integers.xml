@@ -4,6 +4,7 @@
     <integer name="lagano_tema1_brojslideova">6</integer>
     <integer name="srednje_tema0_brojslideova">8</integer>
     <integer name="srednje_tema1_brojslideova">7</integer>
+    <integer name="srednje_tema2_brojslideova">4</integer>
     <integer name="tesko_tema0_brojslideova">7</integer>
     <integer name="tesko_tema1_brojslideova">7</integer>
     <integer name="tesko_tema2_brojslideova">3</integer>
@@ -12,6 +13,7 @@
     <integer name="lagano_tema1_brojpitanja">6</integer>
     <integer name="srednje_tema0_brojpitanja">3</integer>
     <integer name="srednje_tema1_brojpitanja">5</integer>
+    <integer name="srednje_tema2_brojpitanja">5</integer>
     <integer name="tesko_tema0_brojpitanja">5</integer>
     <integer name="tesko_tema1_brojpitanja">5</integer>
     <integer name="tesko_tema2_brojpitanja">3</integer>

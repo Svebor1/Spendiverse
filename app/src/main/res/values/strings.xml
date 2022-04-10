@@ -33,6 +33,11 @@
     <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
     <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
 
+    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci.\nNajčešće korištene vrste su tekući, žiro i devizni</string>
+    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja\nPostoji dozvoljeni minus.\Plaća se mjesečna naknada.</string>
+    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata \nNe postoji dozvoljeni minus.\nPlaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
+    <string name="srednje_tema2_text3">Devizni račun služi za primanja i isplatu novca u različitim valutama</string>
+
     <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
     <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
     <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
@@ -223,6 +228,57 @@
         <item>Odredi koliko si zaradio ili dobio.</item>
 
     </string-array>
+
+    <string-array name="srednje_kviz2_pitanje0">
+
+        <item>Želiš u online trgovini kupiti igraću konzolu, no potrebno je platiti u dolarima. Koju ćeš vrstu bankovnog računa iskoristiti?</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>žiro</item>
+        <item>devizni</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje1">
+
+        <item>Radiš na informatičkom kampu tjedan dan, koju ćeš vrstu bankovnog računa iskoristiti?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>žiro</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje2">
+
+        <item>Već 10 godina radiš kao učitelj. Na koji račun ti dolazi plaća?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>tekući</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje3">
+
+        <item>Ujak ti želi uplaiti veliku svotu novca u eurima. Na koji ćeš račun dobiti tu svotu?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>devizni</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje4">
+
+        <item>Bio si vrlo dobar učenik na fakultetu i fakultet ti želi uplatiti stipendiju. Na koji će ti je račun uplatiti?</item>
+        <item>devizni</item>
+        <item>tekući</item>
+        <item>žiro</item>
+        <item>žiro</item>
+
+    </string-array>
+
 
     <string-array name="tesko_kviz0_pitanje0">
 

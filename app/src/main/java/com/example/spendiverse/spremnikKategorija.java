@@ -7,7 +7,7 @@ import java.util.List;
 
 public class spremnikKategorija {
     public static String laganoArray[] = {"Što je novac?","Valute"};
-    public static String srednjeArray[] = {"Online kupovina","Financijski plan"};
+    public static String srednjeArray[] = {"Online kupovina","Financijski plan", "Bankovni računi"};
     public static String teskoArray[] = {"Kamate","Kriptovalute", "Inflacija"};
     public static HashMap<String, List<String>> getData() {
         HashMap<String, List<String>> kategorijeFinancijskePismenosti = new HashMap<String, List<String>>();
