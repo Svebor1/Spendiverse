@@ -49,6 +49,9 @@
     <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
     <string name="tesko_tema1_text6">Najpoznatija kriptovaluta je Bitcoin, ali neke druge su i Litecoin, Dogecoin, Dash, Monero, Cardano...</string>
 
+    <string name ="tesko_tema2_text0">Inflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name ="tesko_tema2_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
+    <string name ="tesko_tema2_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
 
     <string-array name="lagano_kviz0_pitanje0">
 
@@ -318,6 +321,28 @@
         <item>Jen</item>
         <item>Litecoin</item>
         <item>Jen</item>
+    </string-array>
 
+    <string-array name="tesko_kviz2_pitanje0">
+        <item>Što je od navedenog primjer inflacije?</item>
+        <item>Povećanje cijene mandarina</item>
+        <item>Povećanje cijene dijelova računala</item>
+        <item>Prosječno povećanje svih cijena</item>
+        <item>Prosječno povećanje svih cijena</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje1">
+        <item>Prije si mogao  za 10 kuna kupiti 20 mandarina, nakon inflacije za 10 kuna možeš kupiti: </item>
+        <item>20 mandarina</item>
+        <item>manje od 20 mandarina</item>
+        <item>više od 20 mandarina</item>
+        <item>manje od 20 mandarina</item>
+    </string-array>
+    <string-array name="tesko_kviz2_pitanje2">
+        <item>Prije si mogao kupiti nogometnu loptu za 50 kuna, nakon inflacije možeš kupiti loptu za: </item>
+        <item>50 kuna</item>
+        <item>više od 50 kuna</item>
+        <item>manje od 50 kuna</item>
+        <item>više od 50 kuna</item>
     </string-array>
 </resources>
