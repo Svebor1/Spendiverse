@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -55,28 +56,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                String nazivValute = document.getData().get("naziv").toString();
-                                valute.add(nazivValute);
-
-                            }
-                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-
-                    }
-                });
 
         spinner = findViewById(R.id.vremensko_razdoblje);
         spinnerZaValute = findViewById(R.id.spinner_valute);
@@ -185,6 +165,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        nadiValute();
         nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
     }
 
@@ -295,7 +276,35 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
 
     }
 
+    private void nadiValute() {
+        valute = new ArrayList<>(Arrays.asList(zadaneValute));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Context context = this;
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
 
+                            }
+                            ArrayAdapter arrayAdapterValute = new ArrayAdapter(context, android.R.layout.simple_spinner_item, valute);
+                            arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerZaValute.setAdapter(arrayAdapterValute);
+                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
