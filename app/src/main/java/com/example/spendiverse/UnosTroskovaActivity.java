@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -172,20 +173,9 @@ public class UnosTroskovaActivity extends AppCompatActivity {
 
     }
     private void storeImage(Bitmap image) {
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        File outputDir= new File(path);
-        outputDir.mkdirs();
         String fileName = Calendar.getInstance().getTime().toString().replace(" ","").replace("+","").replace(":","").replace("-","");
-        File newFile = new File(path + File.separator + "spendiverse" + fileName +".jpg");
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(newFile);
-            Toast.makeText(this, "Slika je spremljena u galeriju", Toast.LENGTH_LONG).show();
-            image.compress(Bitmap.CompressFormat.JPEG, 100, out);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        MediaStore.Images.Media.insertImage(getContentResolver(), image, "spendiverse" + fileName +".jpg", "");
+        Toast.makeText(this, "Slika je spremljena u galeriju", Toast.LENGTH_LONG).show();
     }
 
 
