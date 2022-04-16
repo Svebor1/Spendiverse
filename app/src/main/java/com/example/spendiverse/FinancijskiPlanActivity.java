@@ -1,9 +1,11 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,9 +31,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public class FinancijskiPlanActivity extends AppCompatActivity {
     //varijable za sve Spinnere u layoutu
@@ -53,10 +69,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView troskoviOstalo;
     private Integer troskovi;
     private Integer iznosPreostalo;
-
-
-
-
+    private HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +78,28 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://v6.exchangerate-api.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ExchangeService service = retrofit.create(ExchangeService.class);
+        Call<List<Valuta>> valute = service.listRepos("USD");
+        Context context = this;
+        valute.enqueue(new Callback<List<Valuta>>() {
+            @Override
+            public void onResponse(Call<List<Valuta>> call, Response<List<Valuta>> response) {
+                Toast t = new Toast(context);
+                t.setDuration(Toast.LENGTH_LONG);
+                t.setText(response.toString());
+                t.show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Valuta>> call, Throwable t) {
+                Log.e("TAG", "onFailure: "+t.toString() );
+            }
+        });
         //pronalazi TextViewove prema id-u
         dzeparac = findViewById(R.id.dzeparac_upis);
         poslovi = findViewById(R.id.poslovi_upis);
@@ -164,6 +199,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         troskoviOstalo.addTextChangedListener(promatrac);
 
     }
+    public interface ExchangeService {
+        @GET("v6/ec3b22d3e9c864306c37e179/latest/{valuta}")
+        Call<List<Valuta>> listRepos(@Path("valuta") String valuta);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
@@ -243,6 +282,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
      * @param godine izabrana godina
      */
     private void  nadiTroskove(String mjesec,String godine) {
+        ukupnoPoValutama = new HashMap<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -256,10 +296,12 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String datumMjesec = document.getData().get("datumMjesec").toString();
                                 String datumGodina = document.getData().get("datumGodina").toString();
+                                String valuta = document.getData().get("valuta").toString();
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
                                 if (godine.equals(datumGodina) && mjesec.equals(datumMjesec)) {
                                     troskovi = troskovi + cijena;
                                 }
+                                ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
                             }
                             TextView potrosenoText = findViewById(R.id.potroseno_text);
                             potrosenoText.setText(troskovi.toString() + " " + "kn");
@@ -278,6 +320,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private void dodajNoviPlan() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Map<String, Object> data = new HashMap<>();
+
         data.put("dzeparac",dzeparac.getText().toString());
         data.put("poslovi", poslovi.getText().toString());
         data.put("pokloni", pokloni.getText().toString());
