@@ -2,12 +2,12 @@
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cust_view"
-    android:minWidth="70dp"
-    android:padding="5dp"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:gravity="left|center_vertical"
-    android:textColor="@android:color/black"
-    android:textSize="16sp"
+    android:minWidth="70dp"
+    android:padding="5dp"
     android:paddingLeft="4dp"
-    android:textIsSelectable="false"/>
+    style="?android:attr/spinnerItemStyle"
+    android:textIsSelectable="false"
+    android:textSize="16sp" />

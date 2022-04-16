@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,6 +96,8 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             }
 
         });
+
+
         chart = findViewById(R.id.chart);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
@@ -102,16 +105,21 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart.setExtraOffsets(5, 10, 5, 5);
         chart.setDragDecelerationFrictionCoef(0.95f); //koeficijent trenja za animaciju okretanja grafa
         chart.setDrawHoleEnabled(true); //rupa u sredini
-        chart.setHoleColor(Color.WHITE); //boja rupe u sredini
         chart.setTransparentCircleColor(Color.WHITE);
         chart.setTransparentCircleAlpha(110);
         chart.setHoleRadius(58f); //radijus rupe u sredini
         chart.setTransparentCircleRadius(61f);
-
+        if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)>0){
+            chart.setHoleColor(Color.BLACK);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.WHITE);//boja texta u legendi
+        }
+        else{
+            chart.setHoleColor(Color.WHITE);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.BLACK);//boja texta u legendi
+        }
         chart.setDrawCenterText(true); //omogućuje ispis naziva grafa u sredini rupe
         chart.setCenterText("Troškovi"); //naziv grafa u sredini grafa
         chart.setRotationAngle(0);
-        // enable rotation of the chart by touch
         chart.setRotationEnabled(true); //omogućuje animaciju okretanja grafa
         chart.setHighlightPerTapEnabled(true);
         chart.getLegend().setWordWrapEnabled(true); //legenda s nazivima kategorija ne prelazi izvan ekrana

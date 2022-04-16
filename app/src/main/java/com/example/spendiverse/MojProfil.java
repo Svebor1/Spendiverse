@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -47,8 +50,10 @@ public class MojProfil extends AppCompatActivity {
     TextView nadimakKorisnika;
     List<Rezultat> rezultati;
     Switch prikazNaLjestvici;
+    Switch ukljuciDarkMode;
     ImageButton editNadimka;
     Button brisanjeRacuna;
+    Context context;
     String TAG = "MojProfil";
     private String nadimak;
 
@@ -58,6 +63,7 @@ public class MojProfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moj_profil);
+        context = this;
         //postavlja strelicu za natrag
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
@@ -69,9 +75,16 @@ public class MojProfil extends AppCompatActivity {
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
         prikazNaLjestvici = findViewById(R.id.switch1);
+        ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
         brisanjeRacuna = findViewById(R.id.brisanje_racuna);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "dark_mode", Context.MODE_PRIVATE);
+        int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
+        int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
+        ukljuciDarkMode.setChecked(darkModeStanje!=0);
 
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati profil prvo će se otvoriti prozor za potvrdu
@@ -162,6 +175,28 @@ public class MojProfil extends AppCompatActivity {
         };
         prikazLjestvice.setOnClickListener(listener3);
         procitajRezultate();
+
+        ukljuciDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); //ukljucen night mode
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //ugašen night mode
+                }
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        "dark_mode", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                if (b){
+                    editor.putInt("dark_mode", 1);
+                }else{
+                    editor.putInt("dark_mode", 0);
+                }
+                editor.apply();
+            }
+        });
+
+
 
     }
 
