@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -72,6 +74,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private String firebaseIdTroska;
     private ImageButton buttonIzbrisiSliku;
     private ImageButton buttonDownloadSlike;
+    private ImageButton buttonUploadSlike;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
     String zadaneValute[] = {"HRK", "USD", "EUR", "GBP"};
     ArrayList<String> kategorije = new ArrayList<>(Arrays.asList(zadaneKategorije));
@@ -96,6 +99,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         cijenaTroska = findViewById(R.id.cijena_troska);
         buttonDownloadSlike = findViewById(R.id.download_slike);
         buttonIzbrisiSliku = findViewById(R.id.izbrisi_sliku_racuna);
+        buttonUploadSlike = findViewById(R.id.upload_slike);
 
         db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
                 .get()
@@ -155,8 +159,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 prikazSlikeRacuna();
             }
         });
-
-
         buttonIzbrisiSliku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,8 +172,17 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 storeImage(photo);
             }
         });
-
+        buttonUploadSlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,2);
+            }
+        });
     }
+
+
     private void storeImage(Bitmap image) {
         String fileName = Calendar.getInstance().getTime().toString().replace(" ","").replace("+","").replace(":","").replace("-","");
         MediaStore.Images.Media.insertImage(getContentResolver(), image, "spendiverse" + fileName +".jpg", "");
@@ -422,13 +433,26 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public Bitmap getPicture(Uri selectedImage) {
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        return BitmapFactory.decodeFile(picturePath);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             photo = (Bitmap) data.getExtras().get("data");
             slikaRacuna.setImageBitmap(photo);
-
+        }
+        if (requestCode==2 && resultCode==RESULT_OK){
+            photo = (Bitmap) getPicture(data.getData());
+            slikaRacuna.setImageBitmap(getPicture(data.getData()));
         }
 
     }
