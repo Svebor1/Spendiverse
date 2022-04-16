@@ -1,6 +1,7 @@
 package com.example.spendiverse;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,10 +31,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,10 +69,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView troskoviOstalo;
     private Integer troskovi;
     private Integer iznosPreostalo;
-
-
-
-
+    private HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -280,6 +282,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
      * @param godine izabrana godina
      */
     private void  nadiTroskove(String mjesec,String godine) {
+        ukupnoPoValutama = new HashMap<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -293,10 +296,12 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String datumMjesec = document.getData().get("datumMjesec").toString();
                                 String datumGodina = document.getData().get("datumGodina").toString();
+                                String valuta = document.getData().get("valuta").toString();
                                 Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
                                 if (godine.equals(datumGodina) && mjesec.equals(datumMjesec)) {
                                     troskovi = troskovi + cijena;
                                 }
+                                ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
                             }
                             TextView potrosenoText = findViewById(R.id.potroseno_text);
                             potrosenoText.setText(troskovi.toString() + " " + "kn");
@@ -315,6 +320,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private void dodajNoviPlan() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Map<String, Object> data = new HashMap<>();
+
         data.put("dzeparac",dzeparac.getText().toString());
         data.put("poslovi", poslovi.getText().toString());
         data.put("pokloni", pokloni.getText().toString());
