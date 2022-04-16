@@ -134,7 +134,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="right"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/ic_racun" />
 
                 <LinearLayout
@@ -172,6 +172,15 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/ljubicasta_pozadina"
                         app:srcCompat="@drawable/ic_baseline_download_24" />
+
+                    <ImageButton
+                        android:id="@+id/upload_slike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/ljubicasta_pozadina"
+                        app:srcCompat="@drawable/ic_baseline_file_upload_24" />
                 </LinearLayout>
 
             </LinearLayout>
