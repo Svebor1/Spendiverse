@@ -30,9 +30,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
@@ -67,9 +71,14 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView kucanstvo;
     private TextView promet;
     private TextView troskoviOstalo;
-    private Integer troskovi;
+    private Double troskovi;
     private Integer iznosPreostalo;
-    private HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
+    private Spinner spinnerZaValute;
+    JsonElement konverzija;
+    HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
+    String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
+    ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,28 +87,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        spinnerZaValute = findViewById(R.id.odabir_valute);
+        nadiValute();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://v6.exchangerate-api.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ExchangeService service = retrofit.create(ExchangeService.class);
-        Call<List<Valuta>> valute = service.listRepos("USD");
-        Context context = this;
-        valute.enqueue(new Callback<List<Valuta>>() {
-            @Override
-            public void onResponse(Call<List<Valuta>> call, Response<List<Valuta>> response) {
-                Toast t = new Toast(context);
-                t.setDuration(Toast.LENGTH_LONG);
-                t.setText(response.toString());
-                t.show();
-            }
 
-            @Override
-            public void onFailure(Call<List<Valuta>> call, Throwable t) {
-                Log.e("TAG", "onFailure: "+t.toString() );
-            }
-        });
         //pronalazi TextViewove prema id-u
         dzeparac = findViewById(R.id.dzeparac_upis);
         poslovi = findViewById(R.id.poslovi_upis);
@@ -199,10 +190,12 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         troskoviOstalo.addTextChangedListener(promatrac);
 
     }
+
     public interface ExchangeService {
         @GET("v6/ec3b22d3e9c864306c37e179/latest/{valuta}")
-        Call<List<Valuta>> listRepos(@Path("valuta") String valuta);
+        Call<JsonObject> listRepos(@Path("valuta") String valuta);
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
@@ -264,6 +257,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 promet.setError(null);
                 nadiTroskove(mjesec,godine);
                 prikazPlana(mjesec,godine);
+
+
             }
 
             @Override
@@ -271,7 +266,33 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             }
 
         });
+    }
 
+
+    private void postaviSpinnerZaValute(){
+        //Stvara Adapter za listu vrijednosti
+        ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, android.R.layout.simple_spinner_item, valute);
+        //Određuje izgled ponuđenih izbora u Spinneru
+        arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Spinner se povezuje s Adapterom
+        spinnerZaValute.setAdapter(arrayAdapterValute);
+        //traži izbor koji želimo postaviti unutar ponuđenih izbora u Spinneru
+
+        int spinnerPosition = arrayAdapterValute.getPosition("HRK");
+        spinnerZaValute.setSelection(spinnerPosition);
+
+        spinnerZaValute.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                dohvatiKonverziju();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+
+        });
     }
 
     /**
@@ -281,8 +302,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
      * @param mjesec izabrani mjesec
      * @param godine izabrana godina
      */
-    private void  nadiTroskove(String mjesec,String godine) {
-        ukupnoPoValutama = new HashMap<>();
+    private void nadiTroskove(String mjesec,String godine) {
+        ukupnoPoValutama.clear();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -291,7 +312,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            troskovi = 0;
+                            troskovi = 0.0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String datumMjesec = document.getData().get("datumMjesec").toString();
@@ -301,10 +322,16 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 if (godine.equals(datumGodina) && mjesec.equals(datumMjesec)) {
                                     troskovi = troskovi + cijena;
                                 }
-                                ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
+                                if (ukupnoPoValutama.containsKey(valuta)) {
+                                    ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
+                                }
+                                else {
+                                    ukupnoPoValutama.put(valuta, cijena);
+                                }
+
                             }
-                            TextView potrosenoText = findViewById(R.id.potroseno_text);
-                            potrosenoText.setText(troskovi.toString() + " " + "kn");
+                            dohvatiKonverziju();
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -473,7 +500,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         Integer planiraniTroskovi = prehranaIznos + prometIznos + kucanstvoIznos + troskoviOstaloIznos;
         Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
         if (troskovi==null){
-            troskovi = 0;
+            troskovi = 0.0;
         }
         iznosPreostalo = zaradeno - planiraniTroskovi + ustedjevinaIznos;
 
@@ -493,6 +520,71 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         preostalo.setText(iznosPreostalo.toString()+" kn");
     }
 
+    private void nadiValute() {
+        valute = new ArrayList<>(Arrays.asList(zadaneValute));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Context context = this;
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
+
+                            }
+
+                            postaviSpinnerZaValute();
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+
+
+                    }
+                });
+
+    }
+
+    private void dohvatiKonverziju() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://v6.exchangerate-api.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ExchangeService service = retrofit.create(ExchangeService.class);
+        Call<JsonObject> valute = service.listRepos(spinnerZaValute.getSelectedItem().toString());
+        Context context = this;
+        valute.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Toast t = new Toast(context);
+                JsonObject objekt = response.body();
+                konverzija = objekt.get("conversion_rates");
+                troskovi = 0.0;
+
+                for(Map.Entry<String, Integer> entry : ukupnoPoValutama.entrySet()) {
+                    JsonElement iznos = konverzija.getAsJsonObject().get(entry.getKey());
+                    Double omjer = iznos.getAsDouble();
+                    Double cijenaPoValuti = entry.getValue() / omjer;
+                    troskovi += cijenaPoValuti;
+                }
+
+                TextView potrosenoText = findViewById(R.id.potroseno_text);
+                potrosenoText.setText(troskovi.toString() + " " + spinnerZaValute.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("TAG", "onFailure: "+t.toString() );
+            }
+        });
+    }
 
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
