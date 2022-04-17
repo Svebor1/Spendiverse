@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:layout_gravity="center"
             android:id="@+id/imageView6"
             android:layout_width="150dp"
@@ -28,7 +28,8 @@
             app:srcCompat="@drawable/ic_profil" />
 
         <LinearLayout
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -66,7 +67,7 @@
             <TextView
                 android:id="@+id/nadimak_korisnika"
                 android:layout_width="0dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 tools:layout_editor_absoluteX="173dp"
                 tools:layout_editor_absoluteY="246dp" />
@@ -144,7 +145,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp"
         >
 
         <LinearLayout
@@ -216,9 +216,9 @@
             android:text="prikaži ljestvicu" />
 
         <Button
-
             android:id="@+id/brisanje_racuna"
             android:layout_width="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
             android:text="Izbriši račun" />
     </LinearLayout>

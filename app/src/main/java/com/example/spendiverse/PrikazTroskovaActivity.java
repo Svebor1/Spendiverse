@@ -3,9 +3,11 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    private Context context;
     private Spinner spinnerZaValute;
     private Button novaKategorijaTroskaButton;
     private Button novaValutaButton;
@@ -99,6 +102,20 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
 
 
         chart = findViewById(R.id.chart);
+
+        context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "dark_mode", Context.MODE_PRIVATE);
+        int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
+        int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
+        if (darkModeStanje==0){
+            chart.setHoleColor(Color.WHITE);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.BLACK);//boja texta u legendi
+        }else{
+            chart.setHoleColor(Color.BLACK);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.WHITE);//boja texta u legendi
+        }
+
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
         chart.setDrawEntryLabels(false); //da se ne pojavljuje naziv kategorije na grafu
@@ -109,14 +126,9 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         chart.setTransparentCircleAlpha(110);
         chart.setHoleRadius(58f); //radijus rupe u sredini
         chart.setTransparentCircleRadius(61f);
-        if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)>0){
-            chart.setHoleColor(Color.BLACK);//boja rupe u sredini
-            chart.getLegend().setTextColor(Color.WHITE);//boja texta u legendi
-        }
-        else{
-            chart.setHoleColor(Color.WHITE);//boja rupe u sredini
-            chart.getLegend().setTextColor(Color.BLACK);//boja texta u legendi
-        }
+
+
+
         chart.setDrawCenterText(true); //omogućuje ispis naziva grafa u sredini rupe
         chart.setCenterText("Troškovi"); //naziv grafa u sredini grafa
         chart.setRotationAngle(0);
