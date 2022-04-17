@@ -35,6 +35,7 @@ import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -574,9 +575,12 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     Double cijenaPoValuti = entry.getValue() / omjer;
                     troskovi += cijenaPoValuti;
                 }
+                troskovi /= 2; //dijelimo s dva zato jer oba spinnera dodaju troškove u mapu
+                DecimalFormat myFormatter = new DecimalFormat("#.##");
+                String output = myFormatter.format(troskovi);
 
                 TextView potrosenoText = findViewById(R.id.potroseno_text);
-                potrosenoText.setText(troskovi.toString() + " " + spinnerZaValute.getSelectedItem().toString());
+                potrosenoText.setText(output + " " + spinnerZaValute.getSelectedItem().toString());
             }
 
             @Override
