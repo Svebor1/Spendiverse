@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Završi kviz" />
+            android:text="@string/zavrsi_kviz_button" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

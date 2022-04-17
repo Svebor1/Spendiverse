@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:text="Financijski plan" />
+                android:text="@string/financijski_plan_button" />
 
             <Button
                 android:id="@+id/unos_troskova"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:text="novi trošak" />
+                android:text="@string/novi_trosak_button" />
 
             <LinearLayout
                 android:id="@+id/layout_razdoblje"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="prikaz detalja" />
+                android:text="@string/prikaz_detalja_button" />
 
             <Button
                 android:id="@+id/nova_kategorija_troska"
@@ -83,13 +83,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:text="dodaj kategorju troška" />
+                android:text="@string/dodaj_kategoriju_troska_button" />
             <Button
                 android:id="@+id/nova_valuta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Dodaj valutu"
+                android:text="@string/dodaj_valutu_button"
                 android:layout_gravity="center"/>
 
         </LinearLayout>

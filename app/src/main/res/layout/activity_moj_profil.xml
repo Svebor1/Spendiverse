@@ -213,14 +213,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="prikaži ljestvicu" />
+            android:text="@string/prikazi_ljestvicu_button" />
 
         <Button
             android:id="@+id/brisanje_racuna"
             android:layout_width="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:text="Izbriši račun" />
+            android:text="@string/izbrisi_racun_button" />
     </LinearLayout>
 
 

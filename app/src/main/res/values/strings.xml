@@ -1,5 +1,22 @@
 <resources>
     <string name="app_name">Spendiverse</string>
+
+    <string name="prikaz_troskova_button">Prikaz troskova</string>
+    <string name="financijska_pismenost_button">Financijska pismenost</string>
+    <string name="prijava_button">Prijava</string>
+    <string name="financijski_plan_button">Financijski plan</string>
+    <string name="novi_trosak_button">Novi trošak</string>
+    <string name="prikaz_detalja_button">Prikaz detalja</string>
+    <string name="dodaj_kategoriju_troska_button">Dodaj kategoriju troška</string>
+    <string name="dodaj_valutu_button">Dodaj valutu</string>
+    <string name="spremi_promjene_button">Spremi promjene</string>
+    <string name="dodaj_trosak_button">Dodaj trošak</string>
+    <string name="zapocni_kviz_button">Započni kviz</string>
+    <string name="zavrsi_kviz_button">Završi kviz</string>
+    <string name="prikazi_ljestvicu_button">Prikaži ljestvicu</string>
+    <string name="izbrisi_racun_button">Izbriši račun</string>
+
+
     <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
     <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
     <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
