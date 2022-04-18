@@ -55,11 +55,12 @@ public class MojProfil extends AppCompatActivity {
     ImageButton editNadimka;
     Button brisanjeRacuna;
     ImageView bedzTrosak;
+    ImageView planiranjeBedz;
     Integer brojTroskova;
+    Integer brojPlanova;
     Context context;
     String TAG = "MojProfil";
     private String nadimak;
-
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     @Override
@@ -78,6 +79,7 @@ public class MojProfil extends AppCompatActivity {
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
         bedzTrosak = findViewById(R.id.trosak_bedz);
+        planiranjeBedz = findViewById(R.id.financijski_plan_bedz);
         prikazNaLjestvici = findViewById(R.id.switch1);
         ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
         brisanjeRacuna = findViewById(R.id.brisanje_racuna);
@@ -178,7 +180,7 @@ public class MojProfil extends AppCompatActivity {
             } //ako je odabran prikaz ljestvice
         };
         prikazLjestvice.setOnClickListener(listener3);
-        provjeraPostojanjaTroska();
+        provjeriPostojanjeBedzeva();
         procitajRezultate();
 
         ukljuciDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -273,8 +275,9 @@ public class MojProfil extends AppCompatActivity {
 
         }
     }
-    private void provjeraPostojanjaTroska() {
+    private void provjeriPostojanjeBedzeva() {
         brojTroskova = 0;
+        brojPlanova = 0;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
@@ -290,6 +293,25 @@ public class MojProfil extends AppCompatActivity {
                                 bedzTrosak.setVisibility(View.VISIBLE);
                             } else{
                                 bedzTrosak.setVisibility(View.GONE);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                brojPlanova++;
+                            }
+                            if (brojPlanova>0){
+                                planiranjeBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                planiranjeBedz.setVisibility(View.GONE);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

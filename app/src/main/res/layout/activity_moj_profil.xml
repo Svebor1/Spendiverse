@@ -34,7 +34,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/financijski_plan_bedz"
                 android:layout_width="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_height="40dp"
