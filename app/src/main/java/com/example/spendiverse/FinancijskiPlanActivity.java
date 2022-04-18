@@ -322,13 +322,14 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 Double cijena = Double.parseDouble(document.getData().get("cijena").toString());
                                 if (godine.equals(datumGodina) && mjesec.equals(datumMjesec)) {
                                     troskovi = troskovi + cijena;
+                                    if (ukupnoPoValutama.containsKey(valuta)) {
+                                        ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
+                                    }
+                                    else {
+                                        ukupnoPoValutama.put(valuta, cijena);
+                                    }
                                 }
-                                if (ukupnoPoValutama.containsKey(valuta)) {
-                                    ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
-                                }
-                                else {
-                                    ukupnoPoValutama.put(valuta, cijena);
-                                }
+
 
                             }
                             dohvatiKonverziju();
