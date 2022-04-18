@@ -73,7 +73,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView promet;
     private TextView troskoviOstalo;
     private Double troskovi;
-    private Integer iznosPreostalo;
+    private Double iznosPreostalo;
     private Spinner spinnerZaValute;
     JsonElement konverzija;
     HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
@@ -459,47 +459,47 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         String prometText = promet.getText().toString();
         String kucanstvoText = kucanstvo.getText().toString();
         String troskoviOstaloText = troskoviOstalo.getText().toString();
-        Integer dzeparacIznos;
-        Integer posloviIznos;
-        Integer pokloniIznos;
-        Integer ostaloIznos;
-        Integer ustedjevinaIznos;
-        Integer prehranaIznos;
-        Integer prometIznos;
-        Integer kucanstvoIznos;
-        Integer troskoviOstaloIznos;
+        Double dzeparacIznos;
+        Double posloviIznos;
+        Double pokloniIznos;
+        Double ostaloIznos;
+        Double ustedjevinaIznos;
+        Double prehranaIznos;
+        Double prometIznos;
+        Double kucanstvoIznos;
+        Double troskoviOstaloIznos;
 
         if (dzeparacText.equals("")){
-            dzeparacIznos = 0;}
-        else{dzeparacIznos = Integer.parseInt(dzeparacText); }
+            dzeparacIznos = 0.0;}
+        else{dzeparacIznos = Double.parseDouble(dzeparacText); }
 
-        if (posloviText.equals("")){ posloviIznos = 0;}
-        else{posloviIznos = Integer.parseInt(posloviText); }
+        if (posloviText.equals("")){ posloviIznos = 0.0;}
+        else{posloviIznos = Double.parseDouble(posloviText); }
 
-        if (pokloniText.equals("")){ pokloniIznos = 0; }
-        else{ pokloniIznos = Integer.parseInt(pokloniText);}
+        if (pokloniText.equals("")){ pokloniIznos = 0.0; }
+        else{ pokloniIznos = Double.parseDouble(pokloniText);}
 
-        if (ostaloText.equals("")){ ostaloIznos = 0;}
-        else{ostaloIznos = Integer.parseInt(ostaloText);}
+        if (ostaloText.equals("")){ ostaloIznos = 0.0;}
+        else{ostaloIznos = Double.parseDouble(ostaloText);}
 
-        if (ustedjevinaText.equals("")){ ustedjevinaIznos = 0;}
-        else{ustedjevinaIznos = Integer.parseInt(ustedjevinaText);}
+        if (ustedjevinaText.equals("")){ ustedjevinaIznos = 0.0;}
+        else{ustedjevinaIznos = Double.parseDouble(ustedjevinaText);}
 
-        if (prehranaText.equals("")){ prehranaIznos = 0;}
-        else{prehranaIznos = Integer.parseInt(prehranaText);}
+        if (prehranaText.equals("")){ prehranaIznos = 0.0;}
+        else{prehranaIznos = Double.parseDouble(prehranaText);}
 
-        if (prometText.equals("")){ prometIznos = 0;}
-        else{prometIznos = Integer.parseInt(prometText);}
+        if (prometText.equals("")){ prometIznos = 0.0;}
+        else{prometIznos = Double.parseDouble(prometText);}
 
-        if (kucanstvoText.equals("")){ kucanstvoIznos = 0;}
-        else{kucanstvoIznos = Integer.parseInt(kucanstvoText);}
+        if (kucanstvoText.equals("")){ kucanstvoIznos = 0.0;}
+        else{kucanstvoIznos = Double.parseDouble(kucanstvoText);}
 
-        if (troskoviOstaloText.equals("")){ troskoviOstaloIznos = 0;}
-        else{troskoviOstaloIznos = Integer.parseInt(troskoviOstaloText);}
+        if (troskoviOstaloText.equals("")){ troskoviOstaloIznos = 0.0;}
+        else{troskoviOstaloIznos = Double.parseDouble(troskoviOstaloText);}
 
 
-        Integer planiraniTroskovi = prehranaIznos + prometIznos + kucanstvoIznos + troskoviOstaloIznos;
-        Integer zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
+        Double planiraniTroskovi = prehranaIznos + prometIznos + kucanstvoIznos + troskoviOstaloIznos;
+        Double zaradeno = dzeparacIznos + posloviIznos + pokloniIznos + ostaloIznos;
         if (troskovi==null){
             troskovi = 0.0;
         }
