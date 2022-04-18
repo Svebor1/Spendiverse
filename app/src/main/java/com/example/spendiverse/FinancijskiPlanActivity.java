@@ -287,6 +287,9 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 dohvatiKonverziju();
+                String godine = spinnerGodine.getSelectedItem().toString();
+                String mjesec = spinnerMjeseci.getSelectedItem().toString();
+                prikazPlana(mjesec,godine);
             }
 
             @Override
@@ -361,6 +364,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         data.put("troskovi_kucanstvo", kucanstvo.getText().toString());
         data.put("troskovi_promet", promet.getText().toString());
         data.put("troskovi_ostalo", troskoviOstalo.getText().toString());
+        data.put("valuta", spinnerZaValute.getSelectedItem().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //planovi se spremaju pod nazivom plan_mjesec_godina
         db.collection("korisnici").document(firebaseUser.getUid())
@@ -402,25 +406,18 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String planMjesec = document.getData().get("mjesec").toString();
                                 String planGodina = document.getData().get("godina").toString();
-                                String planDzeparac = document.getData().get("dzeparac").toString();
-                                String planPokloni = document.getData().get("pokloni").toString();
-                                String planPoslovi = document.getData().get("poslovi").toString();
-                                String planOstalo = document.getData().get("ostalo").toString();
-                                String planUstedjevina = document.getData().get("ustedjevina").toString();
-                                String planPromet = document.getData().get("troskovi_promet").toString();
-                                String planPrehrana = document.getData().get("troskovi_prehrana").toString();
-                                String planKucanstvo = document.getData().get("troskovi_kucanstvo").toString();
-                                String planTroskoviOstalo = document.getData().get("troskovi_ostalo").toString();
+                                Double planDzeparac = Double.parseDouble(document.getData().get("dzeparac").toString());
+                                Double planPokloni = Double.parseDouble(document.getData().get("pokloni").toString());
+                                Double planPoslovi = Double.parseDouble(document.getData().get("poslovi").toString());
+                                Double planOstalo = Double.parseDouble(document.getData().get("ostalo").toString());
+                                Double planUstedjevina = Double.parseDouble(document.getData().get("ustedjevina").toString());
+                                Double planPromet = Double.parseDouble(document.getData().get("troskovi_promet").toString());
+                                Double planPrehrana = Double.parseDouble(document.getData().get("troskovi_prehrana").toString());
+                                Double planKucanstvo = Double.parseDouble(document.getData().get("troskovi_kucanstvo").toString());
+                                Double planTroskoviOstalo = Double.parseDouble(document.getData().get("troskovi_ostalo").toString());
+                                String planValuta = document.getData().get("valuta").toString();
                                 if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
-                                    dzeparac.setText(planDzeparac);
-                                    poslovi.setText(planPoslovi);
-                                    pokloni.setText(planPokloni);
-                                    ostalo.setText(planOstalo);
-                                    ustedjevina.setText(planUstedjevina);
-                                    promet.setText(planPromet);
-                                    prehrana.setText(planPrehrana);
-                                    kucanstvo.setText(planKucanstvo);
-                                    troskoviOstalo.setText(planTroskoviOstalo);
+                                    dohvatiKonverzijuPlana(planDzeparac, planPokloni, planPoslovi, planOstalo, planUstedjevina, planPromet, planPrehrana, planKucanstvo, planTroskoviOstalo, planValuta);
                                 }
                             }
                         } else {
@@ -503,8 +500,9 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         if (troskovi==null){
             troskovi = 0.0;
         }
+        DecimalFormat myFormatter = new DecimalFormat("#.##");
         iznosPreostalo = zaradeno - planiraniTroskovi + ustedjevinaIznos;
-
+        String iznosPreostaloZaokruzeno = myFormatter.format(iznosPreostalo);
         if (iznosPreostalo>0){
             poruka = "Bravo! Plan pokazuje da ćeš uštedjeti!";
         }
@@ -515,10 +513,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             poruka = "Jao! Plan pokazuje da ćeš ovaj mjesec biti u minusu!";
         }
         TextView planiranoPotroseno = findViewById(R.id.planirano_potroseno_text);
-        planiranoPotroseno.setText(planiraniTroskovi.toString()+" kn");
+        planiranoPotroseno.setText(planiraniTroskovi.toString()+" " + spinnerZaValute.getSelectedItem().toString());
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
-        preostalo.setText(iznosPreostalo.toString()+" kn");
+        preostalo.setText(iznosPreostaloZaokruzeno+" " + spinnerZaValute.getSelectedItem().toString());
     }
 
     private void nadiValute() {
@@ -579,6 +577,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     Double cijenaPoValuti = entry.getValue() / omjer;
                     troskovi += cijenaPoValuti;
                 }
+
                 troskovi /= 2; //dijelimo s dva zato jer oba spinnera dodaju troškove u mapu
                 DecimalFormat myFormatter = new DecimalFormat("#.##");
                 String output = myFormatter.format(troskovi);
@@ -593,7 +592,70 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             }
         });
     }
+    private void dohvatiKonverzijuPlana(Double planDzeparac, Double planPoslovi, Double planPokloni, Double planOstalo, Double planUstedjevina, Double planPromet, Double planPrehrana, Double planKucanstvo, Double planTroskoviOstalo, String planValuta) {
+       if (spinnerZaValute.getSelectedItem()==null) {
+            return;
+        }
+        String valuta = spinnerZaValute.getSelectedItem().toString();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://v6.exchangerate-api.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ExchangeService service = retrofit.create(ExchangeService.class);
+        Call<JsonObject> valute = service.listRepos(valuta);
+        Context context = this;
 
+        valute.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                Toast t = new Toast(context);
+                JsonObject objekt = response.body();
+                konverzija = objekt.get("conversion_rates");
+                troskovi = 0.0;
+
+                for(Map.Entry<String, Integer> entry : ukupnoPoValutama.entrySet()) {
+                    JsonElement iznos = konverzija.getAsJsonObject().get(entry.getKey());
+                    Double omjer = iznos.getAsDouble();
+                    Double cijenaPoValuti = entry.getValue() / omjer;
+                    troskovi += cijenaPoValuti;
+                }
+
+                JsonElement iznos = konverzija.getAsJsonObject().get(planValuta);
+                Double omjer = iznos.getAsDouble();
+                DecimalFormat myFormatter = new DecimalFormat("#.##");
+                String planDzeparacPreracunato = myFormatter.format(planDzeparac / omjer);
+                String planPosloviPreracunato = myFormatter.format(planPoslovi / omjer);
+                String planPokloniPreracunato = myFormatter.format(planPokloni / omjer);
+                String planOstaloPreracunato = myFormatter.format(planOstalo / omjer);
+                String planUstedjevninaPreracunato = myFormatter.format(planUstedjevina / omjer);
+                String planPrometPreracunato = myFormatter.format(planPromet / omjer);
+                String planPrehranaPreracunato = myFormatter.format(planPrehrana / omjer);
+                String planKucanstvoPraracunato = myFormatter.format(planKucanstvo / omjer);
+                String planTroskoviOstaloPreracunato = myFormatter.format(planTroskoviOstalo / omjer);
+
+                dzeparac.setText(planDzeparacPreracunato);
+                poslovi.setText(planPosloviPreracunato);
+                pokloni.setText(planPokloniPreracunato);
+                ostalo.setText(planOstaloPreracunato);
+                ustedjevina.setText(planUstedjevninaPreracunato);
+                promet.setText(planPrometPreracunato);
+                prehrana.setText(planPrehranaPreracunato);
+                kucanstvo.setText(planKucanstvoPraracunato);
+                troskoviOstalo.setText(planTroskoviOstaloPreracunato);
+                /*
+                TextView potrosenoText = findViewById(R.id.potroseno_text);
+                potrosenoText.setText(output + " " + spinnerZaValute.getSelectedItem().toString());
+
+                 */
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("TAG", "onFailure: "+t.toString() );
+            }
+        });
+    }
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
         if (dzeparac.getText().toString().equals("")){
