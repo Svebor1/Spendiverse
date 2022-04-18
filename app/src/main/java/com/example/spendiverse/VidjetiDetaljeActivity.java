@@ -289,7 +289,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
             Collections.sort(filtriraniTroskovi, usporediPoDatumu);
             Collections.reverse(filtriraniTroskovi);
         }
-        else if (uvjetSortiranja.equals("cijeni silazno")) {
+        else if (uvjetSortiranja.equals("cijeni uzlazno")) {
             Collections.sort(filtriraniTroskovi, usporediPoCijeni);
         }
         else {
