@@ -82,4 +82,34 @@
     <string name="zavrsi_kviz_button">End the quiz</string>
     <string name="prikazi_ljestvicu_button">Show scoreboard</string>
     <string name="izbrisi_racun_button">Delete your account</string>
+
+    <string name="lagano_tezina">Easy</string>
+    <string name="srednje_tezina">Medium</string>
+    <string name="tesko_tezina">Hard</string>
+
+    <string name="sto_je_novac_tema">Što je novac?</string>
+    <string name="valute_tema">Valute</string>
+    <string name="online_kupovina_tema">Online kupovina</string>
+    <string name="financijski_plan_tema">Financijski plan</string>
+    <string name="bankovni_racuni_tema">Bankovni računi</string>
+    <string name="inflacija_tema">Inflacija</string>
+    <string name="kamate_tema">Kamate</string>
+    <string name="kriptovalute_tema">Kriptovalute</string>
+    <string name="inflacija_napredno_tema">Inflacija napredno</string>
+
+    <string name="brisanje_valute_naslov_alert">Deleting currency</string>
+    <string name="brisanje_valute_alert">Are you sure you want to delete this currency?\nAll expenses with this currency will be deleted</string>
+    <string name="brisanje_kategorije_naslov_alert">Deleting category</string>
+    <string name="brisanje_kategorije_alert">Are you sure you want to delete this category?\nAll expenses in this category will be deleted</string>
+    <string name="odjava_alert">Are you sure you want to sign out?</string>
+    <string name="odgovor_ne">No</string>
+    <string name="odgovor_da">Yes</string>
+    <string name="brisanje_profila_naslov_alert">Deleting account</string>
+    <string name="brisanje_profila_alert">Are you sure you want to delete your account?</string>
+    <string name="kviz_odgovor_pokusaj_ponovno">Try again</string>
+    <string name="kviz_odgovor_zatvori">Close</string>
+    <string name="krivi_odgovori">Incorrectly answered questions are:</string>
+    <string name="nadimak_text">Nickname:</string>
+    <string name="broj_rijesenih_kvizova_text">Number of solved quizzes:</string>
+    <string name="tvoji_bodovi_text">"Your points: "</string>
 </resources>

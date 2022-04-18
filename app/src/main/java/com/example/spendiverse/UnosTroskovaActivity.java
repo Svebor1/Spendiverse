@@ -44,6 +44,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -214,7 +215,10 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private void prikazSlikeRacuna() {
         if (photo != null) {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("slika", photo);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap smallPhoto = resize(photo,720,720);
+            smallPhoto.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            bundle.putByteArray("slika", stream.toByteArray());
             Intent intent = new Intent(this, PrikazSlikeRacunaActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -242,9 +246,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                 }
             };
             dodatiTrosak.setOnClickListener(listener);
-
-
-
         } else {
             //uzimaju se podaci starog troška i prikazuju se na ekranu
             String nazivTroskaText = bundle.getString("naziv");
@@ -264,7 +265,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             StorageReference storageRef = storage.getReference();
             StorageReference pathReference = storageRef.child(firebaseIdTroska+".jpg");
 
-            final long ONE_MEGABYTE = 1024 * 1024;
+            final long ONE_MEGABYTE = 1024 * 1024 * 10;
             pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
@@ -451,8 +452,17 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             slikaRacuna.setImageBitmap(photo);
         }
         if (requestCode==2 && resultCode==RESULT_OK){
-            photo = (Bitmap) getPicture(data.getData());
-            slikaRacuna.setImageBitmap(getPicture(data.getData()));
+            Uri selectedImage = data.getData();
+
+            try {
+                InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                photo = BitmapFactory.decodeStream(imageStream);
+                slikaRacuna.setImageBitmap(photo);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            /*photo = (Bitmap) getPicture(data.getData());
+            slikaRacuna.setImageBitmap(getPicture(data.getData()));*/
         }
 
     }
@@ -478,6 +488,27 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                     Log.e("unos troskova", "uspjeh");
                 }
             });
+        }
+    }
+
+    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+        if (maxHeight > 0 && maxWidth > 0) {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            float ratioBitmap = (float) width / (float) height;
+            float ratioMax = (float) maxWidth / (float) maxHeight;
+
+            int finalWidth = maxWidth;
+            int finalHeight = maxHeight;
+            if (ratioMax > ratioBitmap) {
+                finalWidth = (int) ((float)maxHeight * ratioBitmap);
+            } else {
+                finalHeight = (int) ((float)maxWidth / ratioBitmap);
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+            return image;
+        } else {
+            return image;
         }
     }
 }

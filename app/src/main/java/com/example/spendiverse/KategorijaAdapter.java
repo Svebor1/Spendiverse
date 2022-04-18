@@ -62,15 +62,14 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati kategoriju prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(context)
-                        .setTitle("Brisanje kategorije")
-                        .setMessage("Jeste li sigurni da želite izbrisati kategoriju?" +
-                                "\nBiti će izbrisani svi troškovi koji pripadaju toj kategoriji")
-                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.brisanje_kategorije_naslov_alert)
+                        .setMessage(R.string.brisanje_kategorije_alert)
+                        .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 izbrisiKategoriju(kategorija); //ako je korisnik potvrdio brisanje kategorije poziva se metoda brisanja kategorije
                             }
                         })
-                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }

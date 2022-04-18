@@ -15,6 +15,40 @@
     <string name="zavrsi_kviz_button">Završi kviz</string>
     <string name="prikazi_ljestvicu_button">Prikaži ljestvicu</string>
     <string name="izbrisi_racun_button">Izbriši račun</string>
+    
+    <string name="lagano_tezina">Lagano</string>
+    <string name="srednje_tezina">Srednje</string>
+    <string name="tesko_tezina">Teško</string>
+
+    <string name="sto_je_novac_tema">Što je novac?</string>
+    <string name="valute_tema">Valute</string>
+    <string name="online_kupovina_tema">Online kupovina</string>
+    <string name="financijski_plan_tema">Financijski plan</string>
+    <string name="bankovni_racuni_tema">Bankovni računi</string>
+    <string name="inflacija_tema">Inflacija</string>
+    <string name="kamate_tema">Kamate</string>
+    <string name="kriptovalute_tema">Kriptovalute</string>
+    <string name="inflacija_napredno_tema">Inflacija napredno</string>
+
+    <string name="brisanje_valute_naslov_alert">Brisanje valute</string>
+    <string name="brisanje_valute_alert">Jeste li sigurni da želite izbrisati valutu?\nBiti će izbrisani svi troškovi koji pripadaju toj valuti</string>
+    <string name="brisanje_profila_naslov_alert">Brisanje profila</string>
+    <string name="brisanje_profila_alert">Jeste li sigurni da želite izbrisati profil?</string>
+    <string name="brisanje_kategorije_naslov_alert">Brisanje kategorije</string>
+    <string name="brisanje_kategorije_alert">Jeste li sigurni da želite izbrisati kategoriju?\nBiti će izbrisani svi troškovi koji pripadaju toj kategoriji</string>
+    <string name="odjava_alert">Jeste li sigurni da se želite odjaviti?</string>
+    <string name="odgovor_ne">Ne</string>
+    <string name="odgovor_da">Da</string>
+    <string name="kviz_odgovor_pokusaj_ponovno">Pokušaj ponovno</string>
+    <string name="kviz_odgovor_zatvori">Zatvori</string>
+    <string name="krivi_odgovori">Netočno odgovorena pitanja su:</string>
+    
+    <string name="nadimak_text">Nadimak:</string>
+    <string name="broj_rijesenih_kvizova_text">Broj riješenih kvizova:</string>
+    <string name="tvoji_bodovi_text">Tvoji bodovi:</string>
+    <string name="prikazi_me_na_ljsetvici_text">Prikaži me na ljestvici:</string>
+    <string name="ukljuci_dark_mode_text">Uključi dark mode:</string>
+
 
 
     <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
