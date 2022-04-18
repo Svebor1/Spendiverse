@@ -69,15 +69,19 @@
     <string name = "tesko_tema2_text5">Godišnja stopa inflacije cijena je ukupne košarice u određenom mjesecu uspoređena s njezinom cijenom isti mjesec prethodne godine.</string>
     <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
     <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
-    <string name = "tesko_tema3_text0">Inflacija može biti razlićita /nAko je godišnja stopa inflacije veća od 100 posto onda je to hiperinflacija \nako je manja od 0 posto onda je to deflacija</string>
-    <string name = "tesko_tema3_text1">Deflacija smanjuje vrijednost valute tijekom vremena</string>
-    <string name = "tesko_tema3_text2">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
-    <string name = "tesko_name3_text3">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
-    <string name = "tesko_name3_text4">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
-    <string name = "tesko_name3_text5">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
-    <string name = "tesko_name3_text6">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
-    <string name = "tesko_name3_text7">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
-    <string name = "tesko_name3_text8">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
+
+    <string name = "tesko_tema3_text0">Inflacija može biti različita /nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
+    <string name = "tesko_tema3_text1">Ako je mjesečna stopa inflacija veća od 20-30 posto onda se zove hiperinflacija</string>
+    <string name = "tesko_tema3_text2">Ako je godišnja stopa inflacija manja od 0 posto onda je to deflacija</string>
+    <string name = "tesko_tema3_text3">Kod hiperinflacije novac jako brzo gubi vrijednost što radi valutu nesigurnom, zbog čega ljudi koji pohranjuju novac u toj valuti brzo postaju siromašnijima</string>
+    <string name = "tesko_tema3_text4">Deflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name = "tesko_tema3_text5">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
+    <string name = "tesko_name3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
+    <string name = "tesko_name3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
+    <string name = "tesko_name3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
+    <string name = "tesko_name3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
+    <string name = "tesko_name3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
+    <string name = "tesko_name3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
     <string name="dodaj_trosak_button">Add expense</string>
     <string name="spremi_promjene_button">Save changes</string>
