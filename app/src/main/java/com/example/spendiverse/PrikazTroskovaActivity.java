@@ -61,7 +61,6 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
         spinner = findViewById(R.id.vremensko_razdoblje);
         spinnerZaValute = findViewById(R.id.spinner_valute);
         novaKategorijaTroskaButton = findViewById(R.id.nova_kategorija_troska);
@@ -178,6 +177,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                 novaValuta();
             }
         });
+
     }
 
 
@@ -186,7 +186,6 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         nadiValute();
-        nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
     }
 
     private void unosTroskova() {
@@ -245,7 +244,9 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()) {
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String naziv = document.getData().get("naziv").toString();
@@ -259,7 +260,9 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina) && valuta.equals(odabranaValuta)) {
                                     troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, valuta, firebaseId));
                                 }
+
                             }
+
                             List<PieEntry> entries = new ArrayList<>();
                             Map<String, Integer> trosakZaKategorije = new HashMap<>();
                             for(Trosak trosak: troskovi) {
@@ -290,6 +293,8 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
+
+
                     }
                 });
 
@@ -316,6 +321,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                             ArrayAdapter arrayAdapterValute = new ArrayAdapter(context, android.R.layout.simple_spinner_item, valute);
                             arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinnerZaValute.setAdapter(arrayAdapterValute);
+                            nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
                             // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());

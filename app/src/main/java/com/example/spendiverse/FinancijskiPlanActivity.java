@@ -553,17 +553,21 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     }
 
     private void dohvatiKonverziju() {
-
+        if (spinnerZaValute.getSelectedItem()==null) {
+            return;
+        }
+        String valuta = spinnerZaValute.getSelectedItem().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://v6.exchangerate-api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ExchangeService service = retrofit.create(ExchangeService.class);
-        Call<JsonObject> valute = service.listRepos(spinnerZaValute.getSelectedItem().toString());
+        Call<JsonObject> valute = service.listRepos(valuta);
         Context context = this;
         valute.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
                 Toast t = new Toast(context);
                 JsonObject objekt = response.body();
                 konverzija = objekt.get("conversion_rates");
