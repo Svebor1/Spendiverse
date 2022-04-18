@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class TrosakAdapter extends ArrayAdapter<Trosak> {
@@ -46,7 +47,9 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         TextView cijena = listitemView.findViewById(R.id.cijena_tv);
         nameTV.setText(trosak.getNaziv());
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
-        cijena.setText(trosak.getCijena()+ " "+  trosak.getValuta());
+        DecimalFormat myFormatter = new DecimalFormat("#.##");
+        String zaokruzenaCijena = myFormatter.format(trosak.getCijena());
+        cijena.setText(zaokruzenaCijena + " "+  trosak.getValuta());
         ImageButton kanta;
         ImageButton edit;
         edit = listitemView.findViewById(R.id.edit);
@@ -100,7 +103,7 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
                 bundle.putInt("datumDan", trosak.getDatumDan());
                 bundle.putInt("datumMjesec", trosak.getDatumMjesec());
                 bundle.putInt("datumGodina", trosak.getDatumGodina());
-                bundle.putInt("cijena", trosak.getCijena());
+                bundle.putDouble("cijena", trosak.getCijena());
                 bundle.putString("firebaseId", trosak.getFirebaseId());
                 intent.putExtras(bundle);
                 context.startActivity(intent);

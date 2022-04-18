@@ -254,7 +254,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 Integer datumDan = Integer.parseInt(document.getData().get("datumDan").toString());
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
-                                Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                Double cijena = Double.parseDouble(document.getData().get("cijena").toString());
                                 String firebaseId = document.getId();
                                 if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina) && valuta.equals(odabranaValuta)) {
                                     troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, valuta, firebaseId));
@@ -267,7 +267,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 if (kategorijaDoSada == null) {
                                     kategorijaDoSada = 0;
                                 }
-                                trosakZaKategorije.put(trosak.getKategorija(), kategorijaDoSada+trosak.getCijena());
+                                trosakZaKategorije.put(trosak.getKategorija(), kategorijaDoSada+trosak.getCijena().intValue());
                             }
                             for (Map.Entry<String, Integer> entry : trosakZaKategorije.entrySet()) {
                                 entries.add(new PieEntry(entry.getValue(), entry.getKey()));

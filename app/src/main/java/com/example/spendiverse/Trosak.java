@@ -9,7 +9,7 @@ public class Trosak {
     private Integer datumGodina;
     private String kategorija;
     private String valuta;
-    private Integer cijena;
+    private Double cijena;
     private String firebaseId;
 
     public String getFirebaseId() {
@@ -20,7 +20,7 @@ public class Trosak {
         this.firebaseId = firebaseId;
     }
 
-    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena, String valuta, String firebaseId) {
+    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Double cijena, String valuta, String firebaseId) {
         this.naziv = naziv;
         this.datumDan = datumDan;
         this.datumMjesec = datumMjesec;
@@ -31,11 +31,11 @@ public class Trosak {
         this.firebaseId = firebaseId;
     }
 
-    public Integer getCijena() {
+    public Double getCijena() {
         return cijena;
     }
 
-    public void setCijena(Integer cijena) {
+    public void setCijena(Double cijena) {
         this.cijena = cijena;
     }
 

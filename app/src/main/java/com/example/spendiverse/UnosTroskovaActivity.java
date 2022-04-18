@@ -249,7 +249,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             //uzimaju se podaci starog troška i prikazuju se na ekranu
             String nazivTroskaText = bundle.getString("naziv");
             nazivTroska.setText(nazivTroskaText);
-            Integer cijenaTroskaText = bundle.getInt("cijena");
+            Double cijenaTroskaText = bundle.getDouble("cijena");
             cijenaTroska.setText(cijenaTroskaText.toString());
             String kategorijaTroska = bundle.getString("kategorija");
             int spinnerPosition = arrayAdapter.getPosition(kategorijaTroska);

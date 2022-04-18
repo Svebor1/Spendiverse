@@ -196,7 +196,7 @@ public class VidjetiDetaljeActivity extends AppCompatActivity {
                                 Integer datumDan = Integer.parseInt(document.getData().get("datumDan").toString());
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
-                                Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                Double cijena = Double.parseDouble(document.getData().get("cijena").toString());
                                 String firebaseId = document.getId();
                                 troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, valuta, firebaseId));
                             }

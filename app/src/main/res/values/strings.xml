@@ -84,7 +84,6 @@
     <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
     <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
     <string-array name="lagano_kviz0_pitanje0">
-
         <item>U kojem se obliku novac danas ne koristi?</item>
         <item>kovanice</item>
         <item>školjke</item>
