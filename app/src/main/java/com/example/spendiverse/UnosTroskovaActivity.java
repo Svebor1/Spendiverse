@@ -416,6 +416,10 @@ public class UnosTroskovaActivity extends AppCompatActivity {
             cijenaTroska.setError("Unesite cijenu troška");
             rezultatBooleana = false;
         }
+        if (cijenaTroska.getText().toString().length()>8){
+            cijenaTroska.setError("Trošak ne može biti veći od 99999999");
+            rezultatBooleana = false;
+        }
         if (nazivTroska.getText().toString().replace(" ","").equals("")) {
             nazivTroska.setError("Unesite naziv troška");
             rezultatBooleana = false;

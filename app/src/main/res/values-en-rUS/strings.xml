@@ -5,70 +5,7 @@
 
     <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
     <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
-    <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
-    <string name="lagano_tema0_text1">Roba\nAko želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
-    <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>
-    <string name="lagano_tema0_text3">Novac je imao razne oblike u prošlosti\nPrije su ljudi koristili rijetke stvari umjesto novca</string>
-    <string name="lagano_tema0_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
 
-    <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
-    <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
-    <string name="lagano_tema1_text2">Euro\nGlavna valuta u Europskoj uniji\nOznaka za euro je € </string>
-    <string name="lagano_tema1_text3">Dolar\nOznaka za dolar je $</string>
-    <string name="lagano_tema1_text4">Britanska funta\nSlužbena je valuta u Velikoj Britaniji\nOznaka je £</string>
-    <string name="lagano_tema1_text5">Japanski jen\nOznaka je ¥</string>
-
-
-    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta\npomoću web stranica ili aplikacija</string>
-    <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
-    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
-    <string name="srednje_tema0_text3">Koristi stranice koje započinju s "https"\nprepoznati ćeš ih prema lokotu</string>
-    <string name="srednje_tema0_text4">Razmisli prije nego što dijeliš osobne podatke, pomoću kojih bi netko mogao koristiti tvoj račun</string>
-    <string name="srednje_tema0_text5">Koristi jake lozinke, dovoljno dugačke, pomoću različitih znakova i bez prepoznatljivih riječi</string>
-    <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
-    <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
-
-    <string name="srednje_tema1_text0">Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</string>
-    <string name="srednje_tema1_text1">1.\nOdredi koliko si zaradio ili dobio </string>
-    <string name="srednje_tema1_text2">2.\nPostavi si koliko želiš uštedjeti kao cilj</string>
-    <string name="srednje_tema1_text3">3.\nMožeš odlučiti na što žeilš potrošiti ostatak novca</string>
-    <string name="srednje_tema1_text4">Kako bi znao koliko možeš potrošiti, moraš od dobivenog oduzeti planirani novac za štednju</string>
-    <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
-    <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
-
-    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci.\nNajčešće korištene vrste su tekući, žiro i devizni</string>
-    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja\nPostoji dozvoljeni minus.\Plaća se mjesečna naknada.</string>
-    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata \nNe postoji dozvoljeni minus.\nPlaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
-    <string name="srednje_tema2_text3">Devizni račun služi za primanja i isplatu novca u različitim valutama</string>
-
-    <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
-    <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
-    <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
-    <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
-    <string name="tesko_tema0_text4">Omjer godišnjeg iznosa kamata i glavnice naziva se KAMATNA STOPA\nona se iskazuje u postotcima</string>
-    <string name="tesko_tema0_text5">Kamate računamo prema formuli:\nk = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
-    <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
-
-    <string name="tesko_tema1_text0">Kriptovalute se mogu koristiti za kupnju stvari, ali one su digitalne.\nNe postoje u kovanicama niti novčanicama</string>
-    <string name="tesko_tema1_text1">Normalan novac, razne valute, kontroliraju vlade država, dok se kriptovalute drže pod kontrolom u "knjizi" na raznim računalima.\nTa "knjiga" je poznata po nazivu BLOCKCHAIN</string>
-    <string name="tesko_tema1_text2">Kriptovalute se mogu kupiti, ali i napraviti putem računala, pokrećući programe koji pomažu u održavanju njihovih blockchaina. Za to je potrebno vrlo moćno računalo.</string>
-    <string name="tesko_tema1_text3">Neki ljudi vjeruju da su kriptovalute budućnost plaćanja</string>
-    <string name="tesko_tema1_text4">Neki ljudi misle da su loše za planet, jer troše previše energije.</string>
-    <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
-    <string name="tesko_tema1_text6">Najpoznatija kriptovaluta je Bitcoin, ali neke druge su i Litecoin, Dogecoin, Dash, Monero, Cardano...</string>
-
-    <string name ="srednje_tema3_text0">Inflacija smanjuje vrijednost valute tijekom vremena</string>
-    <string name ="srednje_tema3_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
-    <string name ="srednje_tema3_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
-
-    <string name ="tesko_tema2_text0">Neke promjene cijena imaju veću vrijednost od drugih za inflaciju" </string>
-    <string name ="tesko_tema2_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
-    <string name ="tesko_tema2_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
-    <string name ="tesko_tema2_text3">U mjerenju inflacije uzimaju se u obzir sva dobra i usluge na koje kućanstva troše.</string>
-    <string name = "tesko_tema2_text4">Sva dobra i usluge na koje kućanstva troše tijekom godine prikazani su u takozvanoj košarici. Svaki proizvod u toj košarici ima cijenu koja se s vremenom može promijeniti.</string>
-    <string name = "tesko_tema2_text5">Godišnja stopa inflacije cijena je ukupne košarice u određenom mjesecu uspoređena s njezinom cijenom isti mjesec prethodne godine.</string>
-    <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
-    <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
     <string name="dodaj_trosak_button">Add expense</string>
     <string name="spremi_promjene_button">Save changes</string>
     <string name="dodaj_valutu_button">Add new currency</string>
@@ -112,4 +49,41 @@
     <string name="nadimak_text">Nickname:</string>
     <string name="broj_rijesenih_kvizova_text">Number of solved quizzes:</string>
     <string name="tvoji_bodovi_text">"Your points: "</string>
+    <string name="prikazi_me_na_ljsetvici_text">Show me on scoreboard:</string>
+    <string name="ukljuci_dark_mode_text">Turn on dark mode:</string>
+    <string name="unesite_novi_nadimak_alert">Enter a new nickname</string>
+    <string name="nadimak_odgovor_odustani">Cancel</string>
+    <string name="nadimak_odgovor_potvrdi">Confirm</string>
+
+    <string name="lagano_tema0_text0">Money is a way of exchanging. People accept it in exchange for goods and services</string>
+    <string name="lagano_tema0_text1">Goods\nIf you want to buy a new bike, you will exchange your money for it at the store</string>
+    <string name="lagano_tema0_text2">Service\n If you want a new haircut, you will visit a hairdresser and exchange your money for a haircut service</string>
+    <string name="lagano_tema0_text3">Money has taken many forms in the past. Before, people used rare things instead of money</string>
+    <string name="lagano_tema0_text4">Today it is most often used in the form of BANKNOTES and COINS</string>
+    <string name="lagano_tema1_text0">"Money exists in various currencies "</string>
+    <string name="lagano_tema1_text1">Currency is the name for money used in a country\n Often different countries have different currencies</string>
+    <string name="lagano_tema1_text2">Euro\nThe main currency in the European Union The symbol of euro is €</string>
+    <string name="lagano_tema1_text3">"Dollar\nThe dollar sign is $ "</string>
+    <string name="lagano_tema1_text4">British Pound\nThe official currency of the United Kingdom\nThe symbol is £</string>
+    <string name="lagano_tema1_text5">Japanese yen\nThe symbol is ¥</string>
+    <string name="srednje_tema0_text0">"Online shopping allows you to shop online using websites or apps "</string>
+    <string name="srednje_tema0_text1">" We can also use coupons or cards to pay"</string>
+    <string name="srednje_tema0_text2">When buying online, we need to be careful which sites we buy from</string>
+    <string name="srednje_tema0_text3">" Use pages that start with https you will recognize them by padlock"</string>
+    <string name="srednje_tema0_text4">Think before you share personal information, with which someone could use your account</string>
+    <string name="srednje_tema0_text5">Use strong passwords, long enough, using different characters and without recognizable words</string>
+    <string name="srednje_tema0_text6">Check regularly that all your expenses are known</string>
+    <string name="srednje_tema0_text7">"Avoid writing data in public "</string>
+    <string name="srednje_tema1_text0">By planning costs, we prevent spending money on things we don’t need</string>
+    <string name="srednje_tema1_text1">"1. Determine how much you have earned or received "</string>
+    <string name="srednje_tema1_text2">"2. Set yourself how much you want to save as a goal "</string>
+    <string name="srednje_tema1_text3">"3. You can decide what you want to spend the rest of the money on "</string>
+    <string name="srednje_tema1_text4">"In order to know how much you can spend, you have to deduct the planned savings money from what you get "</string>
+    <string name="srednje_tema1_text5">If you get 100 dollars, and you want to save 60 dollars, you will be able to spend 40 dollars</string>
+    <string name="srednje_tema1_text6">If you haven’t spent it all, you can add that to your savings</string>
+    <string name="srednje_tema2_text0">Bank accounts are used to store money in the bank. The most commonly used types are current, giro and foreign exchange</string>
+    <string name="srednje_tema2_text1">"Current account is used to make regular payments and receipts There is a allowed minus. A monthly fee is paid. "</string>
+    <string name="srednje_tema2_text2">"Giro account is used to receive occasional payments There is no allowed minus. The payment of the monthly fee depends on the individual bank. "</string>
+    <string name="srednje_tema2_text3">"Foreign currency account is used to receive and pay money in different currencies "</string>
+    <string name="tesko_tema0_text0">"When we invest money in savings in a bank, the bank gets that money available for a certain period of time and gives us a certain fee for that. "</string>
 </resources>

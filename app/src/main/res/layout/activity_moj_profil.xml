@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="Uključi dark mode:" />
+                android:text="@string/ukljuci_dark_mode_text" />
 
             <FrameLayout
                 android:layout_width="0dp"

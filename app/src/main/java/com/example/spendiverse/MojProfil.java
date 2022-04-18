@@ -206,7 +206,7 @@ public class MojProfil extends AppCompatActivity {
      */
     private void promjenaNadimka() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Unesite novi nadimak");
+        builder.setTitle(R.string.unesite_novi_nadimak_alert);
 
         //postavljanje unosa
         final EditText input = new EditText(this);
@@ -214,8 +214,8 @@ public class MojProfil extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
         //postavljanje gumba
-        builder.setPositiveButton("potvrdi", null);
-        builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.nadimak_odgovor_potvrdi, null);
+        builder.setNegativeButton(R.string.nadimak_odgovor_odustani, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
