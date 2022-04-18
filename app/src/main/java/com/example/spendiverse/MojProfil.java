@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,8 @@ public class MojProfil extends AppCompatActivity {
     Switch ukljuciDarkMode;
     ImageButton editNadimka;
     Button brisanjeRacuna;
+    ImageView bedzTrosak;
+    Integer brojTroskova;
     Context context;
     String TAG = "MojProfil";
     private String nadimak;
@@ -74,6 +77,7 @@ public class MojProfil extends AppCompatActivity {
         emailKorisnika = findViewById(R.id.email_korisnika);
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
+        bedzTrosak = findViewById(R.id.trosak_bedz);
         prikazNaLjestvici = findViewById(R.id.switch1);
         ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
         brisanjeRacuna = findViewById(R.id.brisanje_racuna);
@@ -174,6 +178,7 @@ public class MojProfil extends AppCompatActivity {
             } //ako je odabran prikaz ljestvice
         };
         prikazLjestvice.setOnClickListener(listener3);
+        provjeraPostojanjaTroska();
         procitajRezultate();
 
         ukljuciDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -268,6 +273,32 @@ public class MojProfil extends AppCompatActivity {
 
         }
     }
+    private void provjeraPostojanjaTroska() {
+        brojTroskova = 0;
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                brojTroskova++;
+                            }
+                            if (brojTroskova>0){
+                                bedzTrosak.setVisibility(View.VISIBLE);
+                            } else{
+                                bedzTrosak.setVisibility(View.GONE);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+
 
     /**
      * Ova metoda čita sve rezultate korisnika iz baze.
