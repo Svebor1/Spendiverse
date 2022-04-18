@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class spremnikKategorija {
-    public static String laganoArray[] = {"Što je novac?","Valute"};
+    public static String laganoArray[] = {"Što je novac?", "Valute"};
     public static String srednjeArray[] = {"Online kupovina","Financijski plan", "Bankovni računi", "Inflacija"};
     public static String teskoArray[] = {"Kamate","Kriptovalute", "Inflacija napredno"};
     public static HashMap<String, List<String>> getData() {
@@ -25,8 +25,8 @@ public class spremnikKategorija {
         String zvjezdica = new String(Character.toChars(emoji));
         //postavljanje emojia zvjezdica
         kategorijeFinancijskePismenosti.put("Lagano" + zvjezdica, lagano);
-        kategorijeFinancijskePismenosti.put("Srednje"+ zvjezdica + zvjezdica, srednje);
-        kategorijeFinancijskePismenosti.put("Teško"+ zvjezdica + zvjezdica + zvjezdica, tesko);
+        kategorijeFinancijskePismenosti.put("Srednje" + zvjezdica + zvjezdica, srednje);
+        kategorijeFinancijskePismenosti.put("Teško" + zvjezdica + zvjezdica + zvjezdica, tesko);
         return kategorijeFinancijskePismenosti;
     }
     public static Integer vracanjeRednogBrojaKviza(String imeTeme, String imeGrupe){

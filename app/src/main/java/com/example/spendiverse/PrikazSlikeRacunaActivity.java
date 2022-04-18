@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,10 +30,11 @@ public class PrikazSlikeRacunaActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
-        Bitmap slikaRacuna = bundle.getParcelable("slika");
+        byte[] slikaRacuna = bundle.getByteArray("slika");
         imeSlikeRacuna = bundle.getString("imeSlike");
         ImageView slikaRacunaPrikaz = findViewById(R.id.slika_racuna_fullscreen);
-        slikaRacunaPrikaz.setImageBitmap(slikaRacuna);
+        Bitmap slika = BitmapFactory.decodeByteArray(slikaRacuna,0,slikaRacuna.length);
+        slikaRacunaPrikaz.setImageBitmap(slika);
 
     }
 

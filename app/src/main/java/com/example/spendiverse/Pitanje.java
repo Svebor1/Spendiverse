@@ -193,7 +193,7 @@ public class Pitanje extends AppCompatActivity {
 
     }
     private String odrediKriveOdgovore(){
-        String kriviOdgovori = "Netočno odgovorena pitanja su:";
+        String kriviOdgovori = getResources().getString(R.string.krivi_odgovori);
         Integer netocni = 0;
         for(int i=0;i<kolicinaPitanja; i++){
             if (tocnostPitanja[i]==0){
@@ -325,12 +325,12 @@ public class Pitanje extends AppCompatActivity {
                         .setMessage(bodovi + "/" + kolicinaPitanja + "\n" + odrediKriveOdgovore())
                         // Specifying a listener allows you to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
-                        .setPositiveButton("zatvori", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.kviz_odgovor_zatvori, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
                             }
                         })
-                        .setNegativeButton("pokušaj ponovno",new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.kviz_odgovor_pokusaj_ponovno,new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 redniBrojPitanja = 0;
                                 ucitavanjePitanja();

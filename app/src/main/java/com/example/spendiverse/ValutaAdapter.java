@@ -59,15 +59,14 @@ public class ValutaAdapter extends ArrayAdapter<String> {
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati valutu prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(context)
-                        .setTitle("Brisanje valute")
-                        .setMessage("Jeste li sigurni da želite izbrisati valutu?" +
-                                "\nBiti će izbrisani svi troškovi koji pripadaju toj valuti")
-                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.brisanje_valute_naslov_alert)
+                        .setMessage(R.string.brisanje_valute_alert)
+                        .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 izbrisiValutu(valuta); //ako je korisnik potvrdio brisanje valute poziva se metoda brisanja valute
                             }
                         })
-                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }

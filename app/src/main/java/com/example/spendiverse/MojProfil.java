@@ -89,14 +89,14 @@ public class MojProfil extends AppCompatActivity {
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati profil prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(this)
-                        .setTitle("Brisanje profila")
-                        .setMessage("Jeste li sigurni da želite izbrisati profil?")
-                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.brisanje_profila_naslov_alert)
+                        .setMessage(R.string.brisanje_profila_alert)
+                        .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 izbrisiRacun(); //ako je korisnik potvrdio brisanje profila poziva se metoda brisanja profila
                             }
                         })
-                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }

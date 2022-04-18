@@ -122,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.profil_sign_out:
                 AlertDialog alertDialogSignOut = //ovdje se stvara prozor s pitanjem "Jeste li sigurni da se želite odjaviti?"
                         new AlertDialog.Builder(this)
-                                .setTitle("Jeste li sigurni da se želite odjaviti?")
-                                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.odjava_alert)
+                                .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         signOut(); //kada je korisnik odabrao "Da" poziva se metoda za odjavu korinika
                                     }
                                 })
-                                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogInterface, int which) {
                                         //kada je korisnik odabrao "Ne" ništa se ne događa
                                     }

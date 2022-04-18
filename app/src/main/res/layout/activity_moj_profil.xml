@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_weight="1"
-                android:text="Nadimak:" />
+                android:text="@string/nadimak_text" />
 
             <TextView
                 android:id="@+id/nadimak_korisnika"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="Broj riješenih kvizova:"
+                android:text="@string/broj_rijesenih_kvizova_text"
                 tools:layout_editor_absoluteX="60dp"
                 tools:layout_editor_absoluteY="373dp" />
 
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="Tvoji bodovi:"
+                android:text="@string/tvoji_bodovi_text"
                 />
 
             <TextView
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Prikaži me na ljestvici:"
+                android:text="@string/prikazi_me_na_ljsetvici_text"
                 android:textStyle="bold" />
 
             <FrameLayout
