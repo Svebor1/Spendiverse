@@ -239,6 +239,15 @@
 
     </string-array>
 
+    <string-array name="srednje_kviz0_pitanje3">
+
+        <item>Označi netočnu tvrdnju</item>
+        <item>Izbjegavaj upisivanje podataka u javnosti</item>
+        <item>Dijeli osobne podatke gdje god hoćeš</item>
+        <item>Redovno provjeravaj jesu li svi tvoji troškovi poznati</item>
+        <item>Dijeli osobne podatke gdje god hoćeš</item>
+
+    </string-array>
 
     <string-array name="srednje_kviz1_pitanje2">
 
@@ -287,6 +296,16 @@
         <item>Odredi koliko si zaradio ili dobio.</item>
         <item>Možeš odlučiti na što žeilš potrošiti ostatak novca.</item>
         <item>Odredi koliko si zaradio ili dobio.</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje5">
+
+        <item>Ako dobivaš džeparac 200 kuna mjesečno i potrošiš 150 kuna, u koliko vremena možeš uštedjeti za novi bicikl koji stoji 3000 kn</item>
+        <item>pola godine</item>
+        <item>pet godina</item>
+        <item>dvije godine</item>
+        <item>pet godina</item>
 
     </string-array>
 
@@ -460,6 +479,13 @@
         <item>više od 50 kuna</item>
         <item>manje od 50 kuna</item>
         <item>više od 50 kuna</item>
+    </string-array>
+    <string-array name="srednje_kviz3_pitanje3">
+        <item>Inflacija tijekom vremena smanjuje vrijednost: </item>
+        <item>valute</item>
+        <item>usluga</item>
+        <item>robe</item>
+        <item>valute</item>
     </string-array>
 
     <string-array name="tesko_kviz2_pitanje0">

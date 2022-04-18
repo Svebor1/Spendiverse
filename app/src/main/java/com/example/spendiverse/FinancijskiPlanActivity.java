@@ -75,8 +75,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private Double troskovi;
     private Double iznosPreostalo;
     private Spinner spinnerZaValute;
-    JsonElement konverzija;
-    HashMap<String, Integer> ukupnoPoValutama = new HashMap<>();
+
+    HashMap<String, Double> ukupnoPoValutama = new HashMap<>();
     String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
     ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
 
@@ -89,9 +89,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         spinnerZaValute = findViewById(R.id.odabir_valute);
-        nadiValute();
-
-
         //pronalazi TextViewove prema id-u
         dzeparac = findViewById(R.id.dzeparac_upis);
         poslovi = findViewById(R.id.poslovi_upis);
@@ -189,7 +186,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         promet.addTextChangedListener(promatrac);
         kucanstvo.addTextChangedListener(promatrac);
         troskoviOstalo.addTextChangedListener(promatrac);
-
+        nadiValute();
     }
 
     public interface ExchangeService {
@@ -322,16 +319,17 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 String datumMjesec = document.getData().get("datumMjesec").toString();
                                 String datumGodina = document.getData().get("datumGodina").toString();
                                 String valuta = document.getData().get("valuta").toString();
-                                Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                Double cijena = Double.parseDouble(document.getData().get("cijena").toString());
                                 if (godine.equals(datumGodina) && mjesec.equals(datumMjesec)) {
                                     troskovi = troskovi + cijena;
+                                    if (ukupnoPoValutama.containsKey(valuta)) {
+                                        ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
+                                    }
+                                    else {
+                                        ukupnoPoValutama.put(valuta, cijena);
+                                    }
                                 }
-                                if (ukupnoPoValutama.containsKey(valuta)) {
-                                    ukupnoPoValutama.put(valuta, ukupnoPoValutama.get(valuta) + cijena);
-                                }
-                                else {
-                                    ukupnoPoValutama.put(valuta, cijena);
-                                }
+
 
                             }
                             dohvatiKonverziju();
@@ -393,6 +391,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
      * @param godine izabrana godina
      */
     private void prikazPlana(String mjesec,String godine) {
+
         ocistiTekst();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -403,6 +402,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String planMjesec = document.getData().get("mjesec").toString();
                                 String planGodina = document.getData().get("godina").toString();
@@ -513,13 +513,18 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             poruka = "Jao! Plan pokazuje da ćeš ovaj mjesec biti u minusu!";
         }
         TextView planiranoPotroseno = findViewById(R.id.planirano_potroseno_text);
-        planiranoPotroseno.setText(planiraniTroskovi.toString()+" " + spinnerZaValute.getSelectedItem().toString());
+        String valuta = "";
+        if (spinnerZaValute.getSelectedItem() != null) {
+            valuta = spinnerZaValute.getSelectedItem().toString();
+        }
+        planiranoPotroseno.setText(planiraniTroskovi.toString()+" " + valuta);
         TextView porukaText = findViewById(R.id.poruka_text);
         porukaText.setText(poruka);
-        preostalo.setText(iznosPreostaloZaokruzeno+" " + spinnerZaValute.getSelectedItem().toString());
+        preostalo.setText(iznosPreostaloZaokruzeno+" " + valuta);
     }
 
     private void nadiValute() {
+
         valute = new ArrayList<>(Arrays.asList(zadaneValute));
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -551,6 +556,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     }
 
     private void dohvatiKonverziju() {
+
         if (spinnerZaValute.getSelectedItem()==null) {
             return;
         }
@@ -568,10 +574,11 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
                 Toast t = new Toast(context);
                 JsonObject objekt = response.body();
+                JsonElement konverzija;
                 konverzija = objekt.get("conversion_rates");
                 troskovi = 0.0;
 
-                for(Map.Entry<String, Integer> entry : ukupnoPoValutama.entrySet()) {
+                for(Map.Entry<String, Double> entry : ukupnoPoValutama.entrySet()) {
                     JsonElement iznos = konverzija.getAsJsonObject().get(entry.getKey());
                     Double omjer = iznos.getAsDouble();
                     Double cijenaPoValuti = entry.getValue() / omjer;
@@ -591,9 +598,11 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 Log.e("TAG", "onFailure: "+t.toString() );
             }
         });
+
     }
     private void dohvatiKonverzijuPlana(Double planDzeparac, Double planPoslovi, Double planPokloni, Double planOstalo, Double planUstedjevina, Double planPromet, Double planPrehrana, Double planKucanstvo, Double planTroskoviOstalo, String planValuta) {
-       if (spinnerZaValute.getSelectedItem()==null) {
+
+        if (spinnerZaValute.getSelectedItem()==null) {
             return;
         }
         String valuta = spinnerZaValute.getSelectedItem().toString();
@@ -611,16 +620,8 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
                 Toast t = new Toast(context);
                 JsonObject objekt = response.body();
+                JsonElement konverzija;
                 konverzija = objekt.get("conversion_rates");
-                troskovi = 0.0;
-
-                for(Map.Entry<String, Integer> entry : ukupnoPoValutama.entrySet()) {
-                    JsonElement iznos = konverzija.getAsJsonObject().get(entry.getKey());
-                    Double omjer = iznos.getAsDouble();
-                    Double cijenaPoValuti = entry.getValue() / omjer;
-                    troskovi += cijenaPoValuti;
-                }
-
                 JsonElement iznos = konverzija.getAsJsonObject().get(planValuta);
                 Double omjer = iznos.getAsDouble();
                 DecimalFormat myFormatter = new DecimalFormat("#.##");
@@ -646,7 +647,6 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 /*
                 TextView potrosenoText = findViewById(R.id.potroseno_text);
                 potrosenoText.setText(output + " " + spinnerZaValute.getSelectedItem().toString());
-
                  */
             }
 
@@ -655,6 +655,10 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                 Log.e("TAG", "onFailure: "+t.toString() );
             }
         });
+
+
+
+
     }
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
