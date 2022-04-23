@@ -39,6 +39,7 @@
     <string name="odjava_alert">Jeste li sigurni da se želite odjaviti?</string>
     <string name="odgovor_ne">Ne</string>
     <string name="odgovor_da">Da</string>
+    <string name="rezultat_naslov">Rezultat</string>
     <string name="kviz_odgovor_pokusaj_ponovno">Pokušaj ponovno</string>
     <string name="kviz_odgovor_zatvori">Zatvori</string>
     <string name="krivi_odgovori">Netočno odgovorena pitanja su:</string>
@@ -51,6 +52,7 @@
     <string name="tvoji_bodovi_text">Tvoji bodovi:</string>
     <string name="prikazi_me_na_ljsetvici_text">Prikaži me na ljestvici:</string>
     <string name="ukljuci_dark_mode_text">Uključi dark mode:</string>
+
 
 
 

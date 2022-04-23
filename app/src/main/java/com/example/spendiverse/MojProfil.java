@@ -56,8 +56,14 @@ public class MojProfil extends AppCompatActivity {
     Button brisanjeRacuna;
     ImageView bedzTrosak;
     ImageView planiranjeBedz;
-    Integer brojTroskova;
+    ImageView laganiKvizoviBedz;
+    ImageView srednjiKvizoviBedz;
+    ImageView teskiKvizoviBedz;
+    Integer prviTrosakBedz;
     Integer brojPlanova;
+    Integer laganiKvizovi;
+    Integer srednjiKvizovi;
+    Integer teskiKvizovi;
     Context context;
     String TAG = "MojProfil";
     private String nadimak;
@@ -79,6 +85,9 @@ public class MojProfil extends AppCompatActivity {
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
         bedzTrosak = findViewById(R.id.trosak_bedz);
+        laganiKvizoviBedz = findViewById(R.id.lagano_bedz);
+        srednjiKvizoviBedz = findViewById(R.id.srednje_bedz);
+        teskiKvizoviBedz = findViewById(R.id.tesko_bedz);
         planiranjeBedz = findViewById(R.id.financijski_plan_bedz);
         prikazNaLjestvici = findViewById(R.id.switch1);
         ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
@@ -276,20 +285,25 @@ public class MojProfil extends AppCompatActivity {
         }
     }
     private void provjeriPostojanjeBedzeva() {
-        brojTroskova = 0;
+        prviTrosakBedz = 0;
         brojPlanova = 0;
+        laganiKvizovi = 0;
+        srednjiKvizovi = 0;
+        teskiKvizovi = 0;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                brojTroskova++;
+                                if (document.getId().equals("prvi_trosak")) {
+                                    prviTrosakBedz = 1;
+                                }
                             }
-                            if (brojTroskova>0){
+                            if (prviTrosakBedz == 1){
                                 bedzTrosak.setVisibility(View.VISIBLE);
                             } else{
                                 bedzTrosak.setVisibility(View.GONE);
@@ -318,9 +332,58 @@ public class MojProfil extends AppCompatActivity {
                         }
                     }
                 });
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            rezultati = new ArrayList<Rezultat>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivTezine = document.getData().get("naslov grupe").toString();
+                                Integer rezultatKviza = Integer.parseInt(document.getData().get("rezultat").toString());
+                                String naslovTeme = document.get("naslov teme").toString();
+                                Integer redniBrojKviza = spremnikKategorija.vracanjeRednogBrojaKviza(naslovTeme,nazivTezine);
+                                String imeBrojaPitanja = nazivTezine + "_tema" + redniBrojKviza + "_brojpitanja";
+                                int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
+                                Integer brojPitanja = getResources().getInteger(kolicinaPitanjaId);
 
+                                if (nazivTezine.equals("lagano") && brojPitanja==rezultatKviza){
+                                    laganiKvizovi++;
+                                }
+                                if (nazivTezine.equals("srednje") && brojPitanja==rezultatKviza){
+                                    srednjiKvizovi++;
+                                }
+                                if (nazivTezine.equals("tesko") && brojPitanja==rezultatKviza){
+                                    teskiKvizovi++;
+                                }
+                            }
+                            if (laganiKvizovi==getResources().getInteger(R.integer.broj_laganih_kvizova)){
+                                laganiKvizoviBedz.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                laganiKvizoviBedz.setVisibility(View.GONE);
+                            }
+                            if (srednjiKvizovi==getResources().getInteger(R.integer.broj_srednjih_kvizova)){
+                                srednjiKvizoviBedz.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                srednjiKvizoviBedz.setVisibility(View.GONE);
+                            }
+                            if (teskiKvizovi==getResources().getInteger(R.integer.broj_teskih_kvizova)){
+                                teskiKvizoviBedz.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                teskiKvizoviBedz.setVisibility(View.GONE);
+                            }
+
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
     }
-
 
     /**
      * Ova metoda čita sve rezultate korisnika iz baze.

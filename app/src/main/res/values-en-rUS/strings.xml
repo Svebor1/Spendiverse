@@ -135,4 +135,5 @@
     <string name="srednje_tema2_text2">"Giro account is used to receive occasional payments There is no allowed minus. The payment of the monthly fee depends on the individual bank. "</string>
     <string name="srednje_tema2_text3">"Foreign currency account is used to receive and pay money in different currencies "</string>
     <string name="tesko_tema0_text0">"When we invest money in savings in a bank, the bank gets that money available for a certain period of time and gives us a certain fee for that. "</string>
+    <string name="rezultat_naslov">Result</string>
 </resources>
