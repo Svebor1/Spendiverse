@@ -42,6 +42,9 @@
     <string name="kviz_odgovor_pokusaj_ponovno">Pokušaj ponovno</string>
     <string name="kviz_odgovor_zatvori">Zatvori</string>
     <string name="krivi_odgovori">Netočno odgovorena pitanja su:</string>
+    <string name="unesite_novi_nadimak_alert">Unesite novi nadimak</string>
+    <string name="nadimak_odgovor_odustani">Odustani</string>
+    <string name="nadimak_odgovor_potvrdi">Potvrdi</string>
     
     <string name="nadimak_text">Nadimak:</string>
     <string name="broj_rijesenih_kvizova_text">Broj riješenih kvizova:</string>
@@ -51,42 +54,43 @@
 
 
 
+
     <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
     <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
-    <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
-    <string name="lagano_tema0_text1">Roba\nAko želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
+    <string name="lagano_tema0_text0">Novac je način razmjene Njega ljudi prihvaćaju u zamjenu za robu i usluge</string>
+    <string name="lagano_tema0_text1">Roba Ako želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
     <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>
-    <string name="lagano_tema0_text3">Novac je imao razne oblike u prošlosti\nPrije su ljudi koristili rijetke stvari umjesto novca</string>
+    <string name="lagano_tema0_text3">Novac je u prošlosti poprimio mnoge oblike. Prije su ljudi umjesto novca koristili rijetke stvari</string>
     <string name="lagano_tema0_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
 
     <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
     <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
-    <string name="lagano_tema1_text2">Euro\nGlavna valuta u Europskoj uniji\nOznaka za euro je € </string>
-    <string name="lagano_tema1_text3">Dolar\nOznaka za dolar je $</string>
-    <string name="lagano_tema1_text4">Britanska funta\nSlužbena je valuta u Velikoj Britaniji\nOznaka je £</string>
-    <string name="lagano_tema1_text5">Japanski jen\nOznaka je ¥</string>
+    <string name="lagano_tema1_text2">"Euro Glavna valuta u Europskoj uniji Oznaka za euro je € "</string>
+    <string name="lagano_tema1_text3">Dolar Oznaka za dolar je $</string>
+    <string name="lagano_tema1_text4">Britanska funta Službena je valuta u Velikoj Britaniji\\nOznaka je £</string>
+    <string name="lagano_tema1_text5">Japanski jen Oznaka je ¥</string>
 
 
-    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta\npomoću web stranica ili aplikacija</string>
+    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta pomoću web stranica ili aplikacija</string>
     <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
-    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
-    <string name="srednje_tema0_text3">Koristi stranice koje započinju s "https"\nprepoznati ćeš ih prema lokotu</string>
+    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta, moramo paziti s kojih stranica kupujemo</string>
+    <string name="srednje_tema0_text3">Koristi stranice koje započinju s https prepoznati ćeš ih prema lokotu</string>
     <string name="srednje_tema0_text4">Razmisli prije nego što dijeliš osobne podatke, pomoću kojih bi netko mogao koristiti tvoj račun</string>
     <string name="srednje_tema0_text5">Koristi jake lozinke, dovoljno dugačke, pomoću različitih znakova i bez prepoznatljivih riječi</string>
     <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
     <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
 
     <string name="srednje_tema1_text0">Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</string>
-    <string name="srednje_tema1_text1">1.\nOdredi koliko si zaradio ili dobio </string>
-    <string name="srednje_tema1_text2">2.\nPostavi si koliko želiš uštedjeti kao cilj</string>
-    <string name="srednje_tema1_text3">3.\nMožeš odlučiti na što žeilš potrošiti ostatak novca</string>
+    <string name="srednje_tema1_text1">"1. Odredi koliko si zaradio ili dobio "</string>
+    <string name="srednje_tema1_text2">2. Postavi si koliko želiš uštedjeti kao cilj</string>
+    <string name="srednje_tema1_text3">3. Možeš odlučiti na što žeilš potrošiti ostatak novca</string>
     <string name="srednje_tema1_text4">Kako bi znao koliko možeš potrošiti, moraš od dobivenog oduzeti planirani novac za štednju</string>
     <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
     <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
 
-    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci.\nNajčešće korištene vrste su tekući, žiro i devizni</string>
-    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja\nPostoji dozvoljeni minus.\Plaća se mjesečna naknada.</string>
-    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata \nNe postoji dozvoljeni minus.\nPlaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
+    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci. Najčešće korištene vrste su tekući, žiro i devizni</string>
+    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja Postoji dozvoljeni minus. Plaća se mjesečna naknada.</string>
+    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata  Ne postoji dozvoljeni minus. Plaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
     <string name="srednje_tema2_text3">Devizni račun služi za primanja i isplatu novca u različitim valutama</string>
 
     <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
@@ -118,20 +122,24 @@
     <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
     <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
 
-    <string name = "tesko_tema3_text0">Inflacija može biti različita /nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
+    <string name = "tesko_tema3_text0">Inflacija može biti različita \nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
     <string name = "tesko_tema3_text1">Ako je mjesečna stopa inflacija veća od 20-30 posto onda se zove hiperinflacija</string>
     <string name = "tesko_tema3_text2">Ako je godišnja stopa inflacija manja od 0 posto onda je to deflacija</string>
     <string name = "tesko_tema3_text3">Kod hiperinflacije novac jako brzo gubi vrijednost što radi valutu nesigurnom, zbog čega ljudi koji pohranjuju novac u toj valuti brzo postaju siromašnijima</string>
     <string name = "tesko_tema3_text4">Deflacija smanjuje vrijednost valute tijekom vremena</string>
     <string name = "tesko_tema3_text5">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
-    <string name = "tesko_name3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
-    <string name = "tesko_name3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
-    <string name = "tesko_name3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
-    <string name = "tesko_name3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
-    <string name = "tesko_name3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
-    <string name = "tesko_name3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
+    <string name = "tesko_tema3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
+    <string name = "tesko_tema3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
+    <string name = "tesko_tema3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
+    <string name = "tesko_tema3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
+    <string name = "tesko_tema3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
+    <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
-
+    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema4_text1">Ulagači uplaćuju određenu sumu novca koji menadžer fonda ulaže, najčešče u dionice, obveznice, trezorski zapisi, novčani depozit... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju sumu novca oni su ustvari kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno i povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema4_text4"></string>
     <string-array name="lagano_kviz0_pitanje0">
         <item>U kojem se obliku novac danas ne koristi?</item>
         <item>kovanice</item>

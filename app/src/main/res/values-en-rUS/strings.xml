@@ -5,43 +5,8 @@
 
     <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
     <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
-    <string name="lagano_tema0_text0">Novac je način razmjene\nNjega ljudi prihvaćaju u zamjenu za robu i usluge</string>
-    <string name="lagano_tema0_text1">Roba\nAko želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
-    <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>
-    <string name="lagano_tema0_text3">Novac je imao razne oblike u prošlosti\nPrije su ljudi koristili rijetke stvari umjesto novca</string>
-    <string name="lagano_tema0_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
-
-    <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
-    <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
-    <string name="lagano_tema1_text2">Euro\nGlavna valuta u Europskoj uniji\nOznaka za euro je € </string>
-    <string name="lagano_tema1_text3">Dolar\nOznaka za dolar je $</string>
-    <string name="lagano_tema1_text4">Britanska funta\nSlužbena je valuta u Velikoj Britaniji\nOznaka je £</string>
-    <string name="lagano_tema1_text5">Japanski jen\nOznaka je ¥</string>
 
 
-    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta\npomoću web stranica ili aplikacija</string>
-    <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
-    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta,\nmoramo paziti s kojih stranica kupujemo</string>
-    <string name="srednje_tema0_text3">Koristi stranice koje započinju s "https"\nprepoznati ćeš ih prema lokotu</string>
-    <string name="srednje_tema0_text4">Razmisli prije nego što dijeliš osobne podatke, pomoću kojih bi netko mogao koristiti tvoj račun</string>
-    <string name="srednje_tema0_text5">Koristi jake lozinke, dovoljno dugačke, pomoću različitih znakova i bez prepoznatljivih riječi</string>
-    <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
-    <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
-
-    <string name="srednje_tema1_text0">Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</string>
-    <string name="srednje_tema1_text1">1.\nOdredi koliko si zaradio ili dobio </string>
-    <string name="srednje_tema1_text2">2.\nPostavi si koliko želiš uštedjeti kao cilj</string>
-    <string name="srednje_tema1_text3">3.\nMožeš odlučiti na što žeilš potrošiti ostatak novca</string>
-    <string name="srednje_tema1_text4">Kako bi znao koliko možeš potrošiti, moraš od dobivenog oduzeti planirani novac za štednju</string>
-    <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
-    <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
-
-    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci.\nNajčešće korištene vrste su tekući, žiro i devizni</string>
-    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja\nPostoji dozvoljeni minus.\Plaća se mjesečna naknada.</string>
-    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata \nNe postoji dozvoljeni minus.\nPlaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
-    <string name="srednje_tema2_text3">Devizni račun služi za primanja i isplatu novca u različitim valutama</string>
-
-    <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
     <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
     <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
     <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
@@ -61,6 +26,25 @@
     <string name ="srednje_tema3_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
     <string name ="srednje_tema3_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
 
+    <string name = "tesko_tema3_text0">Inflacija može biti različita /nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
+    <string name = "tesko_tema3_text1">Ako je mjesečna stopa inflacija veća od 20-30 posto onda se zove hiperinflacija</string>
+    <string name = "tesko_tema3_text2">Ako je godišnja stopa inflacija manja od 0 posto onda je to deflacija</string>
+    <string name = "tesko_tema3_text3">Kod hiperinflacije novac jako brzo gubi vrijednost što radi valutu nesigurnom, zbog čega ljudi koji pohranjuju novac u toj valuti brzo postaju siromašnijima</string>
+    <string name = "tesko_tema3_text4">Deflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name = "tesko_tema3_text5">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
+    <string name = "tesko_tema3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
+    <string name = "tesko_tema3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
+    <string name = "tesko_tema3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
+    <string name = "tesko_tema3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
+    <string name = "tesko_tema3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
+    <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
+
+    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema4_text1">Ulagači uplaćuju određenu sumu novca koji menadžer fonda ulaže, najčešče u dionice, obveznice, trezorski zapisi, novčani depozit... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju sumu novca oni su ustvari kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno i povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema4_text4"></string>
+
     <string name ="tesko_tema2_text0">Neke promjene cijena imaju veću vrijednost od drugih za inflaciju" </string>
     <string name ="tesko_tema2_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
     <string name ="tesko_tema2_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
@@ -70,18 +54,6 @@
     <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
     <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
 
-    <string name = "tesko_tema3_text0">Inflacija može biti različita /nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
-    <string name = "tesko_tema3_text1">Ako je mjesečna stopa inflacija veća od 20-30 posto onda se zove hiperinflacija</string>
-    <string name = "tesko_tema3_text2">Ako je godišnja stopa inflacija manja od 0 posto onda je to deflacija</string>
-    <string name = "tesko_tema3_text3">Kod hiperinflacije novac jako brzo gubi vrijednost što radi valutu nesigurnom, zbog čega ljudi koji pohranjuju novac u toj valuti brzo postaju siromašnijima</string>
-    <string name = "tesko_tema3_text4">Deflacija smanjuje vrijednost valute tijekom vremena</string>
-    <string name = "tesko_tema3_text5">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
-    <string name = "tesko_name3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
-    <string name = "tesko_name3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
-    <string name = "tesko_name3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
-    <string name = "tesko_name3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
-    <string name = "tesko_name3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
-    <string name = "tesko_name3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
     <string name="dodaj_trosak_button">Add expense</string>
     <string name="spremi_promjene_button">Save changes</string>
@@ -126,4 +98,41 @@
     <string name="nadimak_text">Nickname:</string>
     <string name="broj_rijesenih_kvizova_text">Number of solved quizzes:</string>
     <string name="tvoji_bodovi_text">"Your points: "</string>
+    <string name="prikazi_me_na_ljsetvici_text">Show me on scoreboard:</string>
+    <string name="ukljuci_dark_mode_text">Turn on dark mode:</string>
+    <string name="unesite_novi_nadimak_alert">Enter a new nickname</string>
+    <string name="nadimak_odgovor_odustani">Cancel</string>
+    <string name="nadimak_odgovor_potvrdi">Confirm</string>
+
+    <string name="lagano_tema0_text0">Money is a way of exchanging. People accept it in exchange for goods and services</string>
+    <string name="lagano_tema0_text1">Goods\nIf you want to buy a new bike, you will exchange your money for it at the store</string>
+    <string name="lagano_tema0_text2">Service\n If you want a new haircut, you will visit a hairdresser and exchange your money for a haircut service</string>
+    <string name="lagano_tema0_text3">Money has taken many forms in the past. Before, people used rare things instead of money</string>
+    <string name="lagano_tema0_text4">Today it is most often used in the form of BANKNOTES and COINS</string>
+    <string name="lagano_tema1_text0">"Money exists in various currencies "</string>
+    <string name="lagano_tema1_text1">Currency is the name for money used in a country\n Often different countries have different currencies</string>
+    <string name="lagano_tema1_text2">Euro\nThe main currency in the European Union The symbol of euro is €</string>
+    <string name="lagano_tema1_text3">"Dollar\nThe dollar sign is $ "</string>
+    <string name="lagano_tema1_text4">British Pound\nThe official currency of the United Kingdom\nThe symbol is £</string>
+    <string name="lagano_tema1_text5">Japanese yen\nThe symbol is ¥</string>
+    <string name="srednje_tema0_text0">"Online shopping allows you to shop online using websites or apps "</string>
+    <string name="srednje_tema0_text1">" We can also use coupons or cards to pay"</string>
+    <string name="srednje_tema0_text2">When buying online, we need to be careful which sites we buy from</string>
+    <string name="srednje_tema0_text3">" Use pages that start with https you will recognize them by padlock"</string>
+    <string name="srednje_tema0_text4">Think before you share personal information, with which someone could use your account</string>
+    <string name="srednje_tema0_text5">Use strong passwords, long enough, using different characters and without recognizable words</string>
+    <string name="srednje_tema0_text6">Check regularly that all your expenses are known</string>
+    <string name="srednje_tema0_text7">"Avoid writing data in public "</string>
+    <string name="srednje_tema1_text0">By planning costs, we prevent spending money on things we don’t need</string>
+    <string name="srednje_tema1_text1">"1. Determine how much you have earned or received "</string>
+    <string name="srednje_tema1_text2">"2. Set yourself how much you want to save as a goal "</string>
+    <string name="srednje_tema1_text3">"3. You can decide what you want to spend the rest of the money on "</string>
+    <string name="srednje_tema1_text4">"In order to know how much you can spend, you have to deduct the planned savings money from what you get "</string>
+    <string name="srednje_tema1_text5">If you get 100 dollars, and you want to save 60 dollars, you will be able to spend 40 dollars</string>
+    <string name="srednje_tema1_text6">If you haven’t spent it all, you can add that to your savings</string>
+    <string name="srednje_tema2_text0">Bank accounts are used to store money in the bank. The most commonly used types are current, giro and foreign exchange</string>
+    <string name="srednje_tema2_text1">"Current account is used to make regular payments and receipts There is a allowed minus. A monthly fee is paid. "</string>
+    <string name="srednje_tema2_text2">"Giro account is used to receive occasional payments There is no allowed minus. The payment of the monthly fee depends on the individual bank. "</string>
+    <string name="srednje_tema2_text3">"Foreign currency account is used to receive and pay money in different currencies "</string>
+    <string name="tesko_tema0_text0">"When we invest money in savings in a bank, the bank gets that money available for a certain period of time and gives us a certain fee for that. "</string>
 </resources>

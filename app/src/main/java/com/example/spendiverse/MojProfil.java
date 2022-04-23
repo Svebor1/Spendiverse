@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,10 +54,13 @@ public class MojProfil extends AppCompatActivity {
     Switch ukljuciDarkMode;
     ImageButton editNadimka;
     Button brisanjeRacuna;
+    ImageView bedzTrosak;
+    ImageView planiranjeBedz;
+    Integer brojTroskova;
+    Integer brojPlanova;
     Context context;
     String TAG = "MojProfil";
     private String nadimak;
-
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     @Override
@@ -74,6 +78,8 @@ public class MojProfil extends AppCompatActivity {
         emailKorisnika = findViewById(R.id.email_korisnika);
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
+        bedzTrosak = findViewById(R.id.trosak_bedz);
+        planiranjeBedz = findViewById(R.id.financijski_plan_bedz);
         prikazNaLjestvici = findViewById(R.id.switch1);
         ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
         brisanjeRacuna = findViewById(R.id.brisanje_racuna);
@@ -174,6 +180,7 @@ public class MojProfil extends AppCompatActivity {
             } //ako je odabran prikaz ljestvice
         };
         prikazLjestvice.setOnClickListener(listener3);
+        provjeriPostojanjeBedzeva();
         procitajRezultate();
 
         ukljuciDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -206,7 +213,7 @@ public class MojProfil extends AppCompatActivity {
      */
     private void promjenaNadimka() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Unesite novi nadimak");
+        builder.setTitle(R.string.unesite_novi_nadimak_alert);
 
         //postavljanje unosa
         final EditText input = new EditText(this);
@@ -214,8 +221,8 @@ public class MojProfil extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
         //postavljanje gumba
-        builder.setPositiveButton("potvrdi", null);
-        builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.nadimak_odgovor_potvrdi, null);
+        builder.setNegativeButton(R.string.nadimak_odgovor_odustani, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -268,6 +275,52 @@ public class MojProfil extends AppCompatActivity {
 
         }
     }
+    private void provjeriPostojanjeBedzeva() {
+        brojTroskova = 0;
+        brojPlanova = 0;
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                brojTroskova++;
+                            }
+                            if (brojTroskova>0){
+                                bedzTrosak.setVisibility(View.VISIBLE);
+                            } else{
+                                bedzTrosak.setVisibility(View.GONE);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                brojPlanova++;
+                            }
+                            if (brojPlanova>0){
+                                planiranjeBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                planiranjeBedz.setVisibility(View.GONE);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+
 
     /**
      * Ova metoda čita sve rezultate korisnika iz baze.
