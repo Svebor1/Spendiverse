@@ -52,7 +52,7 @@ public class Tema extends AppCompatActivity {
 
 
         String imeBrojaSlideova = naslovGrupe + "_tema" + redniBrojKviza + "_brojslideova";
-        int brojSlideovaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaSlideova,null,null);
+        int brojSlideovaId = getResources().getIdentifier("com.example.spendiverse:integer/"+imeBrojaSlideova,null,null);
         int brojSlideova = getResources().getInteger(brojSlideovaId);
         ImageCarousel carousel = findViewById(R.id.carousel);
 
@@ -68,10 +68,10 @@ public class Tema extends AppCompatActivity {
         for (int i = 0; i < brojSlideova; i++) {
 
             String idSlike = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_slide" +Integer.toString(i).toString();
-            int idSlikeBroj = getResources().getIdentifier("com.example.coinsmart:drawable/"+idSlike, null, null);
+            int idSlikeBroj = getResources().getIdentifier("com.example.spendiverse:drawable/"+idSlike, null, null);
 
             String idTeksta = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_text" +Integer.toString(i).toString();
-            int idTekstaBroj = getResources().getIdentifier("com.example.coinsmart:string/"+idTeksta, null, null);
+            int idTekstaBroj = getResources().getIdentifier("com.example.spendiverse:string/"+idTeksta, null, null);
             list.add(
                     new CarouselItem(
                             idSlikeBroj, getResources().getString(idTekstaBroj)

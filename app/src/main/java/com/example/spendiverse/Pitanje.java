@@ -67,7 +67,7 @@ public class Pitanje extends AppCompatActivity {
         odgovori = findViewById(R.id.odgovori);
 
         String imeBrojaPitanja = naslovGrupe + "_tema" + redniBrojKviza + "_brojpitanja";
-        int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
+        int kolicinaPitanjaId = getResources().getIdentifier("com.example.spendiverse:integer/"+imeBrojaPitanja,null,null);
         kolicinaPitanja = getResources().getInteger(kolicinaPitanjaId);
         //tocnostPitanja je lista u kojoj broj 1, za odredeno pitanje, predstavlja da je odgovor tocan, a 0 da nije
         tocnostPitanja = new Integer[kolicinaPitanja];
@@ -155,7 +155,7 @@ public class Pitanje extends AppCompatActivity {
         TextView redniBrojPitanjaText = findViewById(R.id.redni_broj_pitanja);
 
         String idPitanja = naslovGrupe + "_kviz" + redniBrojKviza.toString() + "_pitanje" + redniBrojPitanja.toString();
-        int id = getResources().getIdentifier("com.example.coinsmart:array/"+idPitanja, null, null);
+        int id = getResources().getIdentifier("com.example.spendiverse:array/"+idPitanja, null, null);
 
         sadrzajPitanja=getResources().getStringArray(id);
         String tekstPitanja = sadrzajPitanja[0];
