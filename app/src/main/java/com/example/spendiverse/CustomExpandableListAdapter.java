@@ -67,7 +67,6 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         String pomocnaVarijabla = imeKategorije + "_" + imeTeme;
         if (rjeseniKvizovi.contains(imeKategorije + "_" + imeTeme)){
             kvacicaImage.setVisibility(View.VISIBLE);
-
         }
         else{
             kvacicaImage.setVisibility(View.GONE);

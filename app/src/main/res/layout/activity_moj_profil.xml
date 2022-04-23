@@ -34,9 +34,29 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/tesko_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/tesko_bedz" />
+
+            <ImageView
+                android:id="@+id/srednje_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/srednje_bedz" />
+
+            <ImageView
+                android:id="@+id/lagano_bedz"
+                android:layout_width="40dp"
+                android:visibility="gone"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/lagano_bedz" />
+
+            <ImageView
                 android:id="@+id/financijski_plan_bedz"
                 android:layout_width="40dp"
-                android:layout_marginRight="5dp"
                 android:layout_height="40dp"
                 android:visibility="gone"
                 app:srcCompat="@drawable/financijski_plan_bedz" />
@@ -44,7 +64,6 @@
             <ImageView
                 android:id="@+id/trosak_bedz"
                 android:layout_width="40dp"
-                android:layout_marginLeft="5dp"
                 android:layout_height="40dp"
                 android:visibility="gone"
                 app:srcCompat="@drawable/trosak_bedz" />

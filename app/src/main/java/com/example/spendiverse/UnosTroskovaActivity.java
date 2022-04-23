@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -74,6 +75,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
     private ArrayAdapter arrayAdapterValute;
     private String firebaseIdTroska;
     private ImageButton buttonIzbrisiSliku;
+    private Integer postojanjeBedzaZaTrosak;
     private ImageButton buttonDownloadSlike;
     private ImageButton buttonUploadSlike;
     String zadaneKategorije[] = {"prehrana", "kućanstvo", "promet"};
@@ -345,6 +347,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
      */
     private void dodajNoviTrosak() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> data = new HashMap<>();
         data.put("cijena", cijenaTroska.getText().toString());
         data.put("naziv", nazivTroska.getText().toString());
@@ -353,7 +356,6 @@ public class UnosTroskovaActivity extends AppCompatActivity {
         data.put("datumDan", dan);
         data.put("datumMjesec", mjesec);
         data.put("datumGodina", godina);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi").add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -368,8 +370,29 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
-        finish();
+        postojanjeBedzaZaTrosak = 0;
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals("prvi_trosak")){
+                                    postojanjeBedzaZaTrosak = 1;
+                                }
+                            }
+                            if (postojanjeBedzaZaTrosak==0){
+                                db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                                        .document("prvi_trosak").set(new HashMap<>());
+                            }
 
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        finish();
     }
 
     /**
