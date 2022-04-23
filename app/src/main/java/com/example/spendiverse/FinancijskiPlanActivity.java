@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -72,6 +73,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
     private TextView prehrana;
     private TextView kucanstvo;
     private TextView promet;
+    private Integer postojanjeBedzaZaPlan;
     private TextView troskoviOstalo;
     private Double troskovi;
     private Double iznosPreostalo;
@@ -381,6 +383,28 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
+                    }
+                });
+        postojanjeBedzaZaPlan = 0;
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals("prvi_plan")){
+                                    postojanjeBedzaZaPlan = 1;
+                                }
+                            }
+                            if (postojanjeBedzaZaPlan==0){
+                                db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                                        .document("prvi_plan").set(new HashMap<>());
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
                     }
                 });
     }
