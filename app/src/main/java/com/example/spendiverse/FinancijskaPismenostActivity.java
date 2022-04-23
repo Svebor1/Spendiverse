@@ -54,7 +54,7 @@ public class FinancijskaPismenostActivity extends AppCompatActivity {
                                 String naslovTeme = document.get("naslov teme").toString();
                                 Integer redniBrojKviza = spremnikKategorija.vracanjeRednogBrojaKviza(naslovTeme,naslovGrupe);
                                 String imeBrojaPitanja = naslovGrupe + "_tema" + redniBrojKviza + "_brojpitanja";
-                                int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
+                                int kolicinaPitanjaId = getResources().getIdentifier("com.example.spendiverse:integer/"+imeBrojaPitanja,null,null);
                                 Integer brojPitanja = getResources().getInteger(kolicinaPitanjaId);
                                 if(brojTocnih==brojPitanja){
                                     rjeseniKvizovi.add(document.getId());
