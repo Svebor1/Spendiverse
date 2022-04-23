@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class KategorijaAdapter extends ArrayAdapter<String> {
     private Context context;
@@ -58,6 +59,10 @@ public class KategorijaAdapter extends ArrayAdapter<String> {
             //kategorije prehrana, kućanstvo i promet se ne mogu uređivati niti brisati
             kanta.setVisibility(View.INVISIBLE);
             edit.setVisibility(View.INVISIBLE);
+        }
+        else {
+            kanta.setVisibility(View.VISIBLE);
+            edit.setVisibility(View.VISIBLE);
         }
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati kategoriju prvo će se otvoriti prozor za potvrdu
