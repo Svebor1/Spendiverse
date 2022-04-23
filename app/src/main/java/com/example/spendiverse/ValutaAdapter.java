@@ -56,6 +56,9 @@ public class ValutaAdapter extends ArrayAdapter<String> {
             //četiri osnovne valute se ne mogu brisati: HRK, USD, EUR, GBP
             kanta.setVisibility(View.INVISIBLE);
         }
+        else {
+            kanta.setVisibility(View.VISIBLE);
+        }
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati valutu prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(context)
