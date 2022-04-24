@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -51,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -371,6 +373,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                     }
                 });
         postojanjeBedzaZaTrosak = 0;
+        Context context = this;
         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -385,6 +388,22 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                             if (postojanjeBedzaZaTrosak==0){
                                 db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                         .document("prvi_trosak").set(new HashMap<>());
+                                db.collection("ljestvica").document(firebaseUser.getUid())
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if(task.isSuccessful()){
+                                                    String popisBedzeva = task.getResult().getString("bedzevi") + " prvi_trosak";
+
+                                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                    Toast.makeText(context, "Osvojili ste bedž za prvi trošak!", Toast.LENGTH_LONG).show();
+                                                }
+                                                else{
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });
                             }
 
                         } else {
@@ -434,13 +453,31 @@ public class UnosTroskovaActivity extends AppCompatActivity {
      */
     private boolean provjeriUnos() {
         boolean rezultatBooleana = true;
+        String textCijene = cijenaTroska.getText().toString();
 
-        if (cijenaTroska.getText().toString().replace(" ","").equals("")) {
+        if (textCijene.replace(" ","").equals("")) {
             cijenaTroska.setError("Unesite cijenu troška");
             rezultatBooleana = false;
         }
-        if (cijenaTroska.getText().toString().length()>8){
+
+        String cijenaBezDecimala;
+        String cijenaNakonTocke;
+        Integer pozicijaTocke = textCijene.indexOf('.');
+        if (pozicijaTocke == -1){
+            cijenaBezDecimala = textCijene;
+            cijenaNakonTocke = "";
+        }
+        else {
+            cijenaBezDecimala = textCijene.substring(0, pozicijaTocke);
+            cijenaNakonTocke = textCijene.substring(pozicijaTocke + 1);
+        }
+
+        if (cijenaBezDecimala.length()>8){
             cijenaTroska.setError("Trošak ne može biti veći od 99999999");
+            rezultatBooleana = false;
+        }
+        if (cijenaNakonTocke.length()>2){
+            cijenaTroska.setError("Trošak ne može imati više od 2 decimale");
             rezultatBooleana = false;
         }
         if (nazivTroska.getText().toString().replace(" ","").equals("")) {

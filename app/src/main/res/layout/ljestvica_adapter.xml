@@ -5,7 +5,7 @@
 
 
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="45dp"
     android:elevation="10dp"
     android:background="@drawable/zuta_pozadina_4ruba">
 
@@ -23,7 +23,7 @@
         android:id="@+id/naziv_korisnika"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/mjesto_korisnika"
@@ -38,6 +38,56 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/naziv_korisnika"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/broj_bodova"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ljestvica_tesko_bedz"
+            android:visibility="gone"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/tesko_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_srednje_bedz"
+            android:visibility="gone"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/srednje_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_lagano_bedz"
+            android:visibility="gone"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/lagano_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_trosak_bedz"
+            android:visibility="gone"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/trosak_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_plan_bedz"
+            android:visibility="gone"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/financijski_plan_bedz" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

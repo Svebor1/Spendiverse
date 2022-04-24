@@ -60,10 +60,10 @@ public class MojProfil extends AppCompatActivity {
     ImageView srednjiKvizoviBedz;
     ImageView teskiKvizoviBedz;
     Integer prviTrosakBedz;
-    Integer brojPlanova;
-    Integer laganiKvizovi;
-    Integer srednjiKvizovi;
-    Integer teskiKvizovi;
+    Integer prviPlanBedz;
+    Integer postojanjeBedzaLaganihKvizova;
+    Integer postojanjeBedzaSrednjihKvizova;
+    Integer postojanjeBedzaTeskihKvizova;
     Context context;
     String TAG = "MojProfil";
     private String nadimak;
@@ -286,10 +286,10 @@ public class MojProfil extends AppCompatActivity {
     }
     private void provjeriPostojanjeBedzeva() {
         prviTrosakBedz = 0;
-        brojPlanova = 0;
-        laganiKvizovi = 0;
-        srednjiKvizovi = 0;
-        teskiKvizovi = 0;
+        prviPlanBedz = 0;
+        postojanjeBedzaLaganihKvizova = 0;
+        postojanjeBedzaSrednjihKvizova = 0;
+        postojanjeBedzaTeskihKvizova = 0;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
@@ -302,84 +302,48 @@ public class MojProfil extends AppCompatActivity {
                                 if (document.getId().equals("prvi_trosak")) {
                                     prviTrosakBedz = 1;
                                 }
+                                if (document.getId().equals("prvi_plan")) {
+                                    prviPlanBedz = 1;
+                                }
+                                if (document.getId().equals("bedz_lagani_kvizovi")) {
+                                    postojanjeBedzaLaganihKvizova = 1;
+                                }
+                                if (document.getId().equals("bedz_srednji_kvizovi")) {
+                                    postojanjeBedzaSrednjihKvizova = 1;
+                                }
+                                if (document.getId().equals("bedz_teski_kvizovi")) {
+                                    postojanjeBedzaTeskihKvizova = 1;
+                                }
+
                             }
                             if (prviTrosakBedz == 1){
                                 bedzTrosak.setVisibility(View.VISIBLE);
                             } else{
                                 bedzTrosak.setVisibility(View.GONE);
                             }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("planovi")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                brojPlanova++;
-                            }
-                            if (brojPlanova>0){
+                            if (prviPlanBedz == 1){
                                 planiranjeBedz.setVisibility(View.VISIBLE);
                             } else{
                                 planiranjeBedz.setVisibility(View.GONE);
                             }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-        db.collection("korisnici").document(firebaseUser.getUid()).collection("rezultati_kvizova")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            rezultati = new ArrayList<Rezultat>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                String nazivTezine = document.getData().get("naslov grupe").toString();
-                                Integer rezultatKviza = Integer.parseInt(document.getData().get("rezultat").toString());
-                                String naslovTeme = document.get("naslov teme").toString();
-                                Integer redniBrojKviza = spremnikKategorija.vracanjeRednogBrojaKviza(naslovTeme,nazivTezine);
-                                String imeBrojaPitanja = nazivTezine + "_tema" + redniBrojKviza + "_brojpitanja";
-                                int kolicinaPitanjaId = getResources().getIdentifier("com.example.coinsmart:integer/"+imeBrojaPitanja,null,null);
-                                Integer brojPitanja = getResources().getInteger(kolicinaPitanjaId);
-
-                                if (nazivTezine.equals("lagano") && brojPitanja==rezultatKviza){
-                                    laganiKvizovi++;
-                                }
-                                if (nazivTezine.equals("srednje") && brojPitanja==rezultatKviza){
-                                    srednjiKvizovi++;
-                                }
-                                if (nazivTezine.equals("tesko") && brojPitanja==rezultatKviza){
-                                    teskiKvizovi++;
-                                }
-                            }
-                            if (laganiKvizovi==getResources().getInteger(R.integer.broj_laganih_kvizova)){
+                            if (postojanjeBedzaLaganihKvizova == 1){
                                 laganiKvizoviBedz.setVisibility(View.VISIBLE);
-                            }
-                            else{
+                            } else{
                                 laganiKvizoviBedz.setVisibility(View.GONE);
                             }
-                            if (srednjiKvizovi==getResources().getInteger(R.integer.broj_srednjih_kvizova)){
+                            if (postojanjeBedzaSrednjihKvizova == 1){
                                 srednjiKvizoviBedz.setVisibility(View.VISIBLE);
-                            }
-                            else{
+                            } else{
                                 srednjiKvizoviBedz.setVisibility(View.GONE);
                             }
-                            if (teskiKvizovi==getResources().getInteger(R.integer.broj_teskih_kvizova)){
+                            if (postojanjeBedzaTeskihKvizova == 1){
                                 teskiKvizoviBedz.setVisibility(View.VISIBLE);
-                            }
-                            else{
+                            } else{
                                 teskiKvizoviBedz.setVisibility(View.GONE);
                             }
 
                         } else {
-                            Log.d(TAG, "get failed with ", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });

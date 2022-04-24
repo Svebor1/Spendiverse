@@ -4,7 +4,7 @@
 
     <integer name="broj_laganih_kvizova">2</integer>
     <integer name="broj_srednjih_kvizova">4</integer>
-    <integer name="broj_teskih_kvizova">4</integer>
+    <integer name="broj_teskih_kvizova">5</integer>
 
     <integer name="lagano_tema0_brojslideova">5</integer>
     <integer name="lagano_tema1_brojslideova">6</integer>
