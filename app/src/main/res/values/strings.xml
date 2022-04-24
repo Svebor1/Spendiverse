@@ -137,14 +137,51 @@
     <string name = "tesko_tema3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
     <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
-    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
-    <string name = "tesko_tema4_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
-    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
-    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
-    <string name = "tesko_tema4_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
-    <string name = "tesko_tema4_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
-    <string name = "tesko_tema4_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
-    <string name = "tesko_tema4_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+    <string name = "tesko_tema4_text0">Tvrtke izdaju dionice kako bi povećale svoju imovinu i omogućile širenje posla ili rad na novim projektima. Ljudi koji zele uloziti u tvrtku kupuju dionice.</string>
+    <string name = "tesko_tema4_text1">Nemaju sve tvrtke dionice. Da bi počele prodavati svoje dionice moraju proći IPO-a. IPO je kada neka tvrtka izlazi na tržište dionica prvi put. </string>
+    <string name = "tesko_tema4_text2">Tvrtke koje prodaju svoje dionice su dionicka drustva. Dionice su dokaz da netko posjeduje dio tvrtke, odnosno dioničkog društva</string>
+    <string name = "tesko_tema4_text3">Dionice mogu dati vlasnicima pravo glasa na glavnoj skupštini dioničkog društva </string>
+    <string name = "tesko_tema4_text4">Burza je mjesto gdje se dionice kupuju i prodaju. Ukoliko vlasnik dionice proda dionicu, dobit ce za nju njenu trenutnu vrijednost na burzi.</string>
+    <string name = "tesko_tema4_text5">Tržišna kapitalizacija je ukupna vrijednost dionica nekog dioničkog društva. Dobiva se kao zbroj vrijednosti svih dionica. Njome se ocjenjuje vrijednost tvrtke koja ima dionice</string>
+    <string name = "tesko_tema4_text6">Broker je posrednik za prodaju dionica</string>
+
+    <string name = "tesko_tema5_text0">Kad tvrtka dobro napreduje, njezina vrijednost raste i raste vrijednost njezinih dionica</string>
+    <string name = "tesko_tema5_text1">Kad tvrtka ne posluje dobro, vrijednost dionica pada.</string>
+    <string name = "tesko_tema5_text2">Također, cijenu dionica određuje ponuda i potražnja</string>
+    <string name = "tesko_tema5_text3">Ako ljudi prodaju punu dionica, a nema puno ponude, odnosno nema puno ljudi koji žele kupiti dionice, onda vrijednost dionica pada</string>
+    <string name = "tesko_tema5_text4">Ako postoji velika ponuda, odnosno puno ljudi žele kupiti dionice, a nema ih dovoljno u obrtu, tada vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text5">Zbog ovoga osim toga kako tvrtka trenutno posluje, bitna su i očekivanja investitora. Ako se očekuje razvoj tvrtke onda više ljudi žele kupiti dionice, pa vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text6">Primjerice, nakon uspješne prezentacije Elona Muska ljudi očekuju razvoj i povećanje prihoda Tesle, zbog čega puno ljudi počinju kupovati dionice Tesle, pa vrijednost dionica raste.</string>
+
+    <string name = "tesko_tema6_text0">Dividenda je dio dobiti dioničkog društva koji se isplaćuje vlasnicima dionica.</string>
+    <string name = "tesko_tema6_text1">Dio dobiti (profit) kojeg ostvari dioničko društvo proslijedi vlasnicima dionica u obliku dividenda</string>
+    <string name = "tesko_tema6_text2">Dio dobiti koji nije isplaćen ponovno se ulaže u tvrtku i zove se zadržana dobit</string>
+
+    <string name = "tesko_tema7_text0">Obveznica je vrijednosni papir koji sadrži dokaz postajanja neke obveze. Ona služi  vjerovniku kao dokaz da je dužnik preuzeo obvezu plaćanja.</string>
+    <string name = "tesko_tema7_text1">Obveznice mogu izdavati države, velike bankovne, prometne ili industrijske tvrtke.</string>
+    <string name = "tesko_tema7_text2">Svrha im je prikupljanje sredstava, najčešće u značajnim iznosima. Na primjer, grad može izdati obveznice za izgradnju bazena.</string>
+    <string name = "tesko_tema7_text3">Obveznice se izdaju prema unaprijed određenoj i obično fiksnoj kamatnoj stopi. U primjeru kad grad nudi obveznice za bazen, obecaje kupcima da se im nakon nekog vremena vratiti novac s kamatom.</string>
+    <string name = "tesko_tema7_text4">Sastavni dio obveznice su kuponi, koji daju pravo na isplatu pripadajuće kamate za određeno razdoblje (najčešće za jednu godinu).</string>
+    <string name = "tesko_tema7_text5">Obveznice mogu biti dio tržišta, cijena im se može mijenjati od početne vrijednosti, ovisno o ponudi i potražnji. </string>
+    <string name = "tesko_tema7_text6">Primjerice, ako neka tvrtka koja izdaje obveznice počinje loše poslovati, povećati će se rizik da neće moći isplatiti svoje obveze, pa će ljudi početi prodavati njezine obveznice i njezine cijene će se smanjiti.</string>
+
+    <string name = "tesko_tema8_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema8_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema8_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema8_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema8_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
+    <string name = "tesko_tema8_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
+    <string name = "tesko_tema8_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
+    <string name = "tesko_tema8_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
+    <string name = "tesko_tema9_text0">Derivati su vrijednosni papiri čija vrijednost ovisi o vrijednosti nekih drugih vrijednosnih papira (kao što su dionice, obveznice itd.) ili robe</string>
+    <string name = "tesko_tema9_text1">Derivati su način “oklade” na cijene dionica, kamatne stope, valutne tečajeve, cijene roba</string>
+    <string name = "tesko_tema9_text2">Razlikujemo četiri vrste derivata: opcije, terminski ugovori (eng. futures), terminski ugovori kojima se ne trguje (forwards) sporazami između dva društva kojima razmjenjuju nizove budućih plaćanja s različitim uvjetima (eng. swaps)</string>
+    <string name = "tesko_tema9_text3">Opcije daju pravo (ne obvezu) na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text4">Na primjer, kupac se može dogovoriti s prodavačem o mogućoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to opcija (moguće je to dogovoriti čak i ako cijena nafte nije 30 dolara)</string>
+    <string name = "tesko_tema9_text5">Terminski ugovori (eng. futures) su dogovori s ciljem kupnje nečega po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text6">Na primjer, kupac se može dogovoriti s prodavačem o obaveznoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to terminski ugovor</string>
+    <string name = "tesko_tema9_text7">U tom slučaju ako se kupac dogovorio o kupnji 10 barela nafte po cijeni 30 dolara za mjesec dana i cijena barela nafte naraste do 60 dolara, terminski ugovor postaje vrijedan i zato ga kupac može prodati nekome drugome </string>
 
     <string-array name="lagano_kviz0_pitanje0">
         <item>U kojem se obliku novac danas ne koristi?</item>
@@ -642,7 +679,7 @@
         <item>središnja banka</item>
     </string-array>
 
-    <string-array name="tesko_kviz4_pitanje0">
+    <string-array name="tesko_kviz8_pitanje0">
         <item>Što je fond?</item>
         <item>Organizacija koja ulaže i upravlja novcem</item>
         <item>Organizacija za obrazovanje</item>
@@ -650,21 +687,21 @@
         <item>Organizacija koja ulaže i upravlja novcem</item>
     </string-array>
 
-    <string-array name="tesko_kviz4_pitanje1">
+    <string-array name="tesko_kviz8_pitanje1">
         <item>Kako možemo postati djelomični vlasnici fonda?</item>
         <item>Osnovati fond</item>
         <item>Uplatiti određeni iznos novca u fond</item>
         <item>Postati manager fonda</item>
         <item>Uplatiti određeni iznos novca u fond</item>
     </string-array>
-    <string-array name="tesko_kviz4_pitanje2">
+    <string-array name="tesko_kviz8_pitanje2">
         <item>Cilj upravljanja fonda je:</item>
         <item>Rast cijene imovine fonda</item>
         <item>Dobit managera fonda</item>
         <item>Dobiti novac od ulagatelja</item>
         <item>Rast cijene imovine fonda</item>
     </string-array>
-    <string-array name="tesko_kviz4_pitanje3">
+    <string-array name="tesko_kviz8_pitanje3">
         <item>Kome investicijski fond isplaćuje udio dobiti?</item>
         <item>Školama</item>
         <item>Manageru</item>
@@ -672,7 +709,7 @@
         <item>Vlasnicima</item>
     </string-array>
 
-    <string-array name="tesko_kviz4_pitanje4">
+    <string-array name="tesko_kviz8_pitanje4">
         <item>Tko upravlja fondom?</item>
         <item>Vlasnici</item>
         <item>Analitičari</item>
@@ -680,11 +717,178 @@
         <item>Društvo za upravljanje fondovima</item>
     </string-array>
 
-    <string-array name="tesko_kviz4_pitanje5">
+    <string-array name="tesko_kviz8_pitanje5">
         <item>Namijena investicijskih fondova je:</item>
         <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci </item>
         <item>Trošiti novac ulagatelja</item>
         <item>Pomoć ulagateljima u različitim uslugama</item>
         <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje0">
+        <item>Gdje možemo kupiti dionice?</item>
+        <item>Na tržnici</item>
+        <item>Na burzi</item>
+        <item>Online trgovini</item>
+        <item>Na burzi</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje1">
+        <item>Tko daje dionice na prodaju?</item>
+        <item>Dionička društva</item>
+        <item>Sve tvrtke</item>
+        <item>Mali obrti i tvrtke</item>
+        <item>Dionička društva</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje2">
+        <item>Zasto tvrtka zeli prodati dionice?</item>
+        <item>Da bi povećala svoju imovinu i omogućila širenje posla</item>
+        <item>Da bi postala poznata</item>
+        <item>Jer je određeno zakonom</item>
+        <item>Da bi povećala svoju imovinu i omogućila širenje posla</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje3">
+        <item>Tržišna kapitalizacija je:</item>
+        <item>Koliko je široko tržište neke tvrtke</item>
+        <item>Ukupni kapital nekog dioničkog društva</item>
+        <item>Ukupna vrijednost dionica nekog dioničkog društva</item>
+        <item>Ukupna vrijednost dionica nekog dioničkog društva</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje4">
+        <item>Što su dionice?</item>
+        <item>Dokaz da netko posjeduje dio dioničkog društva</item>
+        <item>Dokaz da netko upravlja dioničkim društvom</item>
+        <item>Proizvod neke tvrtke koji se može kupovati i prodavati</item>
+        <item>Dokaz da netko posjeduje dio dioničkog društva</item>
+    </string-array>
+
+    <string-array name="tesko_kviz5_pitanje0">
+        <item>Što ne određuje cijenu dionice?</item>
+        <item>Starost tvrtke</item>
+        <item>Potražnja i ponuda</item>
+        <item>Napredovanje i poslovanje dioničkog društva</item>
+        <item>Starost tvrtke</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje1">
+        <item>Ako se prestanu koristit fosilna goriva, dionice tvrtki koje proizvode benzin će:</item>
+        <item>Rasti će </item>
+        <item>Padat će</item>
+        <item>Ostat će isti</item>
+        <item>Padat će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje2">
+        <item>Ako Elon Musk kaže da je Dogecoin novac budućnosti, cijena će mu:</item>
+        <item>Padat će</item>
+        <item>Rasti će</item>
+        <item>Ostat će isti</item>
+        <item>Rasti će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje3">
+        <item>Ako se Apple-u smanji prodaja Iphone-a, dionice Apple-a će:</item>
+        <item>Padat će</item>
+        <item>Ostat će isti</item>
+        <item>Rasti će</item>
+        <item>Padat će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje4">
+        <item>Zašto su bitna pozitivna očekivanja investitora o budućem razvoju tvrtke za cijenu dionice:</item>
+        <item>Početi će kupovati dionice zbog čega će njihova cijena rasti</item>
+        <item>Početi će prodavati dionice zbog čega će njihova cijena padati</item>
+        <item>Da upravitelj tvrtke bude zadovoljan</item>
+        <item>Početi će kupovati dionice zbog čega će njihova cijena rasti</item>
+    </string-array>
+
+    <string-array name="tesko_kviz6_pitanje0">
+        <item>Što radi tvrtka s ostvarenom dobiti?</item>
+        <item>Mora sve dati vlasnicima dionica</item>
+        <item>Mora uložiti sve u razvoj tvrtke</item>
+        <item>Dio dijeli među vlasnicima dionica, a dio ostavlja za razvoj</item>
+        <item>Dio dijeli među vlasnicima dionica, a dio ostavlja za razvoj</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje1">
+        <item>Što može dobiti vlasnik dionica?</item>
+        <item>Dio prihoda dioničkog društva</item>
+        <item>Novac tvrtke koji služi za njezin razvoj</item>
+        <item>Posao u tvrtki čije dionice posjeduje</item>
+        <item>Dio prihoda dioničkog društva</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje2">
+        <item>Prihod kojeg vlasnik dionica dobiva zove se:</item>
+        <item>Divizija</item>
+        <item>Deflacija</item>
+        <item>Dividenda</item>
+        <item>Dividenda</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje3">
+        <item>Što je zadržana dobit?</item>
+        <item>Dobit tvrtke koji se zadržava tijekom vremenskog razdoblja</item>
+        <item>Dio prihoda tvrtke koji se zadržava i služi za njezin razvoj</item>
+        <item>Dobit tvrtke koji će se zadržati zaposlenicima</item>
+        <item>Dio prihoda tvrtke koji se zadržava i služi za njezin razvoj</item>
+    </string-array>
+
+    <string-array name="tesko_kviz7_pitanje0">
+        <item>Koja od navedenih organizacija ne izdaje obveznice:</item>
+        <item>Države</item>
+        <item>Velike bankovne, prometne ili industrijske tvrtke</item>
+        <item>Obrti</item>
+        <item>Obrti </item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje1">
+        <item>Koja je svrha obveznica:</item>
+        <item>One su dokaz da netko posjeduje dio tvrtke</item>
+        <item>Prikupljanje sredstava</item>
+        <item>Sadrži obvezu kupnje neke dionice</item>
+        <item>Prikupljanje sredstava</item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje2">
+        <item>Ako neka velika prometna tvrtka želi sagraditi ceste, ali joj nedostaje novac što neće napraviti:</item>
+        <item>Kupiti obveznice</item>
+        <item>Podignuti kredit</item>
+        <item>Izdati obveznice</item>
+        <item>Kupiti obveznice</item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje3">
+        <item>Ako grad je ponudio obveznice za sagradnju nove luke, što to znači:</item>
+        <item>Grad je dao obećanje vratiti kupcima obveznice</item>
+        <item>Grad je dao obećanje kupcima obveznica vratiti novac s kamatama</item>
+        <item>Grad ima obvezu prikupiti novac</item>
+        <item>Grad je dao obećanje kupcima obveznica vratiti novac s kamatama</item>
+    </string-array>
+
+
+    <string-array name="tesko_kviz9_pitanje0">
+        <item>O čemu ovise vrijednosti derivata:</item>
+        <item>Vrijednosti nekih drugih vrijednosnih papira ili robe</item>
+        <item>Poslovanju kupca derivata</item>
+        <item>Vrijednosti hrane</item>
+        <item>Vrijednosti nekih drugih vrijednosnih papira ili robe</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje1">
+        <item>Opcije daju:</item>
+        <item>Pravo odabira cijene na kupnju nečega</item>
+        <item>Pravo na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+        <item>Obvezu na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+        <item>Pravo na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje2">
+        <item>Dionice tvrtke za koje imamo terminski ugovor su naglo pale u njihovoj vrijednosti, što će biti dalje:</item>
+        <item>Moramo kupiti te dionice po puno višoj cijeni</item>
+        <item>Ne moramo ništa kupovati</item>
+        <item>Možemo kupiti po nižoj cijeni</item>
+        <item>Moramo kupiti te dionice po puno višoj cijeni</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje3">
+        <item>Kada vrijednost našeg terminskog ugovora ili opcije raste:</item>
+        <item>Kada je opcija ili terminski ugovor siguran</item>
+        <item>Kada je naša dogovorena cijena kupnje viša od trenutne cijene</item>
+        <item>Kada je naša dogovorena cijena kupnje niža od trenutne cijene</item>
+        <item>Kada je naša dogovorena cijena kupnje niža od trenutne cijene</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje4">
+        <item>Što nije derivat:</item>
+        <item>Swap</item>
+        <item>Dionica</item>
+        <item>Forward</item>
+        <item>Dionica</item>
     </string-array>
 </resources>

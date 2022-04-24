@@ -130,13 +130,51 @@
     <string name="srednje_tema2_text3">"Foreign currency account is used to receive and pay money in different currencies "</string>
     <string name="tesko_tema0_text0">"When we invest money in savings in a bank, the bank gets that money available for a certain period of time and gives us a certain fee for that. "</string>
     <string name="rezultat_naslov">Result</string>
-    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
-    <string name = "tesko_tema4_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
-    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
-    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
-    <string name = "tesko_tema4_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
-    <string name = "tesko_tema4_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
-    <string name = "tesko_tema4_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
-    <string name = "tesko_tema4_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
+    <string name = "tesko_tema4_text0">Tvrtke izdaju dionice kako bi povećale svoju imovinu i omogućile širenje posla ili rad na novim projektima. Ljudi koji zele uloziti u tvrtku kupuju dionice.</string>
+    <string name = "tesko_tema4_text1">Nemaju sve tvrtke dionice. Da bi počele prodavati svoje dionice moraju proći IPO-a. IPO je kada neka tvrtka izlazi na tržište dionica prvi put. </string>
+    <string name = "tesko_tema4_text2">Tvrtke koje prodaju svoje dionice su dionicka drustva. Dionice su dokaz da netko posjeduje dio tvrtke, odnosno dioničkog društva</string>
+    <string name = "tesko_tema4_text3">Dionice mogu dati vlasnicima pravo glasa na glavnoj skupštini dioničkog društva </string>
+    <string name = "tesko_tema4_text4">Burza je mjesto gdje se dionice kupuju i prodaju. Ukoliko vlasnik dionice proda dionicu, dobit ce za nju njenu trenutnu vrijednost na burzi.</string>
+    <string name = "tesko_tema4_text5">Tržišna kapitalizacija je ukupna vrijednost dionica nekog dioničkog društva. Dobiva se kao zbroj vrijednosti svih dionica. Njome se ocjenjuje vrijednost tvrtke koja ima dionice</string>
+    <string name = "tesko_tema4_text6">Broker je posrednik za prodaju dionica</string>
+
+    <string name = "tesko_tema5_text0">Kad tvrtka dobro napreduje, njezina vrijednost raste i raste vrijednost njezinih dionica</string>
+    <string name = "tesko_tema5_text1">Kad tvrtka ne posluje dobro, vrijednost dionica pada.</string>
+    <string name = "tesko_tema5_text2">Također, cijenu dionica određuje ponuda i potražnja</string>
+    <string name = "tesko_tema5_text3">Ako ljudi prodaju punu dionica, a nema puno ponude, odnosno nema puno ljudi koji žele kupiti dionice, onda vrijednost dionica pada</string>
+    <string name = "tesko_tema5_text4">Ako postoji velika ponuda, odnosno puno ljudi žele kupiti dionice, a nema ih dovoljno u obrtu, tada vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text5">Zbog ovoga osim toga kako tvrtka trenutno posluje, bitna su i očekivanja investitora. Ako se očekuje razvoj tvrtke onda više ljudi žele kupiti dionice, pa vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text6">Primjerice, nakon uspješne prezentacije Elona Muska ljudi očekuju razvoj i povećanje prihoda Tesle, zbog čega puno ljudi počinju kupovati dionice Tesle, pa vrijednost dionica raste.</string>
+
+    <string name = "tesko_tema6_text0">Dividenda je dio dobiti dioničkog društva koji se isplaćuje vlasnicima dionica.</string>
+    <string name = "tesko_tema6_text1">Dio dobiti (profit) kojeg ostvari dioničko društvo proslijedi vlasnicima dionica u obliku dividenda</string>
+    <string name = "tesko_tema6_text2">Dio dobiti koji nije isplaćen ponovno se ulaže u tvrtku i zove se zadržana dobit</string>
+
+    <string name = "tesko_tema7_text0">Obveznica je vrijednosni papir koji sadrži dokaz postajanja neke obveze. Ona služi  vjerovniku kao dokaz da je dužnik preuzeo obvezu plaćanja.</string>
+    <string name = "tesko_tema7_text1">Obveznice mogu izdavati države, velike bankovne, prometne ili industrijske tvrtke.</string>
+    <string name = "tesko_tema7_text2">Svrha im je prikupljanje sredstava, najčešće u značajnim iznosima. Na primjer, grad može izdati obveznice za izgradnju bazena.</string>
+    <string name = "tesko_tema7_text3">Obveznice se izdaju prema unaprijed određenoj i obično fiksnoj kamatnoj stopi. U primjeru kad grad nudi obveznice za bazen, obecaje kupcima da se im nakon nekog vremena vratiti novac s kamatom.</string>
+    <string name = "tesko_tema7_text4">Sastavni dio obveznice su kuponi, koji daju pravo na isplatu pripadajuće kamate za određeno razdoblje (najčešće za jednu godinu).</string>
+    <string name = "tesko_tema7_text5">Obveznice mogu biti dio tržišta, cijena im se može mijenjati od početne vrijednosti, ovisno o ponudi i potražnji. </string>
+    <string name = "tesko_tema7_text6">Primjerice, ako neka tvrtka koja izdaje obveznice počinje loše poslovati, povećati će se rizik da neće moći isplatiti svoje obveze, pa će ljudi početi prodavati njezine obveznice i njezine cijene će se smanjiti.</string>
+
+    <string name = "tesko_tema8_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema8_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema8_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema8_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema8_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
+    <string name = "tesko_tema8_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
+    <string name = "tesko_tema8_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
+    <string name = "tesko_tema8_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
+    <string name = "tesko_tema9_text0">Derivati su vrijednosni papiri čija vrijednost ovisi o vrijednosti nekih drugih vrijednosnih papira (kao što su dionice, obveznice itd.) ili robe</string>
+    <string name = "tesko_tema9_text1">Derivati su način “oklade” na cijene dionica, kamatne stope, valutne tečajeve, cijene roba</string>
+    <string name = "tesko_tema9_text2">Razlikujemo četiri vrste derivata: opcije, terminski ugovori (eng. futures), terminski ugovori kojima se ne trguje (forwards) sporazami između dva društva kojima razmjenjuju nizove budućih plaćanja s različitim uvjetima (eng. swaps)</string>
+    <string name = "tesko_tema9_text3">Opcije daju pravo (ne obvezu) na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text4">Na primjer, kupac se može dogovoriti s prodavačem o mogućoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to opcija (moguće je to dogovoriti čak i ako cijena nafte nije 30 dolara)</string>
+    <string name = "tesko_tema9_text5">Terminski ugovori (eng. futures) su dogovori s ciljem kupnje nečega po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text6">Na primjer, kupac se može dogovoriti s prodavačem o obaveznoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to terminski ugovor</string>
+    <string name = "tesko_tema9_text7">U tom slučaju ako se kupac dogovorio o kupnji 10 barela nafte po cijeni 30 dolara za mjesec dana i cijena barela nafte naraste do 60 dolara, terminski ugovor postaje vrijedan i zato ga kupac može prodati nekome drugome </string>
 
 </resources>
