@@ -39,12 +39,6 @@
     <string name = "tesko_tema3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
     <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
-    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
-    <string name = "tesko_tema4_text1">Ulagači uplaćuju određenu sumu novca koji menadžer fonda ulaže, najčešče u dionice, obveznice, trezorski zapisi, novčani depozit... \Taj skup imovina fonda se naziva portfelj fonda</string>
-    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju sumu novca oni su ustvari kupuju udio fonda te postaju djelomični vlasnici</string>
-    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno i povećanje imovine ulagatelja</string>
-    <string name = "tesko_tema4_text4"></string>
-
     <string name ="tesko_tema2_text0">Neke promjene cijena imaju veću vrijednost od drugih za inflaciju" </string>
     <string name ="tesko_tema2_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
     <string name ="tesko_tema2_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
@@ -136,4 +130,13 @@
     <string name="srednje_tema2_text3">"Foreign currency account is used to receive and pay money in different currencies "</string>
     <string name="tesko_tema0_text0">"When we invest money in savings in a bank, the bank gets that money available for a certain period of time and gives us a certain fee for that. "</string>
     <string name="rezultat_naslov">Result</string>
+    <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema4_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema4_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
+    <string name = "tesko_tema4_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
+    <string name = "tesko_tema4_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
+    <string name = "tesko_tema4_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
 </resources>
