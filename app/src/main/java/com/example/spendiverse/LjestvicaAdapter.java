@@ -55,7 +55,31 @@ public class LjestvicaAdapter extends ArrayAdapter<RezultatNatjecatelja> {
         TextView mjestoKorisnika = listitemView.findViewById(R.id.mjesto_korisnika);
         nazivKorisnika.setText(rezultatNatjecatelja.getImeKorisnika());
         brojBodova.setText(bodovi.toString());
+        String[] bedzevi = rezultatNatjecatelja.getListaBedzeva();
 
+        ljestvicaPlanBedz.setVisibility(View.GONE);
+        ljestvicaTrosakBedz.setVisibility(View.GONE);
+        ljestvicaLaganoBedz.setVisibility(View.GONE);
+        ljestvicaSrednjeBedz.setVisibility(View.GONE);
+        ljestvicaTeskoBedz.setVisibility(View.GONE);
+
+        for(String bedz : bedzevi){
+            if (bedz.equals("prvi_plan")){
+                ljestvicaPlanBedz.setVisibility(View.VISIBLE);
+            }
+            if (bedz.equals("prvi_trosak")){
+                ljestvicaTrosakBedz.setVisibility(View.VISIBLE);
+            }
+            if (bedz.equals("bedz_lagani_kvizovi")){
+                ljestvicaLaganoBedz.setVisibility(View.VISIBLE);
+            }
+            if (bedz.equals("bedz_srednji_kvizovi")){
+                ljestvicaSrednjeBedz.setVisibility(View.VISIBLE);
+            }
+            if (bedz.equals("bedz_teski_kvizovi")){
+                ljestvicaTeskoBedz.setVisibility(View.VISIBLE);
+            }
+        }
         Integer pozicija = rezultatNatjecatelja.getPozicija();
         mjestoKorisnika.setText(Integer.toString(pozicija));
 

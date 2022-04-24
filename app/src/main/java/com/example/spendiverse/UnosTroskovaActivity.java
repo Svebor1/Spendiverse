@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -51,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -371,6 +373,7 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                     }
                 });
         postojanjeBedzaZaTrosak = 0;
+        Context context = this;
         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -385,6 +388,22 @@ public class UnosTroskovaActivity extends AppCompatActivity {
                             if (postojanjeBedzaZaTrosak==0){
                                 db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                         .document("prvi_trosak").set(new HashMap<>());
+                                db.collection("ljestvica").document(firebaseUser.getUid())
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if(task.isSuccessful()){
+                                                    String popisBedzeva = task.getResult().getString("bedzevi") + " prvi_trosak";
+
+                                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                    Toast.makeText(context, "Osvojili ste bedž za prvi trošak!", Toast.LENGTH_LONG).show();
+                                                }
+                                                else{
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });
                             }
 
                         } else {

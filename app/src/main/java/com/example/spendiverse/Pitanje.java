@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -270,6 +272,7 @@ public class Pitanje extends AppCompatActivity {
         postojanjeBedzaZaLaganeKvizove = 0;
         postojanjeBedzaZaSrednjeKvizove = 0;
         postojanjeBedzaZaTeskeKvizove = 0;
+        Context context = this;
         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -318,14 +321,62 @@ public class Pitanje extends AppCompatActivity {
                                                     if (laganiKvizovi==getResources().getInteger(R.integer.broj_laganih_kvizova)){
                                                         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                                                 .document("bedz_lagani_kvizovi").set(new HashMap<>());
+                                                        db.collection("ljestvica").document(firebaseUser.getUid())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                        if(task.isSuccessful()){
+                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_lagani_kvizovi";
+
+                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                                            Toast.makeText(context, "Osvojili ste bedž za lagane kvizove!", Toast.LENGTH_LONG).show();
+                                                                        }
+                                                                        else{
+                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
+                                                                        }
+                                                                    }
+                                                                });
                                                     }
                                                     if (srednjiKvizovi==getResources().getInteger(R.integer.broj_srednjih_kvizova)){
                                                         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                                                 .document("bedz_srednji_kvizovi").set(new HashMap<>());
+                                                        db.collection("ljestvica").document(firebaseUser.getUid())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                        if(task.isSuccessful()){
+                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_srednji_kvizovi";
+
+                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                                            Toast.makeText(context, "Osvojili ste bedž za srednje kvizove!", Toast.LENGTH_LONG).show();
+                                                                        }
+                                                                        else{
+                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
+                                                                        }
+                                                                    }
+                                                                });
                                                     }
                                                     if (teskiKvizovi==getResources().getInteger(R.integer.broj_teskih_kvizova)){
                                                         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                                                 .document("bedz_teski_kvizovi").set(new HashMap<>());
+                                                        db.collection("ljestvica").document(firebaseUser.getUid())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                        if(task.isSuccessful()){
+                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_teski_kvizovi";
+
+                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                                            Toast.makeText(context, "Osvojili ste bedž za teške kvizove!", Toast.LENGTH_LONG).show();
+                                                                        }
+                                                                        else{
+                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
+                                                                        }
+                                                                    }
+                                                                });
                                                     }
 
                                                 } else {

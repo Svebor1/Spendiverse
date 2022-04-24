@@ -386,6 +386,7 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                     }
                 });
         postojanjeBedzaZaPlan = 0;
+        Context context = this;
         db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -400,6 +401,22 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                             if (postojanjeBedzaZaPlan==0){
                                 db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
                                         .document("prvi_plan").set(new HashMap<>());
+                                db.collection("ljestvica").document(firebaseUser.getUid())
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if(task.isSuccessful()){
+                                                    String popisBedzeva = task.getResult().getString("bedzevi") + " prvi_plan";
+
+                                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                                    Toast.makeText(context, "Osvojili ste bedž za prvi financijski plan!", Toast.LENGTH_LONG).show();
+                                                }
+                                                else{
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });
                             }
 
                         } else {
