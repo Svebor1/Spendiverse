@@ -330,7 +330,9 @@ public class Pitanje extends AppCompatActivity {
                                                                             String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_lagani_kvizovi";
 
                                                                             db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            Toast.makeText(context, "Osvojili ste bedž za lagane kvizove!", Toast.LENGTH_LONG).show();
+                                                                            if (postojanjeBedzaZaLaganeKvizove==0) {
+                                                                                Toast.makeText(context, "Osvojili ste bedž za lagane kvizove!", Toast.LENGTH_LONG).show();
+                                                                            }
                                                                         }
                                                                         else{
                                                                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -350,7 +352,9 @@ public class Pitanje extends AppCompatActivity {
                                                                             String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_srednji_kvizovi";
 
                                                                             db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            Toast.makeText(context, "Osvojili ste bedž za srednje kvizove!", Toast.LENGTH_LONG).show();
+                                                                            if (postojanjeBedzaZaSrednjeKvizove==0) {
+                                                                                Toast.makeText(context, "Osvojili ste bedž za srednje kvizove!", Toast.LENGTH_LONG).show();
+                                                                            }
                                                                         }
                                                                         else{
                                                                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -370,7 +374,9 @@ public class Pitanje extends AppCompatActivity {
                                                                             String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_teski_kvizovi";
 
                                                                             db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            Toast.makeText(context, "Osvojili ste bedž za teške kvizove!", Toast.LENGTH_LONG).show();
+                                                                            if (postojanjeBedzaZaTeskeKvizove==0) {
+                                                                                Toast.makeText(context, "Osvojili ste bedž za teške kvizove!", Toast.LENGTH_LONG).show();
+                                                                            }
                                                                         }
                                                                         else{
                                                                             Log.d(TAG, "Error getting documents: ", task.getException());
