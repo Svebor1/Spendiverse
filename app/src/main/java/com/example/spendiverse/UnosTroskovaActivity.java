@@ -453,13 +453,31 @@ public class UnosTroskovaActivity extends AppCompatActivity {
      */
     private boolean provjeriUnos() {
         boolean rezultatBooleana = true;
+        String textCijene = cijenaTroska.getText().toString();
 
-        if (cijenaTroska.getText().toString().replace(" ","").equals("")) {
+        if (textCijene.replace(" ","").equals("")) {
             cijenaTroska.setError("Unesite cijenu troška");
             rezultatBooleana = false;
         }
-        if (cijenaTroska.getText().toString().length()>8){
+
+        String cijenaBezDecimala;
+        String cijenaNakonTocke;
+        Integer pozicijaTocke = textCijene.indexOf('.');
+        if (pozicijaTocke == -1){
+            cijenaBezDecimala = textCijene;
+            cijenaNakonTocke = "";
+        }
+        else {
+            cijenaBezDecimala = textCijene.substring(0, pozicijaTocke);
+            cijenaNakonTocke = textCijene.substring(pozicijaTocke + 1);
+        }
+
+        if (cijenaBezDecimala.length()>8){
             cijenaTroska.setError("Trošak ne može biti veći od 99999999");
+            rezultatBooleana = false;
+        }
+        if (cijenaNakonTocke.length()>2){
+            cijenaTroska.setError("Trošak ne može imati više od 2 decimale");
             rezultatBooleana = false;
         }
         if (nazivTroska.getText().toString().replace(" ","").equals("")) {
