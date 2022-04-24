@@ -138,10 +138,14 @@
     <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
 
     <string name = "tesko_tema4_text0">Fond je organizacija koja ulaže novac</string>
-    <string name = "tesko_tema4_text1">Ulagači uplaćuju određenu sumu novca koji menadžer fonda ulaže, najčešče u dionice, obveznice, trezorski zapisi, novčani depozit... \Taj skup imovina fonda se naziva portfelj fonda</string>
-    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju sumu novca oni su ustvari kupuju udio fonda te postaju djelomični vlasnici</string>
-    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno i povećanje imovine ulagatelja</string>
-    <string name = "tesko_tema4_text4"></string>
+    <string name = "tesko_tema4_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema4_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema4_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema4_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
+    <string name = "tesko_tema4_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
+    <string name = "tesko_tema4_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
+    <string name = "tesko_tema4_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
     <string-array name="lagano_kviz0_pitanje0">
         <item>U kojem se obliku novac danas ne koristi?</item>
         <item>kovanice</item>
@@ -635,6 +639,52 @@
         <item>središnja banka</item>
         <item>vlada</item>
         <item>tvrtke</item>
-        <item>centralna banka</item>
+        <item>središnja banka</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje0">
+        <item>Što je fond?</item>
+        <item>Organizacija koja ulaže i upravlja novcem</item>
+        <item>Organizacija za obrazovanje</item>
+        <item>Organizacija za osiguranje</item>
+        <item>Organizacija koja ulaže i upravlja novcem</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje1">
+        <item>Kako možemo postati djelomični vlasnici fonda?</item>
+        <item>Osnovati fond</item>
+        <item>Uplatiti određeni iznos novca u fond</item>
+        <item>Postati manager fonda</item>
+        <item>Uplatiti određeni iznos novca u fond</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje2">
+        <item>Cilj upravljanja fonda je:</item>
+        <item>Rast cijene imovine fonda</item>
+        <item>Dobit managera fonda</item>
+        <item>Dobiti novac od ulagatelja</item>
+        <item>Rast cijene imovine fonda</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje3">
+        <item>Kome investicijski fond isplaćuje udio dobiti?</item>
+        <item>Školama</item>
+        <item>Manageru</item>
+        <item>Vlasnicima</item>
+        <item>Vlasnicima</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje4">
+        <item>Tko upravlja fondom?</item>
+        <item>Vlasnici</item>
+        <item>Analitičari</item>
+        <item>Društvo za upravljanje fondovima</item>
+        <item>Društvo za upravljanje fondovima</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje5">
+        <item>Namijena investicijskih fondova je:</item>
+        <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci </item>
+        <item>Trošiti novac ulagatelja</item>
+        <item>Pomoć ulagateljima u različitim uslugama</item>
+        <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci</item>
     </string-array>
 </resources>
