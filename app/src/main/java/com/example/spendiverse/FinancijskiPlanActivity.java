@@ -353,18 +353,18 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Map<String, Object> data = new HashMap<>();
 
-        data.put("dzeparac",dzeparac.getText().toString());
-        data.put("poslovi", poslovi.getText().toString());
-        data.put("pokloni", pokloni.getText().toString());
-        data.put("ostalo", ostalo.getText().toString());
+        data.put("dzeparac",dzeparac.getText().toString().replace(',','.'));
+        data.put("poslovi", poslovi.getText().toString().replace(',','.'));
+        data.put("pokloni", pokloni.getText().toString().replace(',','.'));
+        data.put("ostalo", ostalo.getText().toString().replace(',','.'));
         data.put("mjesec", spinnerMjeseci.getSelectedItem().toString());
         data.put("godina", spinnerGodine.getSelectedItem().toString());
         data.put("preostalo",iznosPreostalo);
-        data.put("ustedjevina", ustedjevina.getText().toString());
-        data.put("troskovi_prehrana", prehrana.getText().toString());
-        data.put("troskovi_kucanstvo", kucanstvo.getText().toString());
-        data.put("troskovi_promet", promet.getText().toString());
-        data.put("troskovi_ostalo", troskoviOstalo.getText().toString());
+        data.put("ustedjevina", ustedjevina.getText().toString().replace(',','.'));
+        data.put("troskovi_prehrana", prehrana.getText().toString().replace(',','.'));
+        data.put("troskovi_kucanstvo", kucanstvo.getText().toString().replace(',','.'));
+        data.put("troskovi_promet", promet.getText().toString().replace(',','.'));
+        data.put("troskovi_ostalo", troskoviOstalo.getText().toString().replace(',','.'));
         data.put("valuta", spinnerZaValute.getSelectedItem().toString());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //planovi se spremaju pod nazivom plan_mjesec_godina
@@ -448,15 +448,15 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String planMjesec = document.getData().get("mjesec").toString();
                                 String planGodina = document.getData().get("godina").toString();
-                                Double planDzeparac = Double.parseDouble(document.getData().get("dzeparac").toString());
-                                Double planPokloni = Double.parseDouble(document.getData().get("pokloni").toString());
-                                Double planPoslovi = Double.parseDouble(document.getData().get("poslovi").toString());
-                                Double planOstalo = Double.parseDouble(document.getData().get("ostalo").toString());
-                                Double planUstedjevina = Double.parseDouble(document.getData().get("ustedjevina").toString());
-                                Double planPromet = Double.parseDouble(document.getData().get("troskovi_promet").toString());
-                                Double planPrehrana = Double.parseDouble(document.getData().get("troskovi_prehrana").toString());
-                                Double planKucanstvo = Double.parseDouble(document.getData().get("troskovi_kucanstvo").toString());
-                                Double planTroskoviOstalo = Double.parseDouble(document.getData().get("troskovi_ostalo").toString());
+                                Double planDzeparac = Double.parseDouble(document.getData().get("dzeparac").toString().replace(',','.'));
+                                Double planPokloni = Double.parseDouble(document.getData().get("pokloni").toString().replace(',','.'));
+                                Double planPoslovi = Double.parseDouble(document.getData().get("poslovi").toString().replace(',','.'));
+                                Double planOstalo = Double.parseDouble(document.getData().get("ostalo").toString().replace(',','.'));
+                                Double planUstedjevina = Double.parseDouble(document.getData().get("ustedjevina").toString().replace(',','.'));
+                                Double planPromet = Double.parseDouble(document.getData().get("troskovi_promet").toString().replace(',','.'));
+                                Double planPrehrana = Double.parseDouble(document.getData().get("troskovi_prehrana").toString().replace(',','.'));
+                                Double planKucanstvo = Double.parseDouble(document.getData().get("troskovi_kucanstvo").toString().replace(',','.'));
+                                Double planTroskoviOstalo = Double.parseDouble(document.getData().get("troskovi_ostalo").toString().replace(',','.'));
                                 String planValuta = document.getData().get("valuta").toString();
                                 if (godine.equals(planGodina) && mjesec.equals(planMjesec)) {
                                     dohvatiKonverzijuPlana(planDzeparac, planPokloni, planPoslovi, planOstalo, planUstedjevina, planPromet, planPrehrana, planKucanstvo, planTroskoviOstalo, planValuta);
@@ -489,15 +489,15 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
 
     private void prikaziStanje(){
         String poruka = "";
-        String dzeparacText = dzeparac.getText().toString();
-        String posloviText = poslovi.getText().toString();
-        String pokloniText = pokloni.getText().toString();
-        String ostaloText = ostalo.getText().toString();
-        String ustedjevinaText = ustedjevina.getText().toString();
-        String prehranaText = prehrana.getText().toString();
-        String prometText = promet.getText().toString();
-        String kucanstvoText = kucanstvo.getText().toString();
-        String troskoviOstaloText = troskoviOstalo.getText().toString();
+        String dzeparacText = dzeparac.getText().toString().replace(',','.');
+        String posloviText = poslovi.getText().toString().replace(',','.');
+        String pokloniText = pokloni.getText().toString().replace(',','.');
+        String ostaloText = ostalo.getText().toString().replace(',','.');
+        String ustedjevinaText = ustedjevina.getText().toString().replace(',','.');
+        String prehranaText = prehrana.getText().toString().replace(',','.');
+        String prometText = promet.getText().toString().replace(',','.');
+        String kucanstvoText = kucanstvo.getText().toString().replace(',','.');
+        String troskoviOstaloText = troskoviOstalo.getText().toString().replace(',','.');
         Double dzeparacIznos;
         Double posloviIznos;
         Double pokloniIznos;
