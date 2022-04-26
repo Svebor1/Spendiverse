@@ -703,47 +703,108 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
+
     private boolean provjeriUnos(){
         boolean rezultatBooleana = true;
         if (dzeparac.getText().toString().equals("")){
             rezultatBooleana = false;
             dzeparac.setError("Unesite iznos džeparca ili 0");
         }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(dzeparac.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                dzeparac.setError(greska);
+            }
+        }
         if (pokloni.getText().toString().equals("")){
             rezultatBooleana = false;
             pokloni.setError("Unesite iznos poklona ili 0");
+        }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(pokloni.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                pokloni.setError(greska);
+            }
         }
         if (poslovi.getText().toString().equals("")){
             rezultatBooleana = false;
             poslovi.setError("Unesite iznos dodatnih poslova ili 0");
         }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(poslovi.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                poslovi.setError(greska);
+            }
+        }
         if (ostalo.getText().toString().equals("")){
             rezultatBooleana = false;
             ostalo.setError("Unesite iznos ostalog ili 0");
+        }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(ostalo.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                ostalo.setError(greska);
+            }
         }
         if (ustedjevina.getText().toString().equals("")){
             rezultatBooleana = false;
             ustedjevina.setError("Unesite iznos ušteđevine ili 0");
         }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(ustedjevina.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                ustedjevina.setError(greska);
+            }
+        }
         if (promet.getText().toString().equals("")){
             rezultatBooleana = false;
             promet.setError("Unesite iznos troškova za promet ili 0");
+        }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(promet.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                promet.setError(greska);
+            }
         }
         if (prehrana.getText().toString().equals("")){
             rezultatBooleana = false;
             prehrana.setError("Unesite iznos troškova prehrane ili 0");
         }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(prehrana.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                prehrana.setError(greska);
+            }
+        }
         if (kucanstvo.getText().toString().equals("")){
             rezultatBooleana = false;
             kucanstvo.setError("Unesite iznos troškova za kućanstvo ili 0");
         }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(kucanstvo.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                kucanstvo.setError(greska);
+            }
+        }
         if (troskoviOstalo.getText().toString().equals("")){
             rezultatBooleana = false;
             troskoviOstalo.setError("Unesite iznos ostalih troškova ili 0");
+        }
+        else{
+            String greska = PomocneFunkcije.provjeraDuljineUnosa(troskoviOstalo.getText().toString());
+            if (!greska.equals("")){
+                rezultatBooleana = false;
+                troskoviOstalo.setError(greska);
+            }
         }
         return rezultatBooleana;
     }
