@@ -161,7 +161,12 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         spinnerMjeseci = findViewById(R.id.spinner_mjeseci);
         postaviSpinner(mjeseci, trenutniMjesec.toString(), spinnerMjeseci);
 
-        String godine[] = {"2022","2021","2020","2019","2018"};
+        String[] godine = new String[9];
+        Integer ponudenaGodina = trenutnaGodina-4;
+        for (int i=0; i<9; i++){
+            godine[i] = ponudenaGodina.toString();
+            ponudenaGodina++;
+        }
         spinnerGodine = findViewById(R.id.spinner_godine);
         postaviSpinner(godine, trenutnaGodina.toString(), spinnerGodine);
 
