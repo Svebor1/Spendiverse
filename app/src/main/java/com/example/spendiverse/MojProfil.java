@@ -248,9 +248,14 @@ public class MojProfil extends AppCompatActivity {
                     input.setError("Nadimak ne smije biti prazan");
                 }
                 else{
-                    nadimak = input.getText().toString();
-                    nadimakKorisnika.setText(nadimak);
-                    dialog.dismiss();
+                    if (input.getText().toString().length()>20){
+                        input.setError("Nadimak može imati najviše 20 znakova");
+                    }
+                    else{
+                        nadimak = input.getText().toString();
+                        nadimakKorisnika.setText(nadimak);
+                        dialog.dismiss();
+                    }
                 }
                 db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
 
