@@ -3,12 +3,17 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -195,6 +200,36 @@ public class FinancijskiPlanActivity extends AppCompatActivity {
         kucanstvo.addTextChangedListener(promatrac);
         troskoviOstalo.addTextChangedListener(promatrac);
         nadiValute();
+        //postavljanje alerta za objasnjenje dinancijskog plana
+        ImageView pomocFinancijskiPlan = findViewById(R.id.help_financijski_plan);
+        AlertDialog alertDialogPomoc =
+                new AlertDialog.Builder(this)
+                        .setTitle("Financijski plan")
+                        .setMessage("Financijski plan možemo pregledati ili urediti za određeni mjesec i godinu upisivanjem ušteđevine iz prošlog mjeseca. " +
+                                "te planiranih prihoda i troškova u određenoj valuti koju možemo izabrati. Kada spremimo plan možemo ga preračunati u drugu valutu. " +
+                                "Plan nam služi kako bismo procijenili uštedu u nekom razdoblju.\n" +
+                                "Ispod dijela za unos piše nekoliko vrijednosti:  \n" +
+                                "◼Planirani ukupni troškovi koje smo upisali u različitim kategorijama \n" +
+                                "◼Stvarni ukupni troškovi koje smo do sad upisali u aplikaciju za mjesec na koji se odnosi plan \n" +
+                                "◼Ukupna planirana ušteda koja se dobiva zbrajanjem ušteđevine od prošlog mjeseca i planiranih prihoda ovaj mjesec te oduzimanjem planiranih troškova")
+                        .setPositiveButton("zatvori", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setIcon(R.drawable.ic_baseline_help_24)
+                        .create();
+
+        View.OnClickListener listenerPomoc = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialogPomoc.show();
+                TextView msgTxt = (TextView) alertDialogPomoc.findViewById(android.R.id.message);
+                msgTxt.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+        };
+        pomocFinancijskiPlan.setOnClickListener(listenerPomoc);
+
     }
 
     public interface ExchangeService {
