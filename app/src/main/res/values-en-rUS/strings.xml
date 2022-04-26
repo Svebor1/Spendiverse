@@ -48,6 +48,13 @@
     <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
     <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
 
+    <string name="lagano_tema2_text0">Banka je ustanova koja čuva i posuđuje novac svojim klijentima.</string>
+    <string name="lagano_tema2_text1">Banka povećava količinu novca kojim raspolaže tako što ga ulaže.</string>
+    <string name="lagano_tema2_text2">Klijenti čuvaju novac na bankovnim računima.</string>
+    <string name="lagano_tema2_text3">Banka je dobila ime po talijanskoj riječi "banca", što znači klupa, jer su trgovci u prošlosti na klupama na tržnici posuđivali novac. </string>
+    <string name="lagano_tema2_text4">Ukoliko posudiš novac od banke, kada ga budeš vraćao, uz iznos koji si posudio morati ćeš vratiti i iznos kamate koliko kasniš s vraćanjem novca</string>
+    <string name="lagano_tema2_text5">Ako ti povjeriš svoj novac banki, kada ga budeš uzimao, banka će tebi uz taj iznos vratiti i iznos kamate koji ovisi o tome koliko je dugo čuvala tvoj novac</string>
+    <string name="lagano_tema2_text6">Ako obećamo banci da neko vrijeme nećemo uzimati određen dio novca koji smo joj povjerili, ona će nam za njega dati veću kamatu. To se zove oročena štednja</string>
 
     <string name="dodaj_trosak_button">Add expense</string>
     <string name="spremi_promjene_button">Save changes</string>

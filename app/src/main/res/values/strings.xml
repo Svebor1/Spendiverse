@@ -72,6 +72,14 @@
     <string name="lagano_tema1_text4">Britanska funta Službena je valuta u Velikoj Britaniji\\nOznaka je £</string>
     <string name="lagano_tema1_text5">Japanski jen Oznaka je ¥</string>
 
+    <string name="lagano_tema2_text0">Banka je ustanova koja čuva i posuđuje novac svojim klijentima.</string>
+    <string name="lagano_tema2_text1">Banka povećava količinu novca kojim raspolaže tako što ga ulaže.</string>
+    <string name="lagano_tema2_text2">Klijenti čuvaju novac na bankovnim računima.</string>
+    <string name="lagano_tema2_text3">Banka je dobila ime po talijanskoj riječi "banca", što znači klupa, jer su trgovci u prošlosti na klupama na tržnici posuđivali novac. </string>
+    <string name="lagano_tema2_text4">Ukoliko posudiš novac od banke, kada ga budeš vraćao, uz iznos koji si posudio morati ćeš vratiti i iznos kamate koliko kasniš s vraćanjem novca</string>
+    <string name="lagano_tema2_text5">Ako ti povjeriš svoj novac banci, kada ga budeš uzimao, banka će tebi uz taj iznos vratiti i iznos kamate koji ovisi o tome koliko je dugo čuvala tvoj novac</string>
+    <string name="lagano_tema2_text6">Ako obećamo banci da neko vrijeme nećemo uzimati određen dio novca koji smo joj povjerili, ona će nam za njega dati veću kamatu. To se zove oročena štednja.</string>
+
 
     <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta pomoću web stranica ili aplikacija</string>
     <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
@@ -287,6 +295,56 @@
         <item>dolar</item>
         <item>jen</item>
         <item>kune</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje0">
+
+        <item>Po čemu je banka dobila ime?</item>
+        <item>sefu</item>
+        <item>klupi</item>
+        <item>ormaru</item>
+        <item>klupi</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje1">
+
+        <item>Kako se zove posebna vrsta štednje koja nam može dati veću kamatu?</item>
+        <item>inflacijska štednja</item>
+        <item>privremena štednja</item>
+        <item>oročena štednja</item>
+        <item>oročena štednja</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje2">
+
+        <item>Gdje klijenti banke uobičajeno čuvaju novac?</item>
+        <item>u ormaru</item>
+        <item>u čarapama</item>
+        <item>na bankovnim računima</item>
+        <item>na bankovnim računima</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje3">
+
+        <item>O čemu ne ovisi iznos koji moramo vratiti banci?</item>
+        <item>o vremenu na koje smo ga posudili</item>
+        <item>o tome koliko dugo smo klijent te banke</item>
+        <item>o iznosu koji smo posudili</item>
+        <item>o tome koliko dugo smo klijent te banke</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje4">
+
+        <item>Ako povjeriš 300 kuna banci te ga nakon 2 godine želiš podignuti, koliki će ti iznos banka vratiti?</item>
+        <item>veći</item>
+        <item>jednak</item>
+        <item>manji</item>
+        <item>veći</item>
 
     </string-array>
 
