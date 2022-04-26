@@ -318,73 +318,7 @@ public class Pitanje extends AppCompatActivity {
                                                             teskiKvizovi++;
                                                         }
                                                     }
-                                                    if (laganiKvizovi==getResources().getInteger(R.integer.broj_laganih_kvizova)){
-                                                        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
-                                                                .document("bedz_lagani_kvizovi").set(new HashMap<>());
-                                                        db.collection("ljestvica").document(firebaseUser.getUid())
-                                                                .get()
-                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                                        if(task.isSuccessful()){
-                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_lagani_kvizovi";
-
-                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            if (postojanjeBedzaZaLaganeKvizove==0) {
-                                                                                Toast.makeText(context, "Osvojili ste bedž za lagane kvizove!", Toast.LENGTH_LONG).show();
-                                                                            }
-                                                                        }
-                                                                        else{
-                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
-                                                                        }
-                                                                    }
-                                                                });
-                                                    }
-                                                    if (srednjiKvizovi==getResources().getInteger(R.integer.broj_srednjih_kvizova)){
-                                                        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
-                                                                .document("bedz_srednji_kvizovi").set(new HashMap<>());
-                                                        db.collection("ljestvica").document(firebaseUser.getUid())
-                                                                .get()
-                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                                        if(task.isSuccessful()){
-                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_srednji_kvizovi";
-
-                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            if (postojanjeBedzaZaSrednjeKvizove==0) {
-                                                                                Toast.makeText(context, "Osvojili ste bedž za srednje kvizove!", Toast.LENGTH_LONG).show();
-                                                                            }
-                                                                        }
-                                                                        else{
-                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
-                                                                        }
-                                                                    }
-                                                                });
-                                                    }
-                                                    if (teskiKvizovi==getResources().getInteger(R.integer.broj_teskih_kvizova)){
-                                                        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
-                                                                .document("bedz_teski_kvizovi").set(new HashMap<>());
-                                                        db.collection("ljestvica").document(firebaseUser.getUid())
-                                                                .get()
-                                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                                        if(task.isSuccessful()){
-                                                                            String popisBedzeva = task.getResult().getString("bedzevi") + " bedz_teski_kvizovi";
-
-                                                                            db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
-                                                                            if (postojanjeBedzaZaTeskeKvizove==0) {
-                                                                                Toast.makeText(context, "Osvojili ste bedž za teške kvizove!", Toast.LENGTH_LONG).show();
-                                                                            }
-                                                                        }
-                                                                        else{
-                                                                            Log.d(TAG, "Error getting documents: ", task.getException());
-                                                                        }
-                                                                    }
-                                                                });
-                                                    }
-
+                                                    upisivanjeBedzaZaLaganeKvizove(db,firebaseUser,context);
                                                 } else {
                                                     Log.d(TAG, "get failed with ", task.getException());
                                                 }
@@ -400,6 +334,90 @@ public class Pitanje extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void upisivanjeBedzaZaLaganeKvizove(FirebaseFirestore db, FirebaseUser firebaseUser, Context context){
+        if (postojanjeBedzaZaLaganeKvizove==0) {
+            if (laganiKvizovi == getResources().getInteger(R.integer.broj_laganih_kvizova)) {
+                db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                        .document("bedz_lagani_kvizovi").set(new HashMap<>());
+                db.collection("ljestvica").document(firebaseUser.getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    String proba = task.getResult().getString("bedzevi");
+                                    if (proba == null){
+                                        proba = "";
+                                    }
+                                    String popisBedzeva = proba + " bedz_lagani_kvizovi";
+                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                    Toast.makeText(context, "Osvojili ste bedž za lagane kvizove!", Toast.LENGTH_LONG).show();
+
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                                upisivanjeBedzaZaSrednjeKvizove(db,firebaseUser,context);
+                            }
+                        });
+            }
+        }
+    }
+    private void upisivanjeBedzaZaSrednjeKvizove(FirebaseFirestore db, FirebaseUser firebaseUser, Context context){
+        if (postojanjeBedzaZaSrednjeKvizove==0) {
+            if (srednjiKvizovi == getResources().getInteger(R.integer.broj_srednjih_kvizova)) {
+                db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                        .document("bedz_srednji_kvizovi").set(new HashMap<>());
+                db.collection("ljestvica").document(firebaseUser.getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    String proba = task.getResult().getString("bedzevi");
+                                    if (proba == null){
+                                        proba = "";
+                                    }
+                                    String popisBedzeva = proba + " bedz_srednji_kvizovi";
+                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                    Toast.makeText(context, "Osvojili ste bedž za srednje kvizove!", Toast.LENGTH_LONG).show();
+
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                                upisivanjeBedzaZaTeskeKvizove(db, firebaseUser, context);
+                            }
+                        });
+            }
+        }
+    }
+    private void upisivanjeBedzaZaTeskeKvizove(FirebaseFirestore db, FirebaseUser firebaseUser, Context context){
+        if (postojanjeBedzaZaTeskeKvizove==0) {
+            if (teskiKvizovi == getResources().getInteger(R.integer.broj_teskih_kvizova)) {
+                db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                        .document("bedz_teski_kvizovi").set(new HashMap<>());
+                db.collection("ljestvica").document(firebaseUser.getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    String proba = task.getResult().getString("bedzevi");
+                                    if (proba == null){
+                                        proba = "";
+                                    }
+                                    String popisBedzeva = proba + " bedz_teski_kvizovi";
+                                    db.collection("ljestvica").document(firebaseUser.getUid()).update("bedzevi", popisBedzeva);
+                                    Toast.makeText(context, "Osvojili ste bedž za teške kvizove!", Toast.LENGTH_LONG).show();
+
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+            }
+        }
     }
 
     private void izracunajRezultate() {
