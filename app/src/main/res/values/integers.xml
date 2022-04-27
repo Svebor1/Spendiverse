@@ -2,7 +2,7 @@
 <resources>
     <integer name="zadani_status_dark_modea">0</integer>
 
-    <integer name="broj_laganih_kvizova">2</integer>
+    <integer name="broj_laganih_kvizova">3</integer>
     <integer name="broj_srednjih_kvizova">4</integer>
     <integer name="broj_teskih_kvizova">5</integer>
 
