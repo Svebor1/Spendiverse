@@ -69,7 +69,9 @@ public class Tema extends AppCompatActivity {
 
             String idSlike = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_slide" +Integer.toString(i).toString();
             int idSlikeBroj = getResources().getIdentifier("com.example.spendiverse:drawable/"+idSlike, null, null);
-
+            if (idSlikeBroj==0){
+                idSlikeBroj = getResources().getIdentifier("com.example.spendiverse:drawable/spendiverse_logo_prozirno", null, null);
+            }
             String idTeksta = naslovGrupe + "_tema" + redniBrojTeme.toString() + "_text" +Integer.toString(i).toString();
             int idTekstaBroj = getResources().getIdentifier("com.example.spendiverse:string/"+idTeksta, null, null);
             list.add(

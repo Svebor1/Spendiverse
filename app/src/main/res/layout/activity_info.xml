@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Cilj nam je doprinjeti obrazovanju stjecanjem još jednog načina odgajanja financijski pismenih građana. Ova aplikacija ima dvije svrhe, jedna da naučimo o financijskoj pismenosti i provjerimo svoje znanje, a druga da steknemo praktično znanje o upravljanju svojim novcem." />
+                android:text="Cilj nam je doprinijeti obrazovanju stjecanjem još jednog načina odgajanja financijski pismenih građana. Ova aplikacija ima dvije svrhe, jedna da naučimo o financijskoj pismenosti i provjerimo svoje znanje, a druga da steknemo praktično znanje o upravljanju svojim novcem." />
 
             <TextView
                 android:id="@+id/pravila_o_privatnosti"

@@ -10,6 +10,7 @@ android {
     }
 
     defaultConfig {
+        resConfigs "hr"
         applicationId "com.example.spendiverse"
         minSdkVersion 26
         targetSdkVersion 30

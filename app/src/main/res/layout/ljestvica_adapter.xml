@@ -55,7 +55,7 @@
 
     <LinearLayout
         android:id="@+id/bedzevi_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:orientation="horizontal"
@@ -67,40 +67,35 @@
             android:id="@+id/ljestvica_tesko_bedz"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:srcCompat="@drawable/tesko_bedz" />
 
         <ImageView
             android:id="@+id/ljestvica_srednje_bedz"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:srcCompat="@drawable/srednje_bedz" />
 
         <ImageView
             android:id="@+id/ljestvica_lagano_bedz"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:srcCompat="@drawable/lagano_bedz" />
 
         <ImageView
             android:id="@+id/ljestvica_trosak_bedz"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:srcCompat="@drawable/trosak_bedz" />
 
         <ImageView
             android:id="@+id/ljestvica_plan_bedz"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:srcCompat="@drawable/financijski_plan_bedz" />
     </LinearLayout>
 

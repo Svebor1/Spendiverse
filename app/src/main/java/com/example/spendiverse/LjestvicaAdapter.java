@@ -57,11 +57,11 @@ public class LjestvicaAdapter extends ArrayAdapter<RezultatNatjecatelja> {
         brojBodova.setText(bodovi.toString());
         String[] bedzevi = rezultatNatjecatelja.getListaBedzeva();
 
-        ljestvicaPlanBedz.setVisibility(View.INVISIBLE);
-        ljestvicaTrosakBedz.setVisibility(View.INVISIBLE);
-        ljestvicaLaganoBedz.setVisibility(View.INVISIBLE);
-        ljestvicaSrednjeBedz.setVisibility(View.INVISIBLE);
-        ljestvicaTeskoBedz.setVisibility(View.INVISIBLE);
+        ljestvicaPlanBedz.setVisibility(View.GONE);
+        ljestvicaTrosakBedz.setVisibility(View.GONE);
+        ljestvicaLaganoBedz.setVisibility(View.GONE);
+        ljestvicaSrednjeBedz.setVisibility(View.GONE);
+        ljestvicaTeskoBedz.setVisibility(View.GONE);
 
         for(String bedz : bedzevi){
             if (bedz.equals("prvi_plan")){

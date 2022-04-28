@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Spendiverse</string>
 
@@ -15,7 +16,7 @@
     <string name="zavrsi_kviz_button">Završi kviz</string>
     <string name="prikazi_ljestvicu_button">Prikaži ljestvicu</string>
     <string name="izbrisi_racun_button">Izbriši račun</string>
-    
+
     <string name="lagano_tezina">Lagano</string>
     <string name="srednje_tezina">Srednje</string>
     <string name="tesko_tezina">Teško</string>
@@ -46,7 +47,7 @@
     <string name="unesite_novi_nadimak_alert">Unesite novi nadimak</string>
     <string name="nadimak_odgovor_odustani">Odustani</string>
     <string name="nadimak_odgovor_potvrdi">Potvrdi</string>
-    
+
     <string name="nadimak_text">Nadimak:</string>
     <string name="broj_rijesenih_kvizova_text">Broj riješenih kvizova:</string>
     <string name="tvoji_bodovi_text">Tvoji bodovi:</string>

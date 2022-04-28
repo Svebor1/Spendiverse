@@ -25,7 +25,7 @@ public class InfoActivity extends AppCompatActivity {
         TextView linkoviSlika = findViewById(R.id.linkovi_slike);
         String[] linkovi;
         linkovi=getResources().getStringArray(R.array.linkovi);
-        for (int i = 0;i<38; i++){
+        for (int i = 0;i<47; i++){
             String link = linkovi[i];
             linkoviSlika.append(link+"\n");
 
