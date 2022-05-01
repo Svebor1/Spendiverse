@@ -3,8 +3,12 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +34,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -39,8 +44,14 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private final String TAG = "PrikazTroskovaActivity";
     private PieChart chart;
     private Spinner spinner;
+    private Context context;
+    private Spinner spinnerZaValute;
+    private Button novaKategorijaTroskaButton;
+    private Button novaValutaButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
+    String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
+    ArrayList<String> valute = new ArrayList<>(Arrays.asList(zadaneValute));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,43 +60,80 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        spinner = findViewById(R.id.vremensko_razdoblje);
 
+        spinner = findViewById(R.id.vremensko_razdoblje);
+        spinnerZaValute = findViewById(R.id.spinner_valute);
+        novaKategorijaTroskaButton = findViewById(R.id.nova_kategorija_troska);
+        novaValutaButton = findViewById(R.id.nova_valuta);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, vremenskaRazdoblja);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+        ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, android.R.layout.simple_spinner_item, valute);
+        arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerZaValute.setAdapter(arrayAdapterValute);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                nadiTroskove(spinner.getSelectedItem().toString());
+                nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                nadiTroskove("ukupno");
+                nadiTroskove("ukupno", spinnerZaValute.getSelectedItem().toString());
+            }
+        });
+
+        spinnerZaValute.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                nadiTroskove("ukupno", spinnerZaValute.getSelectedItem().toString());
             }
 
         });
 
+
         chart = findViewById(R.id.chart);
+
+        context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "dark_mode", Context.MODE_PRIVATE);
+        int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
+        int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
+        if (darkModeStanje==0){
+            chart.setHoleColor(Color.WHITE);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.BLACK);//boja texta u legendi
+        }else{
+            chart.setHoleColor(Color.BLACK);//boja rupe u sredini
+            chart.getLegend().setTextColor(Color.WHITE);//boja texta u legendi
+        }
+
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
+        chart.setDrawEntryLabels(false); //da se ne pojavljuje naziv kategorije na grafu
         chart.setExtraOffsets(5, 10, 5, 5);
-        chart.setDragDecelerationFrictionCoef(0.95f);
-        chart.setDrawHoleEnabled(true);
-        chart.setHoleColor(Color.WHITE);
+        chart.setDragDecelerationFrictionCoef(0.95f); //koeficijent trenja za animaciju okretanja grafa
+        chart.setDrawHoleEnabled(true); //rupa u sredini
         chart.setTransparentCircleColor(Color.WHITE);
         chart.setTransparentCircleAlpha(110);
-        chart.setHoleRadius(58f);
+        chart.setHoleRadius(58f); //radijus rupe u sredini
         chart.setTransparentCircleRadius(61f);
 
-        chart.setDrawCenterText(true);
-        chart.setCenterText("Troškovi");
+
+
+        chart.setDrawCenterText(true); //omogućuje ispis naziva grafa u sredini rupe
+        chart.setCenterText("Troškovi"); //naziv grafa u sredini grafa
         chart.setRotationAngle(0);
-        // enable rotation of the chart by touch
-        chart.setRotationEnabled(true);
+        chart.setRotationEnabled(true); //omogućuje animaciju okretanja grafa
         chart.setHighlightPerTapEnabled(true);
+        chart.getLegend().setWordWrapEnabled(true); //legenda s nazivima kategorija ne prelazi izvan ekrana
         Button unosTroskovaButton;
         Button vidjetiDetalje;
         Button financijskiPlanButton;
@@ -116,12 +164,28 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         };
         financijskiPlanButton.setOnClickListener(listener3);
 
+        View.OnClickListener listener4 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                novaKategorijaTroska();
+            }
+        };
+        novaKategorijaTroskaButton.setOnClickListener(listener4);
+        novaValutaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                novaValuta();
+            }
+        });
+
     }
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        nadiTroskove(spinner.getSelectedItem().toString());
+        nadiValute();
     }
 
     private void unosTroskova() {
@@ -136,7 +200,14 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FinancijskiPlanActivity.class);
         startActivity(intent);
     }
-    //
+    private void novaKategorijaTroska() {
+        Intent intent = new Intent(this, DodavanjeKategorijeTroska.class);
+        startActivity(intent);
+    }
+    private void novaValuta() {
+        Intent intent = new Intent(this, DodavanjeValuteActivity.class);
+        startActivity(intent);
+    }
     private boolean provjeriDatum(String razdoblje, int dan, int mjesec, int godina) {
         int godinaDanas = myCalendar.get(Calendar.YEAR);
         int mjesecDanas = myCalendar.get(Calendar.MONTH)+1;
@@ -164,7 +235,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
             return true;
         }
     }
-    private void  nadiTroskove(String razdoblje) {
+    private void  nadiTroskove(String razdoblje, String odabranaValuta) {
         ArrayList<Trosak> troskovi = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -173,20 +244,25 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()) {
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String naziv = document.getData().get("naziv").toString();
                                 String kategorija = document.getData().get("kategorija").toString();
+                                String valuta = document.getData().get("valuta").toString();
                                 Integer datumDan = Integer.parseInt(document.getData().get("datumDan").toString());
                                 Integer datumMjesec = Integer.parseInt(document.getData().get("datumMjesec").toString());
                                 Integer datumGodina = Integer.parseInt(document.getData().get("datumGodina").toString());
-                                Integer cijena = Integer.parseInt(document.getData().get("cijena").toString());
+                                Double cijena = Double.parseDouble(document.getData().get("cijena").toString());
                                 String firebaseId = document.getId();
-                                if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina)) {
-                                    troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, firebaseId));
+                                if (provjeriDatum(razdoblje, datumDan, datumMjesec, datumGodina) && valuta.equals(odabranaValuta)) {
+                                    troskovi.add(new Trosak(naziv, datumDan, datumMjesec, datumGodina, kategorija, cijena, valuta, firebaseId));
                                 }
+
                             }
+
                             List<PieEntry> entries = new ArrayList<>();
                             Map<String, Integer> trosakZaKategorije = new HashMap<>();
                             for(Trosak trosak: troskovi) {
@@ -194,13 +270,22 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                                 if (kategorijaDoSada == null) {
                                     kategorijaDoSada = 0;
                                 }
-                                trosakZaKategorije.put(trosak.getKategorija(), kategorijaDoSada+trosak.getCijena());
+                                trosakZaKategorije.put(trosak.getKategorija(), kategorijaDoSada+trosak.getCijena().intValue());
                             }
                             for (Map.Entry<String, Integer> entry : trosakZaKategorije.entrySet()) {
                                 entries.add(new PieEntry(entry.getValue(), entry.getKey()));
                             }
                             PieDataSet set = new PieDataSet(entries, "Troškovi");
-                            set.setColors(ColorTemplate.COLORFUL_COLORS);
+                            final int[] mojeBoje = {
+                                    Color.rgb(230, 25, 75), Color.rgb(60, 180, 75), Color.rgb(255, 225, 25),
+                                    Color.rgb(0, 130, 200), Color.rgb(245, 130, 48), Color.rgb(145, 30, 180),
+                                    Color.rgb(70, 240, 240), Color.rgb(240, 50, 230), Color.rgb(210, 245, 60),
+                                    Color.rgb(250, 190, 212), Color.rgb(0, 128, 128), Color.rgb(220, 190, 255),
+                                    Color.rgb(170, 110, 40), Color.rgb(255, 250, 200), Color.rgb(128, 0, 0),
+                                    Color.rgb(170, 255, 195), Color.rgb(128, 128, 0), Color.rgb(255, 215, 180),
+                                    Color.rgb(0, 0, 128), Color.rgb(128, 128, 128)
+                            }; //postavljanje niza s bojama
+                            set.setColors(mojeBoje);
                             PieData data = new PieData(set);
                             chart.setData(data);
                             chart.invalidate(); // refresh
@@ -208,9 +293,42 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
+
+
                     }
                 });
 
+
+    }
+
+    private void nadiValute() {
+        valute = new ArrayList<>(Arrays.asList(zadaneValute));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Context context = this;
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("valute")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                String nazivValute = document.getData().get("naziv").toString();
+                                valute.add(nazivValute);
+
+                            }
+                            ArrayAdapter arrayAdapterValute = new ArrayAdapter(context, android.R.layout.simple_spinner_item, valute);
+                            arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerZaValute.setAdapter(arrayAdapterValute);
+                            nadiTroskove(spinner.getSelectedItem().toString(), spinnerZaValute.getSelectedItem().toString());
+                            // prikaziTroskove(poredajPo.getSelectedItem().toString(), filterKategorija.getSelectedItem().toString(), filterzaRazdoblja.getSelectedItem().toString(), filterzaValute.getSelectedItem().toString());
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
 
     }
     @Override

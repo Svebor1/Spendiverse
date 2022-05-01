@@ -5,86 +5,112 @@ import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+//adapter koji se koristi za kategorije tema
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
-
     private Context context;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private List<String> imenaKategorija; //lista imena kategorija
+    private HashMap<String, List<String>> imenaTema; //lista imena tema u kategorijama
+    private List<String> rjeseniKvizovi; //lista s rjesenim kvizovima
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+
+    //konstruktor
+    public CustomExpandableListAdapter(Context context, List<String> imenaKategorija,
+                                       HashMap<String, List<String>> imenaTema, List<String> rjeseniKvizovi) {
         this.context = context;
-        this.expandableListTitle = expandableListTitle;
-        this.expandableListDetail = expandableListDetail;
+        this.imenaKategorija = imenaKategorija;
+        this.imenaTema = imenaTema;
+        this.rjeseniKvizovi = rjeseniKvizovi;
     }
 
     @Override
-    public Object getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .get(expandedListPosition);
+    public Object getChild(int pozicijaKategorije, int pozicijaTeme) {
+        String trazenaKategorija = this.imenaKategorija.get(pozicijaKategorije); //dobivanje imena kategorije
+        List<String> teme = this.imenaTema.get(trazenaKategorija); //dobivanje liste tema u toj kategoriji
+        return teme.get(pozicijaTeme); //vraća temu
     }
 
     @Override
-    public long getChildId(int listPosition, int expandedListPosition) {
-        return expandedListPosition;
+    public long getChildId(int pozicijaKategorije, int pozicijaTeme) {
+        return pozicijaTeme;
     }
 
     @Override
-    public View getChildView(int listPosition, final int expandedListPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
-        if (convertView == null) {
+    public View getChildView(int pozicijaKategorije, final int pozicijaTeme,
+                             boolean isLastChild, View temaView, ViewGroup grupa) {
+        final String imeTeme = (String) getChild(pozicijaKategorije, pozicijaTeme);
+        String imeKategorije = "";
+        if (pozicijaKategorije==0){
+            imeKategorije = "lagano";
+        }
+        if (pozicijaKategorije==1){
+            imeKategorije = "srednje";
+        }
+        if (pozicijaKategorije==2){
+            imeKategorije = "tesko";
+        }
+
+        if (temaView == null) {
+            //stvaramo view uz pomoć layoutInflatera
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            temaView = layoutInflater.inflate(R.layout.list_item, null);
         }
-        TextView expandedListTextView = (TextView) convertView
-                .findViewById(R.id.expandedListItem);
-        expandedListTextView.setText(expandedListText);
-        return convertView;
+        ImageView kvacicaImage = temaView.findViewById(R.id.kvacica_image);
+        String pomocnaVarijabla = imeKategorije + "_" + imeTeme;
+        if (rjeseniKvizovi.contains(imeKategorije + "_" + imeTeme)){
+            kvacicaImage.setVisibility(View.VISIBLE);
+        }
+        else{
+            kvacicaImage.setVisibility(View.GONE);
+        }
+        TextView naslovTemeView = temaView.findViewById(R.id.naslovTeme);
+        naslovTemeView.setText(imeTeme); //prikazujemo tekst teme
+        return temaView;
     }
 
     @Override
-    public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size();
+    public int getChildrenCount(int pozicijaKategorije) {
+        String trazenaKategorija = this.imenaKategorija.get(pozicijaKategorije);
+        return this.imenaTema.get(trazenaKategorija).size();
     }
 
     @Override
-    public Object getGroup(int listPosition) {
-        return this.expandableListTitle.get(listPosition);
+    public Object getGroup(int pozicijaKategorije) {
+        return this.imenaKategorija.get(pozicijaKategorije);
     }
 
     @Override
     public int getGroupCount() {
-        return this.expandableListTitle.size();
+        return this.imenaKategorija.size();
     }
 
     @Override
-    public long getGroupId(int listPosition) {
-        return listPosition;
+    public long getGroupId(int pozicijaKategorije) {
+        return pozicijaKategorije;
     }
 
     @Override
-    public View getGroupView(int listPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        String listTitle = (String) getGroup(listPosition);
-        if (convertView == null) {
+    public View getGroupView(int pozicijaKategorije, boolean isExpanded,
+                             View kategorijaView, ViewGroup grupa) {
+        String nazivKategorije = (String) getGroup(pozicijaKategorije);
+        if (kategorijaView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_group, null);
+            kategorijaView = layoutInflater.inflate(R.layout.list_group, null);
         }
-        TextView listTitleTextView = (TextView) convertView
-                .findViewById(R.id.listTitle);
+        TextView listTitleTextView = (TextView) kategorijaView
+                .findViewById(R.id.naslovKategorije);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
-        listTitleTextView.setText(listTitle);
-        return convertView;
+        listTitleTextView.setText(nazivKategorije);
+        return kategorijaView;
     }
 
     @Override
@@ -93,7 +119,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean isChildSelectable(int listPosition, int expandedListPosition) {
+    public boolean isChildSelectable(int pozicijaKategorije, int pozicijaTeme) {
         return true;
     }
 }

@@ -1,12 +1,15 @@
 package com.example.spendiverse;
 
+import android.graphics.Bitmap;
+
 public class Trosak {
     private String naziv;
     private Integer datumDan;
     private Integer datumMjesec;
     private Integer datumGodina;
     private String kategorija;
-    private Integer cijena;
+    private String valuta;
+    private Double cijena;
     private String firebaseId;
 
     public String getFirebaseId() {
@@ -17,21 +20,22 @@ public class Trosak {
         this.firebaseId = firebaseId;
     }
 
-    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Integer cijena, String firebaseId) {
+    public Trosak(String naziv, Integer datumDan, Integer datumMjesec, Integer datumGodina, String kategorija, Double cijena, String valuta, String firebaseId) {
         this.naziv = naziv;
         this.datumDan = datumDan;
         this.datumMjesec = datumMjesec;
         this.datumGodina = datumGodina;
         this.kategorija = kategorija;
         this.cijena = cijena;
+        this.valuta = valuta;
         this.firebaseId = firebaseId;
     }
 
-    public Integer getCijena() {
+    public Double getCijena() {
         return cijena;
     }
 
-    public void setCijena(Integer cijena) {
+    public void setCijena(Double cijena) {
         this.cijena = cijena;
     }
 
@@ -41,6 +45,14 @@ public class Trosak {
 
     public void setKategorija(String kategorija) {
         this.kategorija = kategorija;
+    }
+
+    public String getValuta() {
+        return valuta;
+    }
+
+    public void setValuta(String valuta) {
+        this.valuta = valuta;
     }
 
     public Integer getDatumDan() {
@@ -74,4 +86,5 @@ public class Trosak {
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.spendiverse;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -54,25 +60,69 @@ public class PrikazLjestvice extends AppCompatActivity {
                         rezultatiNatjecatelja = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
                             if (doc.get("bodovi") != null && doc.get("nadimak") != null ) {
-                                RezultatNatjecatelja trenutniRezultat = new RezultatNatjecatelja(doc.getString( "nadimak"), doc.getLong( "bodovi").intValue());
+                                String[] bedzevi;
+                                //vađenje bedzeva iz baze
+                                String popisBedzeva = doc.getString("bedzevi");
+                                if (popisBedzeva == null){
+                                    popisBedzeva = "";
+                                }
+                                bedzevi = popisBedzeva.split(" ");
+                                //vađenje iz baze rezultata natjecatelja
+                                RezultatNatjecatelja trenutniRezultat = new RezultatNatjecatelja(doc.getString( "nadimak"), doc.getLong( "bodovi").intValue(),bedzevi);
+                                //dodavanje rezultata natjecatelja u listu
                                 rezultatiNatjecatelja.add(trenutniRezultat);
-
                             }
-                        }
-                        Comparator<RezultatNatjecatelja> usporediPoBodovima =
-                                (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo( o2.getRezultatKorisnika() );
 
+                        }
+                        //komparator za sortiranje rezultata natjecatelja po bodovima
+                        Comparator<RezultatNatjecatelja> usporediPoBodovima =
+                                (RezultatNatjecatelja o1, RezultatNatjecatelja o2) -> o1.getRezultatKorisnika().compareTo(o2.getRezultatKorisnika());
+                        //sortiranje liste uz pomoć komparatora
                         Collections.sort(rezultatiNatjecatelja, usporediPoBodovima.reversed());
+                        upisiMjesta();
                         prikaziLjestvicu();
                     }
                 });
 
 
     }
+    private void upisiMjesta() {
+        Integer brojac; //broji količinu prethodnih uzastopnih korisnika s istim brojem bodova
+        Integer prosliBodovi = null; //bodovi prošlog natjecatelja
+        brojac = 0; //u samom početku je 0 uzastopnih korisnika s istim brojem bodova
+        Integer pozicija = 0;
+        for(RezultatNatjecatelja rezultatNatjecatelja: rezultatiNatjecatelja) {
+            Integer bodovi = rezultatNatjecatelja.getRezultatKorisnika(); //bodovi natjecatelja
+            pozicija++;
+            if (prosliBodovi != null) {
+                if (bodovi.equals(prosliBodovi)) {
+                    //ako je broj bodova sadašnjeg i prošlog natjecatelja isti
+                    rezultatNatjecatelja.setPozicija(pozicija-brojac);
+                    brojac++;
+                }
+                else {
+                    //ako su broj bodova sadašnjeg i prošlog natjecatelja različiti
+                    rezultatNatjecatelja.setPozicija(pozicija);
+                    brojac = 1;
+                }
+            }
+            else {
+                //ako je to trenutni natjecatelj prvi u listi i nema prošlog
+                rezultatNatjecatelja.setPozicija(pozicija);
+                brojac = 1;
+            }
+            prosliBodovi = bodovi;
+        }
+    }
 
+    /**
+     * metoda za prikazivanje ljestvice
+     */
     private void prikaziLjestvicu() {
-        ListView prikazLjestvice = findViewById(R.id.ljestvica);
+        ListView prikazLjestvice = findViewById(R.id.ljestvica); //pronalazak ljestvicu prema id
+        //stvaranje adaptera za ljestvicu
         LjestvicaAdapter arrayAdapter = new LjestvicaAdapter(this,R.id.ljestvica, rezultatiNatjecatelja);
+        //postavljanje adaptera za ljestvicu
         prikazLjestvice.setAdapter(arrayAdapter);
     }
     @Override

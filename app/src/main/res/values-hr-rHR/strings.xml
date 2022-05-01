@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spendiverse</string>
+
+    <string name="prikaz_troskova_button">Prikaz troškova</string>
+    <string name="financijska_pismenost_button">Financijska pismenost</string>
+    <string name="prijava_button">Prijava</string>
+    <string name="financijski_plan_button">Financijski plan</string>
+    <string name="novi_trosak_button">Novi trošak</string>
+    <string name="prikaz_detalja_button">Prikaz detalja</string>
+    <string name="dodaj_kategoriju_troska_button">Dodaj kategoriju troška</string>
+    <string name="dodaj_valutu_button">Dodaj valutu</string>
+    <string name="spremi_promjene_button">Spremi promjene</string>
+    <string name="dodaj_trosak_button">Dodaj trošak</string>
+    <string name="zapocni_kviz_button">Započni kviz</string>
+    <string name="zavrsi_kviz_button">Završi kviz</string>
+    <string name="prikazi_ljestvicu_button">Prikaži ljestvicu</string>
+    <string name="izbrisi_racun_button">Izbriši račun</string>
+
+    <string name="lagano_tezina">Lagano</string>
+    <string name="srednje_tezina">Srednje</string>
+    <string name="tesko_tezina">Teško</string>
+
+    <string name="sto_je_novac_tema">Što je novac?</string>
+    <string name="valute_tema">Valute</string>
+    <string name="online_kupovina_tema">Online kupovina</string>
+    <string name="financijski_plan_tema">Financijski plan</string>
+    <string name="bankovni_racuni_tema">Bankovni računi</string>
+    <string name="inflacija_tema">Inflacija</string>
+    <string name="kamate_tema">Kamate</string>
+    <string name="kriptovalute_tema">Kriptovalute</string>
+    <string name="inflacija_napredno_tema">Inflacija napredno</string>
+
+    <string name="brisanje_valute_naslov_alert">Brisanje valute</string>
+    <string name="brisanje_valute_alert">Jeste li sigurni da želite izbrisati valutu?\nBiti će izbrisani svi troškovi koji pripadaju toj valuti</string>
+    <string name="brisanje_profila_naslov_alert">Brisanje profila</string>
+    <string name="brisanje_profila_alert">Jeste li sigurni da želite izbrisati profil?</string>
+    <string name="brisanje_kategorije_naslov_alert">Brisanje kategorije</string>
+    <string name="brisanje_kategorije_alert">Jeste li sigurni da želite izbrisati kategoriju?\nBiti će izbrisani svi troškovi koji pripadaju toj kategoriji</string>
+    <string name="odjava_alert">Jeste li sigurni da se želite odjaviti?</string>
+    <string name="odgovor_ne">Ne</string>
+    <string name="odgovor_da">Da</string>
+    <string name="rezultat_naslov">Rezultat</string>
+    <string name="kviz_odgovor_pokusaj_ponovno">Pokušaj ponovno</string>
+    <string name="kviz_odgovor_zatvori">Zatvori</string>
+    <string name="krivi_odgovori">Netočno odgovorena pitanja su:</string>
+    <string name="unesite_novi_nadimak_alert">Unesite novi nadimak</string>
+    <string name="nadimak_odgovor_odustani">Odustani</string>
+    <string name="nadimak_odgovor_potvrdi">Potvrdi</string>
+
+    <string name="nadimak_text">Nadimak:</string>
+    <string name="broj_rijesenih_kvizova_text">Broj riješenih kvizova:</string>
+    <string name="tvoji_bodovi_text">Tvoji bodovi:</string>
+    <string name="prikazi_me_na_ljsetvici_text">Prikaži me na ljestvici:</string>
+    <string name="ukljuci_dark_mode_text">Uključi tamni način rada:</string>
+
+
+
+
+
+    <string name="pomocni_text">Možete se prijaviti pomoću svog Google računa ili Google Workspace for Education računa čijim alatima možete pristupiti svojim elektroničkim identitetom u sustavu AAI@EduHr na skole.hr domeni, uz prethodnu aktivaciju usluge. Za više informacija posjetite stranicu:  </string>
+    <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
+    <string name="lagano_tema0_text0">Novac je način razmjene Njega ljudi prihvaćaju u zamjenu za robu i usluge</string>
+    <string name="lagano_tema0_text1">Roba Ako želiš kupiti novi bicikl, u trgovini ćeš svoj novac zamijeniti za njega</string>
+    <string name="lagano_tema0_text2">Usluga\nAko želiš novu frizuru, posjetiti ćeš frizera i zamijeniti svoj novac za uslugu šišanja</string>
+    <string name="lagano_tema0_text3">Novac je u prošlosti poprimio mnoge oblike. Prije su ljudi umjesto novca koristili rijetke stvari</string>
+    <string name="lagano_tema0_text4">Danas se najčešće koristi u obliku NOVČANICA i KOVANICA</string>
+
+    <string name="lagano_tema1_text0">Novac postoji u raznim valutama</string>
+    <string name="lagano_tema1_text1">Valuta je naziv za novac koji se koristi u nekoj zemlji\nČesto različite države imaju različite valute</string>
+    <string name="lagano_tema1_text2">"Euro Glavna valuta u Europskoj uniji Oznaka za euro je € "</string>
+    <string name="lagano_tema1_text3">Dolar Oznaka za dolar je $</string>
+    <string name="lagano_tema1_text4">Britanska funta Službena je valuta u Velikoj Britaniji\\nOznaka je £</string>
+    <string name="lagano_tema1_text5">Japanski jen Oznaka je ¥</string>
+
+    <string name="lagano_tema2_text0">Banka je ustanova koja čuva i posuđuje novac svojim klijentima.</string>
+    <string name="lagano_tema2_text1">Banka povećava količinu novca kojim raspolaže tako što ga ulaže.</string>
+    <string name="lagano_tema2_text2">Klijenti čuvaju novac na bankovnim računima.</string>
+    <string name="lagano_tema2_text3">Banka je dobila ime po talijanskoj riječi "banca", što znači klupa, jer su trgovci u prošlosti na klupama na tržnici posuđivali novac. </string>
+    <string name="lagano_tema2_text4">Ukoliko posudiš novac od banke, kada ga budeš vraćao, uz iznos koji si posudio morati ćeš vratiti i iznos kamate koliko kasniš s vraćanjem novca</string>
+    <string name="lagano_tema2_text5">Ako ti povjeriš svoj novac banci, kada ga budeš uzimao, banka će tebi uz taj iznos vratiti i iznos kamate koji ovisi o tome koliko je dugo čuvala tvoj novac</string>
+    <string name="lagano_tema2_text6">Ako obećamo banci da neko vrijeme nećemo uzimati određen dio novca koji smo joj povjerili, ona će nam za njega dati veću kamatu. To se zove oročena štednja.</string>
+
+
+    <string name="srednje_tema0_text0">Online kupovina omogućuje kupnju putem interneta pomoću web stranica ili aplikacija</string>
+    <string name="srednje_tema0_text1">Za plaćanje možemo koristiti i kupone ili kartice</string>
+    <string name="srednje_tema0_text2">Prilikom kupnje putem interneta, moramo paziti s kojih stranica kupujemo</string>
+    <string name="srednje_tema0_text3">Koristi stranice koje započinju s https prepoznati ćeš ih prema lokotu</string>
+    <string name="srednje_tema0_text4">Razmisli prije nego što dijeliš osobne podatke, pomoću kojih bi netko mogao koristiti tvoj račun</string>
+    <string name="srednje_tema0_text5">Koristi jake lozinke, dovoljno dugačke, pomoću različitih znakova i bez prepoznatljivih riječi</string>
+    <string name="srednje_tema0_text6">Redovno provjeravaj jesu li svi tvoji troškovi poznati</string>
+    <string name="srednje_tema0_text7">Izbjegavaj upisivanje podataka u javnosti</string>
+
+    <string name="srednje_tema1_text0">Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</string>
+    <string name="srednje_tema1_text1">"1. Odredi koliko si zaradio ili dobio "</string>
+    <string name="srednje_tema1_text2">2. Postavi si koliko želiš uštedjeti kao cilj</string>
+    <string name="srednje_tema1_text3">3. Možeš odlučiti na što žeilš potrošiti ostatak novca</string>
+    <string name="srednje_tema1_text4">Kako bi znao koliko možeš potrošiti, moraš od dobivenog oduzeti planirani novac za štednju</string>
+    <string name="srednje_tema1_text5">Ako si dobio 100 kuna, a želiš uštedjedi 60 kuna, moći ćeš potrošiti 40 kuna</string>
+    <string name="srednje_tema1_text6">Ako nisi potrošio sve, to možeš dodati u ušteđeni novac</string>
+
+    <string name="srednje_tema2_text0">Bankovni računi služe za pohranu novca u banci. Najčešće korištene vrste su tekući, žiro i devizni</string>
+    <string name="srednje_tema2_text1">Tekući račun služi za obavljanje redovitih isplata i primanja Postoji dozvoljeni minus. Plaća se mjesečna naknada.</string>
+    <string name="srednje_tema2_text2">Žiro račun služi za primanje povremenih uplata  Ne postoji dozvoljeni minus. Plaćanje mjesečne naknade ovisi o pojedinoj banci.</string>
+    <string name="srednje_tema2_text3">Devizni račun služi za primanja i isplatu novca u različitim valutama</string>
+
+    <string name="tesko_tema0_text0">Kad uložimo novac na štednju u banku, banka dobije taj novac na raspolaganje na određeno vrijeme i za to nama daje određenu naknadu.</string>
+    <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
+    <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
+    <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
+    <string name="tesko_tema0_text4">Omjer godišnjeg iznosa kamata i glavnice naziva se KAMATNA STOPA\nona se iskazuje u postotcima</string>
+    <string name="tesko_tema0_text5">Kamate računamo prema formuli:\nk = g ⋅ s ⋅ v\nk - kamate\ng - glavnica\ns - kamatna stopa\nv - vrijeme</string>
+    <string name="tesko_tema0_text6">Ako na štednju staviš 10000 kuna na 2 godine, a kamatna stopa je 2%, kamata koju ti banka mora dati je 400 kuna</string>
+
+    <string name="tesko_tema1_text0">Kriptovalute se mogu koristiti za kupnju stvari, ali one su digitalne.\nNe postoje u kovanicama niti novčanicama</string>
+    <string name="tesko_tema1_text1">Normalan novac, razne valute, kontroliraju vlade država, dok se kriptovalute drže pod kontrolom u "knjizi" na raznim računalima.\nTa "knjiga" je poznata po nazivu BLOCKCHAIN</string>
+    <string name="tesko_tema1_text2">Kriptovalute se mogu kupiti, ali i napraviti putem računala, pokrećući programe koji pomažu u održavanju njihovih blockchaina. Za to je potrebno vrlo moćno računalo.</string>
+    <string name="tesko_tema1_text3">Neki ljudi vjeruju da su kriptovalute budućnost plaćanja</string>
+    <string name="tesko_tema1_text4">Neki ljudi misle da su loše za planet, jer troše previše energije.</string>
+    <string name="tesko_tema1_text5">Kriptovalute često padaju i rastu u vrijednosti</string>
+    <string name="tesko_tema1_text6">Najpoznatija kriptovaluta je Bitcoin, ali neke druge su i Litecoin, Dogecoin, Dash, Monero, Cardano...</string>
+
+    <string name ="srednje_tema3_text0">Inflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name ="srednje_tema3_text1">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nInflacija je opće povećanje cijena dobara i usluga, a ne povećanje cijena pojedinih proizvoda</string>
+    <string name ="srednje_tema3_text2">Zbog inflacije možete kupiti manje nego što ste za isti iznos mogli kupiti jučer</string>
+
+    <string name ="tesko_tema2_text0">Neke promjene cijena imaju veću vrijednost od drugih za inflaciju" </string>
+    <string name ="tesko_tema2_text1"> Kad izračunavamo inflaciju, odnosno opće povećanje cijena, veći utjecaj ima povećanje cijene proizvoda na kojeg više trošimo</string>
+    <string name ="tesko_tema2_text2">Na primjer, povećanje cijene električne energije više utječe nego povećanje cijene na šećer ili poštansku marku jer na nju manje trošimo</string>
+    <string name ="tesko_tema2_text3">U mjerenju inflacije uzimaju se u obzir sva dobra i usluge na koje kućanstva troše.</string>
+    <string name = "tesko_tema2_text4">Sva dobra i usluge na koje kućanstva troše tijekom godine prikazani su u takozvanoj košarici. Svaki proizvod u toj košarici ima cijenu koja se s vremenom može promijeniti.</string>
+    <string name = "tesko_tema2_text5">Godišnja stopa inflacije cijena je ukupne košarice u određenom mjesecu uspoređena s njezinom cijenom isti mjesec prethodne godine.</string>
+    <string name = "tesko_tema2_text6">Na primjer, ako je jedne godine ukupna cijena svih dobara 1000 eura, a sljedeće godine je cijena tih dobara 1100 eura, to znači da je druge godine ukupna vrijednost tih dobara na 10% veća \nTaj postotak i jest godišnja stopa inflacije</string>
+    <string name = "tesko_tema2_text7">Godišnja stopa inflacije stabilnih valuta kao što su dolar ili euro je obično od 1% do 4%</string>
+
+    <string name = "tesko_tema3_text0">Inflacija može biti različita \nAko je godišnja stopa inflacije od 1 do 5 posto onda je to umjerena inflacija \nAko je godišnja stopa inflacija veća od 5 posto onda je to galopirajuća inflacija</string>
+    <string name = "tesko_tema3_text1">Ako je mjesečna stopa inflacija veća od 20-30 posto onda se zove hiperinflacija</string>
+    <string name = "tesko_tema3_text2">Ako je godišnja stopa inflacija manja od 0 posto onda je to deflacija</string>
+    <string name = "tesko_tema3_text3">Kod hiperinflacije novac jako brzo gubi vrijednost što radi valutu nesigurnom, zbog čega ljudi koji pohranjuju novac u toj valuti brzo postaju siromašnijima</string>
+    <string name = "tesko_tema3_text4">Deflacija smanjuje vrijednost valute tijekom vremena</string>
+    <string name = "tesko_tema3_text5">Cijene usluga i roba se stalno mijenjaju, neke padaju, neke rastu \nDeflacija je opće povećanje cijena</string>
+    <string name = "tesko_tema3_text6">Neki ljudi misle da je deflacija dobro “Pa što ima loše u tome da cijene padaju?”, ali to nije tako</string>
+    <string name = "tesko_tema3_text7">Kada potrošači primijete da cijene padaju, neće kupovati više, nego naprotiv, odlučuju da odgode potrošnju u nadi da će cijene padati još više.</string>
+    <string name = "tesko_tema3_text8">Zbog tog razloga, trgovina se smanjuje jer ljudi odgađaju potrošnju, proizvodi se gomilaju, nitko ih ne kupuje. </string>
+    <string name = "tesko_tema3_text9">Zbog prevelike ponude, a premale potražnje trgovci su prisiljeni još više smanjivati cijene da bi se rješavali sve većih gomila robe.</string>
+    <string name = "tesko_tema3_text10">To uzrokuje sve gore stanje u tvrtkama što dovodi do smanjenja plaća, otpuštanja radnika, porasta siromaštva i nezadovoljstva \nRiječ je o gospodarskoj krizi</string>
+    <string name = "tesko_tema3_text11">Centralne se banke boje ove pojave i različitim načinima pokušavaju utjecati na inflaciju i držati ju pod kontrolom, te naravno ne dovesti do deflacije</string>
+
+    <string name = "tesko_tema4_text0">Tvrtke izdaju dionice kako bi povećale svoju imovinu i omogućile širenje posla ili rad na novim projektima. Ljudi koji zele uloziti u tvrtku kupuju dionice.</string>
+    <string name = "tesko_tema4_text1">Nemaju sve tvrtke dionice. Da bi počele prodavati svoje dionice moraju proći IPO-a. IPO je kada neka tvrtka izlazi na tržište dionica prvi put. </string>
+    <string name = "tesko_tema4_text2">Tvrtke koje prodaju svoje dionice su dionicka drustva. Dionice su dokaz da netko posjeduje dio tvrtke, odnosno dioničkog društva</string>
+    <string name = "tesko_tema4_text3">Dionice mogu dati vlasnicima pravo glasa na glavnoj skupštini dioničkog društva </string>
+    <string name = "tesko_tema4_text4">Burza je mjesto gdje se dionice kupuju i prodaju. Ukoliko vlasnik dionice proda dionicu, dobit ce za nju njenu trenutnu vrijednost na burzi.</string>
+    <string name = "tesko_tema4_text5">Tržišna kapitalizacija je ukupna vrijednost dionica nekog dioničkog društva. Dobiva se kao zbroj vrijednosti svih dionica. Njome se ocjenjuje vrijednost tvrtke koja ima dionice</string>
+    <string name = "tesko_tema4_text6">Broker je posrednik za prodaju dionica</string>
+
+    <string name = "tesko_tema5_text0">Kad tvrtka dobro napreduje, njezina vrijednost raste i raste vrijednost njezinih dionica</string>
+    <string name = "tesko_tema5_text1">Kad tvrtka ne posluje dobro, vrijednost dionica pada.</string>
+    <string name = "tesko_tema5_text2">Također, cijenu dionica određuje ponuda i potražnja</string>
+    <string name = "tesko_tema5_text3">Ako ljudi prodaju punu dionica, a nema puno ponude, odnosno nema puno ljudi koji žele kupiti dionice, onda vrijednost dionica pada</string>
+    <string name = "tesko_tema5_text4">Ako postoji velika ponuda, odnosno puno ljudi žele kupiti dionice, a nema ih dovoljno u obrtu, tada vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text5">Zbog ovoga osim toga kako tvrtka trenutno posluje, bitna su i očekivanja investitora. Ako se očekuje razvoj tvrtke onda više ljudi žele kupiti dionice, pa vrijednost dionica raste</string>
+    <string name = "tesko_tema5_text6">Primjerice, nakon uspješne prezentacije Elona Muska ljudi očekuju razvoj i povećanje prihoda Tesle, zbog čega puno ljudi počinju kupovati dionice Tesle, pa vrijednost dionica raste.</string>
+
+    <string name = "tesko_tema6_text0">Dividenda je dio dobiti dioničkog društva koji se isplaćuje vlasnicima dionica.</string>
+    <string name = "tesko_tema6_text1">Dio dobiti (profit) kojeg ostvari dioničko društvo proslijedi vlasnicima dionica u obliku dividenda</string>
+    <string name = "tesko_tema6_text2">Dio dobiti koji nije isplaćen ponovno se ulaže u tvrtku i zove se zadržana dobit</string>
+
+    <string name = "tesko_tema7_text0">Obveznica je vrijednosni papir koji sadrži dokaz postajanja neke obveze. Ona služi  vjerovniku kao dokaz da je dužnik preuzeo obvezu plaćanja.</string>
+    <string name = "tesko_tema7_text1">Obveznice mogu izdavati države, velike bankovne, prometne ili industrijske tvrtke.</string>
+    <string name = "tesko_tema7_text2">Svrha im je prikupljanje sredstava, najčešće u značajnim iznosima. Na primjer, grad može izdati obveznice za izgradnju bazena.</string>
+    <string name = "tesko_tema7_text3">Obveznice se izdaju prema unaprijed određenoj i obično fiksnoj kamatnoj stopi. U primjeru kad grad nudi obveznice za bazen, obecaje kupcima da se im nakon nekog vremena vratiti novac s kamatom.</string>
+    <string name = "tesko_tema7_text4">Sastavni dio obveznice su kuponi, koji daju pravo na isplatu pripadajuće kamate za određeno razdoblje (najčešće za jednu godinu).</string>
+    <string name = "tesko_tema7_text5">Obveznice mogu biti dio tržišta, cijena im se može mijenjati od početne vrijednosti, ovisno o ponudi i potražnji. </string>
+    <string name = "tesko_tema7_text6">Primjerice, ako neka tvrtka koja izdaje obveznice počinje loše poslovati, povećati će se rizik da neće moći isplatiti svoje obveze, pa će ljudi početi prodavati njezine obveznice i njezine cijene će se smanjiti.</string>
+
+    <string name = "tesko_tema8_text0">Fond je organizacija koja ulaže novac</string>
+    <string name = "tesko_tema8_text1">Ulagači uplaćuju određeni iznos novca koji menadžer fonda ulaže, najčešče u dionice, obveznice... \Taj skup imovina fonda se naziva portfelj fonda</string>
+    <string name = "tesko_tema8_text2">Kada ulagači uplaćuju iznos novca u fond oni zapravo kupuju udio fonda te postaju djelomični vlasnici</string>
+    <string name = "tesko_tema8_text3">Cilj upravljanja je rast cijene imovine fonda, a time i potencijalno povećanje imovine ulagatelja</string>
+    <string name = "tesko_tema8_text4">Fondovima upravljaju društva za upravljanje fondovima, koja odlučuju kako će se novac ulagati</string>
+    <string name = "tesko_tema8_text5">Fondovi mogu imati različite svrhe, mogu ulagati u različite ljudske djelatnostima, te najčešči su investicijski fondovi</string>
+    <string name = "tesko_tema8_text6">Investicijski fondovi su namijenjeni ljudima koji hoće štedjeti novac, ali ih i zanima veći prinosi nego kod štednje u banci</string>
+    <string name = "tesko_tema8_text7">Investicijski fond isplaćuje vlasniku udjele iz svojeg dobitka te utvrđuje vrijednost pojedinačnog udjela u fondu</string>
+
+    <string name = "tesko_tema9_text0">Derivati su vrijednosni papiri čija vrijednost ovisi o vrijednosti nekih drugih vrijednosnih papira (kao što su dionice, obveznice itd.) ili robe</string>
+    <string name = "tesko_tema9_text1">Derivati su način “oklade” na cijene dionica, kamatne stope, valutne tečajeve, cijene roba</string>
+    <string name = "tesko_tema9_text2">Razlikujemo četiri vrste derivata: opcije, terminski ugovori (eng. futures), terminski ugovori kojima se ne trguje (forwards) sporazami između dva društva kojima razmjenjuju nizove budućih plaćanja s različitim uvjetima (eng. swaps)</string>
+    <string name = "tesko_tema9_text3">Opcije daju pravo (ne obvezu) na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text4">Na primjer, kupac se može dogovoriti s prodavačem o mogućoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to opcija (moguće je to dogovoriti čak i ako cijena nafte nije 30 dolara)</string>
+    <string name = "tesko_tema9_text5">Terminski ugovori (eng. futures) su dogovori s ciljem kupnje nečega po dogovorenoj cijeni</string>
+    <string name = "tesko_tema9_text6">Na primjer, kupac se može dogovoriti s prodavačem o obaveznoj kupnji 10 barela nafte po cijeni  30 dolara za mjesec dana onda je to terminski ugovor</string>
+    <string name = "tesko_tema9_text7">U tom slučaju ako se kupac dogovorio o kupnji 10 barela nafte po cijeni 30 dolara za mjesec dana i cijena barela nafte naraste do 60 dolara, terminski ugovor postaje vrijedan i zato ga kupac može prodati nekome drugome </string>
+
+    <string-array name="lagano_kviz0_pitanje0">
+        <item>U kojem se obliku novac danas ne koristi?</item>
+        <item>kovanice</item>
+        <item>školjke</item>
+        <item>novčanice</item>
+        <item>školjke</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz0_pitanje1">
+
+        <item>Što se od navedenog smatra uslugom?</item>
+        <item>jabuke</item>
+        <item>dostava pošte </item>
+        <item>novi mobitel</item>
+        <item>dostava pošte</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz0_pitanje2">
+
+        <item>Koje od navedenoga se smatra robom?</item>
+        <item>novi automobil</item>
+        <item>iznajmljivanje automobila </item>
+        <item>popravak automobila kod mehaničara</item>
+        <item>novi automobil</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz0_pitanje3">
+        <item>Čime možemo platiti popravak automobila?</item>
+        <item>jabukama</item>
+        <item>uslugom frizera</item>
+        <item>novcem</item>
+        <item>novcem</item>
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje0">
+
+        <item>Koja je glavna valuta u Europskoj uniji?</item>
+        <item>jen</item>
+        <item>dolar</item>
+        <item>euro</item>
+        <item>euro</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje1">
+
+        <item>Koja valuta ima oznaku £?</item>
+        <item>britanska funta</item>
+        <item>jen</item>
+        <item>dolar</item>
+        <item>britanska funta</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje2">
+
+        <item>Gdje je britanska funta službena valuta?</item>
+        <item>U Japanu</item>
+        <item>U Švicarskoj</item>
+        <item>U Velikoj Britaniji</item>
+        <item>U Velikoj Britaniji</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje3">
+
+        <item>Koja valuta ima oznaku ¥?</item>
+        <item>dolar</item>
+        <item>euro</item>
+        <item>japanski jen</item>
+        <item>japanski jen</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje4">
+
+        <item>Koja valuta ima oznaku $?</item>
+        <item>euro</item>
+        <item>dolar</item>
+        <item>britanska funta</item>
+        <item>dolar</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje5">
+
+        <item>Koja je oznaka za euro?</item>
+        <item>¥</item>
+        <item>€</item>
+        <item>£</item>
+        <item>€</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz1_pitanje6">
+
+        <item>Koristeći koju valutu možemo kupiti kruh u trgovini u Hrvatskoj?</item>
+        <item>kune</item>
+        <item>dolar</item>
+        <item>jen</item>
+        <item>kune</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje0">
+
+        <item>Po čemu je banka dobila ime?</item>
+        <item>sefu</item>
+        <item>klupi</item>
+        <item>ormaru</item>
+        <item>klupi</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje1">
+
+        <item>Kako se zove posebna vrsta štednje koja nam može dati veću kamatu?</item>
+        <item>inflacijska štednja</item>
+        <item>privremena štednja</item>
+        <item>oročena štednja</item>
+        <item>oročena štednja</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje2">
+
+        <item>Gdje klijenti banke uobičajeno čuvaju novac?</item>
+        <item>u ormaru</item>
+        <item>u čarapama</item>
+        <item>na bankovnim računima</item>
+        <item>na bankovnim računima</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje3">
+
+        <item>O čemu ne ovisi iznos koji moramo vratiti banci?</item>
+        <item>o vremenu na koje smo ga posudili</item>
+        <item>o tome koliko dugo smo klijent te banke</item>
+        <item>o iznosu koji smo posudili</item>
+        <item>o tome koliko dugo smo klijent te banke</item>
+
+    </string-array>
+
+    <string-array name="lagano_kviz2_pitanje4">
+
+        <item>Ako povjeriš 300 kuna banci te ga nakon 2 godine želiš podignuti, koliki će ti iznos banka vratiti?</item>
+        <item>veći</item>
+        <item>jednak</item>
+        <item>manji</item>
+        <item>veći</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje0">
+
+        <item>Označi netočnu tvrdnju.</item>
+        <item>Za plaćanje online možemo koristiti i kupone ili kartice.</item>
+        <item>Prilikom kupnje putem interneta, moramo paziti s kojih stranica kupujemo.</item>
+        <item>Dobro je koristiti jednostavne lozinke.</item>
+        <item>Dobro je koristiti jednostavne lozinke.</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje1">
+
+        <item>Kakve lozinke trebaju biti?</item>
+        <item>dovoljno dugačke s različitim znakovima</item>
+        <item>dovoljno dugačke s prepoznatljivim riječima</item>
+        <item>kratke s prepoznatljivim riječima</item>
+        <item>dovoljno dugačke s različitim znakovima</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje2">
+
+        <item>Što nije znak da je stranica sigurna?</item>
+        <item>početak "http"</item>
+        <item>oznaka lokota</item>
+        <item>početak "https"</item>
+        <item>početak "http"</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz0_pitanje3">
+
+        <item>Označi netočnu tvrdnju</item>
+        <item>Izbjegavaj upisivanje podataka u javnosti</item>
+        <item>Dijeli osobne podatke gdje god hoćeš</item>
+        <item>Redovno provjeravaj jesu li svi tvoji troškovi poznati</item>
+        <item>Dijeli osobne podatke gdje god hoćeš</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje2">
+
+        <item>Ako dobiješ 130 kn, a želiš uštedjeti 80 kn, koliko možeš potrošiti?</item>
+        <item>50 kn</item>
+        <item>80 kn</item>
+        <item>100 kn</item>
+        <item>50 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje3">
+
+        <item>Ako za rođendan dobiješ 100 kn, a za džeparac 50 kn, a želiš uštedjeti 100 kn, koliko možeš potrošiti?</item>
+        <item>150 kn</item>
+        <item>100 kn</item>
+        <item>50 kn</item>
+        <item>50 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje4">
+
+        <item>Ako dobiješ 300 kn i od toga potrošiš 180 kn, a ostatak želiš uštedjeti, koliki će biti iznos tog ušteđenog novca?</item>
+        <item>480 kn</item>
+        <item>180 kn</item>
+        <item>120 kn</item>
+        <item>120 kn</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje0">
+
+        <item>Koja tvrdnja NIJE točna?</item>
+        <item>Planiranjem troškova sprječavamo trošenje novca na stvari koje nam ne trebaju</item>
+        <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
+        <item>Kako bismo znali koliko možemo potrošiti, moramo od dobivenog oduzeti planirani novac za štednju</item>
+        <item>Moramo potrošiti sav novac koji smo planirali potrošiti</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje1">
+
+        <item>Koji je 1. korak planiranja potrošnje?</item>
+        <item>Postavi si koliko želiš uštedjeti kao cilj.</item>
+        <item>Odredi koliko si zaradio ili dobio.</item>
+        <item>Možeš odlučiti na što žeilš potrošiti ostatak novca.</item>
+        <item>Odredi koliko si zaradio ili dobio.</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz1_pitanje5">
+
+        <item>Ako dobivaš džeparac 200 kuna mjesečno i potrošiš 150 kuna, u koliko vremena možeš uštedjeti za novi bicikl koji stoji 3000 kn</item>
+        <item>pola godine</item>
+        <item>pet godina</item>
+        <item>dvije godine</item>
+        <item>pet godina</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje0">
+
+        <item>Želiš u online trgovini kupiti igraću konzolu, no potrebno je platiti u dolarima. Koju ćeš vrstu bankovnog računa iskoristiti?</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>žiro</item>
+        <item>devizni</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje1">
+
+        <item>Radiš na informatičkom kampu tjedan dan, koju ćeš vrstu bankovnog računa iskoristiti?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>žiro</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje2">
+
+        <item>Već 10 godina radiš kao učitelj. Na koji račun ti dolazi plaća?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>tekući</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje3">
+
+        <item>Ujak ti želi uplaiti veliku svotu novca u eurima. Na koji ćeš račun dobiti tu svotu?</item>
+        <item>žiro</item>
+        <item>tekući</item>
+        <item>devizni</item>
+        <item>devizni</item>
+
+    </string-array>
+
+    <string-array name="srednje_kviz2_pitanje4">
+
+        <item>Bio si vrlo dobar učenik na fakultetu i fakultet ti želi uplatiti stipendiju. Na koji će ti je račun uplatiti?</item>
+        <item>devizni</item>
+        <item>tekući</item>
+        <item>žiro</item>
+        <item>žiro</item>
+
+    </string-array>
+
+
+    <string-array name="tesko_kviz0_pitanje0">
+
+        <item>Što je glavnica?</item>
+        <item>Omjer godišnjeg iznosa kamata i iznosa kredita</item>
+        <item>Iznos novca stavljenog na štednju ili iznos kredita</item>
+        <item>Iznos potrošenog novca</item>
+        <item>Iznos novca stavljenog na štednju ili iznos kredita</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje1">
+
+        <item>Kako se prikazuje kamatna stopa?</item>
+        <item>u postotcima (%)</item>
+        <item>u promilima (‰)</item>
+        <item>u dolarima ($)</item>
+        <item>u postotcima (%)</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje2">
+
+        <item>Prema kojoj formuli izračunavamo kamate?</item>
+        <item>k = g ⋅ s ⋅ v</item>
+        <item>k = g / s ⋅ v</item>
+        <item>k = g + s + v</item>
+        <item>k = g ⋅ s ⋅ v</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje3">
+
+        <item>Što slovo "v" označava u formuli za kamate?</item>
+        <item>ušteđeni novac</item>
+        <item>valutu</item>
+        <item>vrijeme</item>
+        <item>vrijeme</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz0_pitanje4">
+
+        <item>Ako na štednju staviš 1000 kuna na 5 godina, a kamatna stopa je 2%, kolika je kamata?</item>
+        <item>10000 kn</item>
+        <item>5000 kn</item>
+        <item>100 kn</item>
+        <item>100 kn</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje0">
+
+        <item>Kako se zove mjesto gdje se čuvaju kriptovalute?</item>
+        <item>Bitchain</item>
+        <item>Blockchain</item>
+        <item>Botchain</item>
+        <item>Blockchain</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje1">
+
+        <item>Označi netočnu tvrdnju.</item>
+        <item>Vrijednost kriptovaluta često pada i raste.</item>
+        <item>Neki ljudi misle da su loše za planet, jer troše previše energije.</item>
+        <item>Kriptovalute postoje u kovanicama i novčanicama.</item>
+        <item>Kriptovalute postoje u kovanicama i novčanicama.</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje2">
+
+        <item>Koja je najpoznatija kriptovaluta?</item>
+        <item>Litecoin</item>
+        <item>Dogecoin</item>
+        <item>Bitcoin</item>
+        <item>Bitcoin</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje3">
+
+        <item>Što je od navedenog kriptovaluta?</item>
+        <item>Cardano</item>
+        <item>Funta</item>
+        <item>Dolar</item>
+        <item>Cardano</item>
+
+    </string-array>
+
+    <string-array name="tesko_kviz1_pitanje4">
+
+        <item>Što od navedenog nije kriptovaluta?</item>
+        <item>Monero</item>
+        <item>Jen</item>
+        <item>Litecoin</item>
+        <item>Jen</item>
+    </string-array>
+
+    <string-array name="srednje_kviz3_pitanje0">
+        <item>Što je od navedenog primjer inflacije?</item>
+        <item>Povećanje cijene mandarina</item>
+        <item>Povećanje cijene dijelova računala</item>
+        <item>Prosječno povećanje svih cijena</item>
+        <item>Prosječno povećanje svih cijena</item>
+    </string-array>
+    <string-array name="srednje_kviz3_pitanje1">
+        <item>Prije si mogao  za 10 kuna kupiti 20 mandarina, nakon inflacije za 10 kuna možeš kupiti: </item>
+        <item>20 mandarina</item>
+        <item>manje od 20 mandarina</item>
+        <item>više od 20 mandarina</item>
+        <item>manje od 20 mandarina</item>
+    </string-array>
+    <string-array name="srednje_kviz3_pitanje2">
+        <item>Prije si mogao kupiti nogometnu loptu za 50 kuna, nakon inflacije možeš kupiti loptu za: </item>
+        <item>50 kuna</item>
+        <item>više od 50 kuna</item>
+        <item>manje od 50 kuna</item>
+        <item>više od 50 kuna</item>
+    </string-array>
+    <string-array name="srednje_kviz3_pitanje3">
+        <item>Inflacija tijekom vremena smanjuje vrijednost: </item>
+        <item>valute</item>
+        <item>usluga</item>
+        <item>robe</item>
+        <item>valute</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje0">
+        <item>Što od navedenog čini košaricu?</item>
+        <item>ukupne cijene mandarina</item>
+        <item>ukupne cijene svih dobara, roba i usluga</item>
+        <item>ukupne cijene svih računala</item>
+        <item>ukupne cijene svih dobara, roba i usluga</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje1">
+        <item>Što najviše utječe na godišnju stopu inflacije?</item>
+        <item>cijene električne energije</item>
+        <item>cijene klizaljki</item>
+        <item>cijene poštanskih marki</item>
+        <item>cijene električne energije</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje2">
+        <item>Ako je jedne godine ukupni trošak košarice bio 2000 eura, a druge 2100 eura, kolika je godišnja stopa inflacije?</item>
+        <item>20 %</item>
+        <item>5 %</item>
+        <item>1 %</item>
+        <item>5 %</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje4">
+        <item>Ako je jedne godine ukupni trošak košarice bio 1000 eura, a druge 1020 eura, kolika je godišnja stopa inflacije?</item>
+        <item>2 %</item>
+        <item>20 %</item>
+        <item>10 %</item>
+        <item>2 %</item>
+    </string-array>
+
+    <string-array name="tesko_kviz2_pitanje3">
+        <item>Ako je jedne godine lopta stojila 50 kuna, a godišnja stopa inflacije iznosi 4 %, koliko iznosi cijena lopte sljedeće godine?</item>
+        <item>52 kune</item>
+        <item>50 kuna</item>
+        <item>Promjena cijene lopte za jednu godinu ne ovisi o godišnjoj stopi inflacije</item>
+        <item>Promjena cijene lopte za jednu godinu ne ovisi o godišnjoj stopi inflacije</item>
+    </string-array>
+    <string-array name="tesko_kviz2_pitanje5">
+        <item>Ako je jedne godine lopta stojila 50 kuna, a sljedeće godine stoji 60 kuna, kolika je godišnja stopa inflacije?</item>
+        <item>Godišnja stopa inflacije ne ovisi o promjeni cijene lopte za jednu godinu</item>
+        <item>20 %</item>
+        <item>10 %</item>
+        <item>Godišnja stopa inflacije ne ovisi o promjeni cijene lopte za jednu godinu</item>
+    </string-array>
+    <string-array name="tesko_kviz2_pitanje6">
+        <item>Godišnja stopa inflacije stabilnih valuta iznosi:</item>
+        <item>od 1 do 4 %</item>
+        <item>od 3 do 5 %</item>
+        <item>oko 10 %</item>
+        <item>od 1 do 4 %</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje0">
+        <item>Hiperinflacija je kada: </item>
+        <item>Godišnja stopa inflacije iznosi od 1 do 4 posto</item>
+        <item>Godišnja stopa inflacije iznosi niže od 0 posto</item>
+        <item>Mjesečna stopa inflacije iznosi više od 20-30 posto</item>
+        <item>Mjesečna stopa inflacije iznosi više od 20-30 posto</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje1">
+        <item>Što će se dogoditi ako pohranjujemo novac u nekoj valuti s hiperinflacijom?</item>
+        <item>Novac koji pohranjujemo će brzo izgubiti svoju vrijdnost</item>
+        <item>Imati ćemo isti iznos, neće se ništa dogoditi s vrijednošću</item>
+        <item>Moći ćemo kupiti za neko vrijeme više robe i usluga s tim novcem</item>
+        <item>Novac koji pohranjujemo će brzo izgubiti svoju vrijdnost</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje2">
+        <item>Što znači umjerena inflacija?</item>
+        <item>Valuta jako brzo gubi svoju vrijednost</item>
+        <item>Valuta ima nisku stopu inflacije</item>
+        <item>Stopa inflacija je niža od 0 posto</item>
+        <item>Valuta ima nisku stopu inflacije</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje3">
+        <item>Ako sada nogometna lopta stoji 50 kuna, koliko će stojiti nakon deflacije: </item>
+        <item>50 kuna</item>
+        <item>manje od 50 kuna</item>
+        <item>više od 50 kuna</item>
+        <item>manje od 50 kuna</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje4">
+        <item>Deflacija povećava vrijednost: </item>
+        <item>roba i usluga</item>
+        <item>valute</item>
+        <item>mandarina</item>
+        <item>valute</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje5">
+        <item>Kakve su posljedice deflacije: </item>
+        <item>Cijene padaju, gospodarski razvoj, ljudi postaju zadovoljniji životom</item>
+        <item>Odgađanje potrošnje, smanjenje trgovine, gospodarska kriza</item>
+        <item>Više trgovanja, premala ponuda, velika potražnja</item>
+        <item>Odgađanje potrošnje, smanjenje trgovine, gospodarska kriza</item>
+    </string-array>
+
+    <string-array name="tesko_kviz3_pitanje6">
+        <item>Tko najviše može kontrolirati inflaciju?</item>
+        <item>središnja banka</item>
+        <item>vlada</item>
+        <item>tvrtke</item>
+        <item>središnja banka</item>
+    </string-array>
+
+    <string-array name="tesko_kviz8_pitanje0">
+        <item>Što je fond?</item>
+        <item>Organizacija koja ulaže i upravlja novcem</item>
+        <item>Organizacija za obrazovanje</item>
+        <item>Organizacija za osiguranje</item>
+        <item>Organizacija koja ulaže i upravlja novcem</item>
+    </string-array>
+
+    <string-array name="tesko_kviz8_pitanje1">
+        <item>Kako možemo postati djelomični vlasnici fonda?</item>
+        <item>Osnovati fond</item>
+        <item>Uplatiti određeni iznos novca u fond</item>
+        <item>Postati manager fonda</item>
+        <item>Uplatiti određeni iznos novca u fond</item>
+    </string-array>
+    <string-array name="tesko_kviz8_pitanje2">
+        <item>Cilj upravljanja fonda je:</item>
+        <item>Rast cijene imovine fonda</item>
+        <item>Dobit managera fonda</item>
+        <item>Dobiti novac od ulagatelja</item>
+        <item>Rast cijene imovine fonda</item>
+    </string-array>
+    <string-array name="tesko_kviz8_pitanje3">
+        <item>Kome investicijski fond isplaćuje udio dobiti?</item>
+        <item>Školama</item>
+        <item>Manageru</item>
+        <item>Vlasnicima</item>
+        <item>Vlasnicima</item>
+    </string-array>
+
+    <string-array name="tesko_kviz8_pitanje4">
+        <item>Tko upravlja fondom?</item>
+        <item>Vlasnici</item>
+        <item>Analitičari</item>
+        <item>Društvo za upravljanje fondovima</item>
+        <item>Društvo za upravljanje fondovima</item>
+    </string-array>
+
+    <string-array name="tesko_kviz8_pitanje5">
+        <item>Namijena investicijskih fondova je:</item>
+        <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci </item>
+        <item>Trošiti novac ulagatelja</item>
+        <item>Pomoć ulagateljima u različitim uslugama</item>
+        <item>Štednja novca ulagatelja i prinosi, veći nego kod štednje u banci</item>
+    </string-array>
+
+    <string-array name="tesko_kviz4_pitanje0">
+        <item>Gdje možemo kupiti dionice?</item>
+        <item>Na tržnici</item>
+        <item>Na burzi</item>
+        <item>Online trgovini</item>
+        <item>Na burzi</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje1">
+        <item>Tko daje dionice na prodaju?</item>
+        <item>Dionička društva</item>
+        <item>Sve tvrtke</item>
+        <item>Mali obrti i tvrtke</item>
+        <item>Dionička društva</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje2">
+        <item>Zasto tvrtka zeli prodati dionice?</item>
+        <item>Da bi povećala svoju imovinu i omogućila širenje posla</item>
+        <item>Da bi postala poznata</item>
+        <item>Jer je određeno zakonom</item>
+        <item>Da bi povećala svoju imovinu i omogućila širenje posla</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje3">
+        <item>Tržišna kapitalizacija je:</item>
+        <item>Koliko je široko tržište neke tvrtke</item>
+        <item>Ukupni kapital nekog dioničkog društva</item>
+        <item>Ukupna vrijednost dionica nekog dioničkog društva</item>
+        <item>Ukupna vrijednost dionica nekog dioničkog društva</item>
+    </string-array>
+    <string-array name="tesko_kviz4_pitanje4">
+        <item>Što su dionice?</item>
+        <item>Dokaz da netko posjeduje dio dioničkog društva</item>
+        <item>Dokaz da netko upravlja dioničkim društvom</item>
+        <item>Proizvod neke tvrtke koji se može kupovati i prodavati</item>
+        <item>Dokaz da netko posjeduje dio dioničkog društva</item>
+    </string-array>
+
+    <string-array name="tesko_kviz5_pitanje0">
+        <item>Što ne određuje cijenu dionice?</item>
+        <item>Starost tvrtke</item>
+        <item>Potražnja i ponuda</item>
+        <item>Napredovanje i poslovanje dioničkog društva</item>
+        <item>Starost tvrtke</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje1">
+        <item>Ako se prestanu koristit fosilna goriva, dionice tvrtki koje proizvode benzin će:</item>
+        <item>Rasti će </item>
+        <item>Padat će</item>
+        <item>Ostat će isti</item>
+        <item>Padat će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje2">
+        <item>Ako Elon Musk kaže da je Dogecoin novac budućnosti, cijena će mu:</item>
+        <item>Padat će</item>
+        <item>Rasti će</item>
+        <item>Ostat će isti</item>
+        <item>Rasti će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje3">
+        <item>Ako se Apple-u smanji prodaja Iphone-a, dionice Apple-a će:</item>
+        <item>Padat će</item>
+        <item>Ostat će isti</item>
+        <item>Rasti će</item>
+        <item>Padat će</item>
+    </string-array>
+    <string-array name="tesko_kviz5_pitanje4">
+        <item>Zašto su bitna pozitivna očekivanja investitora o budućem razvoju tvrtke za cijenu dionice:</item>
+        <item>Početi će kupovati dionice zbog čega će njihova cijena rasti</item>
+        <item>Početi će prodavati dionice zbog čega će njihova cijena padati</item>
+        <item>Da upravitelj tvrtke bude zadovoljan</item>
+        <item>Početi će kupovati dionice zbog čega će njihova cijena rasti</item>
+    </string-array>
+
+    <string-array name="tesko_kviz6_pitanje0">
+        <item>Što radi tvrtka s ostvarenom dobiti?</item>
+        <item>Mora sve dati vlasnicima dionica</item>
+        <item>Mora uložiti sve u razvoj tvrtke</item>
+        <item>Dio dijeli među vlasnicima dionica, a dio ostavlja za razvoj</item>
+        <item>Dio dijeli među vlasnicima dionica, a dio ostavlja za razvoj</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje1">
+        <item>Što može dobiti vlasnik dionica?</item>
+        <item>Dio prihoda dioničkog društva</item>
+        <item>Novac tvrtke koji služi za njezin razvoj</item>
+        <item>Posao u tvrtki čije dionice posjeduje</item>
+        <item>Dio prihoda dioničkog društva</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje2">
+        <item>Prihod kojeg vlasnik dionica dobiva zove se:</item>
+        <item>Divizija</item>
+        <item>Deflacija</item>
+        <item>Dividenda</item>
+        <item>Dividenda</item>
+    </string-array>
+    <string-array name="tesko_kviz6_pitanje3">
+        <item>Što je zadržana dobit?</item>
+        <item>Dobit tvrtke koji se zadržava tijekom vremenskog razdoblja</item>
+        <item>Dio prihoda tvrtke koji se zadržava i služi za njezin razvoj</item>
+        <item>Dobit tvrtke koji će se zadržati zaposlenicima</item>
+        <item>Dio prihoda tvrtke koji se zadržava i služi za njezin razvoj</item>
+    </string-array>
+
+    <string-array name="tesko_kviz7_pitanje0">
+        <item>Koja od navedenih organizacija ne izdaje obveznice:</item>
+        <item>Države</item>
+        <item>Velike bankovne, prometne ili industrijske tvrtke</item>
+        <item>Obrti</item>
+        <item>Obrti </item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje1">
+        <item>Koja je svrha obveznica:</item>
+        <item>One su dokaz da netko posjeduje dio tvrtke</item>
+        <item>Prikupljanje sredstava</item>
+        <item>Sadrži obvezu kupnje neke dionice</item>
+        <item>Prikupljanje sredstava</item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje2">
+        <item>Ako neka velika prometna tvrtka želi sagraditi ceste, ali joj nedostaje novac što neće napraviti:</item>
+        <item>Kupiti obveznice</item>
+        <item>Podignuti kredit</item>
+        <item>Izdati obveznice</item>
+        <item>Kupiti obveznice</item>
+    </string-array>
+    <string-array name="tesko_kviz7_pitanje3">
+        <item>Ako grad je ponudio obveznice za sagradnju nove luke, što to znači:</item>
+        <item>Grad je dao obećanje vratiti kupcima obveznice</item>
+        <item>Grad je dao obećanje kupcima obveznica vratiti novac s kamatama</item>
+        <item>Grad ima obvezu prikupiti novac</item>
+        <item>Grad je dao obećanje kupcima obveznica vratiti novac s kamatama</item>
+    </string-array>
+
+
+    <string-array name="tesko_kviz9_pitanje0">
+        <item>O čemu ovise vrijednosti derivata:</item>
+        <item>Vrijednosti nekih drugih vrijednosnih papira ili robe</item>
+        <item>Poslovanju kupca derivata</item>
+        <item>Vrijednosti hrane</item>
+        <item>Vrijednosti nekih drugih vrijednosnih papira ili robe</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje1">
+        <item>Opcije daju:</item>
+        <item>Pravo odabira cijene na kupnju nečega</item>
+        <item>Pravo na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+        <item>Obvezu na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+        <item>Pravo na kupnju ili prodaju nečega u budućnosti po dogovorenoj cijeni</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje2">
+        <item>Dionice tvrtke za koje imamo terminski ugovor su naglo pale u njihovoj vrijednosti, što će biti dalje:</item>
+        <item>Moramo kupiti te dionice po puno višoj cijeni</item>
+        <item>Ne moramo ništa kupovati</item>
+        <item>Možemo kupiti po nižoj cijeni</item>
+        <item>Moramo kupiti te dionice po puno višoj cijeni</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje3">
+        <item>Kada vrijednost našeg terminskog ugovora ili opcije raste:</item>
+        <item>Kada je opcija ili terminski ugovor siguran</item>
+        <item>Kada je naša dogovorena cijena kupnje viša od trenutne cijene</item>
+        <item>Kada je naša dogovorena cijena kupnje niža od trenutne cijene</item>
+        <item>Kada je naša dogovorena cijena kupnje niža od trenutne cijene</item>
+    </string-array>
+    <string-array name="tesko_kviz9_pitanje4">
+        <item>Što nije derivat:</item>
+        <item>Swap</item>
+        <item>Dionica</item>
+        <item>Forward</item>
+        <item>Dionica</item>
+    </string-array>
+</resources>

@@ -32,6 +32,13 @@
 
         </LinearLayout>
 
+        <Spinner
+            android:id="@+id/prikaz_za_valutu"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,14 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="10dp" />
 
             <Spinner
                 android:id="@+id/prikaz_za_razdoblje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
         <LinearLayout

@@ -36,7 +36,7 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:text="financijska pismenost"
+                android:text="@string/financijska_pismenost_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vidjeti_detalje" />
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/yellow"
-                android:text="prikaz troškova" />
+                android:text="@string/prikaz_troskova_button"/>
 
             <ImageView
                 android:id="@+id/imageView3"

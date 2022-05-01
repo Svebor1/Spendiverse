@@ -1,16 +1,25 @@
 package com.example.spendiverse;
 
+import java.util.ArrayList;
+
 public class RezultatNatjecatelja {
     String imeKorisnika;
     Integer rezultatKorisnika;
+    Integer pozicija;
+    String[] listaBedzeva;
 
-    public RezultatNatjecatelja(String imeKorisnika) {
-        this.imeKorisnika = imeKorisnika;
+    public Integer getPozicija() {
+        return pozicija;
     }
 
-    public RezultatNatjecatelja(String imeKorisnika, Integer rezultatKorisnika) {
+    public void setPozicija(Integer pozicija) {
+        this.pozicija = pozicija;
+    }
+    public RezultatNatjecatelja(String imeKorisnika, Integer rezultatKorisnika, String[] listaBedzeva) {
         this.imeKorisnika = imeKorisnika;
         this.rezultatKorisnika = rezultatKorisnika;
+        this.pozicija = null;
+        this.listaBedzeva = listaBedzeva;
     }
 
     public String getImeKorisnika() {
@@ -27,5 +36,13 @@ public class RezultatNatjecatelja {
 
     public void setRezultatKorisnika(Integer rezultatKorisnika) {
         this.rezultatKorisnika = rezultatKorisnika;
+    }
+
+    public String[] getListaBedzeva() {
+        return listaBedzeva;
+    }
+
+    public void setListaBedzeva(String[] listaBedzeva) {
+        this.listaBedzeva = listaBedzeva;
     }
 }

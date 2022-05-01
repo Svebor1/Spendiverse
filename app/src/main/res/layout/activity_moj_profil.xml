@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:id="@+id/imageView6"
             android:layout_width="150dp"
@@ -28,7 +28,51 @@
             app:srcCompat="@drawable/ic_profil" />
 
         <LinearLayout
-            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/tesko_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/tesko_bedz" />
+
+            <ImageView
+                android:id="@+id/srednje_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/srednje_bedz" />
+
+            <ImageView
+                android:id="@+id/lagano_bedz"
+                android:layout_width="40dp"
+                android:visibility="gone"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/lagano_bedz" />
+
+            <ImageView
+                android:id="@+id/financijski_plan_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/financijski_plan_bedz" />
+
+            <ImageView
+                android:id="@+id/trosak_bedz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/trosak_bedz" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -60,13 +104,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:layout_weight="1"
-                android:text="Nadimak:" />
+                android:layout_weight="0.4"
+                android:text="@string/nadimak_text" />
 
             <TextView
                 android:id="@+id/nadimak_korisnika"
                 android:layout_width="0dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 tools:layout_editor_absoluteX="173dp"
                 tools:layout_editor_absoluteY="246dp" />
@@ -75,7 +119,7 @@
                 android:id="@+id/edit_nadimka"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.4"
                 android:background="@drawable/ljubicasta_pozadina"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
         </LinearLayout>
@@ -93,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="Broj riješenih kvizova:"
+                android:text="@string/broj_rijesenih_kvizova_text"
                 tools:layout_editor_absoluteX="60dp"
                 tools:layout_editor_absoluteY="373dp" />
 
@@ -121,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="Tvoji bodovi:"
+                android:text="@string/tvoji_bodovi_text"
                 />
 
             <TextView
@@ -144,15 +188,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp"
         >
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:orientation="horizontal">
 
             <TextView
@@ -161,9 +204,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Prikaži me na ljestvici"
-                android:textStyle="bold"
-                 />
+                android:text="@string/prikazi_me_na_ljsetvici_text"
+                android:textStyle="bold" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -178,23 +220,51 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="@string/ukljuci_dark_mode_text" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Switch
+                    android:id="@+id/switch_dark_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+            </FrameLayout>
+        </LinearLayout>
+
         <Button
             android:layout_marginTop="10dp"
             android:id="@+id/prikaz_ljestvice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="prikaži ljestvicu" />
+            android:text="@string/prikazi_ljestvicu_button" />
 
         <Button
-
             android:id="@+id/brisanje_racuna"
             android:layout_width="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Izbriši račun" />
+            android:text="@string/izbrisi_racun_button" />
     </LinearLayout>
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

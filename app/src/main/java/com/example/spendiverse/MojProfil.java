@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +35,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,17 +51,29 @@ public class MojProfil extends AppCompatActivity {
     TextView nadimakKorisnika;
     List<Rezultat> rezultati;
     Switch prikazNaLjestvici;
+    Switch ukljuciDarkMode;
     ImageButton editNadimka;
     Button brisanjeRacuna;
+    ImageView bedzTrosak;
+    ImageView planiranjeBedz;
+    ImageView laganiKvizoviBedz;
+    ImageView srednjiKvizoviBedz;
+    ImageView teskiKvizoviBedz;
+    Integer prviTrosakBedz;
+    Integer prviPlanBedz;
+    Integer postojanjeBedzaLaganihKvizova;
+    Integer postojanjeBedzaSrednjihKvizova;
+    Integer postojanjeBedzaTeskihKvizova;
+    Context context;
     String TAG = "MojProfil";
     private String nadimak;
-
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moj_profil);
+        context = this;
         //postavlja strelicu za natrag
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.arrow_back);
@@ -66,22 +84,34 @@ public class MojProfil extends AppCompatActivity {
         emailKorisnika = findViewById(R.id.email_korisnika);
         nadimakKorisnika = findViewById(R.id.nadimak_korisnika);
         editNadimka = findViewById(R.id.edit_nadimka);
+        bedzTrosak = findViewById(R.id.trosak_bedz);
+        laganiKvizoviBedz = findViewById(R.id.lagano_bedz);
+        srednjiKvizoviBedz = findViewById(R.id.srednje_bedz);
+        teskiKvizoviBedz = findViewById(R.id.tesko_bedz);
+        planiranjeBedz = findViewById(R.id.financijski_plan_bedz);
         prikazNaLjestvici = findViewById(R.id.switch1);
+        ukljuciDarkMode = findViewById(R.id.switch_dark_mode);
         brisanjeRacuna = findViewById(R.id.brisanje_racuna);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "dark_mode", Context.MODE_PRIVATE);
+        int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
+        int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
+        ukljuciDarkMode.setChecked(darkModeStanje!=0);
+
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati profil prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(this)
-                        .setTitle("Brisanje profila")
-                        .setMessage("Jeste li sigurni da želite izbrisati profil?")
-                        .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.brisanje_profila_naslov_alert)
+                        .setMessage(R.string.brisanje_profila_alert)
+                        .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 izbrisiRacun(); //ako je korisnik potvrdio brisanje profila poziva se metoda brisanja profila
                             }
                         })
-                        .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }
@@ -159,16 +189,40 @@ public class MojProfil extends AppCompatActivity {
             } //ako je odabran prikaz ljestvice
         };
         prikazLjestvice.setOnClickListener(listener3);
+        provjeriPostojanjeBedzeva();
         procitajRezultate();
 
+        ukljuciDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); //ukljucen night mode
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //ugašen night mode
+                }
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        "dark_mode", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                if (b){
+                    editor.putInt("dark_mode", 1);
+                }else{
+                    editor.putInt("dark_mode", 0);
+                }
+                editor.apply();
+            }
+        });
+
+
+
     }
+
 
     /**
      * metoda koja služi za promijenu nadimka i spremanje novog nadimka u bazu
      */
     private void promjenaNadimka() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Unesite novi nadimak");
+        builder.setTitle(R.string.unesite_novi_nadimak_alert);
 
         //postavljanje unosa
         final EditText input = new EditText(this);
@@ -176,22 +230,37 @@ public class MojProfil extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
         //postavljanje gumba
-        builder.setPositiveButton("potvrdi", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                nadimak = input.getText().toString();
-                nadimakKorisnika.setText(nadimak);
-                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
-            }
-        });
-        builder.setNegativeButton("odustani", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.nadimak_odgovor_potvrdi, null);
+        builder.setNegativeButton(R.string.nadimak_odgovor_odustani, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
 
-        builder.show();
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                if (input.getText().toString().replace(" ","").length()==0){
+                    input.setError("Nadimak ne smije biti prazan");
+                }
+                else{
+                    if (input.getText().toString().length()>20){
+                        input.setError("Nadimak može imati najviše 20 znakova");
+                    }
+                    else{
+                        nadimak = input.getText().toString();
+                        nadimakKorisnika.setText(nadimak);
+                        dialog.dismiss();
+                    }
+                }
+                db.collection("ljestvica").document(firebaseUser.getUid()).update("nadimak", nadimak);
+
+            }
+        });
 
     }
 
@@ -220,6 +289,71 @@ public class MojProfil extends AppCompatActivity {
 
         }
     }
+    private void provjeriPostojanjeBedzeva() {
+        prviTrosakBedz = 0;
+        prviPlanBedz = 0;
+        postojanjeBedzaLaganihKvizova = 0;
+        postojanjeBedzaSrednjihKvizova = 0;
+        postojanjeBedzaTeskihKvizova = 0;
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("bedzevi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals("prvi_trosak")) {
+                                    prviTrosakBedz = 1;
+                                }
+                                if (document.getId().equals("prvi_plan")) {
+                                    prviPlanBedz = 1;
+                                }
+                                if (document.getId().equals("bedz_lagani_kvizovi")) {
+                                    postojanjeBedzaLaganihKvizova = 1;
+                                }
+                                if (document.getId().equals("bedz_srednji_kvizovi")) {
+                                    postojanjeBedzaSrednjihKvizova = 1;
+                                }
+                                if (document.getId().equals("bedz_teski_kvizovi")) {
+                                    postojanjeBedzaTeskihKvizova = 1;
+                                }
+
+                            }
+                            if (prviTrosakBedz == 1){
+                                bedzTrosak.setVisibility(View.VISIBLE);
+                            } else{
+                                bedzTrosak.setVisibility(View.GONE);
+                            }
+                            if (prviPlanBedz == 1){
+                                planiranjeBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                planiranjeBedz.setVisibility(View.GONE);
+                            }
+                            if (postojanjeBedzaLaganihKvizova == 1){
+                                laganiKvizoviBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                laganiKvizoviBedz.setVisibility(View.GONE);
+                            }
+                            if (postojanjeBedzaSrednjihKvizova == 1){
+                                srednjiKvizoviBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                srednjiKvizoviBedz.setVisibility(View.GONE);
+                            }
+                            if (postojanjeBedzaTeskihKvizova == 1){
+                                teskiKvizoviBedz.setVisibility(View.VISIBLE);
+                            } else{
+                                teskiKvizoviBedz.setVisibility(View.GONE);
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
     /**
      * Ova metoda čita sve rezultate korisnika iz baze.
      */
@@ -268,6 +402,40 @@ public class MojProfil extends AppCompatActivity {
     private void izbrisiRacun() {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        db.collection("korisnici").document(firebaseUser.getUid()).collection("troskovi")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                                StorageReference slikaRef = storageRef.child(document.getId()+".jpg");
+                                slikaRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Uh-oh, an error occurred!
+                                    }
+                                });
+                            }
+
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+
         db.collection("korisnici").document(user.getUid())
                 .delete()
                 //brisanje svih podataka korisnika u bazi u collectionu korisnici

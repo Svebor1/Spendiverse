@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DodavanjeKategorijeTroska"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/naziv_kategorije"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="naziv kategorije"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/dodaj_kategoriju_troska"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/dodaj_kategoriju_troska_button"
+        android:layout_gravity="center"/>
+
+
+    <ListView
+        android:id="@+id/kategorije_troska"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="10dp"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

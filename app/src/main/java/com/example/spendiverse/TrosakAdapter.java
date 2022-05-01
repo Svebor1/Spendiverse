@@ -19,7 +19,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class TrosakAdapter extends ArrayAdapter<Trosak> {
@@ -44,7 +47,9 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
         TextView cijena = listitemView.findViewById(R.id.cijena_tv);
         nameTV.setText(trosak.getNaziv());
         datum.setText(trosak.getDatumDan()+"."+trosak.getDatumMjesec()+"."+trosak.getDatumGodina()+".");
-        cijena.setText(trosak.getCijena()+" HRK");
+        DecimalFormat myFormatter = new DecimalFormat("#.##");
+        String zaokruzenaCijena = myFormatter.format(trosak.getCijena());
+        cijena.setText(zaokruzenaCijena + " "+  trosak.getValuta());
         ImageButton kanta;
         ImageButton edit;
         edit = listitemView.findViewById(R.id.edit);
@@ -69,6 +74,21 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
                             }
                         });
                 remove(trosak);
+
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                StorageReference slikaRef = storageRef.child(trosak.getFirebaseId() +".jpg");
+                slikaRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {
@@ -79,10 +99,11 @@ public class TrosakAdapter extends ArrayAdapter<Trosak> {
                 Bundle bundle = new Bundle();
                 bundle.putString("naziv", trosak.getNaziv());
                 bundle.putString("kategorija", trosak.getKategorija());
+                bundle.putString("valuta", trosak.getValuta());
                 bundle.putInt("datumDan", trosak.getDatumDan());
                 bundle.putInt("datumMjesec", trosak.getDatumMjesec());
                 bundle.putInt("datumGodina", trosak.getDatumGodina());
-                bundle.putInt("cijena", trosak.getCijena());
+                bundle.putDouble("cijena", trosak.getCijena());
                 bundle.putString("firebaseId", trosak.getFirebaseId());
                 intent.putExtras(bundle);
                 context.startActivity(intent);

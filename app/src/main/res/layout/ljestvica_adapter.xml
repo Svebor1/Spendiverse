@@ -5,39 +5,99 @@
 
 
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="45dp"
     android:elevation="10dp"
     android:background="@drawable/zuta_pozadina_4ruba">
 
-    <TextView
-        android:id="@+id/mjesto_korisnika"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:text="TextView"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/naziv_korisnika"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mjesto_korisnika"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/mjesto_korisnika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="100" />
+
+        <TextView
+            android:id="@+id/naziv_korisnika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:lines="1"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLength="20"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:text="TextView" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/broj_bodova"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="TextView"
+        android:layout_marginEnd="10dp"
+        android:text="2000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/naziv_korisnika"
+        app:layout_constraintEnd_toStartOf="@id/bedzevi_layout"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/bedzevi_layout"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ljestvica_tesko_bedz"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/tesko_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_srednje_bedz"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/srednje_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_lagano_bedz"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/lagano_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_trosak_bedz"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/trosak_bedz" />
+
+        <ImageView
+            android:id="@+id/ljestvica_plan_bedz"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/financijski_plan_bedz" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

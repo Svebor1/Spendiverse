@@ -3,9 +3,12 @@ package com.example.spendiverse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -44,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
+    private Context context;
     private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //dodavanje mogućnosti prijave s Google accountom
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //ugašen night mode
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -58,6 +61,17 @@ public class MainActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
+
+        context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                "dark_mode", Context.MODE_PRIVATE);
+        int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
+        int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
+        if (darkModeStanje==0){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //ugašen night mode
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); //ukljucen night mode
+        }
 
     }
 
@@ -103,18 +117,18 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.profil:
-                mojProfil(); info(); //ako je odabran moj profil poziva se metoda za prijelaz u MojProfil Activity
+                mojProfil(); //ako je odabran moj profil poziva se metoda za prijelaz u MojProfil Activity
                 return true;
             case R.id.profil_sign_out:
                 AlertDialog alertDialogSignOut = //ovdje se stvara prozor s pitanjem "Jeste li sigurni da se želite odjaviti?"
                         new AlertDialog.Builder(this)
-                                .setTitle("Jeste li sigurni da se želite odjaviti?")
-                                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.odjava_alert)
+                                .setPositiveButton(R.string.odgovor_da, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         signOut(); //kada je korisnik odabrao "Da" poziva se metoda za odjavu korinika
                                     }
                                 })
-                                .setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.odgovor_ne, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialogInterface, int which) {
                                         //kada je korisnik odabrao "Ne" ništa se ne događa
                                     }
