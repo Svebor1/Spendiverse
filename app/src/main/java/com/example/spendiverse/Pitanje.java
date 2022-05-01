@@ -358,11 +358,12 @@ public class Pitanje extends AppCompatActivity {
                                 } else {
                                     Log.d(TAG, "Error getting documents: ", task.getException());
                                 }
-                                upisivanjeBedzaZaSrednjeKvizove(db,firebaseUser,context);
+
                             }
                         });
             }
         }
+        upisivanjeBedzaZaSrednjeKvizove(db,firebaseUser,context);
     }
     private void upisivanjeBedzaZaSrednjeKvizove(FirebaseFirestore db, FirebaseUser firebaseUser, Context context){
         if (postojanjeBedzaZaSrednjeKvizove==0) {
@@ -386,11 +387,11 @@ public class Pitanje extends AppCompatActivity {
                                 } else {
                                     Log.d(TAG, "Error getting documents: ", task.getException());
                                 }
-                                upisivanjeBedzaZaTeskeKvizove(db, firebaseUser, context);
                             }
                         });
             }
         }
+        upisivanjeBedzaZaTeskeKvizove(db, firebaseUser, context);
     }
     private void upisivanjeBedzaZaTeskeKvizove(FirebaseFirestore db, FirebaseUser firebaseUser, Context context){
         if (postojanjeBedzaZaTeskeKvizove==0) {
