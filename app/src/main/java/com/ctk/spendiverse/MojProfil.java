@@ -232,7 +232,7 @@ public class MojProfil extends AppCompatActivity {
         teskiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_trosak, Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_tesko, Toast.LENGTH_LONG).show();
             }
         });
         bedzTrosak.setOnClickListener(new View.OnClickListener() {
