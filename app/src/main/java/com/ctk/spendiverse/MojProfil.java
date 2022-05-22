@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MojProfil extends AppCompatActivity {
+    Toast toast;
     TextView rjeseniKvizovi;
     TextView bodovi;
     Integer brojBodova = 0;
@@ -211,40 +212,64 @@ public class MojProfil extends AppCompatActivity {
                 editor.apply();
             }
         });
+    }
 
-
-
+    protected void onPause() {
+        if(toast != null)
+            toast.cancel();
+        super.onPause();
     }
 
     private void objasnjenjeBedzeva(){
+
         laganiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this,R.string.objsnjenje_bedz_lagano , Toast.LENGTH_LONG).show();
+                if (toast != null) {
+                    toast.cancel();
+                }
+                toast = Toast.makeText(MojProfil.this,R.string.objsnjenje_bedz_lagano , Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         srednjiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_srednje, Toast.LENGTH_LONG).show();
+                if (toast != null) {
+                    toast.cancel();
+                }
+                toast = Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_srednje, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         teskiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_tesko, Toast.LENGTH_LONG).show();
+                if (toast != null) {
+                    toast.cancel();
+                }
+                toast = Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_tesko, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         bedzTrosak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_trosak, Toast.LENGTH_LONG).show();
+                if (toast != null) {
+                    toast.cancel();
+                }
+                toast = Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_trosak, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         planiranjeBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_plan, Toast.LENGTH_LONG).show();
+                if (toast != null) {
+                    toast.cancel();
+                }
+                toast = Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_plan, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
     }
