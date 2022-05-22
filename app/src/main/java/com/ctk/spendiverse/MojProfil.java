@@ -100,7 +100,7 @@ public class MojProfil extends AppCompatActivity {
         int defaultValue = getResources().getInteger(R.integer.zadani_status_dark_modea);
         int darkModeStanje = sharedPref.getInt("dark_mode", defaultValue);
         ukljuciDarkMode.setChecked(darkModeStanje!=0);
-
+        objasnjenjeBedzeva();
         AlertDialog alertDialogBrisanje =
                 //ako korisnik hoće izbrisati profil prvo će se otvoriti prozor za potvrdu
                 new AlertDialog.Builder(this)
@@ -220,31 +220,31 @@ public class MojProfil extends AppCompatActivity {
         laganiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, "Ovaj bedž se dobiva rješavanjem 3 lagana kviza", Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this,R.string.objsnjenje_bedz_lagano , Toast.LENGTH_LONG).show();
             }
         });
         srednjiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, "Ovaj bedž se dobiva rješavanjem 4 srednja kviza", Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_srednje, Toast.LENGTH_LONG).show();
             }
         });
         teskiKvizoviBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, "Ovaj bedž se dobiva rješavanjem 5 teških kvizova", Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_trosak, Toast.LENGTH_LONG).show();
             }
         });
         bedzTrosak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, "Ovaj bedž se može dobiti upisivanjem prvog troška,", Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_trosak, Toast.LENGTH_LONG).show();
             }
         });
         planiranjeBedz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MojProfil.this, "Ovaj bedž se može dobiti upisivanjem prvog financijskog plana.", Toast.LENGTH_LONG).show();
+                Toast.makeText(MojProfil.this, R.string.objsnjenje_bedz_plan, Toast.LENGTH_LONG).show();
             }
         });
     }

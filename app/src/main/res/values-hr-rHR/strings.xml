@@ -950,4 +950,11 @@
         <item>Forward</item>
         <item>Dionica</item>
     </string-array>
+
+
+    <string name="objsnjenje_bedz_lagano">Ovaj bedž se dobiva rješavanjem 3 lagana kviza.</string>
+    <string name="objsnjenje_bedz_srednje">Ovaj bedž se dobiva rješavanjem 4 srednja kviza.</string>
+    <string name="objsnjenje_bedz_tesko">Ovaj bedž se dobiva rješavanjem 5 teških kvizova.</string>
+    <string name="objsnjenje_bedz_plan">Ovaj bedž se može dobiti upisivanjem prvog financijskog plana.</string>
+    <string name="objsnjenje_bedz_trosak">Ovaj bedž se može dobiti upisivanjem prvog troška.</string>
 </resources>

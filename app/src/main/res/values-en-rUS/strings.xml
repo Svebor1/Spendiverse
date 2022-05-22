@@ -7,6 +7,12 @@
     <string name="privacy_policy">""<a href="https://docs.google.com/document/d/11NUHVgrftwssezebnh2vltJPckV9ikwInwA-Y7nhjgk/edit?usp=sharing">"hehehehe"</a></string>
 
 
+    <string name="objsnjenje_bedz_lagano">Ovaj bedž se dobiva rješavanjem 3 lagana kviza.</string>
+    <string name="objsnjenje_bedz_srednje">Ovaj bedž se dobiva rješavanjem 4 srednja kviza.</string>
+    <string name="objsnjenje_bedz_tesko">Ovaj bedž se dobiva rješavanjem 5 teških kvizova.</string>
+    <string name="objsnjenje_bedz_plan">Ovaj bedž se može dobiti upisivanjem prvog financijskog plana.</string>
+    <string name="objsnjenje_bedz_trosak">Ovaj bedž se može dobiti upisivanjem prvog troška.</string>
+
     <string name="tesko_tema0_text1">Kada nam banka posudi novac, kažemo da smo podignuli KREDIT\nTada mi njoj moramo platiti naknadu</string>
     <string name="tesko_tema0_text2">Te naknade zovemo KAMATE</string>
     <string name="tesko_tema0_text3">Iznos novca stavljenog na štednju ili iznos kredita naziva se GLAVNICA</string>
