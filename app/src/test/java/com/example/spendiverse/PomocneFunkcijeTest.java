@@ -1,4 +1,4 @@
-package com.example.spendiverse;
+package com.ctk.spendiverse;
 
 import static org.junit.Assert.assertEquals;
 
