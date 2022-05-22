@@ -31,9 +31,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -45,7 +47,7 @@ public class Pitanje extends AppCompatActivity {
     String naslovGrupe;
     Integer redniBrojKviza;
     Integer[] tocnostPitanja;
-    Integer[] prethodniOdgovori; //lista sa prethodnim odgovorima korisnika
+    String[] prethodniOdgovori; //lista sa prethodnim odgovorima korisnika
     String tocanOdgovor;
     String TAG = "Pitanje";
     Integer prosliBodovi = 0;
@@ -83,8 +85,8 @@ public class Pitanje extends AppCompatActivity {
 
         //u početku nema odgovora na pitanja pa su svi elementi u listi prethodniOdgovori 0
         //lista sluzi za obnavljanje prethodnog odgovora ako se vracamo na prethodno pitanje
-        prethodniOdgovori = new Integer[kolicinaPitanja];
-        Arrays.fill(prethodniOdgovori,new Integer(0));
+        prethodniOdgovori = new String [kolicinaPitanja];
+        Arrays.fill(prethodniOdgovori,new String(""));
 
         ucitavanjePitanja();
 
@@ -99,21 +101,26 @@ public class Pitanje extends AppCompatActivity {
                 RadioButton trenutniOdgovor = findViewById(checkedId);
                 if (trenutniOdgovor==null) {
                     //ako korisnik ništa nije odgovorio
-                    prethodniOdgovori[redniBrojPitanja] = 0;
+                    prethodniOdgovori[redniBrojPitanja] = "";
                     return;
                 }
+                else {
+                    prethodniOdgovori[redniBrojPitanja] = trenutniOdgovor.getText().toString();
+                }
+                /*
                 if (trenutniOdgovor.getText().equals(sadrzajPitanja[1])) {
                     //ako je korisnik odabrao prvi odgovor
-                    prethodniOdgovori[redniBrojPitanja] = 1;
+                    prethodniOdgovori[redniBrojPitanja] = sadrzajPitanja[1];
                 }
                 else if (trenutniOdgovor.getText().equals(sadrzajPitanja[2])) {
                     //ako je korisnik odabrao drugi odgovor
-                    prethodniOdgovori[redniBrojPitanja] = 2;
+                    prethodniOdgovori[redniBrojPitanja] = sadrzajPitanja[2];
                 }
                 else {
                     //ako je korisnik odabrao treći odgovor
                     prethodniOdgovori[redniBrojPitanja] = 3;
                 }
+                 */
                 if (trenutniOdgovor.getText().toString().equals(tocanOdgovor)){
                     tocnostPitanja[redniBrojPitanja] = 1;
                 }
@@ -167,9 +174,12 @@ public class Pitanje extends AppCompatActivity {
 
         sadrzajPitanja=getResources().getStringArray(id);
         String tekstPitanja = sadrzajPitanja[0];
-        String odgovor1 = sadrzajPitanja[1];
-        String odgovor2 = sadrzajPitanja[2];
-        String odgovor3 = sadrzajPitanja[3];
+        Integer[] array = {1, 2, 3};
+        List<Integer> poredakOdgovora = Arrays.asList(array);
+        Collections.shuffle(poredakOdgovora);
+        String odgovor1 = sadrzajPitanja[poredakOdgovora.get(0)];
+        String odgovor2 = sadrzajPitanja[poredakOdgovora.get(1)];
+        String odgovor3 = sadrzajPitanja[poredakOdgovora.get(2)];
         String odgovorT = sadrzajPitanja[4];
         tocanOdgovor = odgovorT;
         TextView pitanjeText = findViewById(R.id.pitanje);
@@ -181,16 +191,16 @@ public class Pitanje extends AppCompatActivity {
         odgovor2Text.setText(odgovor2);
         odgovor3Text.setText(odgovor3);
         redniBrojPitanjaText.setText((redniBrojPitanja+1) + "/" + kolicinaPitanja);
-        if (prethodniOdgovori[redniBrojPitanja].equals(0)) {
+        if (prethodniOdgovori[redniBrojPitanja].equals("")) {
             //ako korisnik nije još odgovorio na trenutno pitanje
             odgovori.clearCheck();
         }
         else {
             //ako je korisnik već odgovorio na trenutno pitanje
-            if (prethodniOdgovori[redniBrojPitanja].equals(1)) {
+            if (prethodniOdgovori[redniBrojPitanja].equals(odgovor1)) {
                 odgovor1Text.setChecked(true);
             }
-            else if (prethodniOdgovori[redniBrojPitanja].equals(2)) {
+            else if (prethodniOdgovori[redniBrojPitanja].equals(odgovor2)) {
                 odgovor2Text.setChecked(true);
             }
             else {
