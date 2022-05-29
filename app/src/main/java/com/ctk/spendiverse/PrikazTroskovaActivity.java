@@ -48,6 +48,7 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     private Spinner spinnerZaValute;
     private Button novaKategorijaTroskaButton;
     private Button novaValutaButton;
+    private Button kalkulatorButton;
     private final Calendar myCalendar = Calendar.getInstance();
     String vremenskaRazdoblja[] = {"ukupno", "dan", "tjedan", "mjesec", "godina"};
     String[] zadaneValute = {"HRK", "USD", "EUR", "GBP"};
@@ -72,7 +73,13 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapterValute = new ArrayAdapter(this, android.R.layout.simple_spinner_item, valute);
         arrayAdapterValute.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerZaValute.setAdapter(arrayAdapterValute);
-
+        kalkulatorButton = findViewById(R.id.kalkulator_button);
+        kalkulatorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otvoriKalkulator();
+            }
+        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -206,6 +213,10 @@ public class PrikazTroskovaActivity extends AppCompatActivity {
     }
     private void novaValuta() {
         Intent intent = new Intent(this, DodavanjeValuteActivity.class);
+        startActivity(intent);
+    }
+    private void otvoriKalkulator() {
+        Intent intent = new Intent(this, KalkulatorActivity.class);
         startActivity(intent);
     }
     private boolean provjeriDatum(String razdoblje, int dan, int mjesec, int godina) {

@@ -3,14 +3,16 @@
     package="com.ctk.spendiverse">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Spendiverse">
+        <activity android:name=".KalkulatorActivity"></activity>
         <activity
             android:name=".PrikazSlikeRacunaActivity"
             android:exported="false" />
@@ -61,4 +63,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

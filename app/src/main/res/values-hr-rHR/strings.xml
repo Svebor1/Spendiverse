@@ -8,8 +8,8 @@
     <string name="financijski_plan_button">Financijski plan</string>
     <string name="novi_trosak_button">Novi trošak</string>
     <string name="prikaz_detalja_button">Prikaz detalja</string>
-    <string name="dodaj_kategoriju_troska_button">Dodaj kategoriju troška</string>
-    <string name="dodaj_valutu_button">Dodaj valutu</string>
+    <string name="dodaj_kategoriju_troska_button">+kategorija</string>
+    <string name="dodaj_valutu_button">+valuta</string>
     <string name="spremi_promjene_button">Spremi promjene</string>
     <string name="dodaj_trosak_button">Dodaj trošak</string>
     <string name="zapocni_kviz_button">Započni kviz</string>
